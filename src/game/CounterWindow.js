@@ -26,14 +26,20 @@ export class CounterWindow {
     this.totalHits = 0;
     this.perfectHits = 0;
 
+    // Parry-zone gating: if zone is set, player must be inside it to register a hit.
+    this.zone = null;         // { x, y, radius } in arena pixels, or null = no gating
+    this.outOfRangeFlash = 0; // brief HUD warning timer when a press is rejected for being outside the zone
+
     this.onHit = null;        // (grade, damage) => void
     this.onClose = null;      // (summary) => void
   }
 
-  open(startBeat, durationBeats) {
+  open(startBeat, durationBeats, zone = null) {
     this.active = true;
     this.startBeat = startBeat;
     this.durationBeats = durationBeats;
+    this.zone = zone;
+    this.outOfRangeFlash = 0;
     this.prompts = [];
     for (let i = 0; i < durationBeats; i++) {
       const beat = startBeat + i;
@@ -45,6 +51,13 @@ export class CounterWindow {
     this.totalDamage = 0;
     this.totalHits = 0;
     this.perfectHits = 0;
+  }
+
+  isInZone(player) {
+    if (!this.zone || !player) return true;
+    const dx = player.x - this.zone.x;
+    const dy = player.y - this.zone.y;
+    return dx * dx + dy * dy <= this.zone.radius * this.zone.radius;
   }
 
   close() {
@@ -62,6 +75,7 @@ export class CounterWindow {
 
   update(dt) {
     if (this.flashTimer > 0) this.flashTimer -= dt;
+    if (this.outOfRangeFlash > 0) this.outOfRangeFlash -= dt;
     if (!this.active) return;
     const t = this.clock.ctx.currentTime;
     // Auto-miss any prompts past the GOOD window with no hit
@@ -79,8 +93,13 @@ export class CounterWindow {
   }
 
   // Player pressed the attack key. Find the nearest unresolved prompt and grade it.
-  registerPress(baseDamage = 40) {
+  // If a parry zone is active, player must be inside it for the press to count.
+  registerPress(baseDamage = 40, player = null) {
     if (!this.active) return null;
+    if (this.zone && !this.isInZone(player)) {
+      this.outOfRangeFlash = 0.45;
+      return { rejected: "out_of_range" };
+    }
     const t = this.clock.ctx.currentTime;
     let best = null;
     let bestDist = Infinity;

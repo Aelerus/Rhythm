@@ -11,11 +11,13 @@ export const PHASE_DODGE = "dodge";
 export const PHASE_COUNTER = "counter";
 
 export class FightManager {
-  constructor({ bossData, patternLibrary, beatClock, audio, arena }) {
+  constructor({ bossData, patternLibrary, beatClock, audio, arena, musicBuffer = null }) {
     this.bossData = bossData;
     this.beatClock = beatClock;
     this.audio = audio;
     this.arena = arena;
+    this.musicBuffer = musicBuffer;
+    this._musicPlaying = false;
 
     this.player = new Player(arena);
     this.boss = new BossController(bossData, arena);
@@ -29,9 +31,13 @@ export class FightManager {
     this.lastScheduledBeat = -1;
 
     this.outcome = null; // "victory" | "defeat"
+    this.defeatReason = null; // "death" | "time_up"
     this.recentHit = null; // last grade flash for HUD
     this.feedback = null;  // ephemeral text bubble
     this.feedbackTimer = 0;
+    this._songEndTime = null; // AudioContext time when the song finishes; null = no time limit
+    this._songStartTime = null;
+    this._songDuration = 0;
 
     this.beatClock.setBPM(bossData.bpm ?? 120);
 
@@ -43,16 +49,45 @@ export class FightManager {
   }
 
   start() {
-    this.beatClock.start();
-    this._scheduleAudioAhead();
+    if (this.musicBuffer) {
+      // Schedule music + beat clock together at a small lead so AudioContext can deliver the buffer.
+      const startAt = this.beatClock.ctx.currentTime + 0.12;
+      this.beatClock.start(startAt);
+      const offset = (this.bossData.musicOffset ?? 0);
+      const volume = (this.bossData.musicVolume ?? 0.85);
+      this.audio.playBuffer(this.musicBuffer, startAt, { offset, volume });
+      this._musicPlaying = true;
+      this._songStartTime = startAt;
+      this._songDuration = Math.max(0, this.musicBuffer.duration - offset);
+      this._songEndTime = startAt + this._songDuration;
+    } else {
+      this.beatClock.start();
+      this._scheduleAudioAhead();
+    }
+  }
+
+  // Seconds until the song ends (only meaningful when there's a music buffer).
+  get songTimeRemaining() {
+    if (!this._songEndTime) return null;
+    return Math.max(0, this._songEndTime - this.beatClock.ctx.currentTime);
+  }
+  get songProgress() {
+    if (!this._songEndTime || !this._songDuration) return 0;
+    const elapsed = this.beatClock.ctx.currentTime - this._songStartTime;
+    return Math.max(0, Math.min(1, elapsed / this._songDuration));
   }
 
   destroy() {
     if (this._beatUnsub) this._beatUnsub();
+    if (this._musicPlaying) {
+      this.audio.fadeOutMusic(0.5);
+      this._musicPlaying = false;
+    }
   }
 
-  // Schedule audio for the next ~2 seconds.
+  // Schedule synth percussion for the next ~2 seconds (only when there's no song).
   _scheduleAudioAhead() {
+    if (this._musicPlaying) return;
     const lookahead = 2.0;
     const now = this.beatClock.ctx.currentTime;
     let beat = Math.max(0, this.lastScheduledBeat + 1);
@@ -90,9 +125,11 @@ export class FightManager {
     } else if (evt.type === "counterattack_window") {
       this.phase = PHASE_COUNTER;
       this.pool.clear();
-      // Prompts begin 2 beats after the window opens so the player sees them approach.
-      const leadBeats = 2;
-      this.counter.open(evt.beat + leadBeats, evt.duration_beats ?? 8);
+      // Prompts begin `lead_beats` after the window opens so the player can travel
+      // to the parry zone and see the prompts approach.
+      const leadBeats = evt.lead_beats ?? 2;
+      const zone = this._resolveZone(evt.zone);
+      this.counter.open(evt.beat + leadBeats, evt.duration_beats ?? 8, zone);
     } else if (evt.type === "phase_marker") {
       // pure annotation — no-op
     }
@@ -100,6 +137,32 @@ export class FightManager {
 
   _onPhaseChange(n) {
     this._showFeedback(`PHASE ${n}`, "#ffd25d", 1.6);
+  }
+
+  // Translate a timeline zone descriptor into arena pixel coordinates.
+  // Supports either a named anchor or {x, y} fractions (0..1) of the arena.
+  _resolveZone(zone) {
+    if (!zone) return null;
+    const A = this.arena;
+    const r = zone.radius ?? 70;
+    if (zone.anchor) {
+      const anchors = {
+        center:       [0.5,  0.5],
+        top:          [0.5,  0.22],
+        bottom:       [0.5,  0.78],
+        left:         [0.22, 0.5],
+        right:        [0.78, 0.5],
+        topLeft:      [0.22, 0.25],
+        topRight:     [0.78, 0.25],
+        bottomLeft:   [0.22, 0.75],
+        bottomRight:  [0.78, 0.75],
+      };
+      const a = anchors[zone.anchor] ?? [0.5, 0.5];
+      return { x: A.x + A.w * a[0], y: A.y + A.h * a[1], radius: r };
+    }
+    const fx = zone.x ?? 0.5;
+    const fy = zone.y ?? 0.5;
+    return { x: A.x + A.w * fx, y: A.y + A.h * fy, radius: r };
   }
 
   _applyDamage(grade, dmg) {
@@ -117,7 +180,7 @@ export class FightManager {
   handleAttackPress() {
     if (this.phase !== PHASE_COUNTER) return;
     const baseDamage = this.bossData.counterBaseDamage ?? 40;
-    this.counter.registerPress(baseDamage);
+    this.counter.registerPress(baseDamage, this.player);
   }
 
   update(dt, input) {
@@ -146,7 +209,15 @@ export class FightManager {
       }
     }
 
-    if (!this.player.alive) this.outcome = "defeat";
-    else if (this.boss.defeated) this.outcome = "victory";
+    if (!this.player.alive) {
+      this.outcome = "defeat";
+      this.defeatReason = "death";
+    } else if (this.boss.defeated) {
+      this.outcome = "victory";
+    } else if (this._songEndTime && this.beatClock.ctx.currentTime >= this._songEndTime) {
+      // Song ran out and the boss is still standing — DPS check failed.
+      this.outcome = "defeat";
+      this.defeatReason = "time_up";
+    }
   }
 }

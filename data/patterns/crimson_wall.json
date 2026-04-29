@@ -1,0 +1,9 @@
+{
+  "id": "crimson_wall",
+  "type": "wall",
+  "count": 20,
+  "gapWidth": 2,
+  "speed": 320,
+  "radius": 9,
+  "color": "#a8112e"
+}

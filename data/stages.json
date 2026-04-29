@@ -2,7 +2,8 @@
   "stages": [
     { "id": "boss_01", "name": "AURA",  "color": "#ff5dd6", "bpm": 90,  "boss": "data/bosses/boss_01.json" },
     { "id": "boss_02", "name": "PRISM", "color": "#5dd6ff", "bpm": 120, "boss": "data/bosses/boss_02.json" },
-    { "id": "boss_03", "name": "VOLT",  "color": "#ffae5d", "bpm": 140, "boss": "data/bosses/boss_03.json" }
+    { "id": "boss_03", "name": "VOLT",  "color": "#ffae5d", "bpm": 140, "boss": "data/bosses/boss_03.json" },
+    { "id": "boss_04", "name": "EIEN",  "color": "#d4133b", "bpm": 185, "boss": "data/bosses/boss_04.json" }
   ],
   "patternFiles": [
     "data/patterns/radial_burst.json",
@@ -12,6 +13,23 @@
     "data/patterns/spiral.json",
     "data/patterns/wall.json",
     "data/patterns/cross.json",
-    "data/patterns/homing.json"
+    "data/patterns/homing.json",
+    "data/patterns/vein_radial.json",
+    "data/patterns/flood_radial.json",
+    "data/patterns/pulse_aimed.json",
+    "data/patterns/crimson_fan.json",
+    "data/patterns/crimson_wall.json",
+    "data/patterns/wide_wall.json",
+    "data/patterns/bleed_spiral.json",
+    "data/patterns/slash_cross.json",
+    "data/patterns/blood_homing.json",
+    "data/patterns/carnage_radial.json",
+    "data/patterns/needle_wall.json",
+    "data/patterns/storm_spiral.json",
+    "data/patterns/shred_cross.json",
+    "data/patterns/swarm_homing.json",
+    "data/patterns/crimson_rain.json",
+    "data/patterns/dread_converging.json",
+    "data/patterns/blood_storm.json"
   ]
 }

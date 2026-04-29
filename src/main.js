@@ -14,12 +14,12 @@ import { FightManager } from "./game/FightManager.js";
 import { HUD } from "./ui/HUD.js";
 import { StageSelectScene } from "./ui/StageSelect.js";
 import { VictoryScene } from "./ui/VictoryScreen.js";
-import { MainMenuScene, GameOverScene } from "./ui/Menus.js";
+import { MainMenuScene, GameOverScene, LoadingScene } from "./ui/Menus.js";
 
 const ARENA = { x: 60, y: 60, w: 840, h: 600 };
 
 class FightScene {
-  constructor({ canvas, input, audio, beatClock, bossData, patternLibrary, stage, onVictory, onDefeat }) {
+  constructor({ canvas, input, audio, beatClock, bossData, patternLibrary, stage, musicBuffer, onVictory, onDefeat }) {
     this.canvas = canvas;
     this.input = input;
     this.audio = audio;
@@ -27,7 +27,7 @@ class FightScene {
     this.stage = stage;
     this.onVictory = onVictory;
     this.onDefeat = onDefeat;
-    this.fight = new FightManager({ bossData, patternLibrary, beatClock, audio, arena: ARENA });
+    this.fight = new FightManager({ bossData, patternLibrary, beatClock, audio, arena: ARENA, musicBuffer });
     this.bullets = new BulletRenderer();
     this.playerR = new PlayerRenderer();
     this.bossR = new BossRenderer();
@@ -78,7 +78,10 @@ class FightScene {
         grade,
       });
     } else if (this.fight.outcome === "defeat") {
-      this.onDefeat({ bossName: this.fight.bossData.name });
+      this.onDefeat({
+        bossName: this.fight.bossData.name,
+        reason: this.fight.defeatReason ?? "death",
+      });
     }
   }
 
@@ -150,7 +153,21 @@ class Game {
   }
 
   async _startFight(stage) {
+    // Show a loading screen while we fetch/decode the boss music (some are >50MB WAVs).
+    if (stage.boss) {
+      this.scenes.set(new LoadingScene({
+        canvas: this.canvas, input: this.input, audio: this.audio, stage,
+      }));
+    }
     const bossData = await fetch(stage.boss).then((r) => r.json());
+    let musicBuffer = null;
+    if (bossData.music) {
+      try {
+        musicBuffer = await this.audio.loadBuffer(bossData.music);
+      } catch (err) {
+        console.warn("Failed to load boss music, falling back to synth:", err);
+      }
+    }
     this.scenes.set(new FightScene({
       canvas: this.canvas,
       input: this.input,
@@ -159,6 +176,7 @@ class Game {
       bossData,
       patternLibrary: this.patternLibrary,
       stage,
+      musicBuffer,
       onVictory: (summary) => this._onVictory(summary),
       onDefeat: (info) => this._onDefeat(info, stage, bossData),
     }));
@@ -192,6 +210,7 @@ class Game {
     this.scenes.set(new GameOverScene({
       canvas: this.canvas, input: this.input, audio: this.audio,
       bossName: info.bossName,
+      reason: info.reason,
       onRetry: () => this._startFight(stage),
       onBackToSelect: () => this._gotoStageSelect(),
     }));

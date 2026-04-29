@@ -1,0 +1,7 @@
+{
+  "id": "shred_cross",
+  "type": "cross",
+  "speed": 480,
+  "radius": 12,
+  "color": "#ffb3bd"
+}

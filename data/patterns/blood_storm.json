@@ -1,0 +1,8 @@
+{
+  "id": "blood_storm",
+  "type": "rain",
+  "count": 26,
+  "speed": 280,
+  "radius": 6,
+  "color": "#a8112e"
+}

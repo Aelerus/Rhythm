@@ -17,8 +17,8 @@ export class BeatClock {
     this.beatInterval = 60 / bpm;
   }
 
-  start() {
-    this.startTime = this.ctx.currentTime;
+  start(startTime = null) {
+    this.startTime = startTime != null ? startTime : this.ctx.currentTime;
     this.lastBeatIndex = -1;
     this.running = true;
   }

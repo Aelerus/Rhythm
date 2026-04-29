@@ -41,10 +41,51 @@ export class MainMenuScene {
   }
 }
 
+// Brief scene shown while we download/decode boss music.
+export class LoadingScene {
+  constructor({ canvas, input, audio, stage }) {
+    this.canvas = canvas; this.input = input; this.audio = audio;
+    this.stage = stage; this.t = 0;
+  }
+  enter() {}
+  exit() {}
+  update(dt) { this.t += dt; }
+  render(ctx) {
+    const { width, height } = ctx.canvas;
+    ctx.fillStyle = "#0a0b16";
+    ctx.fillRect(0, 0, width, height);
+
+    ctx.save();
+    ctx.fillStyle = this.stage.color;
+    ctx.shadowColor = this.stage.color;
+    ctx.shadowBlur = 24;
+    ctx.font = "bold 56px 'Segoe UI', sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText(this.stage.name, width / 2, height / 2 - 30);
+
+    const dots = ".".repeat(1 + (Math.floor(this.t * 3) % 3));
+    ctx.shadowBlur = 0;
+    ctx.fillStyle = "#aaaadd";
+    ctx.font = "20px 'Segoe UI', sans-serif";
+    ctx.fillText(`Tuning the strings${dots}`, width / 2, height / 2 + 30);
+
+    // Pulsing ring while we wait
+    const r = 80 + Math.sin(this.t * 4) * 8;
+    ctx.globalAlpha = 0.5 + 0.5 * Math.sin(this.t * 4);
+    ctx.strokeStyle = this.stage.color;
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.arc(width / 2, height / 2 + 90, r, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.restore();
+  }
+}
+
 export class GameOverScene {
-  constructor({ canvas, input, audio, bossName, onRetry, onBackToSelect }) {
+  constructor({ canvas, input, audio, bossName, reason = "death", onRetry, onBackToSelect }) {
     this.canvas = canvas; this.input = input; this.audio = audio;
     this.bossName = bossName;
+    this.reason = reason;
     this.onRetry = onRetry; this.onBackToSelect = onBackToSelect;
   }
   enter() { this.audio.blip(180, 0.4, "sawtooth", 0.4); }
@@ -59,17 +100,24 @@ export class GameOverScene {
     ctx.fillRect(0, 0, width, height);
 
     ctx.save();
-    ctx.fillStyle = "#ff5d5d";
-    ctx.shadowColor = "#ff5d5d";
+    const isTimeUp = this.reason === "time_up";
+    const headline = isTimeUp ? "TIME'S UP" : "GAME OVER";
+    const subline = isTimeUp
+      ? `${this.bossName} outlasted you.`
+      : `Defeated by ${this.bossName}`;
+    const headlineColor = isTimeUp ? "#ff8a5d" : "#ff5d5d";
+
+    ctx.fillStyle = headlineColor;
+    ctx.shadowColor = headlineColor;
     ctx.shadowBlur = 22;
     ctx.font = "bold 64px 'Segoe UI', sans-serif";
     ctx.textAlign = "center";
-    ctx.fillText("GAME OVER", width / 2, height / 2 - 40);
+    ctx.fillText(headline, width / 2, height / 2 - 40);
 
     ctx.shadowBlur = 0;
     ctx.fillStyle = "#aaaadd";
     ctx.font = "18px 'Segoe UI', sans-serif";
-    ctx.fillText(`Defeated by ${this.bossName}`, width / 2, height / 2 + 4);
+    ctx.fillText(subline, width / 2, height / 2 + 4);
 
     ctx.fillStyle = "#ffe25d";
     ctx.font = "bold 18px 'Segoe UI', sans-serif";

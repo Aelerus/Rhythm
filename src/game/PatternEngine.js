@@ -21,8 +21,54 @@ export class PatternEngine {
       case "wall":         this._wall(pattern, ctx); break;
       case "cross":        this._cross(pattern, ctx); break;
       case "homing":       this._homing(pattern, ctx); break;
+      case "rain":         this._rain(pattern, ctx); break;
+      case "converging":   this._converging(pattern, ctx); break;
       default:
         console.warn(`PatternEngine: unhandled pattern type '${pattern.type}'`);
+    }
+  }
+
+  // Bullets spawn at random x-positions along the top of the arena and fall straight down.
+  // Unpredictable, no telegraph — punishes camping the bottom edge.
+  _rain(p, ctx) {
+    const arena = ctx.arena;
+    const count = p.count ?? 12;
+    const speed = p.speed ?? 260;
+    for (let i = 0; i < count; i++) {
+      const x = arena.x + 20 + Math.random() * (arena.w - 40);
+      this.pool.spawn({
+        x, y: arena.y - 15,
+        vx: 0, vy: speed,
+        radius: p.radius ?? 7, color: p.color ?? "#ff5d6d"
+      });
+    }
+  }
+
+  // Bullets spawn at random points around the arena perimeter and converge toward
+  // the player's position at the moment of firing — a closing crossfire.
+  _converging(p, ctx) {
+    const arena = ctx.arena;
+    const count = p.count ?? 10;
+    const speed = p.speed ?? 270;
+    const inset = 8;
+    for (let i = 0; i < count; i++) {
+      // Pick a random perimeter point.
+      const side = Math.floor(Math.random() * 4);
+      let sx, sy;
+      switch (side) {
+        case 0: sx = arena.x + Math.random() * arena.w; sy = arena.y - inset; break;
+        case 1: sx = arena.x + arena.w + inset; sy = arena.y + Math.random() * arena.h; break;
+        case 2: sx = arena.x + Math.random() * arena.w; sy = arena.y + arena.h + inset; break;
+        default: sx = arena.x - inset; sy = arena.y + Math.random() * arena.h; break;
+      }
+      const dx = ctx.target.x - sx;
+      const dy = ctx.target.y - sy;
+      const len = Math.hypot(dx, dy) || 1;
+      this.pool.spawn({
+        x: sx, y: sy,
+        vx: (dx / len) * speed, vy: (dy / len) * speed,
+        radius: p.radius ?? 7, color: p.color ?? "#ff3a55"
+      });
     }
   }
 

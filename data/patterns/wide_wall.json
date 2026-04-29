@@ -1,0 +1,9 @@
+{
+  "id": "wide_wall",
+  "type": "wall",
+  "count": 17,
+  "gapWidth": 2,
+  "speed": 280,
+  "radius": 10,
+  "color": "#7e0e26"
+}

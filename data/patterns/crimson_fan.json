@@ -1,0 +1,9 @@
+{
+  "id": "crimson_fan",
+  "type": "aimed_shot",
+  "count": 14,
+  "spread": 1.25,
+  "speed": 395,
+  "radius": 8,
+  "color": "#ff3a55"
+}

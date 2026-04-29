@@ -6,9 +6,11 @@ export class HUD {
   draw(ctx, fight, beatPulse, beatPosition) {
     const { width, height } = ctx.canvas;
     this._drawBossBar(ctx, fight, width);
+    this._drawSongTimer(ctx, fight, width);
     this._drawPlayerBar(ctx, fight, width, height);
-    this._drawBeatIndicator(ctx, beatPulse, width, height);
+    this._drawBeatIndicator(ctx, beatPulse, width, height, fight.boss.color);
     this._drawComboCounter(ctx, fight, width);
+    this._drawParryZone(ctx, fight, beatPulse);
     this._drawCounterPrompts(ctx, fight, beatPosition, width, height);
     this._drawGradeFlash(ctx, fight, width, height);
     this._drawFeedback(ctx, fight, width, height);
@@ -46,6 +48,42 @@ export class HUD {
     ctx.fillText(`${fight.bossData.name}  —  Phase ${boss.phase}`, width / 2, y - 6);
   }
 
+  // Song-time progress bar fused to the underside of the boss HP. When this
+  // reaches the right edge and the boss isn't dead, the run is lost.
+  _drawSongTimer(ctx, fight, width) {
+    if (!fight._songEndTime) return;
+    const w = width * 0.7;
+    const h = 4;
+    const x = (width - w) / 2;
+    const y = 22 + 18 + 2; // directly under the boss HP bar (boss bar y=22 h=18)
+    const progress = fight.songProgress;
+    const remaining = Math.max(0, fight.songTimeRemaining ?? 0);
+    const veryUrgent = remaining < 15;
+    const urgent = remaining < 30;
+
+    ctx.save();
+    ctx.fillStyle = "#22182a";
+    ctx.fillRect(x, y, w, h);
+    const barColor = veryUrgent ? "#ff3a3a" : (urgent ? "#ff8a5d" : "#7aa0d4");
+    if (veryUrgent) {
+      ctx.shadowColor = barColor;
+      ctx.shadowBlur = 14;
+    }
+    ctx.fillStyle = barColor;
+    ctx.fillRect(x, y, w * progress, h);
+    ctx.shadowBlur = 0;
+
+    // Compact time label at the right end of the bar (above the arena).
+    const mm = Math.floor(remaining / 60);
+    const ss = Math.floor(remaining % 60);
+    const label = `${mm}:${ss.toString().padStart(2, "0")}`;
+    ctx.fillStyle = veryUrgent ? "#ff3a3a" : "#aaaadd";
+    ctx.font = "bold 11px 'Segoe UI', sans-serif";
+    ctx.textAlign = "right";
+    ctx.fillText(label, x + w, y - 4);
+    ctx.restore();
+  }
+
   _drawPlayerBar(ctx, fight, width, height) {
     const w = 220;
     const h = 16;
@@ -66,15 +104,15 @@ export class HUD {
     ctx.fillText(`HP ${Math.ceil(fight.player.hp)} / ${fight.player.maxHP}`, x, y - 6);
   }
 
-  _drawBeatIndicator(ctx, beatPulse, width, height) {
+  _drawBeatIndicator(ctx, beatPulse, width, height, color = "#5dd6ff") {
     const r = 12 + beatPulse * 14;
     const x = width / 2;
     const y = height - 36;
     ctx.save();
     ctx.globalAlpha = 0.4 + beatPulse * 0.5;
-    ctx.shadowColor = "#5dd6ff";
+    ctx.shadowColor = color;
     ctx.shadowBlur = 18;
-    ctx.fillStyle = "#5dd6ff";
+    ctx.fillStyle = color;
     ctx.beginPath();
     ctx.arc(x, y, r, 0, Math.PI * 2);
     ctx.fill();
@@ -97,11 +135,78 @@ export class HUD {
     ctx.restore();
   }
 
+  // Glowing target circle the player must occupy to land parries.
+  _drawParryZone(ctx, fight, beatPulse) {
+    if (fight.phase !== PHASE_COUNTER) return;
+    const zone = fight.counter.zone;
+    if (!zone) return;
+    const inside = fight.counter.isInZone(fight.player);
+    const t = performance.now() / 1000;
+    const ringR = zone.radius + 4 + Math.sin(t * 6) * 3;
+    const goodColor = "#5dffae";
+    const badColor = "#ff5dd6";
+    const color = inside ? goodColor : badColor;
+
+    ctx.save();
+    // Outer glow
+    ctx.globalAlpha = 0.18 + 0.18 * beatPulse + (inside ? 0.12 : 0);
+    ctx.shadowColor = color;
+    ctx.shadowBlur = 30;
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    ctx.arc(zone.x, zone.y, zone.radius, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Crisp ring
+    ctx.globalAlpha = 0.85;
+    ctx.shadowBlur = inside ? 24 : 12;
+    ctx.strokeStyle = color;
+    ctx.lineWidth = inside ? 4 : 3;
+    ctx.beginPath();
+    ctx.arc(zone.x, zone.y, ringR, 0, Math.PI * 2);
+    ctx.stroke();
+
+    // Outward pulsing rings when ready
+    if (inside) {
+      for (let i = 0; i < 2; i++) {
+        const phase = ((t * 0.9) + i * 0.5) % 1;
+        ctx.globalAlpha = (1 - phase) * 0.45;
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.arc(zone.x, zone.y, zone.radius + phase * 38, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+    } else {
+      // "MOVE!" hint floating above the circle
+      ctx.globalAlpha = 0.85 + 0.15 * Math.sin(t * 9);
+      ctx.shadowBlur = 18;
+      ctx.fillStyle = badColor;
+      ctx.font = "bold 18px 'Segoe UI', sans-serif";
+      ctx.textAlign = "center";
+      ctx.fillText("ENTER THE CIRCLE", zone.x, zone.y - zone.radius - 14);
+    }
+
+    // Out-of-range rejection flash
+    if (fight.counter.outOfRangeFlash > 0) {
+      const k = Math.min(1, fight.counter.outOfRangeFlash / 0.45);
+      ctx.globalAlpha = k * 0.9;
+      ctx.shadowBlur = 30;
+      ctx.shadowColor = badColor;
+      ctx.strokeStyle = badColor;
+      ctx.lineWidth = 5;
+      ctx.beginPath();
+      ctx.arc(zone.x, zone.y, zone.radius + 16 + (1 - k) * 22, 0, Math.PI * 2);
+      ctx.stroke();
+    }
+    ctx.restore();
+  }
+
   _drawCounterPrompts(ctx, fight, beatPosition, width, height) {
     if (fight.phase !== PHASE_COUNTER) return;
     const cy = height / 2 + 60;
     const cx = width / 2;
     const prompts = fight.counter.visiblePrompts();
+    const inZone = fight.counter.zone ? fight.counter.isInZone(fight.player) : true;
 
     // Lane line
     ctx.save();
@@ -145,14 +250,22 @@ export class HUD {
     }
     ctx.restore();
 
-    // "ATTACK!" label
+    // "ATTACK!" label — context-sensitive when a parry zone is active
     ctx.save();
-    ctx.fillStyle = "#ffe25d";
+    let label = "COUNTERATTACK — press SPACE on beat";
+    let labelColor = "#ffe25d";
+    if (fight.counter.zone) {
+      label = inZone
+        ? "PARRY READY — press SPACE on beat"
+        : "MOVE TO THE CIRCLE";
+      labelColor = inZone ? "#5dffae" : "#ff5dd6";
+    }
+    ctx.fillStyle = labelColor;
     ctx.font = "bold 22px 'Segoe UI', sans-serif";
     ctx.textAlign = "center";
-    ctx.shadowColor = "#ffd25d";
+    ctx.shadowColor = labelColor;
     ctx.shadowBlur = 14;
-    ctx.fillText("COUNTERATTACK — press SPACE on beat", cx, cy - 50);
+    ctx.fillText(label, cx, cy - 50);
     ctx.restore();
   }
 

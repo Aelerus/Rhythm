@@ -1,0 +1,10 @@
+{
+  "id": "bleed_spiral",
+  "type": "spiral",
+  "arms": 6,
+  "count": 2,
+  "speed": 265,
+  "radius": 6,
+  "color": "#ff5d6d",
+  "rotateStep": 0.55
+}
