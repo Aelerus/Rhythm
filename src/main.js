@@ -19,7 +19,7 @@ import { MainMenuScene, GameOverScene, LoadingScene } from "./ui/Menus.js";
 const ARENA = { x: 60, y: 60, w: 840, h: 600 };
 
 class FightScene {
-  constructor({ canvas, input, audio, beatClock, bossData, patternLibrary, stage, musicBuffer, onVictory, onDefeat, onRestart, onQuit }) {
+  constructor({ canvas, input, audio, beatClock, bossData, patternLibrary, stage, musicBuffer, musicBuffers, onVictory, onDefeat, onRestart, onQuit }) {
     this.canvas = canvas;
     this.input = input;
     this.audio = audio;
@@ -29,7 +29,7 @@ class FightScene {
     this.onDefeat = onDefeat;
     this.onRestart = onRestart;
     this.onQuit = onQuit;
-    this.fight = new FightManager({ bossData, patternLibrary, beatClock, audio, arena: ARENA, musicBuffer });
+    this.fight = new FightManager({ bossData, patternLibrary, beatClock, audio, arena: ARENA, musicBuffer, musicBuffers });
     this.bullets = new BulletRenderer();
     this.playerR = new PlayerRenderer();
     this.bossR = new BossRenderer();
@@ -38,7 +38,11 @@ class FightScene {
     this._unsubPress = null;
     this._initialHP = this.fight.player.maxHP;
     this._totalPrompts = 0;
-    for (const evt of bossData.timeline) {
+    // Sum prompt counts across all phases for grade calculation.
+    const allTimelines = Array.isArray(bossData.phases) && bossData.phases.length
+      ? bossData.phases.flatMap((p) => p.timeline ?? [])
+      : (bossData.timeline ?? []);
+    for (const evt of allTimelines) {
       if (evt.type === "counterattack_window") this._totalPrompts += (evt.duration_beats ?? 8);
     }
     this._scoreSnapshot = 0;
@@ -213,10 +217,16 @@ class FightScene {
     const inversion = this.fight.useInversion
       ? { floor: this.fight.floorState, flash: this.fight.floorFlashTimer }
       : null;
+    // Phase 2 red cracks reveal as boss HP drops in that phase.
+    const redCracks = this.fight.redCracks
+      ? { progress: 1 - this.fight.boss.hpRatio }
+      : null;
+    const fullRedFloor = !!this.fight.fullRedFloor;
+    const bossColorMode = this.fight.bossColorMode || "color";
 
-    this.canvasR.drawBackground(beatPulse, this.fight.boss.color, inversion, ARENA);
-    this.canvasR.drawArenaFrame(ARENA, beatPulse, this.fight.boss.color, inversion);
-    this.bossR.draw(ctx, this.fight.boss, beatPulse, inversion);
+    this.canvasR.drawBackground(beatPulse, this.fight.boss.color, inversion, ARENA, redCracks, fullRedFloor);
+    this.canvasR.drawArenaFrame(ARENA, beatPulse, this.fight.boss.color, inversion, redCracks, fullRedFloor);
+    this.bossR.draw(ctx, this.fight.boss, beatPulse, inversion, bossColorMode);
     this.bullets.draw(ctx, this.fight.pool, inversion);
     this.playerR.draw(ctx, this.fight.player, this.input.isFocus(), inversion);
     this.hud.draw(ctx, this.fight, beatPulse, beatPos);
@@ -328,14 +338,30 @@ class Game {
       }));
     }
     const bossData = await fetch(stage.boss).then((r) => r.json());
+
+    // Multi-phase bosses have a `phases` array, each with its own music.
+    // Single-phase bosses still have a top-level `music` field.
     let musicBuffer = null;
-    if (bossData.music) {
+    let musicBuffers = null;
+    if (Array.isArray(bossData.phases) && bossData.phases.length > 0) {
+      musicBuffers = {};
+      for (let i = 0; i < bossData.phases.length; i++) {
+        const m = bossData.phases[i].music;
+        if (!m) continue;
+        try {
+          musicBuffers[i] = await this.audio.loadBuffer(m);
+        } catch (err) {
+          console.warn(`Failed to load phase ${i} music (${m}):`, err);
+        }
+      }
+    } else if (bossData.music) {
       try {
         musicBuffer = await this.audio.loadBuffer(bossData.music);
       } catch (err) {
         console.warn("Failed to load boss music, falling back to synth:", err);
       }
     }
+
     this.scenes.set(new FightScene({
       canvas: this.canvas,
       input: this.input,
@@ -345,6 +371,7 @@ class Game {
       patternLibrary: this.patternLibrary,
       stage,
       musicBuffer,
+      musicBuffers,
       onVictory: (summary) => this._onVictory(summary),
       onDefeat: (info) => this._onDefeat(info, stage, bossData),
       onRestart: () => this._startFight(stage),

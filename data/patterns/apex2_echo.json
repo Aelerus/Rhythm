@@ -1,0 +1,11 @@
+{
+  "id": "apex2_echo",
+  "type": "echo",
+  "count": 5,
+  "spread": 0.36,
+  "speed": 380,
+  "lookback": 1.2,
+  "telegraph": 0.30,
+  "radius": 7,
+  "color": "#ffffff"
+}

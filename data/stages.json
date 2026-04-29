@@ -55,6 +55,18 @@
     "data/patterns/apex_laser_h.json",
     "data/patterns/apex_laser_v.json",
     "data/patterns/apex_laser_cross.json",
-    "data/patterns/apex_stutter.json"
+    "data/patterns/apex_stutter.json",
+    "data/patterns/apex2_radial.json",
+    "data/patterns/apex2_burst.json",
+    "data/patterns/apex2_vortex.json",
+    "data/patterns/apex2_laser.json",
+    "data/patterns/apex2_echo.json",
+    "data/patterns/apex3_radial.json",
+    "data/patterns/apex3_burst.json",
+    "data/patterns/apex3_vortex.json",
+    "data/patterns/apex3_laser.json",
+    "data/patterns/apex3_mirror.json",
+    "data/patterns/apex3_echo.json",
+    "data/patterns/apex3_stutter.json"
   ]
 }

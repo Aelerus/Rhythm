@@ -1,0 +1,9 @@
+{
+  "id": "apex3_mirror",
+  "type": "mirror_path",
+  "count": 18,
+  "speed": 280,
+  "telegraph": 0.18,
+  "radius": 6,
+  "color": "#ffe25d"
+}
