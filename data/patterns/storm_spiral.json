@@ -1,9 +1,9 @@
 {
   "id": "storm_spiral",
   "type": "spiral",
-  "arms": 8,
+  "arms": 5,
   "count": 2,
-  "speed": 290,
+  "speed": 255,
   "radius": 6,
   "color": "#ff8ea0",
   "rotateStep": 0.62

@@ -1,7 +1,7 @@
 {
   "id": "slash_cross",
   "type": "cross",
-  "speed": 410,
-  "radius": 11,
+  "speed": 340,
+  "radius": 9,
   "color": "#ff8ea0"
 }

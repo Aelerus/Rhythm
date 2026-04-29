@@ -1,9 +1,9 @@
 {
   "id": "pulse_aimed",
   "type": "aimed_shot",
-  "count": 7,
-  "spread": 0.34,
-  "speed": 470,
+  "count": 5,
+  "spread": 0.28,
+  "speed": 390,
   "radius": 8,
   "color": "#ff5d6d"
 }

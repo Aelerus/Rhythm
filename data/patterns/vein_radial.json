@@ -1,8 +1,8 @@
 {
   "id": "vein_radial",
   "type": "radial_burst",
-  "count": 36,
-  "speed": 235,
+  "count": 24,
+  "speed": 210,
   "radius": 6,
   "color": "#d4133b",
   "rotateWithBeat": true,
