@@ -38,29 +38,9 @@
                  ],
     "timeline":  [
                      {
-                         "beat":  586,
+                         "beat":  582,
                          "type":  "pattern",
-                         "id":  "needle_wall"
-                     },
-                     {
-                         "beat":  585,
-                         "type":  "pattern",
-                         "id":  "pulse_aimed"
-                     },
-                     {
-                         "beat":  588,
-                         "type":  "pattern",
-                         "id":  "swarm_homing"
-                     },
-                     {
-                         "beat":  587,
-                         "type":  "pattern",
-                         "id":  "crimson_fan"
-                     },
-                     {
-                         "beat":  584,
-                         "type":  "pattern",
-                         "id":  "storm_spiral"
+                         "id":  "vein_radial"
                      },
                      {
                          "beat":  581,
@@ -68,9 +48,9 @@
                          "id":  "slash_cross"
                      },
                      {
-                         "beat":  580,
+                         "beat":  584,
                          "type":  "pattern",
-                         "id":  "swarm_homing"
+                         "id":  "storm_spiral"
                      },
                      {
                          "beat":  583,
@@ -78,99 +58,9 @@
                          "id":  "crimson_rain"
                      },
                      {
-                         "beat":  582,
-                         "type":  "pattern",
-                         "id":  "vein_radial"
-                     },
-                     {
-                         "beat":  595,
-                         "type":  "pattern",
-                         "id":  "crimson_fan"
-                     },
-                     {
-                         "beat":  594,
+                         "beat":  578,
                          "type":  "pattern",
                          "id":  "needle_wall"
-                     },
-                     {
-                         "beat":  597,
-                         "type":  "pattern",
-                         "id":  "slash_cross"
-                     },
-                     {
-                         "beat":  596,
-                         "type":  "pattern",
-                         "id":  "swarm_homing"
-                     },
-                     {
-                         "beat":  593,
-                         "type":  "pattern",
-                         "id":  "pulse_aimed"
-                     },
-                     {
-                         "beat":  590,
-                         "type":  "pattern",
-                         "id":  "vein_radial"
-                     },
-                     {
-                         "beat":  589,
-                         "type":  "pattern",
-                         "id":  "slash_cross"
-                     },
-                     {
-                         "beat":  592,
-                         "type":  "pattern",
-                         "id":  "storm_spiral"
-                     },
-                     {
-                         "beat":  591,
-                         "type":  "pattern",
-                         "id":  "crimson_rain"
-                     },
-                     {
-                         "beat":  568,
-                         "type":  "pattern",
-                         "id":  "storm_spiral"
-                     },
-                     {
-                         "beat":  567,
-                         "type":  "pattern",
-                         "id":  "crimson_rain"
-                     },
-                     {
-                         "beat":  570,
-                         "type":  "pattern",
-                         "id":  "needle_wall"
-                     },
-                     {
-                         "beat":  569,
-                         "type":  "pattern",
-                         "id":  "pulse_aimed"
-                     },
-                     {
-                         "beat":  566,
-                         "type":  "pattern",
-                         "id":  "vein_radial"
-                     },
-                     {
-                         "beat":  563,
-                         "type":  "pattern",
-                         "id":  "crimson_fan"
-                     },
-                     {
-                         "beat":  562,
-                         "type":  "pattern",
-                         "id":  "needle_wall"
-                     },
-                     {
-                         "beat":  565,
-                         "type":  "pattern",
-                         "id":  "slash_cross"
-                     },
-                     {
-                         "beat":  564,
-                         "type":  "pattern",
-                         "id":  "swarm_homing"
                      },
                      {
                          "beat":  577,
@@ -178,9 +68,9 @@
                          "id":  "pulse_aimed"
                      },
                      {
-                         "beat":  576,
+                         "beat":  580,
                          "type":  "pattern",
-                         "id":  "storm_spiral"
+                         "id":  "swarm_homing"
                      },
                      {
                          "beat":  579,
@@ -188,29 +78,99 @@
                          "id":  "crimson_fan"
                      },
                      {
-                         "beat":  578,
+                         "beat":  585,
                          "type":  "pattern",
-                         "id":  "needle_wall"
+                         "id":  "pulse_aimed"
                      },
                      {
-                         "beat":  575,
+                         "beat":  591,
                          "type":  "pattern",
                          "id":  "crimson_rain"
                      },
                      {
-                         "beat":  572,
+                         "beat":  590,
                          "type":  "pattern",
-                         "id":  "swarm_homing"
+                         "id":  "vein_radial"
                      },
                      {
-                         "beat":  571,
+                         "beat":  593,
+                         "type":  "pattern",
+                         "id":  "pulse_aimed"
+                     },
+                     {
+                         "beat":  592,
+                         "type":  "pattern",
+                         "id":  "storm_spiral"
+                     },
+                     {
+                         "beat":  587,
                          "type":  "pattern",
                          "id":  "crimson_fan"
                      },
                      {
-                         "beat":  574,
+                         "beat":  586,
+                         "type":  "pattern",
+                         "id":  "needle_wall"
+                     },
+                     {
+                         "beat":  589,
+                         "type":  "pattern",
+                         "id":  "slash_cross"
+                     },
+                     {
+                         "beat":  588,
+                         "type":  "pattern",
+                         "id":  "swarm_homing"
+                     },
+                     {
+                         "beat":  576,
+                         "type":  "pattern",
+                         "id":  "storm_spiral"
+                     },
+                     {
+                         "beat":  564,
+                         "type":  "pattern",
+                         "id":  "swarm_homing"
+                     },
+                     {
+                         "beat":  563,
+                         "type":  "pattern",
+                         "id":  "crimson_fan"
+                     },
+                     {
+                         "beat":  566,
                          "type":  "pattern",
                          "id":  "vein_radial"
+                     },
+                     {
+                         "beat":  565,
+                         "type":  "pattern",
+                         "id":  "slash_cross"
+                     },
+                     {
+                         "beat":  560,
+                         "type":  "pattern",
+                         "id":  "storm_spiral"
+                     },
+                     {
+                         "beat":  543,
+                         "type":  "pattern",
+                         "id":  "blood_homing"
+                     },
+                     {
+                         "beat":  562,
+                         "type":  "pattern",
+                         "id":  "needle_wall"
+                     },
+                     {
+                         "beat":  561,
+                         "type":  "pattern",
+                         "id":  "pulse_aimed"
+                     },
+                     {
+                         "beat":  567,
+                         "type":  "pattern",
+                         "id":  "crimson_rain"
                      },
                      {
                          "beat":  573,
@@ -218,29 +178,39 @@
                          "id":  "slash_cross"
                      },
                      {
-                         "beat":  622,
+                         "beat":  572,
                          "type":  "pattern",
-                         "id":  "vein_radial"
+                         "id":  "swarm_homing"
                      },
                      {
-                         "beat":  621,
-                         "type":  "pattern",
-                         "id":  "slash_cross"
-                     },
-                     {
-                         "beat":  640,
-                         "type":  "pattern",
-                         "id":  "flood_radial"
-                     },
-                     {
-                         "beat":  623,
+                         "beat":  575,
                          "type":  "pattern",
                          "id":  "crimson_rain"
                      },
                      {
-                         "beat":  620,
+                         "beat":  574,
                          "type":  "pattern",
-                         "id":  "swarm_homing"
+                         "id":  "vein_radial"
+                     },
+                     {
+                         "beat":  569,
+                         "type":  "pattern",
+                         "id":  "pulse_aimed"
+                     },
+                     {
+                         "beat":  568,
+                         "type":  "pattern",
+                         "id":  "storm_spiral"
+                     },
+                     {
+                         "beat":  571,
+                         "type":  "pattern",
+                         "id":  "crimson_fan"
+                     },
+                     {
+                         "beat":  570,
+                         "type":  "pattern",
+                         "id":  "needle_wall"
                      },
                      {
                          "beat":  617,
@@ -263,29 +233,29 @@
                          "id":  "needle_wall"
                      },
                      {
-                         "beat":  647,
+                         "beat":  613,
+                         "type":  "pattern",
+                         "id":  "slash_cross"
+                     },
+                     {
+                         "beat":  612,
                          "type":  "pattern",
                          "id":  "swarm_homing"
                      },
                      {
-                         "beat":  646,
+                         "beat":  615,
                          "type":  "pattern",
-                         "id":  "needle_wall"
+                         "id":  "crimson_rain"
                      },
                      {
-                         "beat":  649,
+                         "beat":  614,
                          "type":  "pattern",
-                         "id":  "pulse_aimed"
+                         "id":  "vein_radial"
                      },
                      {
-                         "beat":  648,
+                         "beat":  620,
                          "type":  "pattern",
-                         "id":  "flood_radial"
-                     },
-                     {
-                         "beat":  645,
-                         "type":  "pattern",
-                         "id":  "crimson_fan"
+                         "id":  "swarm_homing"
                      },
                      {
                          "beat":  642,
@@ -308,29 +278,29 @@
                          "id":  "storm_spiral"
                      },
                      {
-                         "beat":  604,
-                         "type":  "pattern",
-                         "id":  "swarm_homing"
-                     },
-                     {
-                         "beat":  603,
-                         "type":  "pattern",
-                         "id":  "crimson_fan"
-                     },
-                     {
-                         "beat":  606,
+                         "beat":  622,
                          "type":  "pattern",
                          "id":  "vein_radial"
                      },
                      {
-                         "beat":  605,
+                         "beat":  621,
                          "type":  "pattern",
                          "id":  "slash_cross"
                      },
                      {
-                         "beat":  602,
+                         "beat":  640,
                          "type":  "pattern",
-                         "id":  "needle_wall"
+                         "id":  "flood_radial"
+                     },
+                     {
+                         "beat":  623,
+                         "type":  "pattern",
+                         "id":  "crimson_rain"
+                     },
+                     {
+                         "beat":  611,
+                         "type":  "pattern",
+                         "id":  "crimson_fan"
                      },
                      {
                          "beat":  599,
@@ -353,29 +323,29 @@
                          "id":  "storm_spiral"
                      },
                      {
-                         "beat":  613,
+                         "beat":  595,
+                         "type":  "pattern",
+                         "id":  "crimson_fan"
+                     },
+                     {
+                         "beat":  594,
+                         "type":  "pattern",
+                         "id":  "needle_wall"
+                     },
+                     {
+                         "beat":  597,
                          "type":  "pattern",
                          "id":  "slash_cross"
                      },
                      {
-                         "beat":  612,
+                         "beat":  596,
                          "type":  "pattern",
                          "id":  "swarm_homing"
                      },
                      {
-                         "beat":  615,
+                         "beat":  602,
                          "type":  "pattern",
-                         "id":  "crimson_rain"
-                     },
-                     {
-                         "beat":  614,
-                         "type":  "pattern",
-                         "id":  "vein_radial"
-                     },
-                     {
-                         "beat":  611,
-                         "type":  "pattern",
-                         "id":  "crimson_fan"
+                         "id":  "needle_wall"
                      },
                      {
                          "beat":  608,
@@ -398,6 +368,36 @@
                          "id":  "pulse_aimed"
                      },
                      {
+                         "beat":  604,
+                         "type":  "pattern",
+                         "id":  "swarm_homing"
+                     },
+                     {
+                         "beat":  603,
+                         "type":  "pattern",
+                         "id":  "crimson_fan"
+                     },
+                     {
+                         "beat":  606,
+                         "type":  "pattern",
+                         "id":  "vein_radial"
+                     },
+                     {
+                         "beat":  605,
+                         "type":  "pattern",
+                         "id":  "slash_cross"
+                     },
+                     {
+                         "beat":  496,
+                         "type":  "pattern",
+                         "id":  "crimson_wall"
+                     },
+                     {
+                         "beat":  495,
+                         "type":  "pattern",
+                         "id":  "blood_homing"
+                     },
+                     {
                          "beat":  498,
                          "type":  "pattern",
                          "id":  "vein_radial"
@@ -408,19 +408,19 @@
                          "id":  "bleed_spiral"
                      },
                      {
-                         "beat":  500,
+                         "beat":  492,
                          "type":  "pattern",
                          "id":  "dread_converging"
                      },
                      {
-                         "beat":  499,
+                         "beat":  491,
                          "type":  "pattern",
                          "id":  "slash_cross"
                      },
                      {
-                         "beat":  496,
+                         "beat":  494,
                          "type":  "pattern",
-                         "id":  "crimson_wall"
+                         "id":  "crimson_fan"
                      },
                      {
                          "beat":  493,
@@ -428,19 +428,19 @@
                          "id":  "pulse_aimed"
                      },
                      {
-                         "beat":  492,
+                         "beat":  499,
                          "type":  "pattern",
-                         "id":  "dread_converging"
+                         "id":  "slash_cross"
                      },
                      {
-                         "beat":  495,
+                         "beat":  505,
                          "type":  "pattern",
-                         "id":  "blood_homing"
+                         "id":  "bleed_spiral"
                      },
                      {
-                         "beat":  494,
+                         "beat":  504,
                          "type":  "pattern",
-                         "id":  "crimson_fan"
+                         "id":  "crimson_wall"
                      },
                      {
                          "beat":  507,
@@ -453,19 +453,19 @@
                          "id":  "vein_radial"
                      },
                      {
-                         "beat":  509,
+                         "beat":  501,
                          "type":  "pattern",
                          "id":  "pulse_aimed"
                      },
                      {
-                         "beat":  508,
+                         "beat":  500,
                          "type":  "pattern",
                          "id":  "dread_converging"
                      },
                      {
-                         "beat":  505,
+                         "beat":  503,
                          "type":  "pattern",
-                         "id":  "bleed_spiral"
+                         "id":  "blood_homing"
                      },
                      {
                          "beat":  502,
@@ -473,19 +473,19 @@
                          "id":  "crimson_fan"
                      },
                      {
-                         "beat":  501,
+                         "beat":  490,
                          "type":  "pattern",
-                         "id":  "pulse_aimed"
+                         "id":  "vein_radial"
                      },
                      {
-                         "beat":  504,
+                         "beat":  462,
                          "type":  "pattern",
-                         "id":  "crimson_wall"
+                         "id":  "crimson_rain"
                      },
                      {
-                         "beat":  503,
+                         "beat":  461,
                          "type":  "pattern",
-                         "id":  "blood_homing"
+                         "id":  "bleed_spiral"
                      },
                      {
                          "beat":  480,
@@ -498,19 +498,19 @@
                          "id":  "shred_cross"
                      },
                      {
-                         "beat":  482,
+                         "beat":  458,
                          "type":  "pattern",
-                         "id":  "vein_radial"
+                         "id":  "slash_cross"
                      },
                      {
-                         "beat":  481,
+                         "beat":  457,
                          "type":  "pattern",
-                         "id":  "bleed_spiral"
+                         "id":  "crimson_fan"
                      },
                      {
-                         "beat":  462,
+                         "beat":  460,
                          "type":  "pattern",
-                         "id":  "crimson_rain"
+                         "id":  "crimson_wall"
                      },
                      {
                          "beat":  459,
@@ -518,19 +518,19 @@
                          "id":  "pulse_aimed"
                      },
                      {
-                         "beat":  458,
-                         "type":  "pattern",
-                         "id":  "slash_cross"
-                     },
-                     {
-                         "beat":  461,
+                         "beat":  481,
                          "type":  "pattern",
                          "id":  "bleed_spiral"
                      },
                      {
-                         "beat":  460,
+                         "beat":  487,
                          "type":  "pattern",
-                         "id":  "crimson_wall"
+                         "id":  "blood_homing"
+                     },
+                     {
+                         "beat":  486,
+                         "type":  "pattern",
+                         "id":  "crimson_fan"
                      },
                      {
                          "beat":  489,
@@ -543,34 +543,14 @@
                          "id":  "crimson_wall"
                      },
                      {
-                         "beat":  491,
-                         "type":  "pattern",
-                         "id":  "slash_cross"
-                     },
-                     {
-                         "beat":  490,
-                         "type":  "pattern",
-                         "id":  "vein_radial"
-                     },
-                     {
-                         "beat":  487,
-                         "type":  "pattern",
-                         "id":  "blood_homing"
-                     },
-                     {
-                         "beat":  484,
-                         "type":  "pattern",
-                         "id":  "dread_converging"
-                     },
-                     {
                          "beat":  483,
                          "type":  "pattern",
                          "id":  "slash_cross"
                      },
                      {
-                         "beat":  486,
+                         "beat":  482,
                          "type":  "pattern",
-                         "id":  "crimson_fan"
+                         "id":  "vein_radial"
                      },
                      {
                          "beat":  485,
@@ -578,39 +558,9 @@
                          "id":  "pulse_aimed"
                      },
                      {
-                         "beat":  534,
-                         "type":  "pattern",
-                         "id":  "crimson_fan"
-                     },
-                     {
-                         "beat":  533,
-                         "type":  "pattern",
-                         "id":  "pulse_aimed"
-                     },
-                     {
-                         "beat":  536,
-                         "type":  "pattern",
-                         "id":  "crimson_wall"
-                     },
-                     {
-                         "beat":  535,
-                         "type":  "pattern",
-                         "id":  "blood_homing"
-                     },
-                     {
-                         "beat":  532,
+                         "beat":  484,
                          "type":  "pattern",
                          "id":  "dread_converging"
-                     },
-                     {
-                         "beat":  529,
-                         "type":  "pattern",
-                         "id":  "bleed_spiral"
-                     },
-                     {
-                         "beat":  528,
-                         "type":  "pattern",
-                         "id":  "crimson_wall"
                      },
                      {
                          "beat":  531,
@@ -623,102 +573,12 @@
                          "id":  "vein_radial"
                      },
                      {
-                         "beat":  543,
-                         "type":  "pattern",
-                         "id":  "blood_homing"
-                     },
-                     {
-                         "beat":  542,
-                         "type":  "pattern",
-                         "id":  "crimson_fan"
-                     },
-                     {
-                         "beat":  561,
+                         "beat":  533,
                          "type":  "pattern",
                          "id":  "pulse_aimed"
                      },
                      {
-                         "beat":  560,
-                         "type":  "pattern",
-                         "id":  "storm_spiral"
-                     },
-                     {
-                         "beat":  541,
-                         "type":  "pattern",
-                         "id":  "pulse_aimed"
-                     },
-                     {
-                         "beat":  538,
-                         "type":  "pattern",
-                         "id":  "vein_radial"
-                     },
-                     {
-                         "beat":  537,
-                         "type":  "pattern",
-                         "id":  "bleed_spiral"
-                     },
-                     {
-                         "beat":  540,
-                         "type":  "pattern",
-                         "id":  "dread_converging"
-                     },
-                     {
-                         "beat":  539,
-                         "type":  "pattern",
-                         "id":  "slash_cross"
-                     },
-                     {
-                         "beat":  516,
-                         "type":  "pattern",
-                         "id":  "dread_converging"
-                     },
-                     {
-                         "beat":  515,
-                         "type":  "pattern",
-                         "id":  "slash_cross"
-                     },
-                     {
-                         "beat":  518,
-                         "type":  "pattern",
-                         "id":  "crimson_fan"
-                     },
-                     {
-                         "beat":  517,
-                         "type":  "pattern",
-                         "id":  "pulse_aimed"
-                     },
-                     {
-                         "beat":  514,
-                         "type":  "pattern",
-                         "id":  "vein_radial"
-                     },
-                     {
-                         "beat":  511,
-                         "type":  "pattern",
-                         "id":  "blood_homing"
-                     },
-                     {
-                         "beat":  510,
-                         "type":  "pattern",
-                         "id":  "crimson_fan"
-                     },
-                     {
-                         "beat":  513,
-                         "type":  "pattern",
-                         "id":  "bleed_spiral"
-                     },
-                     {
-                         "beat":  512,
-                         "type":  "pattern",
-                         "id":  "crimson_wall"
-                     },
-                     {
-                         "beat":  525,
-                         "type":  "pattern",
-                         "id":  "pulse_aimed"
-                     },
-                     {
-                         "beat":  524,
+                         "beat":  532,
                          "type":  "pattern",
                          "id":  "dread_converging"
                      },
@@ -733,19 +593,109 @@
                          "id":  "crimson_fan"
                      },
                      {
-                         "beat":  523,
+                         "beat":  529,
                          "type":  "pattern",
-                         "id":  "slash_cross"
+                         "id":  "bleed_spiral"
                      },
                      {
-                         "beat":  520,
+                         "beat":  528,
                          "type":  "pattern",
                          "id":  "crimson_wall"
                      },
                      {
-                         "beat":  519,
+                         "beat":  534,
+                         "type":  "pattern",
+                         "id":  "crimson_fan"
+                     },
+                     {
+                         "beat":  540,
+                         "type":  "pattern",
+                         "id":  "dread_converging"
+                     },
+                     {
+                         "beat":  539,
+                         "type":  "pattern",
+                         "id":  "slash_cross"
+                     },
+                     {
+                         "beat":  542,
+                         "type":  "pattern",
+                         "id":  "crimson_fan"
+                     },
+                     {
+                         "beat":  541,
+                         "type":  "pattern",
+                         "id":  "pulse_aimed"
+                     },
+                     {
+                         "beat":  536,
+                         "type":  "pattern",
+                         "id":  "crimson_wall"
+                     },
+                     {
+                         "beat":  535,
                          "type":  "pattern",
                          "id":  "blood_homing"
+                     },
+                     {
+                         "beat":  538,
+                         "type":  "pattern",
+                         "id":  "vein_radial"
+                     },
+                     {
+                         "beat":  537,
+                         "type":  "pattern",
+                         "id":  "bleed_spiral"
+                     },
+                     {
+                         "beat":  525,
+                         "type":  "pattern",
+                         "id":  "pulse_aimed"
+                     },
+                     {
+                         "beat":  513,
+                         "type":  "pattern",
+                         "id":  "bleed_spiral"
+                     },
+                     {
+                         "beat":  512,
+                         "type":  "pattern",
+                         "id":  "crimson_wall"
+                     },
+                     {
+                         "beat":  515,
+                         "type":  "pattern",
+                         "id":  "slash_cross"
+                     },
+                     {
+                         "beat":  514,
+                         "type":  "pattern",
+                         "id":  "vein_radial"
+                     },
+                     {
+                         "beat":  509,
+                         "type":  "pattern",
+                         "id":  "pulse_aimed"
+                     },
+                     {
+                         "beat":  508,
+                         "type":  "pattern",
+                         "id":  "dread_converging"
+                     },
+                     {
+                         "beat":  511,
+                         "type":  "pattern",
+                         "id":  "blood_homing"
+                     },
+                     {
+                         "beat":  510,
+                         "type":  "pattern",
+                         "id":  "crimson_fan"
+                     },
+                     {
+                         "beat":  516,
+                         "type":  "pattern",
+                         "id":  "dread_converging"
                      },
                      {
                          "beat":  522,
@@ -758,19 +708,39 @@
                          "id":  "bleed_spiral"
                      },
                      {
-                         "beat":  762,
+                         "beat":  524,
+                         "type":  "pattern",
+                         "id":  "dread_converging"
+                     },
+                     {
+                         "beat":  523,
+                         "type":  "pattern",
+                         "id":  "slash_cross"
+                     },
+                     {
+                         "beat":  518,
                          "type":  "pattern",
                          "id":  "crimson_fan"
                      },
                      {
-                         "beat":  761,
+                         "beat":  517,
                          "type":  "pattern",
-                         "id":  "shred_cross"
+                         "id":  "pulse_aimed"
                      },
                      {
-                         "beat":  764,
+                         "beat":  520,
                          "type":  "pattern",
-                         "id":  "blood_storm"
+                         "id":  "crimson_wall"
+                     },
+                     {
+                         "beat":  519,
+                         "type":  "pattern",
+                         "id":  "blood_homing"
+                     },
+                     {
+                         "beat":  645,
+                         "type":  "pattern",
+                         "id":  "crimson_fan"
                      },
                      {
                          "beat":  763,
@@ -778,17 +748,17 @@
                          "id":  "storm_spiral"
                      },
                      {
-                         "beat":  760,
+                         "beat":  762,
                          "type":  "pattern",
-                         "id":  "carnage_radial"
+                         "id":  "crimson_fan"
                      },
                      {
-                         "beat":  757,
+                         "beat":  765,
                          "type":  "pattern",
                          "id":  "pulse_aimed"
                      },
                      {
-                         "beat":  756,
+                         "beat":  764,
                          "type":  "pattern",
                          "id":  "blood_storm"
                      },
@@ -803,29 +773,14 @@
                          "id":  "needle_wall"
                      },
                      {
-                         "beat":  771,
-                         "type":  "pattern",
-                         "id":  "storm_spiral"
-                     },
-                     {
-                         "beat":  770,
-                         "type":  "pattern",
-                         "id":  "crimson_fan"
-                     },
-                     {
-                         "beat":  773,
-                         "type":  "pattern",
-                         "id":  "pulse_aimed"
-                     },
-                     {
-                         "beat":  772,
-                         "type":  "pattern",
-                         "id":  "blood_storm"
-                     },
-                     {
-                         "beat":  769,
+                         "beat":  761,
                          "type":  "pattern",
                          "id":  "shred_cross"
+                     },
+                     {
+                         "beat":  760,
+                         "type":  "pattern",
+                         "id":  "carnage_radial"
                      },
                      {
                          "beat":  766,
@@ -833,7 +788,22 @@
                          "id":  "needle_wall"
                      },
                      {
-                         "beat":  765,
+                         "beat":  772,
+                         "type":  "pattern",
+                         "id":  "blood_storm"
+                     },
+                     {
+                         "beat":  771,
+                         "type":  "pattern",
+                         "id":  "storm_spiral"
+                     },
+                     {
+                         "beat":  774,
+                         "type":  "pattern",
+                         "id":  "needle_wall"
+                     },
+                     {
+                         "beat":  773,
                          "type":  "pattern",
                          "id":  "pulse_aimed"
                      },
@@ -848,19 +818,19 @@
                          "id":  "swarm_homing"
                      },
                      {
-                         "beat":  744,
-                         "type":  "pattern",
-                         "id":  "carnage_radial"
-                     },
-                     {
-                         "beat":  743,
-                         "type":  "pattern",
-                         "id":  "swarm_homing"
-                     },
-                     {
-                         "beat":  746,
+                         "beat":  770,
                          "type":  "pattern",
                          "id":  "crimson_fan"
+                     },
+                     {
+                         "beat":  769,
+                         "type":  "pattern",
+                         "id":  "shred_cross"
+                     },
+                     {
+                         "beat":  757,
+                         "type":  "pattern",
+                         "id":  "pulse_aimed"
                      },
                      {
                          "beat":  745,
@@ -868,17 +838,17 @@
                          "id":  "shred_cross"
                      },
                      {
-                         "beat":  742,
+                         "beat":  744,
                          "type":  "pattern",
-                         "id":  "needle_wall"
+                         "id":  "carnage_radial"
                      },
                      {
-                         "beat":  739,
+                         "beat":  747,
                          "type":  "pattern",
                          "id":  "storm_spiral"
                      },
                      {
-                         "beat":  738,
+                         "beat":  746,
                          "type":  "pattern",
                          "id":  "crimson_fan"
                      },
@@ -893,29 +863,14 @@
                          "id":  "blood_storm"
                      },
                      {
-                         "beat":  753,
-                         "type":  "pattern",
-                         "id":  "shred_cross"
-                     },
-                     {
-                         "beat":  752,
-                         "type":  "pattern",
-                         "id":  "carnage_radial"
-                     },
-                     {
-                         "beat":  755,
-                         "type":  "pattern",
-                         "id":  "storm_spiral"
-                     },
-                     {
-                         "beat":  754,
-                         "type":  "pattern",
-                         "id":  "crimson_fan"
-                     },
-                     {
-                         "beat":  751,
+                         "beat":  743,
                          "type":  "pattern",
                          "id":  "swarm_homing"
+                     },
+                     {
+                         "beat":  742,
+                         "type":  "pattern",
+                         "id":  "needle_wall"
                      },
                      {
                          "beat":  748,
@@ -923,7 +878,22 @@
                          "id":  "blood_storm"
                      },
                      {
-                         "beat":  747,
+                         "beat":  754,
+                         "type":  "pattern",
+                         "id":  "crimson_fan"
+                     },
+                     {
+                         "beat":  753,
+                         "type":  "pattern",
+                         "id":  "shred_cross"
+                     },
+                     {
+                         "beat":  756,
+                         "type":  "pattern",
+                         "id":  "blood_storm"
+                     },
+                     {
+                         "beat":  755,
                          "type":  "pattern",
                          "id":  "storm_spiral"
                      },
@@ -936,6 +906,16 @@
                          "beat":  749,
                          "type":  "pattern",
                          "id":  "pulse_aimed"
+                     },
+                     {
+                         "beat":  752,
+                         "type":  "pattern",
+                         "id":  "carnage_radial"
+                     },
+                     {
+                         "beat":  751,
+                         "type":  "pattern",
+                         "id":  "swarm_homing"
                      },
                      {
                          "beat":  798,
@@ -951,7 +931,7 @@
                          "beat":  64,
                          "type":  "counterattack_window",
                          "duration_beats":  8,
-                         "lead_beats":  4,
+                         "lead_beats":  12,
                          "zone":  {
                                       "anchor":  "center",
                                       "radius":  70
@@ -963,9 +943,9 @@
                          "id":  "swarm_homing"
                      },
                      {
-                         "beat":  796,
+                         "beat":  794,
                          "type":  "pattern",
-                         "id":  "blood_storm"
+                         "id":  "crimson_fan"
                      },
                      {
                          "beat":  793,
@@ -973,9 +953,9 @@
                          "id":  "shred_cross"
                      },
                      {
-                         "beat":  792,
+                         "beat":  796,
                          "type":  "pattern",
-                         "id":  "carnage_radial"
+                         "id":  "blood_storm"
                      },
                      {
                          "beat":  795,
@@ -983,15 +963,20 @@
                          "id":  "storm_spiral"
                      },
                      {
-                         "beat":  794,
-                         "type":  "pattern",
-                         "id":  "crimson_fan"
+                         "beat":  144,
+                         "type":  "counterattack_window",
+                         "duration_beats":  8,
+                         "lead_beats":  7,
+                         "zone":  {
+                                      "anchor":  "topLeft",
+                                      "radius":  65
+                                  }
                      },
                      {
                          "beat":  624,
                          "type":  "counterattack_window",
                          "duration_beats":  8,
-                         "lead_beats":  3,
+                         "lead_beats":  6,
                          "zone":  {
                                       "anchor":  "top",
                                       "radius":  50
@@ -1001,7 +986,7 @@
                          "beat":  544,
                          "type":  "counterattack_window",
                          "duration_beats":  8,
-                         "lead_beats":  3,
+                         "lead_beats":  6,
                          "zone":  {
                                       "anchor":  "left",
                                       "radius":  50
@@ -1011,7 +996,7 @@
                          "beat":  800,
                          "type":  "counterattack_window",
                          "duration_beats":  12,
-                         "lead_beats":  5,
+                         "lead_beats":  8,
                          "zone":  {
                                       "anchor":  "center",
                                       "radius":  60
@@ -1021,61 +1006,56 @@
                          "beat":  704,
                          "type":  "counterattack_window",
                          "duration_beats":  10,
-                         "lead_beats":  4,
+                         "lead_beats":  7,
                          "zone":  {
                                       "anchor":  "bottomLeft",
                                       "radius":  50
                                   }
                      },
                      {
-                         "beat":  464,
+                         "beat":  304,
                          "type":  "counterattack_window",
                          "duration_beats":  8,
-                         "lead_beats":  3,
+                         "lead_beats":  6,
                          "zone":  {
-                                      "anchor":  "bottom",
-                                      "radius":  55
+                                      "anchor":  "right",
+                                      "radius":  60
                                   }
                      },
                      {
                          "beat":  224,
                          "type":  "counterattack_window",
                          "duration_beats":  8,
-                         "lead_beats":  4,
+                         "lead_beats":  7,
                          "zone":  {
                                       "anchor":  "bottomRight",
                                       "radius":  60
                                   }
                      },
                      {
-                         "beat":  144,
+                         "beat":  464,
                          "type":  "counterattack_window",
                          "duration_beats":  8,
-                         "lead_beats":  4,
+                         "lead_beats":  6,
                          "zone":  {
-                                      "anchor":  "topLeft",
-                                      "radius":  65
+                                      "anchor":  "bottom",
+                                      "radius":  55
                                   }
                      },
                      {
                          "beat":  384,
                          "type":  "counterattack_window",
                          "duration_beats":  8,
-                         "lead_beats":  3,
+                         "lead_beats":  6,
                          "zone":  {
                                       "anchor":  "topRight",
                                       "radius":  55
                                   }
                      },
                      {
-                         "beat":  304,
-                         "type":  "counterattack_window",
-                         "duration_beats":  8,
-                         "lead_beats":  3,
-                         "zone":  {
-                                      "anchor":  "right",
-                                      "radius":  60
-                                  }
+                         "beat":  792,
+                         "type":  "pattern",
+                         "id":  "carnage_radial"
                      },
                      {
                          "beat":  780,
@@ -1098,9 +1078,9 @@
                          "id":  "pulse_aimed"
                      },
                      {
-                         "beat":  778,
+                         "beat":  776,
                          "type":  "pattern",
-                         "id":  "crimson_fan"
+                         "id":  "carnage_radial"
                      },
                      {
                          "beat":  775,
@@ -1108,9 +1088,9 @@
                          "id":  "swarm_homing"
                      },
                      {
-                         "beat":  774,
+                         "beat":  778,
                          "type":  "pattern",
-                         "id":  "needle_wall"
+                         "id":  "crimson_fan"
                      },
                      {
                          "beat":  777,
@@ -1118,9 +1098,9 @@
                          "id":  "shred_cross"
                      },
                      {
-                         "beat":  776,
+                         "beat":  783,
                          "type":  "pattern",
-                         "id":  "carnage_radial"
+                         "id":  "swarm_homing"
                      },
                      {
                          "beat":  789,
@@ -1143,9 +1123,9 @@
                          "id":  "needle_wall"
                      },
                      {
-                         "beat":  787,
+                         "beat":  785,
                          "type":  "pattern",
-                         "id":  "storm_spiral"
+                         "id":  "shred_cross"
                      },
                      {
                          "beat":  784,
@@ -1153,44 +1133,14 @@
                          "id":  "carnage_radial"
                      },
                      {
-                         "beat":  783,
+                         "beat":  787,
                          "type":  "pattern",
-                         "id":  "swarm_homing"
+                         "id":  "storm_spiral"
                      },
                      {
                          "beat":  786,
                          "type":  "pattern",
                          "id":  "crimson_fan"
-                     },
-                     {
-                         "beat":  785,
-                         "type":  "pattern",
-                         "id":  "shred_cross"
-                     },
-                     {
-                         "beat":  674,
-                         "type":  "pattern",
-                         "id":  "shred_cross"
-                     },
-                     {
-                         "beat":  673,
-                         "type":  "pattern",
-                         "id":  "pulse_aimed"
-                     },
-                     {
-                         "beat":  676,
-                         "type":  "pattern",
-                         "id":  "dread_converging"
-                     },
-                     {
-                         "beat":  675,
-                         "type":  "pattern",
-                         "id":  "storm_spiral"
-                     },
-                     {
-                         "beat":  672,
-                         "type":  "pattern",
-                         "id":  "flood_radial"
                      },
                      {
                          "beat":  669,
@@ -1213,29 +1163,29 @@
                          "id":  "needle_wall"
                      },
                      {
-                         "beat":  683,
+                         "beat":  665,
+                         "type":  "pattern",
+                         "id":  "pulse_aimed"
+                     },
+                     {
+                         "beat":  664,
+                         "type":  "pattern",
+                         "id":  "flood_radial"
+                     },
+                     {
+                         "beat":  667,
                          "type":  "pattern",
                          "id":  "storm_spiral"
                      },
                      {
-                         "beat":  682,
+                         "beat":  666,
                          "type":  "pattern",
                          "id":  "shred_cross"
                      },
                      {
-                         "beat":  685,
+                         "beat":  672,
                          "type":  "pattern",
-                         "id":  "crimson_fan"
-                     },
-                     {
-                         "beat":  684,
-                         "type":  "pattern",
-                         "id":  "dread_converging"
-                     },
-                     {
-                         "beat":  681,
-                         "type":  "pattern",
-                         "id":  "pulse_aimed"
+                         "id":  "flood_radial"
                      },
                      {
                          "beat":  678,
@@ -1258,29 +1208,29 @@
                          "id":  "swarm_homing"
                      },
                      {
-                         "beat":  656,
-                         "type":  "pattern",
-                         "id":  "flood_radial"
-                     },
-                     {
-                         "beat":  655,
-                         "type":  "pattern",
-                         "id":  "swarm_homing"
-                     },
-                     {
-                         "beat":  658,
+                         "beat":  674,
                          "type":  "pattern",
                          "id":  "shred_cross"
                      },
                      {
-                         "beat":  657,
+                         "beat":  673,
                          "type":  "pattern",
                          "id":  "pulse_aimed"
                      },
                      {
-                         "beat":  654,
+                         "beat":  676,
                          "type":  "pattern",
-                         "id":  "needle_wall"
+                         "id":  "dread_converging"
+                     },
+                     {
+                         "beat":  675,
+                         "type":  "pattern",
+                         "id":  "storm_spiral"
+                     },
+                     {
+                         "beat":  663,
+                         "type":  "pattern",
+                         "id":  "swarm_homing"
                      },
                      {
                          "beat":  651,
@@ -1303,29 +1253,29 @@
                          "id":  "dread_converging"
                      },
                      {
-                         "beat":  665,
+                         "beat":  647,
+                         "type":  "pattern",
+                         "id":  "swarm_homing"
+                     },
+                     {
+                         "beat":  646,
+                         "type":  "pattern",
+                         "id":  "needle_wall"
+                     },
+                     {
+                         "beat":  649,
                          "type":  "pattern",
                          "id":  "pulse_aimed"
                      },
                      {
-                         "beat":  664,
+                         "beat":  648,
                          "type":  "pattern",
                          "id":  "flood_radial"
                      },
                      {
-                         "beat":  667,
+                         "beat":  654,
                          "type":  "pattern",
-                         "id":  "storm_spiral"
-                     },
-                     {
-                         "beat":  666,
-                         "type":  "pattern",
-                         "id":  "shred_cross"
-                     },
-                     {
-                         "beat":  663,
-                         "type":  "pattern",
-                         "id":  "swarm_homing"
+                         "id":  "needle_wall"
                      },
                      {
                          "beat":  660,
@@ -1348,12 +1298,22 @@
                          "id":  "crimson_fan"
                      },
                      {
-                         "beat":  726,
+                         "beat":  656,
                          "type":  "pattern",
-                         "id":  "needle_wall"
+                         "id":  "flood_radial"
                      },
                      {
-                         "beat":  725,
+                         "beat":  655,
+                         "type":  "pattern",
+                         "id":  "swarm_homing"
+                     },
+                     {
+                         "beat":  658,
+                         "type":  "pattern",
+                         "id":  "shred_cross"
+                     },
+                     {
+                         "beat":  657,
                          "type":  "pattern",
                          "id":  "pulse_aimed"
                      },
@@ -1363,59 +1323,9 @@
                          "id":  "carnage_radial"
                      },
                      {
-                         "beat":  727,
+                         "beat":  703,
                          "type":  "pattern",
                          "id":  "swarm_homing"
-                     },
-                     {
-                         "beat":  724,
-                         "type":  "pattern",
-                         "id":  "blood_storm"
-                     },
-                     {
-                         "beat":  721,
-                         "type":  "pattern",
-                         "id":  "shred_cross"
-                     },
-                     {
-                         "beat":  720,
-                         "type":  "pattern",
-                         "id":  "carnage_radial"
-                     },
-                     {
-                         "beat":  723,
-                         "type":  "pattern",
-                         "id":  "storm_spiral"
-                     },
-                     {
-                         "beat":  722,
-                         "type":  "pattern",
-                         "id":  "crimson_fan"
-                     },
-                     {
-                         "beat":  735,
-                         "type":  "pattern",
-                         "id":  "swarm_homing"
-                     },
-                     {
-                         "beat":  734,
-                         "type":  "pattern",
-                         "id":  "needle_wall"
-                     },
-                     {
-                         "beat":  737,
-                         "type":  "pattern",
-                         "id":  "shred_cross"
-                     },
-                     {
-                         "beat":  736,
-                         "type":  "pattern",
-                         "id":  "carnage_radial"
-                     },
-                     {
-                         "beat":  733,
-                         "type":  "pattern",
-                         "id":  "pulse_aimed"
                      },
                      {
                          "beat":  730,
@@ -1428,79 +1338,9 @@
                          "id":  "shred_cross"
                      },
                      {
-                         "beat":  732,
-                         "type":  "pattern",
-                         "id":  "blood_storm"
-                     },
-                     {
-                         "beat":  731,
-                         "type":  "pattern",
-                         "id":  "storm_spiral"
-                     },
-                     {
-                         "beat":  692,
-                         "type":  "pattern",
-                         "id":  "dread_converging"
-                     },
-                     {
-                         "beat":  691,
-                         "type":  "pattern",
-                         "id":  "storm_spiral"
-                     },
-                     {
-                         "beat":  694,
-                         "type":  "pattern",
-                         "id":  "needle_wall"
-                     },
-                     {
-                         "beat":  693,
-                         "type":  "pattern",
-                         "id":  "crimson_fan"
-                     },
-                     {
-                         "beat":  690,
-                         "type":  "pattern",
-                         "id":  "shred_cross"
-                     },
-                     {
-                         "beat":  687,
-                         "type":  "pattern",
-                         "id":  "swarm_homing"
-                     },
-                     {
-                         "beat":  686,
-                         "type":  "pattern",
-                         "id":  "needle_wall"
-                     },
-                     {
-                         "beat":  689,
-                         "type":  "pattern",
-                         "id":  "pulse_aimed"
-                     },
-                     {
-                         "beat":  688,
-                         "type":  "pattern",
-                         "id":  "flood_radial"
-                     },
-                     {
-                         "beat":  701,
-                         "type":  "pattern",
-                         "id":  "crimson_fan"
-                     },
-                     {
                          "beat":  700,
                          "type":  "pattern",
                          "id":  "dread_converging"
-                     },
-                     {
-                         "beat":  703,
-                         "type":  "pattern",
-                         "id":  "swarm_homing"
-                     },
-                     {
-                         "beat":  702,
-                         "type":  "pattern",
-                         "id":  "needle_wall"
                      },
                      {
                          "beat":  699,
@@ -1508,14 +1348,59 @@
                          "id":  "storm_spiral"
                      },
                      {
-                         "beat":  696,
+                         "beat":  702,
                          "type":  "pattern",
-                         "id":  "flood_radial"
+                         "id":  "needle_wall"
                      },
                      {
-                         "beat":  695,
+                         "beat":  701,
+                         "type":  "pattern",
+                         "id":  "crimson_fan"
+                     },
+                     {
+                         "beat":  731,
+                         "type":  "pattern",
+                         "id":  "storm_spiral"
+                     },
+                     {
+                         "beat":  737,
+                         "type":  "pattern",
+                         "id":  "shred_cross"
+                     },
+                     {
+                         "beat":  736,
+                         "type":  "pattern",
+                         "id":  "carnage_radial"
+                     },
+                     {
+                         "beat":  739,
+                         "type":  "pattern",
+                         "id":  "storm_spiral"
+                     },
+                     {
+                         "beat":  738,
+                         "type":  "pattern",
+                         "id":  "crimson_fan"
+                     },
+                     {
+                         "beat":  733,
+                         "type":  "pattern",
+                         "id":  "pulse_aimed"
+                     },
+                     {
+                         "beat":  732,
+                         "type":  "pattern",
+                         "id":  "blood_storm"
+                     },
+                     {
+                         "beat":  735,
                          "type":  "pattern",
                          "id":  "swarm_homing"
+                     },
+                     {
+                         "beat":  734,
+                         "type":  "pattern",
+                         "id":  "needle_wall"
                      },
                      {
                          "beat":  698,
@@ -1523,7 +1408,122 @@
                          "id":  "shred_cross"
                      },
                      {
+                         "beat":  686,
+                         "type":  "pattern",
+                         "id":  "needle_wall"
+                     },
+                     {
+                         "beat":  685,
+                         "type":  "pattern",
+                         "id":  "crimson_fan"
+                     },
+                     {
+                         "beat":  688,
+                         "type":  "pattern",
+                         "id":  "flood_radial"
+                     },
+                     {
+                         "beat":  687,
+                         "type":  "pattern",
+                         "id":  "swarm_homing"
+                     },
+                     {
+                         "beat":  682,
+                         "type":  "pattern",
+                         "id":  "shred_cross"
+                     },
+                     {
+                         "beat":  681,
+                         "type":  "pattern",
+                         "id":  "pulse_aimed"
+                     },
+                     {
+                         "beat":  684,
+                         "type":  "pattern",
+                         "id":  "dread_converging"
+                     },
+                     {
+                         "beat":  683,
+                         "type":  "pattern",
+                         "id":  "storm_spiral"
+                     },
+                     {
+                         "beat":  689,
+                         "type":  "pattern",
+                         "id":  "pulse_aimed"
+                     },
+                     {
+                         "beat":  695,
+                         "type":  "pattern",
+                         "id":  "swarm_homing"
+                     },
+                     {
+                         "beat":  694,
+                         "type":  "pattern",
+                         "id":  "needle_wall"
+                     },
+                     {
                          "beat":  697,
+                         "type":  "pattern",
+                         "id":  "pulse_aimed"
+                     },
+                     {
+                         "beat":  696,
+                         "type":  "pattern",
+                         "id":  "flood_radial"
+                     },
+                     {
+                         "beat":  691,
+                         "type":  "pattern",
+                         "id":  "storm_spiral"
+                     },
+                     {
+                         "beat":  690,
+                         "type":  "pattern",
+                         "id":  "shred_cross"
+                     },
+                     {
+                         "beat":  693,
+                         "type":  "pattern",
+                         "id":  "crimson_fan"
+                     },
+                     {
+                         "beat":  692,
+                         "type":  "pattern",
+                         "id":  "dread_converging"
+                     },
+                     {
+                         "beat":  188,
+                         "type":  "pattern",
+                         "id":  "vein_radial"
+                     },
+                     {
+                         "beat":  187,
+                         "type":  "pattern",
+                         "id":  "cross"
+                     },
+                     {
+                         "beat":  191,
+                         "type":  "pattern",
+                         "id":  "aimed_shot"
+                     },
+                     {
+                         "beat":  190,
+                         "type":  "pattern",
+                         "id":  "spiral"
+                     },
+                     {
+                         "beat":  183,
+                         "type":  "pattern",
+                         "id":  "aimed_shot"
+                     },
+                     {
+                         "beat":  182,
+                         "type":  "pattern",
+                         "id":  "spiral"
+                     },
+                     {
+                         "beat":  186,
                          "type":  "pattern",
                          "id":  "pulse_aimed"
                      },
@@ -1533,54 +1533,14 @@
                          "id":  "wide_wall"
                      },
                      {
-                         "beat":  183,
-                         "type":  "pattern",
-                         "id":  "aimed_shot"
-                     },
-                     {
-                         "beat":  187,
-                         "type":  "pattern",
-                         "id":  "cross"
-                     },
-                     {
-                         "beat":  186,
-                         "type":  "pattern",
-                         "id":  "pulse_aimed"
-                     },
-                     {
-                         "beat":  182,
-                         "type":  "pattern",
-                         "id":  "spiral"
-                     },
-                     {
-                         "beat":  178,
-                         "type":  "pattern",
-                         "id":  "pulse_aimed"
-                     },
-                     {
-                         "beat":  176,
+                         "beat":  192,
                          "type":  "pattern",
                          "id":  "wide_wall"
                      },
                      {
-                         "beat":  180,
+                         "beat":  200,
                          "type":  "pattern",
-                         "id":  "vein_radial"
-                     },
-                     {
-                         "beat":  179,
-                         "type":  "pattern",
-                         "id":  "cross"
-                     },
-                     {
-                         "beat":  196,
-                         "type":  "pattern",
-                         "id":  "vein_radial"
-                     },
-                     {
-                         "beat":  195,
-                         "type":  "pattern",
-                         "id":  "cross"
+                         "id":  "wide_wall"
                      },
                      {
                          "beat":  199,
@@ -1588,9 +1548,19 @@
                          "id":  "aimed_shot"
                      },
                      {
-                         "beat":  198,
+                         "beat":  203,
                          "type":  "pattern",
-                         "id":  "spiral"
+                         "id":  "cross"
+                     },
+                     {
+                         "beat":  202,
+                         "type":  "pattern",
+                         "id":  "pulse_aimed"
+                     },
+                     {
+                         "beat":  195,
+                         "type":  "pattern",
+                         "id":  "cross"
                      },
                      {
                          "beat":  194,
@@ -1598,99 +1568,19 @@
                          "id":  "pulse_aimed"
                      },
                      {
-                         "beat":  190,
+                         "beat":  198,
                          "type":  "pattern",
                          "id":  "spiral"
                      },
                      {
-                         "beat":  188,
+                         "beat":  196,
                          "type":  "pattern",
                          "id":  "vein_radial"
                      },
                      {
-                         "beat":  192,
-                         "type":  "pattern",
-                         "id":  "wide_wall"
-                     },
-                     {
-                         "beat":  191,
-                         "type":  "pattern",
-                         "id":  "aimed_shot"
-                     },
-                     {
-                         "beat":  160,
-                         "type":  "pattern",
-                         "id":  "wide_wall"
-                     },
-                     {
-                         "beat":  143,
-                         "type":  "pattern",
-                         "id":  "spiral"
-                     },
-                     {
-                         "beat":  163,
-                         "type":  "pattern",
-                         "id":  "cross"
-                     },
-                     {
-                         "beat":  162,
-                         "type":  "pattern",
-                         "id":  "pulse_aimed"
-                     },
-                     {
-                         "beat":  142,
-                         "type":  "pattern",
-                         "id":  "aimed_shot"
-                     },
-                     {
-                         "beat":  138,
-                         "type":  "pattern",
-                         "id":  "wide_wall"
-                     },
-                     {
-                         "beat":  136,
-                         "type":  "pattern",
-                         "id":  "aimed_shot"
-                     },
-                     {
-                         "beat":  140,
-                         "type":  "pattern",
-                         "id":  "pulse_aimed"
-                     },
-                     {
-                         "beat":  139,
-                         "type":  "pattern",
-                         "id":  "cross"
-                     },
-                     {
-                         "beat":  172,
+                         "beat":  180,
                          "type":  "pattern",
                          "id":  "vein_radial"
-                     },
-                     {
-                         "beat":  171,
-                         "type":  "pattern",
-                         "id":  "cross"
-                     },
-                     {
-                         "beat":  175,
-                         "type":  "pattern",
-                         "id":  "aimed_shot"
-                     },
-                     {
-                         "beat":  174,
-                         "type":  "pattern",
-                         "id":  "spiral"
-                     },
-                     {
-                         "beat":  170,
-                         "type":  "pattern",
-                         "id":  "pulse_aimed"
-                     },
-                     {
-                         "beat":  166,
-                         "type":  "pattern",
-                         "id":  "spiral"
                      },
                      {
                          "beat":  164,
@@ -1698,9 +1588,9 @@
                          "id":  "vein_radial"
                      },
                      {
-                         "beat":  168,
+                         "beat":  163,
                          "type":  "pattern",
-                         "id":  "wide_wall"
+                         "id":  "cross"
                      },
                      {
                          "beat":  167,
@@ -1708,14 +1598,74 @@
                          "id":  "aimed_shot"
                      },
                      {
-                         "beat":  248,
+                         "beat":  166,
                          "type":  "pattern",
-                         "id":  "vein_radial"
+                         "id":  "spiral"
                      },
                      {
-                         "beat":  247,
+                         "beat":  143,
                          "type":  "pattern",
-                         "id":  "crimson_rain"
+                         "id":  "spiral"
+                     },
+                     {
+                         "beat":  142,
+                         "type":  "pattern",
+                         "id":  "aimed_shot"
+                     },
+                     {
+                         "beat":  162,
+                         "type":  "pattern",
+                         "id":  "pulse_aimed"
+                     },
+                     {
+                         "beat":  160,
+                         "type":  "pattern",
+                         "id":  "wide_wall"
+                     },
+                     {
+                         "beat":  168,
+                         "type":  "pattern",
+                         "id":  "wide_wall"
+                     },
+                     {
+                         "beat":  176,
+                         "type":  "pattern",
+                         "id":  "wide_wall"
+                     },
+                     {
+                         "beat":  175,
+                         "type":  "pattern",
+                         "id":  "aimed_shot"
+                     },
+                     {
+                         "beat":  179,
+                         "type":  "pattern",
+                         "id":  "cross"
+                     },
+                     {
+                         "beat":  178,
+                         "type":  "pattern",
+                         "id":  "pulse_aimed"
+                     },
+                     {
+                         "beat":  171,
+                         "type":  "pattern",
+                         "id":  "cross"
+                     },
+                     {
+                         "beat":  170,
+                         "type":  "pattern",
+                         "id":  "pulse_aimed"
+                     },
+                     {
+                         "beat":  174,
+                         "type":  "pattern",
+                         "id":  "spiral"
+                     },
+                     {
+                         "beat":  172,
+                         "type":  "pattern",
+                         "id":  "vein_radial"
                      },
                      {
                          "beat":  251,
@@ -1724,56 +1674,6 @@
                      },
                      {
                          "beat":  250,
-                         "type":  "pattern",
-                         "id":  "spiral"
-                     },
-                     {
-                         "beat":  245,
-                         "type":  "pattern",
-                         "id":  "aimed_shot"
-                     },
-                     {
-                         "beat":  242,
-                         "type":  "pattern",
-                         "id":  "spiral"
-                     },
-                     {
-                         "beat":  240,
-                         "type":  "pattern",
-                         "id":  "vein_radial"
-                     },
-                     {
-                         "beat":  244,
-                         "type":  "pattern",
-                         "id":  "pulse_aimed"
-                     },
-                     {
-                         "beat":  243,
-                         "type":  "pattern",
-                         "id":  "wide_wall"
-                     },
-                     {
-                         "beat":  260,
-                         "type":  "pattern",
-                         "id":  "pulse_aimed"
-                     },
-                     {
-                         "beat":  259,
-                         "type":  "pattern",
-                         "id":  "wide_wall"
-                     },
-                     {
-                         "beat":  263,
-                         "type":  "pattern",
-                         "id":  "crimson_rain"
-                     },
-                     {
-                         "beat":  261,
-                         "type":  "pattern",
-                         "id":  "aimed_shot"
-                     },
-                     {
-                         "beat":  258,
                          "type":  "pattern",
                          "id":  "spiral"
                      },
@@ -1788,9 +1688,24 @@
                          "id":  "pulse_aimed"
                      },
                      {
-                         "beat":  256,
+                         "beat":  245,
+                         "type":  "pattern",
+                         "id":  "aimed_shot"
+                     },
+                     {
+                         "beat":  244,
+                         "type":  "pattern",
+                         "id":  "pulse_aimed"
+                     },
+                     {
+                         "beat":  248,
                          "type":  "pattern",
                          "id":  "vein_radial"
+                     },
+                     {
+                         "beat":  247,
+                         "type":  "pattern",
+                         "id":  "crimson_rain"
                      },
                      {
                          "beat":  255,
@@ -1798,14 +1713,49 @@
                          "id":  "crimson_rain"
                      },
                      {
-                         "beat":  208,
+                         "beat":  263,
+                         "type":  "pattern",
+                         "id":  "crimson_rain"
+                     },
+                     {
+                         "beat":  261,
+                         "type":  "pattern",
+                         "id":  "aimed_shot"
+                     },
+                     {
+                         "beat":  266,
+                         "type":  "pattern",
+                         "id":  "spiral"
+                     },
+                     {
+                         "beat":  264,
+                         "type":  "pattern",
+                         "id":  "vein_radial"
+                     },
+                     {
+                         "beat":  258,
+                         "type":  "pattern",
+                         "id":  "spiral"
+                     },
+                     {
+                         "beat":  256,
+                         "type":  "pattern",
+                         "id":  "vein_radial"
+                     },
+                     {
+                         "beat":  260,
+                         "type":  "pattern",
+                         "id":  "pulse_aimed"
+                     },
+                     {
+                         "beat":  259,
                          "type":  "pattern",
                          "id":  "wide_wall"
                      },
                      {
-                         "beat":  207,
+                         "beat":  243,
                          "type":  "pattern",
-                         "id":  "aimed_shot"
+                         "id":  "wide_wall"
                      },
                      {
                          "beat":  211,
@@ -1814,56 +1764,6 @@
                      },
                      {
                          "beat":  210,
-                         "type":  "pattern",
-                         "id":  "pulse_aimed"
-                     },
-                     {
-                         "beat":  206,
-                         "type":  "pattern",
-                         "id":  "spiral"
-                     },
-                     {
-                         "beat":  202,
-                         "type":  "pattern",
-                         "id":  "pulse_aimed"
-                     },
-                     {
-                         "beat":  200,
-                         "type":  "pattern",
-                         "id":  "wide_wall"
-                     },
-                     {
-                         "beat":  204,
-                         "type":  "pattern",
-                         "id":  "vein_radial"
-                     },
-                     {
-                         "beat":  203,
-                         "type":  "pattern",
-                         "id":  "cross"
-                     },
-                     {
-                         "beat":  220,
-                         "type":  "pattern",
-                         "id":  "vein_radial"
-                     },
-                     {
-                         "beat":  219,
-                         "type":  "pattern",
-                         "id":  "cross"
-                     },
-                     {
-                         "beat":  223,
-                         "type":  "pattern",
-                         "id":  "aimed_shot"
-                     },
-                     {
-                         "beat":  222,
-                         "type":  "pattern",
-                         "id":  "spiral"
-                     },
-                     {
-                         "beat":  218,
                          "type":  "pattern",
                          "id":  "pulse_aimed"
                      },
@@ -1878,9 +1778,24 @@
                          "id":  "vein_radial"
                      },
                      {
-                         "beat":  216,
+                         "beat":  206,
+                         "type":  "pattern",
+                         "id":  "spiral"
+                     },
+                     {
+                         "beat":  204,
+                         "type":  "pattern",
+                         "id":  "vein_radial"
+                     },
+                     {
+                         "beat":  208,
                          "type":  "pattern",
                          "id":  "wide_wall"
+                     },
+                     {
+                         "beat":  207,
+                         "type":  "pattern",
+                         "id":  "aimed_shot"
                      },
                      {
                          "beat":  215,
@@ -1888,9 +1803,44 @@
                          "id":  "aimed_shot"
                      },
                      {
-                         "beat":  52,
+                         "beat":  223,
                          "type":  "pattern",
                          "id":  "aimed_shot"
+                     },
+                     {
+                         "beat":  222,
+                         "type":  "pattern",
+                         "id":  "spiral"
+                     },
+                     {
+                         "beat":  242,
+                         "type":  "pattern",
+                         "id":  "spiral"
+                     },
+                     {
+                         "beat":  240,
+                         "type":  "pattern",
+                         "id":  "vein_radial"
+                     },
+                     {
+                         "beat":  218,
+                         "type":  "pattern",
+                         "id":  "pulse_aimed"
+                     },
+                     {
+                         "beat":  216,
+                         "type":  "pattern",
+                         "id":  "wide_wall"
+                     },
+                     {
+                         "beat":  220,
+                         "type":  "pattern",
+                         "id":  "vein_radial"
+                     },
+                     {
+                         "beat":  219,
+                         "type":  "pattern",
+                         "id":  "cross"
                      },
                      {
                          "beat":  50,
@@ -1898,7 +1848,7 @@
                          "id":  "pulse_aimed"
                      },
                      {
-                         "beat":  56,
+                         "beat":  48,
                          "type":  "pattern",
                          "id":  "aimed_shot"
                      },
@@ -1908,7 +1858,7 @@
                          "id":  "cross"
                      },
                      {
-                         "beat":  48,
+                         "beat":  52,
                          "type":  "pattern",
                          "id":  "aimed_shot"
                      },
@@ -1933,29 +1883,29 @@
                          "id":  "aimed_shot"
                      },
                      {
-                         "beat":  84,
-                         "type":  "pattern",
-                         "id":  "pulse_aimed"
-                     },
-                     {
-                         "beat":  83,
-                         "type":  "pattern",
-                         "id":  "cross"
-                     },
-                     {
-                         "beat":  87,
-                         "type":  "pattern",
-                         "id":  "spiral"
-                     },
-                     {
-                         "beat":  86,
+                         "beat":  56,
                          "type":  "pattern",
                          "id":  "aimed_shot"
                      },
                      {
-                         "beat":  82,
+                         "beat":  91,
+                         "type":  "pattern",
+                         "id":  "cross"
+                     },
+                     {
+                         "beat":  90,
                          "type":  "pattern",
                          "id":  "wide_wall"
+                     },
+                     {
+                         "beat":  94,
+                         "type":  "pattern",
+                         "id":  "aimed_shot"
+                     },
+                     {
+                         "beat":  92,
+                         "type":  "pattern",
+                         "id":  "pulse_aimed"
                      },
                      {
                          "beat":  60,
@@ -1968,7 +1918,7 @@
                          "id":  "pulse_aimed"
                      },
                      {
-                         "beat":  80,
+                         "beat":  88,
                          "type":  "pattern",
                          "id":  "aimed_shot"
                      },
@@ -1978,9 +1928,9 @@
                          "id":  "cross"
                      },
                      {
-                         "beat":  16,
+                         "beat":  38,
                          "type":  "pattern",
-                         "id":  "aimed_shot"
+                         "id":  "cross"
                      },
                      {
                          "beat":  14,
@@ -1988,7 +1938,7 @@
                          "id":  "cross"
                      },
                      {
-                         "beat":  20,
+                         "beat":  12,
                          "type":  "pattern",
                          "id":  "aimed_shot"
                      },
@@ -1998,7 +1948,7 @@
                          "id":  "pulse_aimed"
                      },
                      {
-                         "beat":  12,
+                         "beat":  16,
                          "type":  "pattern",
                          "id":  "aimed_shot"
                      },
@@ -2023,9 +1973,9 @@
                          "id":  "aimed_shot"
                      },
                      {
-                         "beat":  34,
+                         "beat":  20,
                          "type":  "pattern",
-                         "id":  "pulse_aimed"
+                         "id":  "aimed_shot"
                      },
                      {
                          "beat":  32,
@@ -2033,7 +1983,7 @@
                          "id":  "aimed_shot"
                      },
                      {
-                         "beat":  38,
+                         "beat":  30,
                          "type":  "pattern",
                          "id":  "cross"
                      },
@@ -2043,9 +1993,9 @@
                          "id":  "aimed_shot"
                      },
                      {
-                         "beat":  30,
+                         "beat":  34,
                          "type":  "pattern",
-                         "id":  "cross"
+                         "id":  "pulse_aimed"
                      },
                      {
                          "beat":  24,
@@ -2068,6 +2018,26 @@
                          "id":  "pulse_aimed"
                      },
                      {
+                         "beat":  126,
+                         "type":  "pattern",
+                         "id":  "aimed_shot"
+                     },
+                     {
+                         "beat":  124,
+                         "type":  "pattern",
+                         "id":  "pulse_aimed"
+                     },
+                     {
+                         "beat":  128,
+                         "type":  "pattern",
+                         "id":  "aimed_shot"
+                     },
+                     {
+                         "beat":  127,
+                         "type":  "pattern",
+                         "id":  "spiral"
+                     },
+                     {
                          "beat":  120,
                          "type":  "pattern",
                          "id":  "aimed_shot"
@@ -2088,27 +2058,27 @@
                          "id":  "wide_wall"
                      },
                      {
-                         "beat":  118,
-                         "type":  "pattern",
-                         "id":  "aimed_shot"
-                     },
-                     {
-                         "beat":  114,
+                         "beat":  130,
                          "type":  "pattern",
                          "id":  "wide_wall"
                      },
                      {
-                         "beat":  112,
+                         "beat":  138,
+                         "type":  "pattern",
+                         "id":  "wide_wall"
+                     },
+                     {
+                         "beat":  136,
                          "type":  "pattern",
                          "id":  "aimed_shot"
                      },
                      {
-                         "beat":  116,
+                         "beat":  140,
                          "type":  "pattern",
                          "id":  "pulse_aimed"
                      },
                      {
-                         "beat":  115,
+                         "beat":  139,
                          "type":  "pattern",
                          "id":  "cross"
                      },
@@ -2133,27 +2103,27 @@
                          "id":  "aimed_shot"
                      },
                      {
-                         "beat":  130,
-                         "type":  "pattern",
-                         "id":  "wide_wall"
-                     },
-                     {
-                         "beat":  126,
+                         "beat":  118,
                          "type":  "pattern",
                          "id":  "aimed_shot"
                      },
                      {
-                         "beat":  124,
+                         "beat":  102,
+                         "type":  "pattern",
+                         "id":  "aimed_shot"
+                     },
+                     {
+                         "beat":  100,
                          "type":  "pattern",
                          "id":  "pulse_aimed"
                      },
                      {
-                         "beat":  128,
+                         "beat":  104,
                          "type":  "pattern",
                          "id":  "aimed_shot"
                      },
                      {
-                         "beat":  127,
+                         "beat":  103,
                          "type":  "pattern",
                          "id":  "spiral"
                      },
@@ -2178,27 +2148,27 @@
                          "id":  "wide_wall"
                      },
                      {
-                         "beat":  94,
-                         "type":  "pattern",
-                         "id":  "aimed_shot"
-                     },
-                     {
-                         "beat":  90,
+                         "beat":  106,
                          "type":  "pattern",
                          "id":  "wide_wall"
                      },
                      {
-                         "beat":  88,
+                         "beat":  114,
+                         "type":  "pattern",
+                         "id":  "wide_wall"
+                     },
+                     {
+                         "beat":  112,
                          "type":  "pattern",
                          "id":  "aimed_shot"
                      },
                      {
-                         "beat":  92,
+                         "beat":  116,
                          "type":  "pattern",
                          "id":  "pulse_aimed"
                      },
                      {
-                         "beat":  91,
+                         "beat":  115,
                          "type":  "pattern",
                          "id":  "cross"
                      },
@@ -2223,29 +2193,9 @@
                          "id":  "aimed_shot"
                      },
                      {
-                         "beat":  106,
+                         "beat":  267,
                          "type":  "pattern",
                          "id":  "wide_wall"
-                     },
-                     {
-                         "beat":  102,
-                         "type":  "pattern",
-                         "id":  "aimed_shot"
-                     },
-                     {
-                         "beat":  100,
-                         "type":  "pattern",
-                         "id":  "pulse_aimed"
-                     },
-                     {
-                         "beat":  104,
-                         "type":  "pattern",
-                         "id":  "aimed_shot"
-                     },
-                     {
-                         "beat":  103,
-                         "type":  "pattern",
-                         "id":  "spiral"
                      },
                      {
                          "beat":  410,
@@ -2268,9 +2218,9 @@
                          "id":  "pulse_aimed"
                      },
                      {
-                         "beat":  408,
+                         "beat":  406,
                          "type":  "pattern",
-                         "id":  "vein_radial"
+                         "id":  "crimson_rain"
                      },
                      {
                          "beat":  405,
@@ -2278,9 +2228,9 @@
                          "id":  "bleed_spiral"
                      },
                      {
-                         "beat":  404,
+                         "beat":  408,
                          "type":  "pattern",
-                         "id":  "crimson_wall"
+                         "id":  "vein_radial"
                      },
                      {
                          "beat":  407,
@@ -2288,9 +2238,9 @@
                          "id":  "shred_cross"
                      },
                      {
-                         "beat":  406,
+                         "beat":  413,
                          "type":  "pattern",
-                         "id":  "crimson_rain"
+                         "id":  "bleed_spiral"
                      },
                      {
                          "beat":  419,
@@ -2313,9 +2263,9 @@
                          "id":  "crimson_wall"
                      },
                      {
-                         "beat":  417,
+                         "beat":  415,
                          "type":  "pattern",
-                         "id":  "crimson_fan"
+                         "id":  "shred_cross"
                      },
                      {
                          "beat":  414,
@@ -2323,9 +2273,9 @@
                          "id":  "crimson_rain"
                      },
                      {
-                         "beat":  413,
+                         "beat":  417,
                          "type":  "pattern",
-                         "id":  "bleed_spiral"
+                         "id":  "crimson_fan"
                      },
                      {
                          "beat":  416,
@@ -2333,9 +2283,9 @@
                          "id":  "vein_radial"
                      },
                      {
-                         "beat":  415,
+                         "beat":  404,
                          "type":  "pattern",
-                         "id":  "shred_cross"
+                         "id":  "crimson_wall"
                      },
                      {
                          "beat":  375,
@@ -2358,9 +2308,9 @@
                          "id":  "vein_radial"
                      },
                      {
-                         "beat":  373,
+                         "beat":  370,
                          "type":  "pattern",
-                         "id":  "blood_homing"
+                         "id":  "bleed_spiral"
                      },
                      {
                          "beat":  369,
@@ -2368,9 +2318,9 @@
                          "id":  "pulse_aimed"
                      },
                      {
-                         "beat":  368,
+                         "beat":  373,
                          "type":  "pattern",
-                         "id":  "vein_radial"
+                         "id":  "blood_homing"
                      },
                      {
                          "beat":  372,
@@ -2378,7 +2328,7 @@
                          "id":  "crimson_wall"
                      },
                      {
-                         "beat":  370,
+                         "beat":  378,
                          "type":  "pattern",
                          "id":  "bleed_spiral"
                      },
@@ -2403,9 +2353,9 @@
                          "id":  "slash_cross"
                      },
                      {
-                         "beat":  383,
+                         "beat":  381,
                          "type":  "pattern",
-                         "id":  "dread_converging"
+                         "id":  "blood_homing"
                      },
                      {
                          "beat":  380,
@@ -2413,9 +2363,9 @@
                          "id":  "crimson_wall"
                      },
                      {
-                         "beat":  378,
+                         "beat":  383,
                          "type":  "pattern",
-                         "id":  "bleed_spiral"
+                         "id":  "dread_converging"
                      },
                      {
                          "beat":  382,
@@ -2423,24 +2373,14 @@
                          "id":  "aimed_shot"
                      },
                      {
-                         "beat":  381,
-                         "type":  "pattern",
-                         "id":  "blood_homing"
-                     },
-                     {
-                         "beat":  446,
-                         "type":  "pattern",
-                         "id":  "crimson_rain"
-                     },
-                     {
                          "beat":  445,
                          "type":  "pattern",
                          "id":  "bleed_spiral"
                      },
                      {
-                         "beat":  448,
+                         "beat":  444,
                          "type":  "pattern",
-                         "id":  "vein_radial"
+                         "id":  "crimson_wall"
                      },
                      {
                          "beat":  447,
@@ -2448,9 +2388,9 @@
                          "id":  "shred_cross"
                      },
                      {
-                         "beat":  444,
+                         "beat":  446,
                          "type":  "pattern",
-                         "id":  "crimson_wall"
+                         "id":  "crimson_rain"
                      },
                      {
                          "beat":  441,
@@ -2473,9 +2413,9 @@
                          "id":  "slash_cross"
                      },
                      {
-                         "beat":  455,
+                         "beat":  448,
                          "type":  "pattern",
-                         "id":  "shred_cross"
+                         "id":  "vein_radial"
                      },
                      {
                          "beat":  454,
@@ -2483,9 +2423,9 @@
                          "id":  "crimson_rain"
                      },
                      {
-                         "beat":  457,
+                         "beat":  453,
                          "type":  "pattern",
-                         "id":  "crimson_fan"
+                         "id":  "bleed_spiral"
                      },
                      {
                          "beat":  456,
@@ -2493,9 +2433,9 @@
                          "id":  "vein_radial"
                      },
                      {
-                         "beat":  453,
+                         "beat":  455,
                          "type":  "pattern",
-                         "id":  "bleed_spiral"
+                         "id":  "shred_cross"
                      },
                      {
                          "beat":  450,
@@ -2518,9 +2458,9 @@
                          "id":  "pulse_aimed"
                      },
                      {
-                         "beat":  428,
+                         "beat":  439,
                          "type":  "pattern",
-                         "id":  "crimson_wall"
+                         "id":  "shred_cross"
                      },
                      {
                          "beat":  427,
@@ -2528,9 +2468,9 @@
                          "id":  "pulse_aimed"
                      },
                      {
-                         "beat":  430,
+                         "beat":  426,
                          "type":  "pattern",
-                         "id":  "crimson_rain"
+                         "id":  "slash_cross"
                      },
                      {
                          "beat":  429,
@@ -2538,9 +2478,9 @@
                          "id":  "bleed_spiral"
                      },
                      {
-                         "beat":  426,
+                         "beat":  428,
                          "type":  "pattern",
-                         "id":  "slash_cross"
+                         "id":  "crimson_wall"
                      },
                      {
                          "beat":  423,
@@ -2563,9 +2503,9 @@
                          "id":  "vein_radial"
                      },
                      {
-                         "beat":  437,
+                         "beat":  430,
                          "type":  "pattern",
-                         "id":  "bleed_spiral"
+                         "id":  "crimson_rain"
                      },
                      {
                          "beat":  436,
@@ -2573,9 +2513,9 @@
                          "id":  "crimson_wall"
                      },
                      {
-                         "beat":  439,
+                         "beat":  435,
                          "type":  "pattern",
-                         "id":  "shred_cross"
+                         "id":  "pulse_aimed"
                      },
                      {
                          "beat":  438,
@@ -2583,9 +2523,9 @@
                          "id":  "crimson_rain"
                      },
                      {
-                         "beat":  435,
+                         "beat":  437,
                          "type":  "pattern",
-                         "id":  "pulse_aimed"
+                         "id":  "bleed_spiral"
                      },
                      {
                          "beat":  432,
@@ -2608,16 +2548,6 @@
                          "id":  "crimson_fan"
                      },
                      {
-                         "beat":  296,
-                         "type":  "pattern",
-                         "id":  "vein_radial"
-                     },
-                     {
-                         "beat":  295,
-                         "type":  "pattern",
-                         "id":  "crimson_rain"
-                     },
-                     {
                          "beat":  299,
                          "type":  "pattern",
                          "id":  "wide_wall"
@@ -2626,56 +2556,6 @@
                          "beat":  298,
                          "type":  "pattern",
                          "id":  "spiral"
-                     },
-                     {
-                         "beat":  293,
-                         "type":  "pattern",
-                         "id":  "aimed_shot"
-                     },
-                     {
-                         "beat":  290,
-                         "type":  "pattern",
-                         "id":  "spiral"
-                     },
-                     {
-                         "beat":  288,
-                         "type":  "pattern",
-                         "id":  "vein_radial"
-                     },
-                     {
-                         "beat":  292,
-                         "type":  "pattern",
-                         "id":  "pulse_aimed"
-                     },
-                     {
-                         "beat":  291,
-                         "type":  "pattern",
-                         "id":  "wide_wall"
-                     },
-                     {
-                         "beat":  324,
-                         "type":  "pattern",
-                         "id":  "crimson_wall"
-                     },
-                     {
-                         "beat":  322,
-                         "type":  "pattern",
-                         "id":  "bleed_spiral"
-                     },
-                     {
-                         "beat":  326,
-                         "type":  "pattern",
-                         "id":  "aimed_shot"
-                     },
-                     {
-                         "beat":  325,
-                         "type":  "pattern",
-                         "id":  "blood_homing"
-                     },
-                     {
-                         "beat":  321,
-                         "type":  "pattern",
-                         "id":  "pulse_aimed"
                      },
                      {
                          "beat":  301,
@@ -2688,9 +2568,24 @@
                          "id":  "pulse_aimed"
                      },
                      {
-                         "beat":  320,
+                         "beat":  293,
+                         "type":  "pattern",
+                         "id":  "aimed_shot"
+                     },
+                     {
+                         "beat":  292,
+                         "type":  "pattern",
+                         "id":  "pulse_aimed"
+                     },
+                     {
+                         "beat":  296,
                          "type":  "pattern",
                          "id":  "vein_radial"
+                     },
+                     {
+                         "beat":  295,
+                         "type":  "pattern",
+                         "id":  "crimson_rain"
                      },
                      {
                          "beat":  303,
@@ -2698,14 +2593,49 @@
                          "id":  "crimson_rain"
                      },
                      {
-                         "beat":  272,
+                         "beat":  326,
+                         "type":  "pattern",
+                         "id":  "aimed_shot"
+                     },
+                     {
+                         "beat":  325,
+                         "type":  "pattern",
+                         "id":  "blood_homing"
+                     },
+                     {
+                         "beat":  328,
                          "type":  "pattern",
                          "id":  "vein_radial"
                      },
                      {
-                         "beat":  271,
+                         "beat":  327,
                          "type":  "pattern",
-                         "id":  "crimson_rain"
+                         "id":  "dread_converging"
+                     },
+                     {
+                         "beat":  321,
+                         "type":  "pattern",
+                         "id":  "pulse_aimed"
+                     },
+                     {
+                         "beat":  320,
+                         "type":  "pattern",
+                         "id":  "vein_radial"
+                     },
+                     {
+                         "beat":  324,
+                         "type":  "pattern",
+                         "id":  "crimson_wall"
+                     },
+                     {
+                         "beat":  322,
+                         "type":  "pattern",
+                         "id":  "bleed_spiral"
+                     },
+                     {
+                         "beat":  291,
+                         "type":  "pattern",
+                         "id":  "wide_wall"
                      },
                      {
                          "beat":  275,
@@ -2714,56 +2644,6 @@
                      },
                      {
                          "beat":  274,
-                         "type":  "pattern",
-                         "id":  "spiral"
-                     },
-                     {
-                         "beat":  269,
-                         "type":  "pattern",
-                         "id":  "aimed_shot"
-                     },
-                     {
-                         "beat":  266,
-                         "type":  "pattern",
-                         "id":  "spiral"
-                     },
-                     {
-                         "beat":  264,
-                         "type":  "pattern",
-                         "id":  "vein_radial"
-                     },
-                     {
-                         "beat":  268,
-                         "type":  "pattern",
-                         "id":  "pulse_aimed"
-                     },
-                     {
-                         "beat":  267,
-                         "type":  "pattern",
-                         "id":  "wide_wall"
-                     },
-                     {
-                         "beat":  284,
-                         "type":  "pattern",
-                         "id":  "pulse_aimed"
-                     },
-                     {
-                         "beat":  283,
-                         "type":  "pattern",
-                         "id":  "wide_wall"
-                     },
-                     {
-                         "beat":  287,
-                         "type":  "pattern",
-                         "id":  "crimson_rain"
-                     },
-                     {
-                         "beat":  285,
-                         "type":  "pattern",
-                         "id":  "aimed_shot"
-                     },
-                     {
-                         "beat":  282,
                          "type":  "pattern",
                          "id":  "spiral"
                      },
@@ -2778,9 +2658,24 @@
                          "id":  "pulse_aimed"
                      },
                      {
-                         "beat":  280,
+                         "beat":  269,
+                         "type":  "pattern",
+                         "id":  "aimed_shot"
+                     },
+                     {
+                         "beat":  268,
+                         "type":  "pattern",
+                         "id":  "pulse_aimed"
+                     },
+                     {
+                         "beat":  272,
                          "type":  "pattern",
                          "id":  "vein_radial"
+                     },
+                     {
+                         "beat":  271,
+                         "type":  "pattern",
+                         "id":  "crimson_rain"
                      },
                      {
                          "beat":  279,
@@ -2788,19 +2683,44 @@
                          "id":  "crimson_rain"
                      },
                      {
-                         "beat":  354,
+                         "beat":  287,
                          "type":  "pattern",
-                         "id":  "bleed_spiral"
+                         "id":  "crimson_rain"
                      },
                      {
-                         "beat":  353,
+                         "beat":  285,
+                         "type":  "pattern",
+                         "id":  "aimed_shot"
+                     },
+                     {
+                         "beat":  290,
+                         "type":  "pattern",
+                         "id":  "spiral"
+                     },
+                     {
+                         "beat":  288,
+                         "type":  "pattern",
+                         "id":  "vein_radial"
+                     },
+                     {
+                         "beat":  282,
+                         "type":  "pattern",
+                         "id":  "spiral"
+                     },
+                     {
+                         "beat":  280,
+                         "type":  "pattern",
+                         "id":  "vein_radial"
+                     },
+                     {
+                         "beat":  284,
                          "type":  "pattern",
                          "id":  "pulse_aimed"
                      },
                      {
-                         "beat":  357,
+                         "beat":  283,
                          "type":  "pattern",
-                         "id":  "blood_homing"
+                         "id":  "wide_wall"
                      },
                      {
                          "beat":  356,
@@ -2808,19 +2728,19 @@
                          "id":  "crimson_wall"
                      },
                      {
-                         "beat":  352,
+                         "beat":  354,
                          "type":  "pattern",
-                         "id":  "vein_radial"
+                         "id":  "bleed_spiral"
                      },
                      {
-                         "beat":  349,
+                         "beat":  358,
+                         "type":  "pattern",
+                         "id":  "aimed_shot"
+                     },
+                     {
+                         "beat":  357,
                          "type":  "pattern",
                          "id":  "blood_homing"
-                     },
-                     {
-                         "beat":  348,
-                         "type":  "pattern",
-                         "id":  "crimson_wall"
                      },
                      {
                          "beat":  351,
@@ -2833,17 +2753,17 @@
                          "id":  "aimed_shot"
                      },
                      {
-                         "beat":  365,
+                         "beat":  353,
                          "type":  "pattern",
-                         "id":  "blood_homing"
+                         "id":  "pulse_aimed"
                      },
                      {
-                         "beat":  364,
+                         "beat":  352,
                          "type":  "pattern",
-                         "id":  "crimson_wall"
+                         "id":  "vein_radial"
                      },
                      {
-                         "beat":  367,
+                         "beat":  359,
                          "type":  "pattern",
                          "id":  "dread_converging"
                      },
@@ -2853,19 +2773,19 @@
                          "id":  "aimed_shot"
                      },
                      {
-                         "beat":  362,
+                         "beat":  365,
                          "type":  "pattern",
-                         "id":  "bleed_spiral"
+                         "id":  "blood_homing"
                      },
                      {
-                         "beat":  359,
+                         "beat":  368,
+                         "type":  "pattern",
+                         "id":  "vein_radial"
+                     },
+                     {
+                         "beat":  367,
                          "type":  "pattern",
                          "id":  "dread_converging"
-                     },
-                     {
-                         "beat":  358,
-                         "type":  "pattern",
-                         "id":  "aimed_shot"
                      },
                      {
                          "beat":  361,
@@ -2878,19 +2798,19 @@
                          "id":  "vein_radial"
                      },
                      {
-                         "beat":  334,
+                         "beat":  364,
                          "type":  "pattern",
-                         "id":  "aimed_shot"
+                         "id":  "crimson_wall"
                      },
                      {
-                         "beat":  333,
+                         "beat":  362,
+                         "type":  "pattern",
+                         "id":  "bleed_spiral"
+                     },
+                     {
+                         "beat":  349,
                          "type":  "pattern",
                          "id":  "blood_homing"
-                     },
-                     {
-                         "beat":  336,
-                         "type":  "pattern",
-                         "id":  "vein_radial"
                      },
                      {
                          "beat":  335,
@@ -2898,19 +2818,19 @@
                          "id":  "dread_converging"
                      },
                      {
-                         "beat":  332,
+                         "beat":  334,
                          "type":  "pattern",
-                         "id":  "crimson_wall"
+                         "id":  "aimed_shot"
                      },
                      {
-                         "beat":  328,
+                         "beat":  337,
+                         "type":  "pattern",
+                         "id":  "pulse_aimed"
+                     },
+                     {
+                         "beat":  336,
                          "type":  "pattern",
                          "id":  "vein_radial"
-                     },
-                     {
-                         "beat":  327,
-                         "type":  "pattern",
-                         "id":  "dread_converging"
                      },
                      {
                          "beat":  330,
@@ -2923,17 +2843,17 @@
                          "id":  "pulse_aimed"
                      },
                      {
-                         "beat":  344,
+                         "beat":  333,
                          "type":  "pattern",
-                         "id":  "vein_radial"
+                         "id":  "blood_homing"
                      },
                      {
-                         "beat":  343,
+                         "beat":  332,
                          "type":  "pattern",
-                         "id":  "dread_converging"
+                         "id":  "crimson_wall"
                      },
                      {
-                         "beat":  346,
+                         "beat":  338,
                          "type":  "pattern",
                          "id":  "bleed_spiral"
                      },
@@ -2943,19 +2863,19 @@
                          "id":  "pulse_aimed"
                      },
                      {
-                         "beat":  342,
+                         "beat":  344,
                          "type":  "pattern",
-                         "id":  "aimed_shot"
+                         "id":  "vein_radial"
                      },
                      {
-                         "beat":  338,
+                         "beat":  348,
+                         "type":  "pattern",
+                         "id":  "crimson_wall"
+                     },
+                     {
+                         "beat":  346,
                          "type":  "pattern",
                          "id":  "bleed_spiral"
-                     },
-                     {
-                         "beat":  337,
-                         "type":  "pattern",
-                         "id":  "pulse_aimed"
                      },
                      {
                          "beat":  341,
@@ -2966,6 +2886,16 @@
                          "beat":  340,
                          "type":  "pattern",
                          "id":  "crimson_wall"
+                     },
+                     {
+                         "beat":  343,
+                         "type":  "pattern",
+                         "id":  "dread_converging"
+                     },
+                     {
+                         "beat":  342,
+                         "type":  "pattern",
+                         "id":  "aimed_shot"
                      }
                  ]
 }

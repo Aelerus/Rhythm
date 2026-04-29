@@ -27,19 +27,20 @@ function Add-Counter([int]$beat, [string]$anchor, [int]$radius = 60, [int]$leadB
 
 # Section schedule (open-beat of each counter window).
 # Patterns must end at least 4 beats before each open-beat so the field clears.
-# 10 counter windows. Smaller circles + shorter leads make finding the parry
-# zone in time genuinely punishing. The radius shrinks as the song escalates.
+# 10 counter windows. Lead beats are tuned so even a corner-to-corner sprint
+# can reach the parry circle in time at 185 BPM (1 beat ~= 0.32s). The first
+# window gets a generous extra ~1.6s lead-in to teach the mechanic.
 $counters = @(
-  @{ beat =  64; anchor = 'center';      lead = 4; dur = 8;  radius = 70 }
-  @{ beat = 144; anchor = 'topLeft';     lead = 4; dur = 8;  radius = 65 }
-  @{ beat = 224; anchor = 'bottomRight'; lead = 4; dur = 8;  radius = 60 }
-  @{ beat = 304; anchor = 'right';       lead = 3; dur = 8;  radius = 60 }
-  @{ beat = 384; anchor = 'topRight';    lead = 3; dur = 8;  radius = 55 }
-  @{ beat = 464; anchor = 'bottom';      lead = 3; dur = 8;  radius = 55 }
-  @{ beat = 544; anchor = 'left';        lead = 3; dur = 8;  radius = 50 }
-  @{ beat = 624; anchor = 'top';         lead = 3; dur = 8;  radius = 50 }
-  @{ beat = 704; anchor = 'bottomLeft';  lead = 4; dur = 10; radius = 50 }
-  @{ beat = 800; anchor = 'center';      lead = 5; dur = 12; radius = 60 }
+  @{ beat =  64; anchor = 'center';      lead = 12; dur = 8;  radius = 70 }
+  @{ beat = 144; anchor = 'topLeft';     lead =  7; dur = 8;  radius = 65 }
+  @{ beat = 224; anchor = 'bottomRight'; lead =  7; dur = 8;  radius = 60 }
+  @{ beat = 304; anchor = 'right';       lead =  6; dur = 8;  radius = 60 }
+  @{ beat = 384; anchor = 'topRight';    lead =  6; dur = 8;  radius = 55 }
+  @{ beat = 464; anchor = 'bottom';      lead =  6; dur = 8;  radius = 55 }
+  @{ beat = 544; anchor = 'left';        lead =  6; dur = 8;  radius = 50 }
+  @{ beat = 624; anchor = 'top';         lead =  6; dur = 8;  radius = 50 }
+  @{ beat = 704; anchor = 'bottomLeft';  lead =  7; dur = 10; radius = 50 }
+  @{ beat = 800; anchor = 'center';      lead =  8; dur = 12; radius = 60 }
 )
 
 # Phrase libraries per section (each phrase is 8 beats long; emits a list of (offset, patternId)).
@@ -81,7 +82,7 @@ function Phrase-Bridge {
 # (startBeat, endBeatExclusive, phraseFunc)
 $sections = @(
   @{ start =   4; endX =  64; func = 'Phrase-Sparse'     }
-  @{ start =  80; endX = 144; func = 'Phrase-Intro'      }
+  @{ start =  88; endX = 144; func = 'Phrase-Intro'      }   # pushed back: counter 1 holds until ~beat 84
   @{ start = 160; endX = 224; func = 'Phrase-Verse1'     }
   @{ start = 240; endX = 304; func = 'Phrase-Verse1B'    }
   @{ start = 320; endX = 384; func = 'Phrase-PreChorus'  }
@@ -89,7 +90,7 @@ $sections = @(
   @{ start = 480; endX = 544; func = 'Phrase-Chorus1B'   }
   @{ start = 560; endX = 624; func = 'Phrase-Verse2'     }
   @{ start = 640; endX = 704; func = 'Phrase-Verse2B'    }
-  @{ start = 720; endX = 800; func = 'Phrase-Bridge'     }
+  @{ start = 728; endX = 800; func = 'Phrase-Bridge'     }   # pushed back: counter 9 holds until ~beat 721
 )
 
 # Materialize patterns from each section.
