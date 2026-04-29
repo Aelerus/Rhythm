@@ -1,0 +1,15 @@
+{
+  "id": "tesla_split",
+  "type": "split_wave",
+  "count": 4,
+  "spread": 0.7,
+  "speed": 240,
+  "splitTime": 0.55,
+  "childCount": 5,
+  "childSpread": 1.4,
+  "childSpeed": 280,
+  "radius": 7,
+  "childRadius": 5,
+  "color": "#c8ff00",
+  "childColor": "#a8ff33"
+}

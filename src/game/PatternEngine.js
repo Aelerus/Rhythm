@@ -38,6 +38,9 @@ export class PatternEngine {
       case "echo":         this._echo(pattern, ctx); break;
       case "laser_line":   this._laserLine(pattern, ctx); break;
       case "stutter_aim":  this._stutterAim(pattern, ctx); break;
+      case "split_wave":   this._splitWave(pattern, ctx); break;
+      case "pulse_beam":   this._pulseBeam(pattern, ctx); break;
+      case "tempo_grid":   this._tempoGrid(pattern, ctx); break;
       default:
         console.warn(`PatternEngine: unhandled pattern type '${pattern.type}'`);
     }
@@ -240,6 +243,136 @@ export class PatternEngine {
         radius: p.radius ?? 7, color: p.color ?? "#ffffff",
         stutter: { onTime: p.onTime ?? 0.32, offTime: p.offTime ?? 0.22 },
       });
+    }
+  }
+
+  // Split-wave: parent fan flies forward, then each parent "splits" into a child fan
+  // at splitTime. Child bullets are pre-spawned at their split position with a delay,
+  // and parents are killed at the split moment via maxLife. Visually reads as bullets
+  // bursting apart mid-flight.
+  _splitWave(p, ctx) {
+    const count = p.count ?? 4;
+    const spread = p.spread ?? 0.7;
+    const speed = p.speed ?? 240;
+    const splitTime = p.splitTime ?? 0.55;
+    const childCount = p.childCount ?? 5;
+    const childSpread = p.childSpread ?? 1.4;
+    const childSpeed = p.childSpeed ?? 280;
+    const dx = ctx.target.x - ctx.boss.x;
+    const dy = ctx.target.y - ctx.boss.y;
+    const baseAngle = Math.atan2(dy, dx);
+    for (let i = 0; i < count; i++) {
+      const t = count === 1 ? 0 : i / (count - 1) - 0.5;
+      const angle = baseAngle + t * spread;
+      const cos = Math.cos(angle), sin = Math.sin(angle);
+      this.pool.spawn({
+        x: ctx.boss.x, y: ctx.boss.y,
+        vx: cos * speed, vy: sin * speed,
+        radius: p.radius ?? 7, color: p.color ?? "#c8ff00",
+        maxLife: splitTime,
+      });
+      const splitX = ctx.boss.x + cos * speed * splitTime;
+      const splitY = ctx.boss.y + sin * speed * splitTime;
+      for (let k = 0; k < childCount; k++) {
+        const tk = childCount === 1 ? 0 : k / (childCount - 1) - 0.5;
+        const cAng = angle + tk * childSpread;
+        this.pool.spawn({
+          x: splitX, y: splitY,
+          vx: Math.cos(cAng) * childSpeed,
+          vy: Math.sin(cAng) * childSpeed,
+          radius: p.childRadius ?? 5,
+          color: p.childColor ?? p.color ?? "#c8ff00",
+          delay: splitTime,
+        });
+      }
+    }
+  }
+
+  // Pulse-beam: a wide rectangular band telegraphs across the arena, then becomes
+  // a multi-row sweep of bullets. Forces the player off an entire side of the arena.
+  _pulseBeam(p, ctx) {
+    const arena = ctx.arena;
+    const orient = p.orient ?? "h";
+    const width = p.width ?? 90;
+    const speed = p.speed ?? 380;
+    const telegraph = p.telegraph ?? 0.7;
+    const rows = p.rows ?? 3;
+    const beadsPerRow = p.beadsPerRow ?? 14;
+    const bulletsPerRow = p.bulletsPerRow ?? 5;
+    const radius = p.radius ?? 6;
+    let center;
+    if (orient === "h") {
+      center = arena.y + width / 2 + Math.random() * (arena.h - width);
+    } else {
+      center = arena.x + width / 2 + Math.random() * (arena.w - width);
+    }
+    for (let r = 0; r < rows; r++) {
+      const offset = (r - (rows - 1) / 2) * (width / rows);
+      const linePos = center + offset;
+      for (let i = 0; i < beadsPerRow; i++) {
+        const tt = beadsPerRow === 1 ? 0 : i / (beadsPerRow - 1);
+        const x = orient === "h" ? arena.x + tt * arena.w : linePos;
+        const y = orient === "h" ? linePos : arena.y + tt * arena.h;
+        this.pool.spawn({
+          x, y, vx: 0, vy: 0, radius: 4,
+          color: p.markerColor ?? "#c8ff00",
+          delay: telegraph, maxLife: telegraph + 0.05,
+          tag: "marker",
+        });
+      }
+      const dirX = orient === "h" ? 1 : 0;
+      const dirY = orient === "v" ? 1 : 0;
+      const startX = orient === "h" ? arena.x - 20 : linePos;
+      const startY = orient === "v" ? arena.y - 20 : linePos;
+      for (let i = 0; i < bulletsPerRow; i++) {
+        this.pool.spawn({
+          x: startX - i * 22 * dirX,
+          y: startY - i * 22 * dirY,
+          vx: dirX * speed, vy: dirY * speed,
+          radius, color: p.color ?? "#c8ff00",
+          delay: telegraph,
+        });
+      }
+    }
+  }
+
+  // Tempo-grid: arena divided into a grid; checkerboard cells (parity 0 or 1)
+  // light up, telegraph briefly, then erupt with small radial bursts. Pair two
+  // events on consecutive beats with opposite parity to force the player to
+  // step between cells on the beat.
+  _tempoGrid(p, ctx) {
+    const arena = ctx.arena;
+    const cols = p.cols ?? 5;
+    const rows = p.rows ?? 4;
+    const arms = p.arms ?? 4;
+    const speed = p.speed ?? 200;
+    const telegraph = p.telegraph ?? 0.4;
+    const parity = p.parity ?? 0;
+    const cellW = arena.w / cols;
+    const cellH = arena.h / rows;
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        if (((r + c) & 1) !== parity) continue;
+        const cx = arena.x + (c + 0.5) * cellW;
+        const cy = arena.y + (r + 0.5) * cellH;
+        this.pool.spawn({
+          x: cx, y: cy, vx: 0, vy: 0,
+          radius: p.markerRadius ?? 10,
+          color: p.markerColor ?? "#c8ff00",
+          delay: telegraph, maxLife: telegraph + 0.05,
+          tag: "marker",
+        });
+        for (let a = 0; a < arms; a++) {
+          const angle = (a / arms) * Math.PI * 2 + 0.2 * (r + c);
+          this.pool.spawn({
+            x: cx, y: cy,
+            vx: Math.cos(angle) * speed,
+            vy: Math.sin(angle) * speed,
+            radius: p.radius ?? 6, color: p.color ?? "#c8ff00",
+            delay: telegraph,
+          });
+        }
+      }
     }
   }
 

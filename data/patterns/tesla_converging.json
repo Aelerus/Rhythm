@@ -1,0 +1,8 @@
+{
+  "id": "tesla_converging",
+  "type": "converging",
+  "count": 12,
+  "speed": 290,
+  "radius": 6,
+  "color": "#c8ff00"
+}

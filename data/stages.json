@@ -5,6 +5,7 @@
     { "id": "boss_03", "name": "VOLT",  "color": "#ffae5d", "bpm": 140, "boss": "data/bosses/boss_03.json" },
     { "id": "boss_04", "name": "EIEN",  "color": "#d4133b", "bpm": 185, "boss": "data/bosses/boss_04.json" },
     { "id": "boss_05", "name": "PULSE", "color": "#00e5ff", "bpm": 175, "boss": "data/bosses/boss_05.json", "defaultUnlocked": true },
+    { "id": "boss_07", "name": "TESLA", "color": "#c8ff00", "bpm": 120, "boss": "data/bosses/boss_07.json" },
     { "id": "boss_06", "name": "APEX",  "color": "#ffffff", "bpm": 180, "boss": "data/bosses/boss_06.json", "hidden": true, "requiresAllCleared": true }
   ],
   "patternFiles": [
@@ -67,6 +68,18 @@
     "data/patterns/apex3_laser.json",
     "data/patterns/apex3_mirror.json",
     "data/patterns/apex3_echo.json",
-    "data/patterns/apex3_stutter.json"
+    "data/patterns/apex3_stutter.json",
+    "data/patterns/tesla_aimed.json",
+    "data/patterns/tesla_radial.json",
+    "data/patterns/tesla_spiral.json",
+    "data/patterns/tesla_cross.json",
+    "data/patterns/tesla_homing.json",
+    "data/patterns/tesla_converging.json",
+    "data/patterns/tesla_split.json",
+    "data/patterns/tesla_split_wide.json",
+    "data/patterns/tesla_beam_h.json",
+    "data/patterns/tesla_beam_v.json",
+    "data/patterns/tesla_grid_a.json",
+    "data/patterns/tesla_grid_b.json"
   ]
 }

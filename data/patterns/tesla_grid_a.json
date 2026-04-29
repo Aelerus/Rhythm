@@ -1,0 +1,14 @@
+{
+  "id": "tesla_grid_a",
+  "type": "tempo_grid",
+  "cols": 5,
+  "rows": 4,
+  "arms": 4,
+  "speed": 200,
+  "telegraph": 0.4,
+  "parity": 0,
+  "radius": 6,
+  "markerRadius": 11,
+  "color": "#c8ff00",
+  "markerColor": "#9eff00"
+}

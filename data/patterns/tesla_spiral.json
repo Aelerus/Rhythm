@@ -1,0 +1,10 @@
+{
+  "id": "tesla_spiral",
+  "type": "spiral",
+  "arms": 6,
+  "count": 1,
+  "speed": 270,
+  "radius": 6,
+  "color": "#c8ff00",
+  "rotateStep": 0.5
+}
