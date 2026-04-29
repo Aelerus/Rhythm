@@ -45,7 +45,10 @@ export class HUD {
     ctx.fillStyle = "#ffffff";
     ctx.font = "bold 16px 'Segoe UI', sans-serif";
     ctx.textAlign = "center";
-    ctx.fillText(`${fight.bossData.name}  —  Phase ${boss.phase}`, width / 2, y - 6);
+    // Bosses can lock the displayed phase string (e.g. APEX always shows Phase 1
+    // until a future song-driven Phase 2 is added).
+    const phaseLabel = fight.bossData.displayPhase ?? `Phase ${boss.phase}`;
+    ctx.fillText(`${fight.bossData.name}  —  ${phaseLabel}`, width / 2, y - 6);
   }
 
   // Song-time progress bar fused to the underside of the boss HP. When this
@@ -143,44 +146,59 @@ export class HUD {
     const inside = fight.counter.isInZone(fight.player);
     const t = performance.now() / 1000;
     const ringR = zone.radius + 4 + Math.sin(t * 6) * 3;
-    const goodColor = "#5dffae";
-    const badColor = "#ff5dd6";
-    const color = inside ? goodColor : badColor;
+
+    // In inversion mode, ring outline = floor-inverse so the circle is always
+    // visible. Status (in/out) is communicated by an inner accent + the label.
+    let ringColor, accentInside, accentOutside;
+    if (fight.useInversion) {
+      ringColor = fight.floorState === "white" ? "#0a0a0a" : "#f4f4f4";
+      // Inner accent uses saturated colors that contrast both floors.
+      accentInside = "#39d68d";
+      accentOutside = "#e22b8a";
+    } else {
+      ringColor = inside ? "#5dffae" : "#ff5dd6";
+      accentInside = "#5dffae";
+      accentOutside = "#ff5dd6";
+    }
+    const accent = inside ? accentInside : accentOutside;
 
     ctx.save();
-    // Outer glow
+    // Inner glow tinted by status (so player can still feel ready vs not)
     ctx.globalAlpha = 0.18 + 0.18 * beatPulse + (inside ? 0.12 : 0);
-    ctx.shadowColor = color;
+    ctx.shadowColor = accent;
     ctx.shadowBlur = 30;
-    ctx.fillStyle = color;
+    ctx.fillStyle = accent;
     ctx.beginPath();
     ctx.arc(zone.x, zone.y, zone.radius, 0, Math.PI * 2);
     ctx.fill();
 
-    // Crisp ring
-    ctx.globalAlpha = 0.85;
-    ctx.shadowBlur = inside ? 24 : 12;
-    ctx.strokeStyle = color;
+    // Crisp ring — outlined in the floor-inverse color when inversion is on
+    ctx.globalAlpha = 0.95;
+    ctx.shadowBlur = inside ? 18 : 8;
+    ctx.shadowColor = ringColor;
+    ctx.strokeStyle = ringColor;
     ctx.lineWidth = inside ? 4 : 3;
     ctx.beginPath();
     ctx.arc(zone.x, zone.y, ringR, 0, Math.PI * 2);
     ctx.stroke();
 
-    // Outward pulsing rings when ready
+    // Outward pulsing rings when ready (also floor-inverse so they read on either)
     if (inside) {
       for (let i = 0; i < 2; i++) {
         const phase = ((t * 0.9) + i * 0.5) % 1;
         ctx.globalAlpha = (1 - phase) * 0.45;
         ctx.lineWidth = 2;
+        ctx.strokeStyle = ringColor;
         ctx.beginPath();
         ctx.arc(zone.x, zone.y, zone.radius + phase * 38, 0, Math.PI * 2);
         ctx.stroke();
       }
     } else {
       // "MOVE!" hint floating above the circle
-      ctx.globalAlpha = 0.85 + 0.15 * Math.sin(t * 9);
-      ctx.shadowBlur = 18;
-      ctx.fillStyle = badColor;
+      ctx.globalAlpha = 0.9 + 0.1 * Math.sin(t * 9);
+      ctx.shadowBlur = 14;
+      ctx.shadowColor = ringColor;
+      ctx.fillStyle = ringColor;
       ctx.font = "bold 18px 'Segoe UI', sans-serif";
       ctx.textAlign = "center";
       ctx.fillText("ENTER THE CIRCLE", zone.x, zone.y - zone.radius - 14);
@@ -191,8 +209,8 @@ export class HUD {
       const k = Math.min(1, fight.counter.outOfRangeFlash / 0.45);
       ctx.globalAlpha = k * 0.9;
       ctx.shadowBlur = 30;
-      ctx.shadowColor = badColor;
-      ctx.strokeStyle = badColor;
+      ctx.shadowColor = accentOutside;
+      ctx.strokeStyle = accentOutside;
       ctx.lineWidth = 5;
       ctx.beginPath();
       ctx.arc(zone.x, zone.y, zone.radius + 16 + (1 - k) * 22, 0, Math.PI * 2);
@@ -208,9 +226,20 @@ export class HUD {
     const prompts = fight.counter.visiblePrompts();
     const inZone = fight.counter.zone ? fight.counter.isInZone(fight.player) : true;
 
+    // In inversion mode, the prompt UI also flips to the floor-inverse so it
+    // never disappears (yellow on white is unreadable, etc.).
+    const inv = fight.useInversion;
+    const invColor = inv
+      ? (fight.floorState === "white" ? "#0a0a0a" : "#f4f4f4")
+      : "#ffffff";
+    const hitZoneColor = inv ? invColor : "#ffe25d";
+    const laneColor = inv
+      ? (fight.floorState === "white" ? "rgba(0,0,0,0.28)" : "rgba(255,255,255,0.28)")
+      : "rgba(255,255,255,0.18)";
+
     // Lane line
     ctx.save();
-    ctx.strokeStyle = "rgba(255,255,255,0.18)";
+    ctx.strokeStyle = laneColor;
     ctx.lineWidth = 2;
     ctx.beginPath();
     ctx.moveTo(cx - 320, cy);
@@ -218,9 +247,9 @@ export class HUD {
     ctx.stroke();
 
     // Hit zone (where the beat lands)
-    ctx.shadowColor = "#ffe25d";
+    ctx.shadowColor = hitZoneColor;
     ctx.shadowBlur = 16;
-    ctx.strokeStyle = "#ffe25d";
+    ctx.strokeStyle = hitZoneColor;
     ctx.lineWidth = 3;
     ctx.beginPath();
     ctx.arc(cx, cy, 26, 0, Math.PI * 2);
@@ -233,7 +262,7 @@ export class HUD {
       const x = cx + p.delta * pxPerSec;
       if (x < cx - 360 || x > cx + 360) continue;
 
-      let color = "#ffffff";
+      let color = invColor;
       let alpha = 1;
       if (p.hit) {
         color = p.grade ? p.grade.color : "#888";

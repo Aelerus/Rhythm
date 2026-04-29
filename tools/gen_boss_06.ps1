@@ -239,18 +239,25 @@ for ($i = 0; $i -lt $final.Length; $i += 2) { Add-Pattern $final[$i] $final[$i +
 Add-FloorInvert 696 'white'
 Add-Counter 688 'center' 65 5 10
 
+# --- HP tuned for exact perfect-only-clear ----------------------------
+# 7 counter windows, prompts = 8+8+10+10+8+8+10 = 62 total.
+# Combo grows over the first 16 prompts, capping at 2x. Perfect chain:
+#   prompts 1..16: 38 * sum(1 + i/16) = 38 * 24.5 = 931
+#   prompts 17..62 (46 at 2x): 46 * 76 = 3496
+# Sum: 4427. Set HP exactly = 4427 so a single GOOD or MISS = loss.
 $boss = [ordered]@{
   id = 'boss_06'
   name = 'APEX'
   color = '#ffffff'
   bpm = 180
-  maxHP = 4200
+  maxHP = 4427
   bulletDamage = 13
   counterBaseDamage = 38
   music = 'Music/APEX.wav'
   musicVolume = 0.85
   musicOffset = 0
   phaseThresholds = @(0.75, 0.5, 0.25)
+  displayPhase = 'Phase 1'
   useInversion = $true
   startFloor = 'white'
   patterns = @(
