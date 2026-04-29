@@ -1,8 +1,8 @@
 {
   "id": "flood_radial",
   "type": "radial_burst",
-  "count": 60,
-  "speed": 260,
+  "count": 54,
+  "speed": 245,
   "radius": 6,
   "color": "#ff2a3d",
   "rotateWithBeat": true,

@@ -1,9 +1,10 @@
 // Stage select scene. Shows boss tiles in a grid; arrows + enter to choose.
 
 export class StageSelectScene {
-  constructor({ canvas, input, audio, stages, progress, onPick }) {
+  constructor({ canvas, input, audio, stages, progress, onPick, isAdmin }) {
     this.canvas = canvas; this.input = input; this.audio = audio;
     this.stages = stages; this.progress = progress; this.onPick = onPick;
+    this.isAdmin = !!isAdmin;
     this.cursor = 0;
     this.t = 0;
   }
@@ -27,6 +28,7 @@ export class StageSelectScene {
   }
 
   _unlocked(i) {
+    if (this.isAdmin) return true;
     const stage = this.stages[i];
     if (stage?.defaultUnlocked) return true;
     if (i === 0) return true;
@@ -120,6 +122,13 @@ export class StageSelectScene {
     ctx.fillStyle = "#aaaadd";
     ctx.font = "14px 'Segoe UI', sans-serif";
     ctx.fillText("← →  Choose      ENTER  Start", width / 2, height - 40);
+
+    if (this.isAdmin) {
+      ctx.fillStyle = "#5dff8a";
+      ctx.font = "bold 12px 'Segoe UI', sans-serif";
+      ctx.textAlign = "right";
+      ctx.fillText("ADMIN MODE — ALL UNLOCKED", width - 16, height - 16);
+    }
     ctx.restore();
   }
 }

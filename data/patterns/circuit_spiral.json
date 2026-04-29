@@ -1,10 +1,10 @@
 {
   "id": "circuit_spiral",
   "type": "spiral",
-  "arms": 5,
+  "arms": 7,
   "count": 1,
-  "speed": 250,
+  "speed": 285,
   "radius": 6,
   "color": "#00d4ff",
-  "rotateStep": 0.48
+  "rotateStep": 0.55
 }

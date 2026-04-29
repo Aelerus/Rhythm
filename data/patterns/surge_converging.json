@@ -1,8 +1,8 @@
 {
   "id": "surge_converging",
   "type": "converging",
-  "count": 10,
-  "speed": 280,
+  "count": 14,
+  "speed": 320,
   "radius": 7,
   "color": "#ff39c0"
 }

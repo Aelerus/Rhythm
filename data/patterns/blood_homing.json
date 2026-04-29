@@ -2,7 +2,7 @@
   "id": "blood_homing",
   "type": "homing",
   "count": 8,
-  "speed": 215,
+  "speed": 172,
   "turnRate": 2.4,
   "radius": 7,
   "color": "#ff4d6d"

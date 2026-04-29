@@ -1,8 +1,8 @@
 {
   "id": "carnage_radial",
   "type": "radial_burst",
-  "count": 80,
-  "speed": 265,
+  "count": 72,
+  "speed": 250,
   "radius": 6,
   "color": "#ff1f3a",
   "rotateWithBeat": true,

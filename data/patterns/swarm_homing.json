@@ -2,7 +2,7 @@
   "id": "swarm_homing",
   "type": "homing",
   "count": 12,
-  "speed": 195,
+  "speed": 156,
   "turnRate": 1.9,
   "radius": 6,
   "color": "#ff4d6d"

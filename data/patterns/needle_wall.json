@@ -1,9 +1,9 @@
 {
   "id": "needle_wall",
   "type": "wall",
-  "count": 24,
+  "count": 22,
   "gapWidth": 2,
-  "speed": 360,
+  "speed": 335,
   "radius": 7,
   "color": "#7e0e26"
 }

@@ -1,9 +1,9 @@
 {
   "id": "neon_wall",
   "type": "wall",
-  "count": 14,
-  "gapWidth": 3,
-  "speed": 270,
-  "radius": 9,
+  "count": 20,
+  "gapWidth": 2,
+  "speed": 320,
+  "radius": 8,
   "color": "#ff00aa"
 }

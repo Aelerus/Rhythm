@@ -48,9 +48,6 @@ export class CounterWindow {
         hit: false, grade: null,
       });
     }
-    this.totalDamage = 0;
-    this.totalHits = 0;
-    this.perfectHits = 0;
   }
 
   isInZone(player) {

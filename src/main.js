@@ -117,6 +117,7 @@ class Game {
     this.stages = [];
     this.patternLibrary = {};
     this.progress = this._loadProgress();
+    this.isAdmin = this._loadAdmin();
     this.last = performance.now();
   }
 
@@ -134,6 +135,8 @@ class Game {
     this.scenes.set(new MainMenuScene({
       canvas: this.canvas, input: this.input, audio: this.audio,
       onStart: () => this._resumeAudioAndGoToSelect(),
+      isAdmin: this.isAdmin,
+      onAdminToggle: (on) => { this.isAdmin = on; this._saveAdmin(); },
     }));
     requestAnimationFrame((t) => this._loop(t));
   }
@@ -148,6 +151,7 @@ class Game {
     this.scenes.set(new StageSelectScene({
       canvas: this.canvas, input: this.input, audio: this.audio,
       stages: this.stages, progress: this.progress,
+      isAdmin: this.isAdmin,
       onPick: (stage) => this._startFight(stage),
     }));
   }
@@ -226,6 +230,16 @@ class Game {
 
   _saveProgress() {
     try { localStorage.setItem("rbh.progress", JSON.stringify(this.progress)); }
+    catch {}
+  }
+
+  _loadAdmin() {
+    try { return localStorage.getItem("rbh.admin") === "1"; }
+    catch { return false; }
+  }
+
+  _saveAdmin() {
+    try { localStorage.setItem("rbh.admin", this.isAdmin ? "1" : "0"); }
     catch {}
   }
 

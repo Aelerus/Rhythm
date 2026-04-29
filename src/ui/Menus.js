@@ -1,12 +1,51 @@
 // Main menu, pause overlay, game-over screen.
 
 export class MainMenuScene {
-  constructor({ canvas, input, audio, onStart }) {
+  constructor({ canvas, input, audio, onStart, isAdmin, onAdminToggle }) {
     this.canvas = canvas; this.input = input; this.audio = audio; this.onStart = onStart;
+    this.isAdmin = !!isAdmin;
+    this.onAdminToggle = onAdminToggle;
     this.t = 0;
+    this._adminBtn = { x: 0, y: 0, w: 0, h: 0 };
+    this._onClick = (e) => this._handleClick(e);
   }
-  enter() {}
-  exit() {}
+  enter() { this.canvas.addEventListener("click", this._onClick); }
+  exit() { this.canvas.removeEventListener("click", this._onClick); }
+
+  _handleClick(e) {
+    const rect = this.canvas.getBoundingClientRect();
+    const sx = this.canvas.width / rect.width;
+    const sy = this.canvas.height / rect.height;
+    const x = (e.clientX - rect.left) * sx;
+    const y = (e.clientY - rect.top) * sy;
+    const b = this._adminBtn;
+    if (x >= b.x && x <= b.x + b.w && y >= b.y && y <= b.y + b.h) {
+      this._promptAdmin();
+    }
+  }
+
+  _promptAdmin() {
+    if (this.isAdmin) {
+      const ok = window.confirm("Admin mode is ON. Disable it?");
+      if (ok) {
+        this.isAdmin = false;
+        this.onAdminToggle?.(false);
+        this.audio.blip(220, 0.1, "sawtooth", 0.3);
+      }
+      return;
+    }
+    const entered = window.prompt("Enter admin password:");
+    if (entered === null) return;
+    if (entered === "widdleyotiddle") {
+      this.isAdmin = true;
+      this.onAdminToggle?.(true);
+      this.audio.blip(1200, 0.15, "square", 0.3);
+    } else {
+      this.audio.blip(160, 0.2, "sawtooth", 0.3);
+      window.alert("Incorrect password.");
+    }
+  }
+
   update(dt) {
     this.t += dt;
     if (this.input.consumePress("Enter", "space")) {
@@ -37,6 +76,26 @@ export class MainMenuScene {
     ctx.fillStyle = "#ffe25d";
     ctx.font = "bold 22px 'Segoe UI', sans-serif";
     ctx.fillText("Press ENTER to begin", width / 2, height / 2 + 80);
+    ctx.restore();
+
+    // Admin button — bottom right
+    const btnW = 110, btnH = 32;
+    const btnX = width - btnW - 16;
+    const btnY = height - btnH - 16;
+    this._adminBtn = { x: btnX, y: btnY, w: btnW, h: btnH };
+
+    ctx.save();
+    const active = this.isAdmin;
+    ctx.fillStyle = active ? "#1b3a1b" : "#1b1130";
+    ctx.fillRect(btnX, btnY, btnW, btnH);
+    ctx.lineWidth = 1;
+    ctx.strokeStyle = active ? "#5dff8a" : "#444466";
+    ctx.strokeRect(btnX, btnY, btnW, btnH);
+    ctx.fillStyle = active ? "#5dff8a" : "#aaaadd";
+    ctx.font = "bold 14px 'Segoe UI', sans-serif";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillText(active ? "ADMIN ✓" : "ADMIN", btnX + btnW / 2, btnY + btnH / 2 + 1);
     ctx.restore();
   }
 }

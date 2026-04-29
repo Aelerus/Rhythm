@@ -2,7 +2,7 @@
   "id": "homing",
   "type": "homing",
   "count": 3,
-  "speed": 150,
+  "speed": 120,
   "turnRate": 1.4,
   "radius": 8,
   "color": "#5dffae"

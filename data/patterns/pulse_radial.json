@@ -1,10 +1,10 @@
 {
   "id": "pulse_radial",
   "type": "radial_burst",
-  "count": 16,
-  "speed": 195,
+  "count": 24,
+  "speed": 230,
   "radius": 6,
   "color": "#00e5ff",
   "rotateWithBeat": true,
-  "rotateStep": 0.22
+  "rotateStep": 0.31
 }
