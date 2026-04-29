@@ -1,0 +1,12 @@
+{
+  "id": "apex_laser_cross",
+  "type": "laser_line",
+  "orient": "h",
+  "lanes": 3,
+  "count": 5,
+  "speed": 600,
+  "telegraph": 0.50,
+  "beadCount": 16,
+  "radius": 6,
+  "color": "#ffffff"
+}

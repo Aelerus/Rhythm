@@ -1,0 +1,10 @@
+{
+  "id": "apex_spiral",
+  "type": "spiral",
+  "arms": 6,
+  "count": 1,
+  "speed": 250,
+  "radius": 6,
+  "color": "#ffffff",
+  "rotateStep": 0.55
+}

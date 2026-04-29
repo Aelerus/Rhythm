@@ -1,0 +1,12 @@
+{
+  "id": "apex_vortex",
+  "type": "vortex",
+  "count": 16,
+  "orbitDur": 1.0,
+  "orbitRadius": 95,
+  "omega": 4.4,
+  "releaseSpeed": 320,
+  "aimAtRelease": true,
+  "radius": 6,
+  "color": "#ffffff"
+}

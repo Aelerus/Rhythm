@@ -1,0 +1,11 @@
+{
+  "id": "apex_stutter",
+  "type": "stutter_aim",
+  "count": 5,
+  "spread": 0.5,
+  "speed": 360,
+  "onTime": 0.32,
+  "offTime": 0.22,
+  "radius": 7,
+  "color": "#ffffff"
+}

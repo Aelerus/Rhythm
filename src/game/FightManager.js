@@ -39,6 +39,13 @@ export class FightManager {
     this._songStartTime = null;
     this._songDuration = 0;
 
+    // APEX-tier mechanic: black/white floor inversion. When inverted, the arena
+    // floor flips and all bullets/player render in inverse colors. This is purely
+    // a visual mechanic — gameplay is unchanged but the chaos of the flip is the difficulty.
+    this.floorState = bossData.startFloor ?? "white"; // "white" | "black"
+    this.floorFlashTimer = 0; // visual-only flash on inversion
+    this.useInversion = !!bossData.useInversion;
+
     this.beatClock.setBPM(bossData.bpm ?? 120);
 
     this.boss.onPhaseChange = (n) => this._onPhaseChange(n);
@@ -130,6 +137,9 @@ export class FightManager {
       const leadBeats = evt.lead_beats ?? 2;
       const zone = this._resolveZone(evt.zone);
       this.counter.open(evt.beat + leadBeats, evt.duration_beats ?? 8, zone);
+    } else if (evt.type === "floor_invert") {
+      this.floorState = evt.to ?? (this.floorState === "white" ? "black" : "white");
+      this.floorFlashTimer = 0.45;
     } else if (evt.type === "phase_marker") {
       // pure annotation — no-op
     }
@@ -193,8 +203,11 @@ export class FightManager {
     this.boss.update(dt, this.beatClock.beatPosition);
     this.pool.update(dt, this.arena, { x: this.player.x, y: this.player.y });
     this.counter.update(dt);
+    // Record player trail for mirror_path / echo patterns.
+    this.patternEngine.recordPlayerTrail(this.player, this.beatClock.songTime);
 
     if (this.feedbackTimer > 0) this.feedbackTimer -= dt;
+    if (this.floorFlashTimer > 0) this.floorFlashTimer -= dt;
 
     // Bullet collisions only during dodge phase
     if (this.phase === PHASE_DODGE) {

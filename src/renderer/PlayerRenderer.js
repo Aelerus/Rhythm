@@ -1,17 +1,32 @@
 // Draws the player character + hitbox indicator.
+// In inversion mode the player flips between blue (white floor) and red (black floor).
 
 export class PlayerRenderer {
-  draw(ctx, player, focus) {
+  draw(ctx, player, focus, inversion = null) {
     const flash = player.flashTimer > 0;
     const blinking = player.iframes > 0 && Math.floor(player.iframes * 20) % 2 === 0;
+
+    // Inversion-aware color: blue on white floor, red on black floor.
+    let bodyColor = "#e8e8f0";
+    let glowColor = "#5dd6ff";
+    if (inversion) {
+      if (inversion.floor === "white") {
+        bodyColor = "#1d6dff"; // deep blue on white floor
+        glowColor = "#5da0ff";
+      } else {
+        bodyColor = "#ff2a3d"; // red on black floor
+        glowColor = "#ff6680";
+      }
+    }
+    if (flash) bodyColor = "#ff5d5d";
 
     ctx.save();
     if (blinking) ctx.globalAlpha = 0.5;
 
     // Outer body — diamond/anime arrow silhouette
-    ctx.shadowColor = flash ? "#ff5d5d" : "#5dd6ff";
+    ctx.shadowColor = flash ? "#ff5d5d" : glowColor;
     ctx.shadowBlur = 16;
-    ctx.fillStyle = flash ? "#ff5d5d" : "#e8e8f0";
+    ctx.fillStyle = bodyColor;
     ctx.beginPath();
     ctx.moveTo(player.x, player.y - player.radius);
     ctx.lineTo(player.x + player.radius * 0.85, player.y + player.radius * 0.7);
@@ -21,23 +36,29 @@ export class PlayerRenderer {
     ctx.fill();
 
     ctx.shadowBlur = 0;
-    ctx.strokeStyle = "#1b1130";
+    // Outline — needs to contrast the floor in inversion mode
+    ctx.strokeStyle = inversion
+      ? (inversion.floor === "white" ? "#06040d" : "#fff8f8")
+      : "#1b1130";
     ctx.lineWidth = 2;
     ctx.stroke();
 
-    // Hitbox core — always faintly visible, bright when focusing
+    // Hitbox core — high-contrast against the floor
     const coreAlpha = focus ? 1 : 0.55;
     ctx.globalAlpha = coreAlpha;
-    ctx.shadowColor = "#ffd25d";
+    const coreColor = inversion
+      ? (inversion.floor === "white" ? "#ff8a00" : "#ffe25d")
+      : "#ffe25d";
+    ctx.shadowColor = coreColor;
     ctx.shadowBlur = focus ? 18 : 8;
-    ctx.fillStyle = "#ffe25d";
+    ctx.fillStyle = coreColor;
     ctx.beginPath();
     ctx.arc(player.x, player.y, player.hitboxRadius, 0, Math.PI * 2);
     ctx.fill();
 
     if (focus) {
       ctx.globalAlpha = 0.4;
-      ctx.strokeStyle = "#ffe25d";
+      ctx.strokeStyle = coreColor;
       ctx.lineWidth = 1;
       ctx.beginPath();
       ctx.arc(player.x, player.y, player.hitboxRadius + 6, 0, Math.PI * 2);

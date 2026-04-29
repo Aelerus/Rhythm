@@ -1,0 +1,12 @@
+{
+  "id": "apex_laser_v",
+  "type": "laser_line",
+  "orient": "v",
+  "lanes": 2,
+  "count": 6,
+  "speed": 540,
+  "telegraph": 0.55,
+  "beadCount": 14,
+  "radius": 7,
+  "color": "#ffffff"
+}

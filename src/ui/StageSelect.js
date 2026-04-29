@@ -3,10 +3,25 @@
 export class StageSelectScene {
   constructor({ canvas, input, audio, stages, progress, onPick, isAdmin }) {
     this.canvas = canvas; this.input = input; this.audio = audio;
-    this.stages = stages; this.progress = progress; this.onPick = onPick;
+    this.progress = progress; this.onPick = onPick;
     this.isAdmin = !!isAdmin;
+    // Hidden stages (e.g. APEX) only appear once their `revealWhen` predicate is met,
+    // OR when admin mode is on. Other stages always show.
+    this.stages = stages.filter((s) => this._isVisible(s, stages));
     this.cursor = 0;
     this.t = 0;
+  }
+
+  // A stage is visible if not `hidden`, or if hidden but every prior non-hidden stage is cleared.
+  // Admin mode reveals everything.
+  _isVisible(stage, allStages) {
+    if (this.isAdmin) return true;
+    if (!stage.hidden) return true;
+    if (stage.requiresAllCleared) {
+      const prior = allStages.filter((s) => s.id !== stage.id && !s.hidden);
+      return prior.every((s) => this.progress[s.id]?.cleared === true);
+    }
+    return false;
   }
   enter() {}
   exit() {}

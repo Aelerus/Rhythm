@@ -1,0 +1,9 @@
+{
+  "id": "apex_aimed",
+  "type": "aimed_shot",
+  "count": 5,
+  "spread": 0.32,
+  "speed": 380,
+  "radius": 7,
+  "color": "#ffffff"
+}

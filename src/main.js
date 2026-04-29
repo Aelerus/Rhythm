@@ -210,11 +210,15 @@ class FightScene {
     const beatPos = this.beatClock.beatPosition;
     const beatPulse = Math.max(0, 1 - (beatPos - Math.floor(beatPos))) * 0.85;
 
-    this.canvasR.drawBackground(beatPulse, this.fight.boss.color);
-    this.canvasR.drawArenaFrame(ARENA, beatPulse, this.fight.boss.color);
-    this.bossR.draw(ctx, this.fight.boss, beatPulse);
-    this.bullets.draw(ctx, this.fight.pool);
-    this.playerR.draw(ctx, this.fight.player, this.input.isFocus());
+    const inversion = this.fight.useInversion
+      ? { floor: this.fight.floorState, flash: this.fight.floorFlashTimer }
+      : null;
+
+    this.canvasR.drawBackground(beatPulse, this.fight.boss.color, inversion, ARENA);
+    this.canvasR.drawArenaFrame(ARENA, beatPulse, this.fight.boss.color, inversion);
+    this.bossR.draw(ctx, this.fight.boss, beatPulse, inversion);
+    this.bullets.draw(ctx, this.fight.pool, inversion);
+    this.playerR.draw(ctx, this.fight.player, this.input.isFocus(), inversion);
     this.hud.draw(ctx, this.fight, beatPulse, beatPos);
 
     if (this._paused) this._drawPauseOverlay(ctx);

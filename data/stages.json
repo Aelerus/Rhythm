@@ -4,7 +4,8 @@
     { "id": "boss_02", "name": "PRISM", "color": "#5dd6ff", "bpm": 120, "boss": "data/bosses/boss_02.json" },
     { "id": "boss_03", "name": "VOLT",  "color": "#ffae5d", "bpm": 140, "boss": "data/bosses/boss_03.json" },
     { "id": "boss_04", "name": "EIEN",  "color": "#d4133b", "bpm": 185, "boss": "data/bosses/boss_04.json" },
-    { "id": "boss_05", "name": "PULSE", "color": "#00e5ff", "bpm": 175, "boss": "data/bosses/boss_05.json", "defaultUnlocked": true }
+    { "id": "boss_05", "name": "PULSE", "color": "#00e5ff", "bpm": 175, "boss": "data/bosses/boss_05.json", "defaultUnlocked": true },
+    { "id": "boss_06", "name": "APEX",  "color": "#ffffff", "bpm": 180, "boss": "data/bosses/boss_06.json", "hidden": true, "requiresAllCleared": true }
   ],
   "patternFiles": [
     "data/patterns/radial_burst.json",
@@ -39,6 +40,21 @@
     "data/patterns/glitch_aimed.json",
     "data/patterns/digital_cross.json",
     "data/patterns/data_rain.json",
-    "data/patterns/surge_converging.json"
+    "data/patterns/surge_converging.json",
+    "data/patterns/apex_aimed.json",
+    "data/patterns/apex_radial.json",
+    "data/patterns/apex_spiral.json",
+    "data/patterns/apex_mirror.json",
+    "data/patterns/apex_mirror_dense.json",
+    "data/patterns/apex_burst.json",
+    "data/patterns/apex_burst_chaos.json",
+    "data/patterns/apex_vortex.json",
+    "data/patterns/apex_vortex_double.json",
+    "data/patterns/apex_echo.json",
+    "data/patterns/apex_echo_wide.json",
+    "data/patterns/apex_laser_h.json",
+    "data/patterns/apex_laser_v.json",
+    "data/patterns/apex_laser_cross.json",
+    "data/patterns/apex_stutter.json"
   ]
 }

@@ -1,0 +1,10 @@
+{
+  "id": "apex_radial",
+  "type": "radial_burst",
+  "count": 32,
+  "speed": 230,
+  "radius": 6,
+  "color": "#ffffff",
+  "rotateWithBeat": true,
+  "rotateStep": 0.31
+}

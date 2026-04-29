@@ -1,0 +1,11 @@
+{
+  "id": "apex_echo_wide",
+  "type": "echo",
+  "count": 7,
+  "spread": 0.55,
+  "speed": 340,
+  "lookback": 1.4,
+  "telegraph": 0.32,
+  "radius": 7,
+  "color": "#ffffff"
+}
