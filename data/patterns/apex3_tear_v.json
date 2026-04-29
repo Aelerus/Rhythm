@@ -1,0 +1,12 @@
+{
+  "id": "apex3_tear_v",
+  "type": "reality_tear",
+  "orient": "v",
+  "duration": 1.4,
+  "spawnInterval": 0.11,
+  "bulletSpeed": 290,
+  "radius": 6,
+  "beadCount": 7,
+  "length": 420,
+  "color": "#c9001f"
+}

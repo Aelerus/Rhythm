@@ -1,0 +1,10 @@
+{
+  "id": "apex2_phase_aimed_b",
+  "type": "phase_locked_aimed",
+  "count": 5,
+  "spread": 0.36,
+  "speed": 360,
+  "lockColor": "black",
+  "radius": 7,
+  "color": "#0a0a0a"
+}

@@ -51,6 +51,16 @@ export class BulletRenderer {
         ctx.globalAlpha = 0.6;
       }
 
+      // Phase-locked bullets ghost when their lock-color doesn't match the floor.
+      // They're still visible (so the player can plan ahead), but clearly inert.
+      let phaseGhosted = false;
+      if (b.phaseLockColor && inversion && b.phaseLockColor !== inversion.floor) {
+        phaseGhosted = true;
+      }
+      if (phaseGhosted) {
+        ctx.globalAlpha = 0.22;
+      }
+
       ctx.shadowColor = bulletColor;
       ctx.shadowBlur = 14;
       ctx.fillStyle = bulletColor;

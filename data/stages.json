@@ -67,6 +67,21 @@
     "data/patterns/apex3_laser.json",
     "data/patterns/apex3_mirror.json",
     "data/patterns/apex3_echo.json",
-    "data/patterns/apex3_stutter.json"
+    "data/patterns/apex3_stutter.json",
+    "data/patterns/apex2_phase_radial.json",
+    "data/patterns/apex2_phase_radial_b.json",
+    "data/patterns/apex2_phase_aimed.json",
+    "data/patterns/apex2_phase_aimed_b.json",
+    "data/patterns/apex2_tether.json",
+    "data/patterns/apex2_tether_long.json",
+    "data/patterns/apex3_well.json",
+    "data/patterns/apex3_well_strong.json",
+    "data/patterns/apex3_well_topright.json",
+    "data/patterns/apex3_well_bottomleft.json",
+    "data/patterns/apex3_expanding.json",
+    "data/patterns/apex3_expanding_dense.json",
+    "data/patterns/apex3_tear_h.json",
+    "data/patterns/apex3_tear_v.json",
+    "data/patterns/apex3_tear_diag.json"
   ]
 }

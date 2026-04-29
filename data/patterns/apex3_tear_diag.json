@@ -1,0 +1,13 @@
+{
+  "id": "apex3_tear_diag",
+  "type": "reality_tear",
+  "orient": "d",
+  "angle": 0.785,
+  "duration": 1.5,
+  "spawnInterval": 0.10,
+  "bulletSpeed": 300,
+  "radius": 6,
+  "beadCount": 8,
+  "length": 480,
+  "color": "#c9001f"
+}

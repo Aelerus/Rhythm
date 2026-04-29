@@ -18,6 +18,7 @@ import { BossController } from "./BossController.js";
 import { BulletPool } from "./BulletPool.js";
 import { PatternEngine } from "./PatternEngine.js";
 import { CounterWindow } from "./CounterWindow.js";
+import { TetherAttack, GravityWell, RealityTear } from "./AuxAttacks.js";
 
 export const PHASE_DODGE = "dodge";
 export const PHASE_COUNTER = "counter";
@@ -68,6 +69,10 @@ export class FightManager {
     this.fired = new Set();
     this.lastScheduledBeat = -1;
     this.timeline = [];
+
+    // Aux attacks: persistent stateful attacks (tethers, gravity wells, tears).
+    // PatternEngine queues them via FightManager.spawnAux(); we update + render.
+    this.aux = [];
 
     this.outcome = null;
     this.defeatReason = null;
@@ -161,6 +166,7 @@ export class FightManager {
     this._phaseTransitionTimer = 1.4;
     // Visual: clear bullets, brief boss flash, fade music
     this.pool.clear();
+    this.aux.length = 0;
     this.boss.flashTimer = 1.4;
     if (this._musicPlaying) {
       this.audio.fadeOutMusic(0.6);
@@ -256,9 +262,11 @@ export class FightManager {
       if (this.phase === PHASE_COUNTER) return;
       this.patternEngine.fire(evt.id, {
         boss: { x: this.boss.x, y: this.boss.displayY },
+        bossRef: this.boss, // live reference for tethers
         target: { x: this.player.x, y: this.player.y },
         arena: this.arena,
         beatIndex: evt.beat,
+        spawnAux: (a) => this.aux.push(a),
       });
     } else if (evt.type === "counterattack_window") {
       this.phase = PHASE_COUNTER;
@@ -344,11 +352,18 @@ export class FightManager {
     this.counter.update(dt);
     this.patternEngine.recordPlayerTrail(this.player, this.beatClock.songTime);
 
+    // Tick aux attacks (tethers/wells/tears) and prune dead ones.
+    if (this.phase === PHASE_DODGE) {
+      for (const a of this.aux) a.update(dt, this.player, this.pool);
+      if (this.aux.length) this.aux = this.aux.filter((a) => !a.dead);
+    }
+
     if (this.feedbackTimer > 0) this.feedbackTimer -= dt;
     if (this.floorFlashTimer > 0) this.floorFlashTimer -= dt;
 
     if (this.phase === PHASE_DODGE) {
-      const hit = this.pool.collideWith(this.player);
+      const floorForCollide = this.useInversion ? this.floorState : null;
+      const hit = this.pool.collideWith(this.player, floorForCollide);
       if (hit) {
         const dmg = this.bulletDamage ?? this.bossData.bulletDamage ?? 8;
         if (this.player.takeDamage(dmg)) {
