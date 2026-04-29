@@ -18,11 +18,13 @@ export class PatternEngine {
     while (this._trail.length && t - this._trail[0].t > 4) this._trail.shift();
   }
 
-  fire(patternId, ctx) {
+  fire(patternIdOrData, ctx) {
     // ctx provides: boss {x,y}, target {x,y}, beatIndex
-    const pattern = this.library[patternId];
+    const pattern = typeof patternIdOrData === "string"
+      ? this.library[patternIdOrData]
+      : patternIdOrData;
     if (!pattern) {
-      console.warn(`PatternEngine: unknown pattern '${patternId}'`);
+      console.warn(`PatternEngine: unknown pattern '${patternIdOrData}'`);
       return;
     }
     switch (pattern.type) {

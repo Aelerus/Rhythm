@@ -260,7 +260,7 @@ export class FightManager {
   _handleEvent(evt) {
     if (evt.type === "pattern") {
       if (this.phase === PHASE_COUNTER) return;
-      this.patternEngine.fire(evt.id, {
+      this.patternEngine.fire(evt.patternData ?? evt.id, {
         boss: { x: this.boss.x, y: this.boss.displayY },
         bossRef: this.boss, // live reference for tethers
         target: { x: this.player.x, y: this.player.y },
