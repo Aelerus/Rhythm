@@ -1,0 +1,9 @@
+{
+  "id": "apex2_tether",
+  "type": "tether",
+  "duration": 1.8,
+  "spawnInterval": 0.16,
+  "bulletSpeed": 220,
+  "radius": 6,
+  "color": "#c9001f"
+}

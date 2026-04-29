@@ -1,0 +1,11 @@
+{
+  "id": "apex2_phase_radial",
+  "type": "phase_locked_radial",
+  "count": 26,
+  "speed": 210,
+  "lockColor": "white",
+  "rotateWithBeat": true,
+  "rotateStep": 0.27,
+  "radius": 6,
+  "color": "#ffffff"
+}

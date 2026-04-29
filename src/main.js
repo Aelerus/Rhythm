@@ -227,6 +227,10 @@ class FightScene {
     this.canvasR.drawBackground(beatPulse, this.fight.boss.color, inversion, ARENA, redCracks, fullRedFloor);
     this.canvasR.drawArenaFrame(ARENA, beatPulse, this.fight.boss.color, inversion, redCracks, fullRedFloor);
     this.bossR.draw(ctx, this.fight.boss, beatPulse, inversion, bossColorMode);
+    // Aux attacks render BENEATH bullets so bullets that travel along beams stay visible.
+    if (this.fight.aux && this.fight.aux.length) {
+      for (const a of this.fight.aux) a.render(ctx, this.fight.player);
+    }
     this.bullets.draw(ctx, this.fight.pool, inversion);
     this.playerR.draw(ctx, this.fight.player, this.input.isFocus(), inversion);
     this.hud.draw(ctx, this.fight, beatPulse, beatPos);
