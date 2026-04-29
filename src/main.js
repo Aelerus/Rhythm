@@ -14,12 +14,12 @@ import { FightManager } from "./game/FightManager.js";
 import { HUD } from "./ui/HUD.js";
 import { WorldMapScene } from "./ui/WorldMap.js";
 import { VictoryScene } from "./ui/VictoryScreen.js";
-import { MainMenuScene, GameOverScene, LoadingScene, SettingsOverlay } from "./ui/Menus.js";
+import { MainMenuScene, GameOverScene, LoadingScene, SettingsOverlay, CharacterCreationScene } from "./ui/Menus.js";
 
 const ARENA = { x: 60, y: 60, w: 840, h: 600 };
 
 class FightScene {
-  constructor({ canvas, input, audio, beatClock, bossData, patternLibrary, stage, musicBuffer, musicBuffers, isAdmin, onVictory, onDefeat, onRestart, onQuit }) {
+  constructor({ canvas, input, audio, beatClock, bossData, patternLibrary, stage, musicBuffer, musicBuffers, isAdmin, character, onVictory, onDefeat, onRestart, onQuit }) {
     this.canvas = canvas;
     this.input = input;
     this.audio = audio;
@@ -31,6 +31,10 @@ class FightScene {
     this.onRestart = onRestart;
     this.onQuit = onQuit;
     this.fight = new FightManager({ bossData, patternLibrary, beatClock, audio, arena: ARENA, musicBuffer, musicBuffers });
+    if (character) {
+      this.fight.player.shape = character.shape || "arrow";
+      this.fight.player.color = character.color || "#e8e8f0";
+    }
     this.bullets = new BulletRenderer();
     this.playerR = new PlayerRenderer();
     this.bossR = new BossRenderer();
@@ -321,6 +325,7 @@ class Game {
     this.patternLibrary = {};
     this.progress = this._loadProgress();
     this.isAdmin = this._loadAdmin();
+    this.character = this._loadCharacter();
     this.last = performance.now();
   }
 
@@ -336,19 +341,36 @@ class Game {
     const patternList = await Promise.all(stagesData.patternFiles.map((p) => fetch(p).then((r) => r.json())));
     for (const pat of patternList) this.patternLibrary[pat.id] = pat;
 
-    this.scenes.set(new MainMenuScene({
-      canvas: this.canvas, input: this.input, audio: this.audio,
-      onStart: () => this._resumeAudioAndGoToSelect(),
-      isAdmin: this.isAdmin,
-      onAdminToggle: (on) => { this.isAdmin = on; this._saveAdmin(); },
-    }));
+    this._gotoMainMenu();
     requestAnimationFrame((t) => this._loop(t));
   }
 
-  async _resumeAudioAndGoToSelect() {
+  _gotoMainMenu() {
+    this.scenes.set(new MainMenuScene({
+      canvas: this.canvas, input: this.input, audio: this.audio,
+      onStart: () => this._resumeAudioAndGoToCharacterCreate(),
+      isAdmin: this.isAdmin,
+      onAdminToggle: (on) => { this.isAdmin = on; this._saveAdmin(); },
+    }));
+  }
+
+  async _resumeAudioAndGoToCharacterCreate() {
     try { await this.audio.resume(); }
     catch (err) { console.warn("Audio resume failed:", err); }
-    this._gotoWorldMap();
+    this._gotoCharacterCreate();
+  }
+
+  _gotoCharacterCreate() {
+    this.scenes.set(new CharacterCreationScene({
+      canvas: this.canvas, input: this.input, audio: this.audio,
+      initial: this.character,
+      onConfirm: (character) => {
+        this.character = character;
+        this._saveCharacter();
+        this._gotoWorldMap();
+      },
+      onBack: () => this._gotoMainMenu(),
+    }));
   }
 
   _gotoWorldMap() {
@@ -403,6 +425,7 @@ class Game {
       musicBuffer,
       musicBuffers,
       isAdmin: this.isAdmin,
+      character: this.character,
       onVictory: (summary) => this._onVictory(summary),
       onDefeat: (info) => this._onDefeat(info, stage, bossData),
       onRestart: () => this._startFight(stage),
@@ -464,6 +487,19 @@ class Game {
 
   _saveAdmin() {
     try { localStorage.setItem("rbh.admin", this.isAdmin ? "1" : "0"); }
+    catch {}
+  }
+
+  _loadCharacter() {
+    try {
+      const raw = localStorage.getItem("rbh.character");
+      if (raw) return JSON.parse(raw);
+    } catch {}
+    return { shape: "arrow", color: "#e8e8f0" };
+  }
+
+  _saveCharacter() {
+    try { localStorage.setItem("rbh.character", JSON.stringify(this.character)); }
     catch {}
   }
 

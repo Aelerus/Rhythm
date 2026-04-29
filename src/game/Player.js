@@ -15,6 +15,10 @@ export class Player {
     this.iframeDuration = 0.7;
     this.alive = true;
     this.flashTimer = 0;
+    // Cosmetic only — set by character creation, hitbox is always the same
+    this.shape = "arrow";
+    this.color = "#e8e8f0";
+    this.angle = 0;  // radians; 0 = pointing up, updated each frame from movement
   }
 
   reset() {
@@ -33,6 +37,10 @@ export class Player {
     const speed = focus ? this.focusSpeed : this.baseSpeed;
     this.x += v.x * speed * dt;
     this.y += v.y * speed * dt;
+    // Keep facing the last direction moved; don't snap back to up when idle
+    if (v.x !== 0 || v.y !== 0) {
+      this.angle = Math.atan2(v.y, v.x) + Math.PI / 2;
+    }
 
     // Clamp to arena
     const pad = this.radius;
