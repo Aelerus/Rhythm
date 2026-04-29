@@ -1,0 +1,10 @@
+{
+  "id": "grid_radial",
+  "type": "radial_burst",
+  "count": 32,
+  "speed": 215,
+  "radius": 6,
+  "color": "#33f0ff",
+  "rotateWithBeat": true,
+  "rotateStep": 0.39
+}

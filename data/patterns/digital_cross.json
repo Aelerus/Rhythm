@@ -1,0 +1,7 @@
+{
+  "id": "digital_cross",
+  "type": "cross",
+  "speed": 320,
+  "radius": 11,
+  "color": "#80f7ff"
+}

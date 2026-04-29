@@ -27,6 +27,8 @@ export class StageSelectScene {
   }
 
   _unlocked(i) {
+    const stage = this.stages[i];
+    if (stage?.defaultUnlocked) return true;
     if (i === 0) return true;
     return this.progress[this.stages[i - 1].id]?.cleared === true;
   }
@@ -52,7 +54,14 @@ export class StageSelectScene {
     ctx.textAlign = "center";
     ctx.fillText("SELECT STAGE", width / 2, 80);
 
-    const tileW = 180, tileH = 220, gap = 24;
+    // Fit any number of stages into the canvas: shrink tiles when there are many.
+    const gap = 20;
+    const margin = 40;
+    const maxTileW = 180;
+    const available = width - margin * 2;
+    const fitTileW = (available - gap * (this.stages.length - 1)) / this.stages.length;
+    const tileW = Math.max(110, Math.min(maxTileW, Math.floor(fitTileW)));
+    const tileH = Math.max(180, Math.floor(tileW * 1.22));
     const totalW = this.stages.length * tileW + (this.stages.length - 1) * gap;
     const startX = (width - totalW) / 2;
     const y = height / 2 - tileH / 2;
@@ -74,32 +83,35 @@ export class StageSelectScene {
       ctx.strokeStyle = focused ? stage.color : (unlocked ? "#444466" : "#222233");
       ctx.strokeRect(x, y, tileW, tileH);
 
-      // Boss "portrait" — colored hex
+      // Boss "portrait" — colored hex (scales with tile size)
       ctx.shadowBlur = 0;
       ctx.globalAlpha = unlocked ? 1 : 0.3;
       ctx.fillStyle = stage.color;
-      const cx = x + tileW / 2, cy = y + 90;
+      const hexR = Math.floor(tileW * 0.26);
+      const cx = x + tileW / 2, cy = y + tileH * 0.4;
       ctx.beginPath();
       for (let k = 0; k < 6; k++) {
         const a = (k / 6) * Math.PI * 2 + Math.PI / 6;
-        const px = cx + Math.cos(a) * 44, py = cy + Math.sin(a) * 44;
+        const px = cx + Math.cos(a) * hexR, py = cy + Math.sin(a) * hexR;
         if (k === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
       }
       ctx.closePath();
       ctx.fill();
 
+      const nameSize = Math.max(14, Math.floor(tileW * 0.1));
+      const subSize = Math.max(11, Math.floor(tileW * 0.078));
       ctx.fillStyle = "#ffffff";
-      ctx.font = "bold 18px 'Segoe UI', sans-serif";
+      ctx.font = `bold ${nameSize}px 'Segoe UI', sans-serif`;
       ctx.textAlign = "center";
-      ctx.fillText(stage.name, cx, y + 170);
+      ctx.fillText(stage.name, cx, y + tileH * 0.77);
 
-      ctx.font = "14px 'Segoe UI', sans-serif";
+      ctx.font = `${subSize}px 'Segoe UI', sans-serif`;
       ctx.fillStyle = "#aaaadd";
-      ctx.fillText(unlocked ? `${stage.bpm} BPM` : "LOCKED", cx, y + 195);
+      ctx.fillText(unlocked ? `${stage.bpm} BPM` : "LOCKED", cx, y + tileH * 0.88);
 
       if (cleared) {
         ctx.fillStyle = "#ffe25d";
-        ctx.font = "bold 14px 'Segoe UI', sans-serif";
+        ctx.font = `bold ${subSize}px 'Segoe UI', sans-serif`;
         ctx.fillText(`Best: ${this.progress[stage.id].grade}`, cx, y + tileH - 8);
       }
       ctx.restore();

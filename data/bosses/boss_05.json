@@ -1,0 +1,734 @@
+{
+    "id":  "boss_05",
+    "name":  "PULSE",
+    "color":  "#00e5ff",
+    "bpm":  175,
+    "maxHP":  1700,
+    "bulletDamage":  8,
+    "counterBaseDamage":  38,
+    "music":  "Music/Restless Heart.wav",
+    "musicVolume":  0.85,
+    "musicOffset":  0,
+    "phaseThresholds":  [
+                            0.66,
+                            0.33
+                        ],
+    "patterns":  [
+                     "aimed_shot",
+                     "pulse_radial",
+                     "grid_radial",
+                     "circuit_spiral",
+                     "neon_wall",
+                     "glitch_aimed",
+                     "digital_cross",
+                     "data_rain",
+                     "surge_converging"
+                 ],
+    "timeline":  [
+                     {
+                         "beat":  16,
+                         "type":  "pattern",
+                         "id":  "aimed_shot"
+                     },
+                     {
+                         "beat":  32,
+                         "type":  "pattern",
+                         "id":  "pulse_radial"
+                     },
+                     {
+                         "beat":  40,
+                         "type":  "pattern",
+                         "id":  "aimed_shot"
+                     },
+                     {
+                         "beat":  48,
+                         "type":  "pattern",
+                         "id":  "pulse_radial"
+                     },
+                     {
+                         "beat":  64,
+                         "type":  "pattern",
+                         "id":  "pulse_radial"
+                     },
+                     {
+                         "beat":  68,
+                         "type":  "pattern",
+                         "id":  "aimed_shot"
+                     },
+                     {
+                         "beat":  72,
+                         "type":  "pattern",
+                         "id":  "pulse_radial"
+                     },
+                     {
+                         "beat":  76,
+                         "type":  "pattern",
+                         "id":  "digital_cross"
+                     },
+                     {
+                         "beat":  80,
+                         "type":  "pattern",
+                         "id":  "aimed_shot"
+                     },
+                     {
+                         "beat":  84,
+                         "type":  "pattern",
+                         "id":  "pulse_radial"
+                     },
+                     {
+                         "beat":  88,
+                         "type":  "pattern",
+                         "id":  "aimed_shot"
+                     },
+                     {
+                         "beat":  92,
+                         "type":  "pattern",
+                         "id":  "pulse_radial"
+                     },
+                     {
+                         "beat":  96,
+                         "type":  "pattern",
+                         "id":  "digital_cross"
+                     },
+                     {
+                         "beat":  98,
+                         "type":  "pattern",
+                         "id":  "aimed_shot"
+                     },
+                     {
+                         "beat":  100,
+                         "type":  "pattern",
+                         "id":  "pulse_radial"
+                     },
+                     {
+                         "beat":  104,
+                         "type":  "pattern",
+                         "id":  "aimed_shot"
+                     },
+                     {
+                         "beat":  106,
+                         "type":  "pattern",
+                         "id":  "digital_cross"
+                     },
+                     {
+                         "beat":  108,
+                         "type":  "pattern",
+                         "id":  "pulse_radial"
+                     },
+                     {
+                         "beat":  112,
+                         "type":  "pattern",
+                         "id":  "aimed_shot"
+                     },
+                     {
+                         "beat":  114,
+                         "type":  "pattern",
+                         "id":  "digital_cross"
+                     },
+                     {
+                         "beat":  116,
+                         "type":  "pattern",
+                         "id":  "pulse_radial"
+                     },
+                     {
+                         "beat":  120,
+                         "type":  "pattern",
+                         "id":  "aimed_shot"
+                     },
+                     {
+                         "beat":  122,
+                         "type":  "pattern",
+                         "id":  "pulse_radial"
+                     },
+                     {
+                         "beat":  124,
+                         "type":  "pattern",
+                         "id":  "digital_cross"
+                     },
+                     {
+                         "beat":  128,
+                         "type":  "pattern",
+                         "id":  "aimed_shot"
+                     },
+                     {
+                         "beat":  130,
+                         "type":  "pattern",
+                         "id":  "pulse_radial"
+                     },
+                     {
+                         "beat":  132,
+                         "type":  "pattern",
+                         "id":  "digital_cross"
+                     },
+                     {
+                         "beat":  134,
+                         "type":  "pattern",
+                         "id":  "aimed_shot"
+                     },
+                     {
+                         "beat":  136,
+                         "type":  "pattern",
+                         "id":  "pulse_radial"
+                     },
+                     {
+                         "beat":  138,
+                         "type":  "pattern",
+                         "id":  "aimed_shot"
+                     },
+                     {
+                         "beat":  140,
+                         "type":  "pattern",
+                         "id":  "digital_cross"
+                     },
+                     {
+                         "beat":  144,
+                         "type":  "counterattack_window",
+                         "duration_beats":  8,
+                         "lead_beats":  6,
+                         "zone":  {
+                                      "anchor":  "center",
+                                      "radius":  80
+                                  }
+                     },
+                     {
+                         "beat":  160,
+                         "type":  "pattern",
+                         "id":  "circuit_spiral"
+                     },
+                     {
+                         "beat":  162,
+                         "type":  "pattern",
+                         "id":  "aimed_shot"
+                     },
+                     {
+                         "beat":  164,
+                         "type":  "pattern",
+                         "id":  "pulse_radial"
+                     },
+                     {
+                         "beat":  168,
+                         "type":  "pattern",
+                         "id":  "circuit_spiral"
+                     },
+                     {
+                         "beat":  170,
+                         "type":  "pattern",
+                         "id":  "glitch_aimed"
+                     },
+                     {
+                         "beat":  172,
+                         "type":  "pattern",
+                         "id":  "digital_cross"
+                     },
+                     {
+                         "beat":  176,
+                         "type":  "pattern",
+                         "id":  "circuit_spiral"
+                     },
+                     {
+                         "beat":  178,
+                         "type":  "pattern",
+                         "id":  "pulse_radial"
+                     },
+                     {
+                         "beat":  180,
+                         "type":  "pattern",
+                         "id":  "glitch_aimed"
+                     },
+                     {
+                         "beat":  184,
+                         "type":  "pattern",
+                         "id":  "grid_radial"
+                     },
+                     {
+                         "beat":  186,
+                         "type":  "pattern",
+                         "id":  "aimed_shot"
+                     },
+                     {
+                         "beat":  188,
+                         "type":  "pattern",
+                         "id":  "digital_cross"
+                     },
+                     {
+                         "beat":  192,
+                         "type":  "pattern",
+                         "id":  "circuit_spiral"
+                     },
+                     {
+                         "beat":  194,
+                         "type":  "pattern",
+                         "id":  "glitch_aimed"
+                     },
+                     {
+                         "beat":  196,
+                         "type":  "pattern",
+                         "id":  "pulse_radial"
+                     },
+                     {
+                         "beat":  200,
+                         "type":  "pattern",
+                         "id":  "grid_radial"
+                     },
+                     {
+                         "beat":  202,
+                         "type":  "pattern",
+                         "id":  "aimed_shot"
+                     },
+                     {
+                         "beat":  204,
+                         "type":  "pattern",
+                         "id":  "digital_cross"
+                     },
+                     {
+                         "beat":  208,
+                         "type":  "pattern",
+                         "id":  "circuit_spiral"
+                     },
+                     {
+                         "beat":  210,
+                         "type":  "pattern",
+                         "id":  "glitch_aimed"
+                     },
+                     {
+                         "beat":  212,
+                         "type":  "pattern",
+                         "id":  "pulse_radial"
+                     },
+                     {
+                         "beat":  216,
+                         "type":  "pattern",
+                         "id":  "grid_radial"
+                     },
+                     {
+                         "beat":  218,
+                         "type":  "pattern",
+                         "id":  "aimed_shot"
+                     },
+                     {
+                         "beat":  220,
+                         "type":  "pattern",
+                         "id":  "digital_cross"
+                     },
+                     {
+                         "beat":  224,
+                         "type":  "pattern",
+                         "id":  "glitch_aimed"
+                     },
+                     {
+                         "beat":  226,
+                         "type":  "pattern",
+                         "id":  "circuit_spiral"
+                     },
+                     {
+                         "beat":  228,
+                         "type":  "pattern",
+                         "id":  "glitch_aimed"
+                     },
+                     {
+                         "beat":  228,
+                         "type":  "pattern",
+                         "id":  "digital_cross"
+                     },
+                     {
+                         "beat":  228,
+                         "type":  "pattern",
+                         "id":  "grid_radial"
+                     },
+                     {
+                         "beat":  232,
+                         "type":  "counterattack_window",
+                         "duration_beats":  10,
+                         "lead_beats":  4,
+                         "zone":  {
+                                      "anchor":  "center",
+                                      "radius":  75
+                                  }
+                     },
+                     {
+                         "beat":  248,
+                         "type":  "pattern",
+                         "id":  "pulse_radial"
+                     },
+                     {
+                         "beat":  250,
+                         "type":  "pattern",
+                         "id":  "glitch_aimed"
+                     },
+                     {
+                         "beat":  252,
+                         "type":  "pattern",
+                         "id":  "digital_cross"
+                     },
+                     {
+                         "beat":  254,
+                         "type":  "pattern",
+                         "id":  "data_rain"
+                     },
+                     {
+                         "beat":  256,
+                         "type":  "pattern",
+                         "id":  "circuit_spiral"
+                     },
+                     {
+                         "beat":  258,
+                         "type":  "pattern",
+                         "id":  "pulse_radial"
+                     },
+                     {
+                         "beat":  260,
+                         "type":  "pattern",
+                         "id":  "glitch_aimed"
+                     },
+                     {
+                         "beat":  262,
+                         "type":  "pattern",
+                         "id":  "grid_radial"
+                     },
+                     {
+                         "beat":  264,
+                         "type":  "pattern",
+                         "id":  "aimed_shot"
+                     },
+                     {
+                         "beat":  266,
+                         "type":  "pattern",
+                         "id":  "digital_cross"
+                     },
+                     {
+                         "beat":  268,
+                         "type":  "pattern",
+                         "id":  "circuit_spiral"
+                     },
+                     {
+                         "beat":  270,
+                         "type":  "pattern",
+                         "id":  "glitch_aimed"
+                     },
+                     {
+                         "beat":  272,
+                         "type":  "pattern",
+                         "id":  "pulse_radial"
+                     },
+                     {
+                         "beat":  274,
+                         "type":  "pattern",
+                         "id":  "data_rain"
+                     },
+                     {
+                         "beat":  276,
+                         "type":  "pattern",
+                         "id":  "digital_cross"
+                     },
+                     {
+                         "beat":  278,
+                         "type":  "pattern",
+                         "id":  "circuit_spiral"
+                     },
+                     {
+                         "beat":  280,
+                         "type":  "pattern",
+                         "id":  "grid_radial"
+                     },
+                     {
+                         "beat":  282,
+                         "type":  "pattern",
+                         "id":  "glitch_aimed"
+                     },
+                     {
+                         "beat":  284,
+                         "type":  "pattern",
+                         "id":  "pulse_radial"
+                     },
+                     {
+                         "beat":  286,
+                         "type":  "pattern",
+                         "id":  "aimed_shot"
+                     },
+                     {
+                         "beat":  288,
+                         "type":  "pattern",
+                         "id":  "circuit_spiral"
+                     },
+                     {
+                         "beat":  290,
+                         "type":  "pattern",
+                         "id":  "digital_cross"
+                     },
+                     {
+                         "beat":  296,
+                         "type":  "counterattack_window",
+                         "duration_beats":  8,
+                         "lead_beats":  5,
+                         "zone":  {
+                                      "anchor":  "right",
+                                      "radius":  70
+                                  }
+                     },
+                     {
+                         "beat":  310,
+                         "type":  "pattern",
+                         "id":  "pulse_radial"
+                     },
+                     {
+                         "beat":  312,
+                         "type":  "pattern",
+                         "id":  "circuit_spiral"
+                     },
+                     {
+                         "beat":  314,
+                         "type":  "pattern",
+                         "id":  "data_rain"
+                     },
+                     {
+                         "beat":  316,
+                         "type":  "pattern",
+                         "id":  "glitch_aimed"
+                     },
+                     {
+                         "beat":  318,
+                         "type":  "pattern",
+                         "id":  "grid_radial"
+                     },
+                     {
+                         "beat":  320,
+                         "type":  "pattern",
+                         "id":  "digital_cross"
+                     },
+                     {
+                         "beat":  322,
+                         "type":  "pattern",
+                         "id":  "pulse_radial"
+                     },
+                     {
+                         "beat":  324,
+                         "type":  "pattern",
+                         "id":  "circuit_spiral"
+                     },
+                     {
+                         "beat":  326,
+                         "type":  "pattern",
+                         "id":  "glitch_aimed"
+                     },
+                     {
+                         "beat":  328,
+                         "type":  "pattern",
+                         "id":  "aimed_shot"
+                     },
+                     {
+                         "beat":  330,
+                         "type":  "pattern",
+                         "id":  "data_rain"
+                     },
+                     {
+                         "beat":  332,
+                         "type":  "pattern",
+                         "id":  "digital_cross"
+                     },
+                     {
+                         "beat":  334,
+                         "type":  "pattern",
+                         "id":  "pulse_radial"
+                     },
+                     {
+                         "beat":  336,
+                         "type":  "pattern",
+                         "id":  "circuit_spiral"
+                     },
+                     {
+                         "beat":  338,
+                         "type":  "pattern",
+                         "id":  "grid_radial"
+                     },
+                     {
+                         "beat":  340,
+                         "type":  "pattern",
+                         "id":  "glitch_aimed"
+                     },
+                     {
+                         "beat":  342,
+                         "type":  "pattern",
+                         "id":  "digital_cross"
+                     },
+                     {
+                         "beat":  344,
+                         "type":  "pattern",
+                         "id":  "pulse_radial"
+                     },
+                     {
+                         "beat":  346,
+                         "type":  "pattern",
+                         "id":  "circuit_spiral"
+                     },
+                     {
+                         "beat":  348,
+                         "type":  "pattern",
+                         "id":  "data_rain"
+                     },
+                     {
+                         "beat":  350,
+                         "type":  "pattern",
+                         "id":  "aimed_shot"
+                     },
+                     {
+                         "beat":  352,
+                         "type":  "pattern",
+                         "id":  "digital_cross"
+                     },
+                     {
+                         "beat":  354,
+                         "type":  "pattern",
+                         "id":  "glitch_aimed"
+                     },
+                     {
+                         "beat":  360,
+                         "type":  "counterattack_window",
+                         "duration_beats":  8,
+                         "lead_beats":  5,
+                         "zone":  {
+                                      "anchor":  "left",
+                                      "radius":  70
+                                  }
+                     },
+                     {
+                         "beat":  374,
+                         "type":  "pattern",
+                         "id":  "surge_converging"
+                     },
+                     {
+                         "beat":  376,
+                         "type":  "pattern",
+                         "id":  "glitch_aimed"
+                     },
+                     {
+                         "beat":  378,
+                         "type":  "pattern",
+                         "id":  "grid_radial"
+                     },
+                     {
+                         "beat":  380,
+                         "type":  "pattern",
+                         "id":  "digital_cross"
+                     },
+                     {
+                         "beat":  382,
+                         "type":  "pattern",
+                         "id":  "data_rain"
+                     },
+                     {
+                         "beat":  384,
+                         "type":  "pattern",
+                         "id":  "circuit_spiral"
+                     },
+                     {
+                         "beat":  386,
+                         "type":  "pattern",
+                         "id":  "surge_converging"
+                     },
+                     {
+                         "beat":  388,
+                         "type":  "pattern",
+                         "id":  "glitch_aimed"
+                     },
+                     {
+                         "beat":  390,
+                         "type":  "pattern",
+                         "id":  "pulse_radial"
+                     },
+                     {
+                         "beat":  392,
+                         "type":  "pattern",
+                         "id":  "grid_radial"
+                     },
+                     {
+                         "beat":  394,
+                         "type":  "pattern",
+                         "id":  "data_rain"
+                     },
+                     {
+                         "beat":  396,
+                         "type":  "pattern",
+                         "id":  "digital_cross"
+                     },
+                     {
+                         "beat":  398,
+                         "type":  "pattern",
+                         "id":  "surge_converging"
+                     },
+                     {
+                         "beat":  400,
+                         "type":  "pattern",
+                         "id":  "glitch_aimed"
+                     },
+                     {
+                         "beat":  402,
+                         "type":  "pattern",
+                         "id":  "circuit_spiral"
+                     },
+                     {
+                         "beat":  404,
+                         "type":  "pattern",
+                         "id":  "grid_radial"
+                     },
+                     {
+                         "beat":  405,
+                         "type":  "pattern",
+                         "id":  "surge_converging"
+                     },
+                     {
+                         "beat":  405,
+                         "type":  "pattern",
+                         "id":  "data_rain"
+                     },
+                     {
+                         "beat":  408,
+                         "type":  "counterattack_window",
+                         "duration_beats":  10,
+                         "lead_beats":  4,
+                         "zone":  {
+                                      "anchor":  "center",
+                                      "radius":  70
+                                  }
+                     },
+                     {
+                         "beat":  424,
+                         "type":  "pattern",
+                         "id":  "pulse_radial"
+                     },
+                     {
+                         "beat":  426,
+                         "type":  "pattern",
+                         "id":  "glitch_aimed"
+                     },
+                     {
+                         "beat":  428,
+                         "type":  "pattern",
+                         "id":  "digital_cross"
+                     },
+                     {
+                         "beat":  430,
+                         "type":  "pattern",
+                         "id":  "pulse_radial"
+                     },
+                     {
+                         "beat":  432,
+                         "type":  "pattern",
+                         "id":  "aimed_shot"
+                     },
+                     {
+                         "beat":  434,
+                         "type":  "pattern",
+                         "id":  "glitch_aimed"
+                     },
+                     {
+                         "beat":  440,
+                         "type":  "counterattack_window",
+                         "duration_beats":  10,
+                         "lead_beats":  4,
+                         "zone":  {
+                                      "anchor":  "center",
+                                      "radius":  75
+                                  }
+                     }
+                 ]
+}

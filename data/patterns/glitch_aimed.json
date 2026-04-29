@@ -1,0 +1,9 @@
+{
+  "id": "glitch_aimed",
+  "type": "aimed_shot",
+  "count": 4,
+  "spread": 0.18,
+  "speed": 380,
+  "radius": 7,
+  "color": "#ff2eb4"
+}

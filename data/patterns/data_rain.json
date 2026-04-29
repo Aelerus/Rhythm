@@ -1,0 +1,8 @@
+{
+  "id": "data_rain",
+  "type": "rain",
+  "count": 14,
+  "speed": 290,
+  "radius": 6,
+  "color": "#00e5ff"
+}
