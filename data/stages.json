@@ -1,12 +1,18 @@
 {
+  "worlds": [
+    { "id": "world_1",  "label": "World 1 — Tutorial", "stages": ["boss_01", "boss_02", "boss_03"] },
+    { "id": "world_2",  "label": "World 2 — Techno",   "stages": ["boss_07", "boss_05"] },
+    { "id": "world_3",  "label": "World 3 — Metal",    "stages": ["boss_04"] },
+    { "id": "pinnacle", "label": "THE PINNACLE", "secret": true, "stages": ["boss_06"] }
+  ],
   "stages": [
     { "id": "boss_01", "name": "AURA",  "color": "#ff5dd6", "bpm": 90,  "boss": "data/bosses/boss_01.json" },
     { "id": "boss_02", "name": "PRISM", "color": "#5dd6ff", "bpm": 120, "boss": "data/bosses/boss_02.json" },
     { "id": "boss_03", "name": "VOLT",  "color": "#ffae5d", "bpm": 140, "boss": "data/bosses/boss_03.json" },
     { "id": "boss_04", "name": "EIEN",  "color": "#d4133b", "bpm": 185, "boss": "data/bosses/boss_04.json" },
-    { "id": "boss_05", "name": "PULSE", "color": "#00e5ff", "bpm": 175, "boss": "data/bosses/boss_05.json", "defaultUnlocked": true },
+    { "id": "boss_05", "name": "PULSE", "color": "#00e5ff", "bpm": 175, "boss": "data/bosses/boss_05.json" },
     { "id": "boss_07", "name": "TESLA", "color": "#c8ff00", "bpm": 120, "boss": "data/bosses/boss_07.json" },
-    { "id": "boss_06", "name": "APEX",  "color": "#ffffff", "bpm": 180, "boss": "data/bosses/boss_06.json", "hidden": true, "requiresAllCleared": true }
+    { "id": "boss_06", "name": "APEX",  "color": "#ffffff", "bpm": 180, "boss": "data/bosses/boss_06.json" }
   ],
   "patternFiles": [
     "data/patterns/radial_burst.json",

@@ -180,7 +180,7 @@ export class GameOverScene {
 
     ctx.fillStyle = "#ffe25d";
     ctx.font = "bold 18px 'Segoe UI', sans-serif";
-    ctx.fillText("ENTER / R — Retry      ESC — Stage Select", width / 2, height / 2 + 70);
+    ctx.fillText("ENTER / R — Retry      ESC — World Map", width / 2, height / 2 + 70);
     ctx.restore();
   }
 }

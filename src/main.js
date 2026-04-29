@@ -12,7 +12,7 @@ import { BossRenderer } from "./renderer/BossRenderer.js";
 
 import { FightManager } from "./game/FightManager.js";
 import { HUD } from "./ui/HUD.js";
-import { StageSelectScene } from "./ui/StageSelect.js";
+import { WorldMapScene } from "./ui/WorldMap.js";
 import { VictoryScene } from "./ui/VictoryScreen.js";
 import { MainMenuScene, GameOverScene, LoadingScene } from "./ui/Menus.js";
 
@@ -297,6 +297,7 @@ class Game {
     this.beatClock = null;
     this.scenes = new SceneManager();
     this.stages = [];
+    this.worlds = [];
     this.patternLibrary = {};
     this.progress = this._loadProgress();
     this.isAdmin = this._loadAdmin();
@@ -311,6 +312,7 @@ class Game {
 
     const stagesData = await fetch("data/stages.json").then((r) => r.json());
     this.stages = stagesData.stages;
+    this.worlds = stagesData.worlds ?? [];
     const patternList = await Promise.all(stagesData.patternFiles.map((p) => fetch(p).then((r) => r.json())));
     for (const pat of patternList) this.patternLibrary[pat.id] = pat;
 
@@ -326,13 +328,13 @@ class Game {
   async _resumeAudioAndGoToSelect() {
     try { await this.audio.resume(); }
     catch (err) { console.warn("Audio resume failed:", err); }
-    this._gotoStageSelect();
+    this._gotoWorldMap();
   }
 
-  _gotoStageSelect() {
-    this.scenes.set(new StageSelectScene({
+  _gotoWorldMap() {
+    this.scenes.set(new WorldMapScene({
       canvas: this.canvas, input: this.input, audio: this.audio,
-      stages: this.stages, progress: this.progress,
+      worlds: this.worlds, stages: this.stages, progress: this.progress,
       isAdmin: this.isAdmin,
       onPick: (stage) => this._startFight(stage),
     }));
@@ -384,7 +386,7 @@ class Game {
       onVictory: (summary) => this._onVictory(summary),
       onDefeat: (info) => this._onDefeat(info, stage, bossData),
       onRestart: () => this._startFight(stage),
-      onQuit: () => this._gotoStageSelect(),
+      onQuit: () => this._gotoWorldMap(),
     }));
   }
 
@@ -408,7 +410,7 @@ class Game {
     this.scenes.set(new VictoryScene({
       canvas: this.canvas, input: this.input, audio: this.audio,
       summary,
-      onContinue: () => this._gotoStageSelect(),
+      onContinue: () => this._gotoWorldMap(),
     }));
   }
 
@@ -418,7 +420,7 @@ class Game {
       bossName: info.bossName,
       reason: info.reason,
       onRetry: () => this._startFight(stage),
-      onBackToSelect: () => this._gotoStageSelect(),
+      onBackToSelect: () => this._gotoWorldMap(),
     }));
   }
 
