@@ -1,0 +1,10 @@
+{
+  "id": "radial_dense",
+  "type": "radial_burst",
+  "count": 28,
+  "speed": 200,
+  "radius": 6,
+  "color": "#c25dff",
+  "rotateWithBeat": true,
+  "rotateStep": 0.31
+}

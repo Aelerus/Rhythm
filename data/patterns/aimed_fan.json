@@ -1,0 +1,9 @@
+{
+  "id": "aimed_fan",
+  "type": "aimed_shot",
+  "count": 5,
+  "spread": 0.6,
+  "speed": 290,
+  "radius": 8,
+  "color": "#ffae5d"
+}

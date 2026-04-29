@@ -1,0 +1,7 @@
+{
+  "id": "cross",
+  "type": "cross",
+  "speed": 260,
+  "radius": 10,
+  "color": "#ff8a5d"
+}

@@ -1,0 +1,8 @@
+{
+  "id": "aimed_shot",
+  "type": "aimed_shot",
+  "count": 1,
+  "speed": 320,
+  "radius": 9,
+  "color": "#ffd25d"
+}

@@ -1,0 +1,9 @@
+{
+  "id": "wall",
+  "type": "wall",
+  "count": 14,
+  "gapWidth": 3,
+  "speed": 230,
+  "radius": 9,
+  "color": "#a05dff"
+}

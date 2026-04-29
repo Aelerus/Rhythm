@@ -1,0 +1,42 @@
+{
+  "id": "boss_03",
+  "name": "VOLT",
+  "color": "#ffae5d",
+  "bpm": 140,
+  "maxHP": 1500,
+  "bulletDamage": 10,
+  "counterBaseDamage": 34,
+  "phaseThresholds": [0.66, 0.33],
+  "patterns": ["cross", "homing", "aimed_fan", "radial_dense"],
+  "timeline": [
+    { "beat": 2,  "type": "pattern", "id": "cross" },
+    { "beat": 4,  "type": "pattern", "id": "aimed_fan" },
+    { "beat": 6,  "type": "pattern", "id": "cross" },
+    { "beat": 8,  "type": "pattern", "id": "homing" },
+    { "beat": 10, "type": "pattern", "id": "radial_dense" },
+    { "beat": 12, "type": "counterattack_window", "duration_beats": 8 },
+
+    { "beat": 22, "type": "pattern", "id": "cross" },
+    { "beat": 24, "type": "pattern", "id": "homing" },
+    { "beat": 26, "type": "pattern", "id": "aimed_fan" },
+    { "beat": 28, "type": "pattern", "id": "cross" },
+    { "beat": 30, "type": "pattern", "id": "radial_dense" },
+    { "beat": 32, "type": "pattern", "id": "cross" },
+    { "beat": 34, "type": "counterattack_window", "duration_beats": 8 },
+
+    { "beat": 44, "type": "pattern", "id": "homing" },
+    { "beat": 46, "type": "pattern", "id": "cross" },
+    { "beat": 48, "type": "pattern", "id": "radial_dense" },
+    { "beat": 50, "type": "pattern", "id": "aimed_fan" },
+    { "beat": 52, "type": "pattern", "id": "cross" },
+    { "beat": 54, "type": "pattern", "id": "homing" },
+    { "beat": 56, "type": "counterattack_window", "duration_beats": 8 },
+
+    { "beat": 66, "type": "pattern", "id": "radial_dense" },
+    { "beat": 68, "type": "pattern", "id": "cross" },
+    { "beat": 70, "type": "pattern", "id": "aimed_fan" },
+    { "beat": 72, "type": "pattern", "id": "homing" },
+    { "beat": 74, "type": "pattern", "id": "cross" },
+    { "beat": 76, "type": "counterattack_window", "duration_beats": 8 }
+  ]
+}

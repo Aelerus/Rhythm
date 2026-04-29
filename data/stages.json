@@ -1,0 +1,17 @@
+{
+  "stages": [
+    { "id": "boss_01", "name": "AURA",  "color": "#ff5dd6", "bpm": 90,  "boss": "data/bosses/boss_01.json" },
+    { "id": "boss_02", "name": "PRISM", "color": "#5dd6ff", "bpm": 120, "boss": "data/bosses/boss_02.json" },
+    { "id": "boss_03", "name": "VOLT",  "color": "#ffae5d", "bpm": 140, "boss": "data/bosses/boss_03.json" }
+  ],
+  "patternFiles": [
+    "data/patterns/radial_burst.json",
+    "data/patterns/radial_dense.json",
+    "data/patterns/aimed_shot.json",
+    "data/patterns/aimed_fan.json",
+    "data/patterns/spiral.json",
+    "data/patterns/wall.json",
+    "data/patterns/cross.json",
+    "data/patterns/homing.json"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "id": "boss_01",
+  "name": "AURA",
+  "color": "#ff5dd6",
+  "bpm": 90,
+  "maxHP": 1000,
+  "bulletDamage": 8,
+  "counterBaseDamage": 38,
+  "phaseThresholds": [0.66, 0.33],
+  "patterns": ["radial_burst", "aimed_shot"],
+  "timeline": [
+    { "beat": 2,  "type": "pattern", "id": "aimed_shot" },
+    { "beat": 4,  "type": "pattern", "id": "aimed_shot" },
+    { "beat": 6,  "type": "pattern", "id": "radial_burst" },
+    { "beat": 8,  "type": "counterattack_window", "duration_beats": 8 },
+
+    { "beat": 18, "type": "pattern", "id": "aimed_shot" },
+    { "beat": 20, "type": "pattern", "id": "radial_burst" },
+    { "beat": 22, "type": "pattern", "id": "aimed_shot" },
+    { "beat": 24, "type": "pattern", "id": "aimed_shot" },
+    { "beat": 26, "type": "pattern", "id": "radial_burst" },
+    { "beat": 28, "type": "counterattack_window", "duration_beats": 8 },
+
+    { "beat": 38, "type": "pattern", "id": "radial_burst" },
+    { "beat": 40, "type": "pattern", "id": "aimed_shot" },
+    { "beat": 42, "type": "pattern", "id": "aimed_shot" },
+    { "beat": 44, "type": "pattern", "id": "radial_burst" },
+    { "beat": 46, "type": "pattern", "id": "aimed_shot" },
+    { "beat": 48, "type": "counterattack_window", "duration_beats": 8 },
+
+    { "beat": 58, "type": "pattern", "id": "radial_burst" },
+    { "beat": 60, "type": "pattern", "id": "aimed_shot" },
+    { "beat": 62, "type": "pattern", "id": "radial_burst" },
+    { "beat": 64, "type": "pattern", "id": "aimed_shot" },
+    { "beat": 66, "type": "counterattack_window", "duration_beats": 8 }
+  ]
+}

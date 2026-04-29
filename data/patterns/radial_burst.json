@@ -1,0 +1,10 @@
+{
+  "id": "radial_burst",
+  "type": "radial_burst",
+  "count": 18,
+  "speed": 170,
+  "radius": 7,
+  "color": "#ff5dd6",
+  "rotateWithBeat": true,
+  "rotateStep": 0.18
+}
