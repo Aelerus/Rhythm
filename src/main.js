@@ -14,7 +14,7 @@ import { FightManager } from "./game/FightManager.js";
 import { HUD } from "./ui/HUD.js";
 import { WorldMapScene } from "./ui/WorldMap.js";
 import { VictoryScene } from "./ui/VictoryScreen.js";
-import { MainMenuScene, GameOverScene, LoadingScene } from "./ui/Menus.js";
+import { MainMenuScene, GameOverScene, LoadingScene, SettingsOverlay } from "./ui/Menus.js";
 
 const ARENA = { x: 60, y: 60, w: 840, h: 600 };
 
@@ -55,10 +55,13 @@ class FightScene {
     this._pauseCursor = 0;
     this._pauseButtons = [
       { label: "RESUME",        action: () => this._resume() },
+      { label: "SETTINGS",      action: () => this._openPauseSettings() },
       { label: "RESTART",       action: () => this._restart() },
       { label: "QUIT TO MENU",  action: () => this._quit() },
     ];
     this._pauseButtonRects = [];
+    this._settingsOpen = false;
+    this._settingsOverlay = null;
     this._onCanvasClick = (e) => this._handlePauseClick(e);
     this._onCanvasMove = (e) => this._handlePauseMove(e);
   }
@@ -122,6 +125,15 @@ class FightScene {
     this.onQuit?.();
   }
 
+  _openPauseSettings() {
+    this._settingsOpen = true;
+    this._settingsOverlay = new SettingsOverlay({
+      audio: this.audio,
+      accent: this.fight.boss.color || "#5dd6ff",
+      onClose: () => { this._settingsOpen = false; this._settingsOverlay = null; },
+    });
+  }
+
   _canvasCoords(e) {
     const rect = this.canvas.getBoundingClientRect();
     const sx = this.canvas.width / rect.width;
@@ -161,6 +173,11 @@ class FightScene {
     if (this._paused) {
       // Drain the attack key so it doesn't fire on resume.
       this.input.consumePress("space", "z");
+
+      if (this._settingsOpen) {
+        this._settingsOverlay.handleInput(this.input);
+        return;
+      }
 
       if (this.input.consumePress("Escape")) { this._resume(); return; }
       if (this.input.consumePress("ArrowDown", "s")) {
@@ -239,7 +256,10 @@ class FightScene {
     this.playerR.draw(ctx, this.fight.player, this.input.isFocus(), inversion);
     this.hud.draw(ctx, this.fight, beatPulse, beatPos);
 
-    if (this._paused) this._drawPauseOverlay(ctx);
+    if (this._paused) {
+      if (this._settingsOpen) this._settingsOverlay.draw(ctx);
+      else this._drawPauseOverlay(ctx);
+    }
   }
 
   _drawPauseOverlay(ctx) {

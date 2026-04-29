@@ -8,17 +8,59 @@ export class AudioManager {
     this.musicGain = null;
     this.currentMusic = null;
     this._bufferCache = new Map();
+    this._settings = { musicVol: 0.85, masterVol: 0.6 };
   }
 
   async init() {
     const AC = window.AudioContext || window.webkitAudioContext;
     this.ctx = new AC();
+    this._settings = this._loadSettings();
     this.master = this.ctx.createGain();
-    this.master.gain.value = 0.6;
+    this.master.gain.value = this._settings.masterVol;
     this.master.connect(this.ctx.destination);
     this.musicGain = this.ctx.createGain();
-    this.musicGain.gain.value = 0.85;
+    this.musicGain.gain.value = this._settings.musicVol;
     this.musicGain.connect(this.master);
+  }
+
+  getMusicVolume()  { return this._settings.musicVol; }
+  getMasterVolume() { return this._settings.masterVol; }
+
+  setMusicVolume(v) {
+    this._settings.musicVol = v;
+    if (this.musicGain) {
+      this.musicGain.gain.cancelScheduledValues(this.ctx.currentTime);
+      this.musicGain.gain.setValueAtTime(v, this.ctx.currentTime);
+    }
+    this._saveSettings();
+  }
+
+  setMasterVolume(v) {
+    this._settings.masterVol = v;
+    if (this.master) {
+      this.master.gain.cancelScheduledValues(this.ctx.currentTime);
+      this.master.gain.setValueAtTime(v, this.ctx.currentTime);
+    }
+    this._saveSettings();
+  }
+
+  _loadSettings() {
+    try {
+      const raw = localStorage.getItem("rbh.settings");
+      if (raw) {
+        const s = JSON.parse(raw);
+        return {
+          musicVol:  typeof s.musicVol  === "number" ? s.musicVol  : 0.85,
+          masterVol: typeof s.masterVol === "number" ? s.masterVol : 0.6,
+        };
+      }
+    } catch {}
+    return { musicVol: 0.85, masterVol: 0.6 };
+  }
+
+  _saveSettings() {
+    try { localStorage.setItem("rbh.settings", JSON.stringify(this._settings)); }
+    catch {}
   }
 
   async resume() {
@@ -39,13 +81,14 @@ export class AudioManager {
   }
 
   // Play a decoded buffer at AudioContext time `when`. Returns the source node.
-  playBuffer(buffer, when, { offset = 0, volume = 0.85, loop = false } = {}) {
+  playBuffer(buffer, when, { offset = 0, volume, loop = false } = {}) {
     this.stopMusic();
     const src = this.ctx.createBufferSource();
     src.buffer = buffer;
     src.loop = loop;
+    const vol = volume !== undefined ? volume : this._settings.musicVol;
     this.musicGain.gain.cancelScheduledValues(this.ctx.currentTime);
-    this.musicGain.gain.setValueAtTime(volume, this.ctx.currentTime);
+    this.musicGain.gain.setValueAtTime(vol, this.ctx.currentTime);
     src.connect(this.musicGain);
     src.start(Math.max(this.ctx.currentTime, when), offset);
     this.currentMusic = src;
@@ -106,6 +149,7 @@ export class AudioManager {
 
   // Quick UI sound effect played immediately.
   blip(freq = 800, duration = 0.08, type = "square", vol = 0.3) {
+    if (!this.ctx || this.ctx.state !== "running") return;
     const t = this.ctx.currentTime;
     const osc = this.ctx.createOscillator();
     const gain = this.ctx.createGain();
