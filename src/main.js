@@ -19,12 +19,13 @@ import { MainMenuScene, GameOverScene, LoadingScene } from "./ui/Menus.js";
 const ARENA = { x: 60, y: 60, w: 840, h: 600 };
 
 class FightScene {
-  constructor({ canvas, input, audio, beatClock, bossData, patternLibrary, stage, musicBuffer, musicBuffers, onVictory, onDefeat, onRestart, onQuit }) {
+  constructor({ canvas, input, audio, beatClock, bossData, patternLibrary, stage, musicBuffer, musicBuffers, isAdmin, onVictory, onDefeat, onRestart, onQuit }) {
     this.canvas = canvas;
     this.input = input;
     this.audio = audio;
     this.beatClock = beatClock;
     this.stage = stage;
+    this.isAdmin = !!isAdmin;
     this.onVictory = onVictory;
     this.onDefeat = onDefeat;
     this.onRestart = onRestart;
@@ -67,6 +68,9 @@ class FightScene {
     this._unsubPress = this.input.onPress((key) => {
       if (this._paused) return;
       if (key === "space" || key === "z") this.fight.handleAttackPress();
+      // Admin debug: K instantly drops the current phase's HP to 0 so phase
+      // transitions and the final fall animation can be tested without playing through.
+      if (this.isAdmin && key === "k") this.fight.debugKillPhase();
     });
     this.canvas.addEventListener("click", this._onCanvasClick);
     this.canvas.addEventListener("mousemove", this._onCanvasMove);
@@ -376,6 +380,7 @@ class Game {
       stage,
       musicBuffer,
       musicBuffers,
+      isAdmin: this.isAdmin,
       onVictory: (summary) => this._onVictory(summary),
       onDefeat: (info) => this._onDefeat(info, stage, bossData),
       onRestart: () => this._startFight(stage),

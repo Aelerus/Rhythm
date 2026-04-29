@@ -328,6 +328,17 @@ export class FightManager {
     this.counter.registerPress(baseDamage, this.player);
   }
 
+  // Debug: instantly drop the current phase's HP to 0. Triggers the normal
+  // phase-transition flow (or victory/fall on the final phase). Admin-only —
+  // FightScene gates this on the admin flag.
+  debugKillPhase() {
+    if (this._phaseTransitioning) return;
+    if (this.outcome) return;
+    if (this.boss.dying) return;
+    this.boss.hp = 0;
+    this.boss.flashTimer = 0.4;
+  }
+
   // --- Per-frame update ---------------------------------------------------
 
   update(dt, input) {
