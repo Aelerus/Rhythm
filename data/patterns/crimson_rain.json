@@ -1,8 +1,8 @@
 {
   "id": "crimson_rain",
   "type": "rain",
-  "count": 18,
-  "speed": 320,
+  "count": 12,
+  "speed": 275,
   "radius": 7,
   "color": "#ff4d6d"
 }

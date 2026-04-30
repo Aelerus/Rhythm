@@ -1,6 +1,8 @@
 // Reads pattern definitions and spawns bullets.
 // Patterns are pure data: {type, count, speed, ...}. Engine knows how to interpret each type.
 
+import { TetherAttack, GravityWell, RealityTear } from "./AuxAttacks.js";
+
 export class PatternEngine {
   constructor(bulletPool, patternLibrary) {
     this.pool = bulletPool;
@@ -16,11 +18,13 @@ export class PatternEngine {
     while (this._trail.length && t - this._trail[0].t > 4) this._trail.shift();
   }
 
-  fire(patternId, ctx) {
+  fire(patternIdOrData, ctx) {
     // ctx provides: boss {x,y}, target {x,y}, beatIndex
-    const pattern = this.library[patternId];
+    const pattern = typeof patternIdOrData === "string"
+      ? this.library[patternIdOrData]
+      : patternIdOrData;
     if (!pattern) {
-      console.warn(`PatternEngine: unknown pattern '${patternId}'`);
+      console.warn(`PatternEngine: unknown pattern '${patternIdOrData}'`);
       return;
     }
     switch (pattern.type) {
@@ -38,9 +42,150 @@ export class PatternEngine {
       case "echo":         this._echo(pattern, ctx); break;
       case "laser_line":   this._laserLine(pattern, ctx); break;
       case "stutter_aim":  this._stutterAim(pattern, ctx); break;
+      case "split_wave":   this._splitWave(pattern, ctx); break;
+      case "pulse_beam":   this._pulseBeam(pattern, ctx); break;
+      case "tempo_grid":   this._tempoGrid(pattern, ctx); break;
+      case "phase_locked_radial": this._phaseLockedRadial(pattern, ctx); break;
+      case "phase_locked_aimed":  this._phaseLockedAimed(pattern, ctx); break;
+      case "tether":              this._tether(pattern, ctx); break;
+      case "gravity_well":        this._gravityWell(pattern, ctx); break;
+      case "expanding_radial":    this._expandingRadial(pattern, ctx); break;
+      case "reality_tear":        this._realityTear(pattern, ctx); break;
       default:
         console.warn(`PatternEngine: unhandled pattern type '${pattern.type}'`);
     }
+  }
+
+  // ─── Phase 2 + Phase 3 unique mechanics ───────────────────────────────
+
+  // A radial burst whose bullets only damage during a specific floor color.
+  // Phase 1's inversion mechanic becomes a literal weapon.
+  _phaseLockedRadial(p, ctx) {
+    const count = p.count ?? 24;
+    const speed = p.speed ?? 200;
+    const offset = (p.rotateWithBeat ? ctx.beatIndex * (p.rotateStep ?? 0.18) : 0);
+    const lock = p.lockColor ?? "white";
+    for (let i = 0; i < count; i++) {
+      const angle = (i / count) * Math.PI * 2 + offset;
+      this.pool.spawn({
+        x: ctx.boss.x, y: ctx.boss.y,
+        vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed,
+        radius: p.radius ?? 6,
+        color: p.color ?? "#ffffff",
+        phaseLockColor: lock,
+      });
+    }
+  }
+
+  // Aimed shot whose bullets only damage during a specific floor color.
+  _phaseLockedAimed(p, ctx) {
+    const count = p.count ?? 5;
+    const spread = p.spread ?? 0.32;
+    const speed = p.speed ?? 320;
+    const lock = p.lockColor ?? "white";
+    const dx = ctx.target.x - ctx.boss.x;
+    const dy = ctx.target.y - ctx.boss.y;
+    const baseAngle = Math.atan2(dy, dx);
+    for (let i = 0; i < count; i++) {
+      const t = count === 1 ? 0 : i / (count - 1) - 0.5;
+      const angle = baseAngle + t * spread;
+      this.pool.spawn({
+        x: ctx.boss.x, y: ctx.boss.y,
+        vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed,
+        radius: p.radius ?? 7,
+        color: p.color ?? "#ffffff",
+        phaseLockColor: lock,
+      });
+    }
+  }
+
+  // Tether — beam from the boss to the player that bleeds bullets along it.
+  _tether(p, ctx) {
+    if (!ctx.spawnAux || !ctx.bossRef) return;
+    ctx.spawnAux(new TetherAttack({
+      boss: ctx.bossRef,
+      duration: p.duration ?? 1.8,
+      spawnInterval: p.spawnInterval ?? 0.16,
+      bulletSpeed: p.bulletSpeed ?? 220,
+      color: p.color ?? "#c9001f",
+      radius: p.radius ?? 6,
+    }));
+  }
+
+  // Gravity well — pulls the player toward a fixed arena point.
+  _gravityWell(p, ctx) {
+    if (!ctx.spawnAux) return;
+    const A = ctx.arena;
+    let x, y;
+    if (p.anchor) {
+      const anchors = {
+        center: [0.5, 0.5], top: [0.5, 0.25], bottom: [0.5, 0.75],
+        left: [0.25, 0.5], right: [0.75, 0.5],
+        topLeft: [0.25, 0.25], topRight: [0.75, 0.25],
+        bottomLeft: [0.25, 0.75], bottomRight: [0.75, 0.75],
+      };
+      const a = anchors[p.anchor] ?? [0.5, 0.5];
+      x = A.x + A.w * a[0]; y = A.y + A.h * a[1];
+    } else if (p.atPlayer) {
+      // Spawn the well AT the player's current position — punishes camping.
+      x = ctx.target.x; y = ctx.target.y;
+    } else {
+      x = A.x + A.w * (p.x ?? 0.5);
+      y = A.y + A.h * (p.y ?? 0.5);
+    }
+    ctx.spawnAux(new GravityWell({
+      x, y,
+      duration: p.duration ?? 1.6,
+      strength: p.strength ?? 220,
+      radius: p.radius ?? 240,
+      color: p.color ?? "#cdcdd6",
+    }));
+  }
+
+  // Expanding-radial — radial burst whose bullets grow over their lifetime.
+  _expandingRadial(p, ctx) {
+    const count = p.count ?? 16;
+    const speed = p.speed ?? 130;
+    const grow = p.growRate ?? 8;
+    const offset = (p.rotateWithBeat ? ctx.beatIndex * (p.rotateStep ?? 0.18) : 0);
+    for (let i = 0; i < count; i++) {
+      const angle = (i / count) * Math.PI * 2 + offset;
+      this.pool.spawn({
+        x: ctx.boss.x, y: ctx.boss.y,
+        vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed,
+        radius: p.radius ?? 4,
+        color: p.color ?? "#ffe25d",
+        growRate: grow,
+        maxLife: p.maxLife ?? 4,
+      });
+    }
+  }
+
+  // Reality tear — stationary line that bleeds bullets perpendicularly.
+  _realityTear(p, ctx) {
+    if (!ctx.spawnAux) return;
+    const A = ctx.arena;
+    const orient = p.orient ?? "h"; // 'h' | 'v' | 'd' (diagonal)
+    let x = A.x + A.w * 0.5, y = A.y + A.h * 0.5, angle = 0;
+    if (orient === "h") {
+      angle = 0;
+      y = A.y + A.h * (p.y ?? (0.3 + Math.random() * 0.4));
+    } else if (orient === "v") {
+      angle = Math.PI / 2;
+      x = A.x + A.w * (p.x ?? (0.3 + Math.random() * 0.4));
+    } else {
+      angle = (p.angle ?? Math.PI / 4);
+    }
+    ctx.spawnAux(new RealityTear({
+      x, y, angle,
+      length: p.length ?? Math.min(A.w, A.h) * 0.7,
+      duration: p.duration ?? 1.4,
+      spawnInterval: p.spawnInterval ?? 0.10,
+      bulletSpeed: p.bulletSpeed ?? 280,
+      color: p.color ?? "#c9001f",
+      radius: p.radius ?? 6,
+      beadCount: p.beadCount ?? 9,
+    }));
   }
 
   // ─── APEX-tier unique patterns ─────────────────────────────────────────
@@ -240,6 +385,136 @@ export class PatternEngine {
         radius: p.radius ?? 7, color: p.color ?? "#ffffff",
         stutter: { onTime: p.onTime ?? 0.32, offTime: p.offTime ?? 0.22 },
       });
+    }
+  }
+
+  // Split-wave: parent fan flies forward, then each parent "splits" into a child fan
+  // at splitTime. Child bullets are pre-spawned at their split position with a delay,
+  // and parents are killed at the split moment via maxLife. Visually reads as bullets
+  // bursting apart mid-flight.
+  _splitWave(p, ctx) {
+    const count = p.count ?? 4;
+    const spread = p.spread ?? 0.7;
+    const speed = p.speed ?? 240;
+    const splitTime = p.splitTime ?? 0.55;
+    const childCount = p.childCount ?? 5;
+    const childSpread = p.childSpread ?? 1.4;
+    const childSpeed = p.childSpeed ?? 280;
+    const dx = ctx.target.x - ctx.boss.x;
+    const dy = ctx.target.y - ctx.boss.y;
+    const baseAngle = Math.atan2(dy, dx);
+    for (let i = 0; i < count; i++) {
+      const t = count === 1 ? 0 : i / (count - 1) - 0.5;
+      const angle = baseAngle + t * spread;
+      const cos = Math.cos(angle), sin = Math.sin(angle);
+      this.pool.spawn({
+        x: ctx.boss.x, y: ctx.boss.y,
+        vx: cos * speed, vy: sin * speed,
+        radius: p.radius ?? 7, color: p.color ?? "#c8ff00",
+        maxLife: splitTime,
+      });
+      const splitX = ctx.boss.x + cos * speed * splitTime;
+      const splitY = ctx.boss.y + sin * speed * splitTime;
+      for (let k = 0; k < childCount; k++) {
+        const tk = childCount === 1 ? 0 : k / (childCount - 1) - 0.5;
+        const cAng = angle + tk * childSpread;
+        this.pool.spawn({
+          x: splitX, y: splitY,
+          vx: Math.cos(cAng) * childSpeed,
+          vy: Math.sin(cAng) * childSpeed,
+          radius: p.childRadius ?? 5,
+          color: p.childColor ?? p.color ?? "#c8ff00",
+          delay: splitTime,
+        });
+      }
+    }
+  }
+
+  // Pulse-beam: a wide rectangular band telegraphs across the arena, then becomes
+  // a multi-row sweep of bullets. Forces the player off an entire side of the arena.
+  _pulseBeam(p, ctx) {
+    const arena = ctx.arena;
+    const orient = p.orient ?? "h";
+    const width = p.width ?? 90;
+    const speed = p.speed ?? 380;
+    const telegraph = p.telegraph ?? 0.7;
+    const rows = p.rows ?? 3;
+    const beadsPerRow = p.beadsPerRow ?? 14;
+    const bulletsPerRow = p.bulletsPerRow ?? 5;
+    const radius = p.radius ?? 6;
+    let center;
+    if (orient === "h") {
+      center = arena.y + width / 2 + Math.random() * (arena.h - width);
+    } else {
+      center = arena.x + width / 2 + Math.random() * (arena.w - width);
+    }
+    for (let r = 0; r < rows; r++) {
+      const offset = (r - (rows - 1) / 2) * (width / rows);
+      const linePos = center + offset;
+      for (let i = 0; i < beadsPerRow; i++) {
+        const tt = beadsPerRow === 1 ? 0 : i / (beadsPerRow - 1);
+        const x = orient === "h" ? arena.x + tt * arena.w : linePos;
+        const y = orient === "h" ? linePos : arena.y + tt * arena.h;
+        this.pool.spawn({
+          x, y, vx: 0, vy: 0, radius: 4,
+          color: p.markerColor ?? "#c8ff00",
+          delay: telegraph, maxLife: telegraph + 0.05,
+          tag: "marker",
+        });
+      }
+      const dirX = orient === "h" ? 1 : 0;
+      const dirY = orient === "v" ? 1 : 0;
+      const startX = orient === "h" ? arena.x - 20 : linePos;
+      const startY = orient === "v" ? arena.y - 20 : linePos;
+      for (let i = 0; i < bulletsPerRow; i++) {
+        this.pool.spawn({
+          x: startX - i * 22 * dirX,
+          y: startY - i * 22 * dirY,
+          vx: dirX * speed, vy: dirY * speed,
+          radius, color: p.color ?? "#c8ff00",
+          delay: telegraph,
+        });
+      }
+    }
+  }
+
+  // Tempo-grid: arena divided into a grid; checkerboard cells (parity 0 or 1)
+  // light up, telegraph briefly, then erupt with small radial bursts. Pair two
+  // events on consecutive beats with opposite parity to force the player to
+  // step between cells on the beat.
+  _tempoGrid(p, ctx) {
+    const arena = ctx.arena;
+    const cols = p.cols ?? 5;
+    const rows = p.rows ?? 4;
+    const arms = p.arms ?? 4;
+    const speed = p.speed ?? 200;
+    const telegraph = p.telegraph ?? 0.4;
+    const parity = p.parity ?? 0;
+    const cellW = arena.w / cols;
+    const cellH = arena.h / rows;
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        if (((r + c) & 1) !== parity) continue;
+        const cx = arena.x + (c + 0.5) * cellW;
+        const cy = arena.y + (r + 0.5) * cellH;
+        this.pool.spawn({
+          x: cx, y: cy, vx: 0, vy: 0,
+          radius: p.markerRadius ?? 10,
+          color: p.markerColor ?? "#c8ff00",
+          delay: telegraph, maxLife: telegraph + 0.05,
+          tag: "marker",
+        });
+        for (let a = 0; a < arms; a++) {
+          const angle = (a / arms) * Math.PI * 2 + 0.2 * (r + c);
+          this.pool.spawn({
+            x: cx, y: cy,
+            vx: Math.cos(angle) * speed,
+            vy: Math.sin(angle) * speed,
+            radius: p.radius ?? 6, color: p.color ?? "#c8ff00",
+            delay: telegraph,
+          });
+        }
+      }
     }
   }
 

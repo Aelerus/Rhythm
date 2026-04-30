@@ -1,75 +1,210 @@
 // Orchestrates a single boss fight: drives the timeline, ticks beats,
 // schedules audio, and switches between dodge/counter phases.
+//
+// Multi-phase support:
+//   bossData.phases = [{ music, bpm, hp, bulletDamage, useInversion, ...,
+//                        timeline: [...] }, ...]
+// Each phase has its own song + timeline. When the current phase's HP hits 0,
+// the FightManager fades out the music, briefly stuns the boss, then starts
+// the next phase: new music, beat clock reset to 0, new timeline. Combo
+// resets between phases. The final phase optionally plays a fall-off-screen
+// death animation before declaring victory.
+//
+// Backward compatible: bosses without a `phases` array are wrapped as a
+// single-phase fight using the legacy top-level fields.
 
 import { Player } from "./Player.js";
 import { BossController } from "./BossController.js";
 import { BulletPool } from "./BulletPool.js";
 import { PatternEngine } from "./PatternEngine.js";
 import { CounterWindow } from "./CounterWindow.js";
+import { TetherAttack, GravityWell, RealityTear } from "./AuxAttacks.js";
 
 export const PHASE_DODGE = "dodge";
 export const PHASE_COUNTER = "counter";
 
 export class FightManager {
-  constructor({ bossData, patternLibrary, beatClock, audio, arena, musicBuffer = null }) {
+  // `musicBuffers` is now a map from phase index -> AudioBuffer (or a single
+  // buffer for legacy single-phase). For convenience we also accept the
+  // legacy `musicBuffer` arg.
+  constructor({ bossData, patternLibrary, beatClock, audio, arena, musicBuffer = null, musicBuffers = null }) {
     this.bossData = bossData;
     this.beatClock = beatClock;
     this.audio = audio;
     this.arena = arena;
-    this.musicBuffer = musicBuffer;
-    this._musicPlaying = false;
+
+    // Build phases array. If the boss has no `phases` field, wrap the legacy
+    // top-level fields as a single phase.
+    if (Array.isArray(bossData.phases) && bossData.phases.length > 0) {
+      this._phases = bossData.phases;
+    } else {
+      this._phases = [{
+        displayPhase: bossData.displayPhase,
+        music: bossData.music,
+        bpm: bossData.bpm ?? 120,
+        musicVolume: bossData.musicVolume,
+        musicOffset: bossData.musicOffset,
+        useInversion: bossData.useInversion,
+        startFloor: bossData.startFloor,
+        redCracks: false,
+        fullRedFloor: false,
+        bossColorMode: bossData.useInversion ? "inversion" : "color",
+        fallOnDeath: false,
+        hp: bossData.maxHP ?? 1000,
+        bulletDamage: bossData.bulletDamage ?? 8,
+        timeline: bossData.timeline ?? [],
+      }];
+    }
+
+    // Music buffers: prefer the explicit map, fall back to legacy single buffer for phase 0.
+    this._musicBuffers = musicBuffers ?? (musicBuffer ? { 0: musicBuffer } : {});
 
     this.player = new Player(arena);
     this.boss = new BossController(bossData, arena);
-    this.pool = new BulletPool(1200);
+    this.pool = new BulletPool(1500);
     this.patternEngine = new PatternEngine(this.pool, patternLibrary);
     this.counter = new CounterWindow(beatClock);
 
     this.phase = PHASE_DODGE;
-    this.timeline = [...(bossData.timeline ?? [])].sort((a, b) => a.beat - b.beat);
     this.fired = new Set();
     this.lastScheduledBeat = -1;
+    this.timeline = [];
 
-    this.outcome = null; // "victory" | "defeat"
-    this.defeatReason = null; // "death" | "time_up"
-    this.recentHit = null; // last grade flash for HUD
-    this.feedback = null;  // ephemeral text bubble
+    // Aux attacks: persistent stateful attacks (tethers, gravity wells, tears).
+    // PatternEngine queues them via FightManager.spawnAux(); we update + render.
+    this.aux = [];
+
+    this.outcome = null;
+    this.defeatReason = null;
+    this.recentHit = null;
+    this.feedback = null;
     this.feedbackTimer = 0;
-    this._songEndTime = null; // AudioContext time when the song finishes; null = no time limit
+    this._songEndTime = null;
     this._songStartTime = null;
     this._songDuration = 0;
+    this._musicPlaying = false;
 
-    // APEX-tier mechanic: black/white floor inversion. When inverted, the arena
-    // floor flips and all bullets/player render in inverse colors. This is purely
-    // a visual mechanic — gameplay is unchanged but the chaos of the flip is the difficulty.
-    this.floorState = bossData.startFloor ?? "white"; // "white" | "black"
-    this.floorFlashTimer = 0; // visual-only flash on inversion
-    this.useInversion = !!bossData.useInversion;
+    // Multi-phase + visual state
+    this._currentPhaseIndex = 0;
+    this._phaseTransitioning = false;
+    this._phaseTransitionTimer = 0;
+    this.floorState = "white";
+    this.floorFlashTimer = 0;
+    this.useInversion = false;
+    this.redCracks = false;
+    this.fullRedFloor = false;
+    this.bossColorMode = "color";
+    this.fallOnDeath = false;
 
-    this.beatClock.setBPM(bossData.bpm ?? 120);
-
+    // Boss callbacks
     this.boss.onPhaseChange = (n) => this._onPhaseChange(n);
     this.counter.onHit = (grade, dmg) => this._applyDamage(grade, dmg);
     this.counter.onClose = () => { this.phase = PHASE_DODGE; };
 
     this._beatUnsub = this.beatClock.on((b) => this._onBeat(b));
+
+    // Apply phase 0 config (music starts in start())
+    this._applyPhaseConfig(0);
   }
 
-  start() {
-    if (this.musicBuffer) {
-      // Schedule music + beat clock together at a small lead so AudioContext can deliver the buffer.
+  // --- Multi-phase machinery ---------------------------------------------
+
+  // Apply data-only config for phase `idx` (timeline, BPM, HP, visual flags).
+  // Music is started separately in _startPhaseMusic.
+  _applyPhaseConfig(idx) {
+    const phase = this._phases[idx];
+    this._currentPhaseIndex = idx;
+    this.currentPhase = phase;
+
+    this.boss.setPhaseHP(phase.hp ?? 1000);
+    this.timeline = [...(phase.timeline ?? [])].sort((a, b) => a.beat - b.beat);
+    this.fired = new Set();
+    this.lastScheduledBeat = -1;
+    this.beatClock.setBPM(phase.bpm ?? 120);
+
+    // Visual config
+    this.useInversion = !!phase.useInversion;
+    this.floorState = phase.startFloor ?? this.floorState ?? "white";
+    this.redCracks = !!phase.redCracks;
+    this.fullRedFloor = !!phase.fullRedFloor;
+    this.bossColorMode = phase.bossColorMode ?? "color";
+    this.fallOnDeath = !!phase.fallOnDeath;
+    this.floorFlashTimer = 0;
+    this.bulletDamage = phase.bulletDamage ?? 8;
+
+    // Reset combo each phase (so per-phase HP math is independent).
+    this.counter.combo = 0;
+    this.counter.zone = null;
+    this.counter.active = false;
+    this.phase = PHASE_DODGE;
+  }
+
+  _startPhaseMusic(idx) {
+    const phase = this._phases[idx];
+    const buffer = this._musicBuffers[idx];
+    if (buffer) {
       const startAt = this.beatClock.ctx.currentTime + 0.12;
       this.beatClock.start(startAt);
-      const offset = (this.bossData.musicOffset ?? 0);
-      const volume = (this.bossData.musicVolume ?? 0.85);
-      this.audio.playBuffer(this.musicBuffer, startAt, { offset, volume });
+      const offset = phase.musicOffset ?? 0;
+      const volume = phase.musicVolume ?? 0.85;
+      this.audio.playBuffer(buffer, startAt, { offset, volume });
       this._musicPlaying = true;
       this._songStartTime = startAt;
-      this._songDuration = Math.max(0, this.musicBuffer.duration - offset);
+      this._songDuration = Math.max(0, buffer.duration - offset);
       this._songEndTime = startAt + this._songDuration;
     } else {
       this.beatClock.start();
+      this._songEndTime = null;
+      this._songStartTime = null;
+      this._songDuration = 0;
+      this._musicPlaying = false;
+    }
+  }
+
+  _beginPhaseTransition() {
+    this._phaseTransitioning = true;
+    this._phaseTransitionTimer = 1.4;
+    // Visual: clear bullets, brief boss flash, fade music
+    this.pool.clear();
+    this.aux.length = 0;
+    this.boss.flashTimer = 1.4;
+    if (this._musicPlaying) {
+      this.audio.fadeOutMusic(0.6);
+      this._musicPlaying = false;
+    }
+    this.counter.combo = 0;
+    this.counter.maxCombo = Math.max(this.counter.maxCombo, this.counter.combo);
+    this.counter.active = false;
+    this.counter.zone = null;
+    this.phase = PHASE_DODGE;
+    this._showFeedback(`PHASE ${this._currentPhaseIndex + 2}`, "#ff3a3a", 1.6);
+  }
+
+  _updatePhaseTransition(dt) {
+    this._phaseTransitionTimer -= dt;
+    if (this._phaseTransitionTimer <= 0) {
+      this._phaseTransitioning = false;
+      const next = this._currentPhaseIndex + 1;
+      this._applyPhaseConfig(next);
+      this._startPhaseMusic(next);
+    }
+  }
+
+  // --- Lifecycle ----------------------------------------------------------
+
+  start() {
+    this._startPhaseMusic(0);
+    if (!this._musicPlaying) {
+      // No music for phase 0 — fall back to synth percussion (legacy bosses).
       this._scheduleAudioAhead();
+    }
+  }
+
+  destroy() {
+    if (this._beatUnsub) this._beatUnsub();
+    if (this._musicPlaying) {
+      this.audio.fadeOutMusic(0.5);
+      this._musicPlaying = false;
     }
   }
 
@@ -84,17 +219,17 @@ export class FightManager {
     return Math.max(0, Math.min(1, elapsed / this._songDuration));
   }
 
-  destroy() {
-    if (this._beatUnsub) this._beatUnsub();
-    if (this._musicPlaying) {
-      this.audio.fadeOutMusic(0.5);
-      this._musicPlaying = false;
-    }
+  // True when this is the last phase in the fight.
+  get isFinalPhase() {
+    return this._currentPhaseIndex >= this._phases.length - 1;
   }
+  get currentPhaseIndex() { return this._currentPhaseIndex; }
 
-  // Schedule synth percussion for the next ~2 seconds (only when there's no song).
+  // --- Audio scheduling (synth fallback) ----------------------------------
+
   _scheduleAudioAhead() {
     if (this._musicPlaying) return;
+    if (this._phaseTransitioning) return;
     const lookahead = 2.0;
     const now = this.beatClock.ctx.currentTime;
     let beat = Math.max(0, this.lastScheduledBeat + 1);
@@ -110,8 +245,10 @@ export class FightManager {
     }
   }
 
+  // --- Beat / event handling ----------------------------------------------
+
   _onBeat(beat) {
-    // Walk the timeline up to this beat, firing entries we haven't fired yet.
+    if (this._phaseTransitioning) return;
     for (const evt of this.timeline) {
       if (evt.beat > beat) break;
       if (this.fired.has(evt)) continue;
@@ -122,35 +259,32 @@ export class FightManager {
 
   _handleEvent(evt) {
     if (evt.type === "pattern") {
-      if (this.phase === PHASE_COUNTER) return; // bullets pause during counter
-      this.patternEngine.fire(evt.id, {
+      if (this.phase === PHASE_COUNTER) return;
+      this.patternEngine.fire(evt.patternData ?? evt.id, {
         boss: { x: this.boss.x, y: this.boss.displayY },
+        bossRef: this.boss, // live reference for tethers
         target: { x: this.player.x, y: this.player.y },
         arena: this.arena,
         beatIndex: evt.beat,
+        spawnAux: (a) => this.aux.push(a),
       });
     } else if (evt.type === "counterattack_window") {
       this.phase = PHASE_COUNTER;
       this.pool.clear();
-      // Prompts begin `lead_beats` after the window opens so the player can travel
-      // to the parry zone and see the prompts approach.
       const leadBeats = evt.lead_beats ?? 2;
       const zone = this._resolveZone(evt.zone);
       this.counter.open(evt.beat + leadBeats, evt.duration_beats ?? 8, zone);
     } else if (evt.type === "floor_invert") {
       this.floorState = evt.to ?? (this.floorState === "white" ? "black" : "white");
       this.floorFlashTimer = 0.45;
-    } else if (evt.type === "phase_marker") {
-      // pure annotation — no-op
     }
   }
 
-  _onPhaseChange(n) {
-    this._showFeedback(`PHASE ${n}`, "#ffd25d", 1.6);
+  _onPhaseChange(_n) {
+    // No-op: phase changes are now driven by HP-based phase transitions, not
+    // boss.phaseThresholds. The HUD shows displayPhase from the current phase.
   }
 
-  // Translate a timeline zone descriptor into arena pixel coordinates.
-  // Supports either a named anchor or {x, y} fractions (0..1) of the arena.
   _resolveZone(zone) {
     if (!zone) return null;
     const A = this.arena;
@@ -189,31 +323,60 @@ export class FightManager {
 
   handleAttackPress() {
     if (this.phase !== PHASE_COUNTER) return;
+    if (this._phaseTransitioning) return;
     const baseDamage = this.bossData.counterBaseDamage ?? 40;
     this.counter.registerPress(baseDamage, this.player);
   }
 
+  // Debug: instantly drop the current phase's HP to 0. Triggers the normal
+  // phase-transition flow (or victory/fall on the final phase). Admin-only —
+  // FightScene gates this on the admin flag.
+  debugKillPhase() {
+    if (this._phaseTransitioning) return;
+    if (this.outcome) return;
+    if (this.boss.dying) return;
+    this.boss.hp = 0;
+    this.boss.flashTimer = 0.4;
+  }
+
+  // --- Per-frame update ---------------------------------------------------
+
   update(dt, input) {
     if (this.outcome) return;
 
-    // Always allow audio scheduling to keep advancing
+    if (this._phaseTransitioning) {
+      this._updatePhaseTransition(dt);
+      // Still let player + boss visuals tick during the transition for smoothness.
+      this.player.update(dt, input);
+      this.boss.update(dt, this.beatClock.beatPosition);
+      this.counter.update(dt);
+      if (this.feedbackTimer > 0) this.feedbackTimer -= dt;
+      if (this.floorFlashTimer > 0) this.floorFlashTimer -= dt;
+      return;
+    }
+
     this._scheduleAudioAhead();
 
     this.player.update(dt, input);
     this.boss.update(dt, this.beatClock.beatPosition);
     this.pool.update(dt, this.arena, { x: this.player.x, y: this.player.y });
     this.counter.update(dt);
-    // Record player trail for mirror_path / echo patterns.
     this.patternEngine.recordPlayerTrail(this.player, this.beatClock.songTime);
+
+    // Tick aux attacks (tethers/wells/tears) and prune dead ones.
+    if (this.phase === PHASE_DODGE) {
+      for (const a of this.aux) a.update(dt, this.player, this.pool);
+      if (this.aux.length) this.aux = this.aux.filter((a) => !a.dead);
+    }
 
     if (this.feedbackTimer > 0) this.feedbackTimer -= dt;
     if (this.floorFlashTimer > 0) this.floorFlashTimer -= dt;
 
-    // Bullet collisions only during dodge phase
     if (this.phase === PHASE_DODGE) {
-      const hit = this.pool.collideWith(this.player);
+      const floorForCollide = this.useInversion ? this.floorState : null;
+      const hit = this.pool.collideWith(this.player, floorForCollide);
       if (hit) {
-        const dmg = this.bossData.bulletDamage ?? 8;
+        const dmg = this.bulletDamage ?? this.bossData.bulletDamage ?? 8;
         if (this.player.takeDamage(dmg)) {
           hit.active = false;
           const idx = this.pool.active.indexOf(hit);
@@ -222,15 +385,38 @@ export class FightManager {
       }
     }
 
+    // Outcome resolution
     if (!this.player.alive) {
       this.outcome = "defeat";
       this.defeatReason = "death";
-    } else if (this.boss.defeated) {
-      this.outcome = "victory";
-    } else if (this._songEndTime && this.beatClock.ctx.currentTime >= this._songEndTime) {
-      // Song ran out and the boss is still standing — DPS check failed.
-      this.outcome = "defeat";
-      this.defeatReason = "time_up";
+      return;
+    }
+
+    if (this.boss.defeated) {
+      if (!this.isFinalPhase) {
+        this._beginPhaseTransition();
+        return;
+      }
+      // Final phase: optional fall-on-death animation, then victory.
+      if (this.fallOnDeath) {
+        if (!this.boss.dying) this.boss.beginFall();
+        if (this.boss.deathDone) this.outcome = "victory";
+      } else {
+        this.outcome = "victory";
+      }
+      return;
+    }
+
+    if (this._songEndTime && this.beatClock.ctx.currentTime >= this._songEndTime) {
+      // Per-phase time-up: if more phases remain, advance instead of defeat
+      // (the song just timed out — let the boss carry into the next phase).
+      // But if we're on the LAST phase, that's a real loss.
+      if (this.isFinalPhase) {
+        this.outcome = "defeat";
+        this.defeatReason = "time_up";
+      } else {
+        this._beginPhaseTransition();
+      }
     }
   }
 }

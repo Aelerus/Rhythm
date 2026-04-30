@@ -45,9 +45,12 @@ export class HUD {
     ctx.fillStyle = "#ffffff";
     ctx.font = "bold 16px 'Segoe UI', sans-serif";
     ctx.textAlign = "center";
-    // Bosses can lock the displayed phase string (e.g. APEX always shows Phase 1
-    // until a future song-driven Phase 2 is added).
-    const phaseLabel = fight.bossData.displayPhase ?? `Phase ${boss.phase}`;
+    // Multi-phase fights expose the current phase's displayPhase via fight.currentPhase.
+    // Single-phase bosses can also lock the display via bossData.displayPhase.
+    const phaseLabel =
+      fight.currentPhase?.displayPhase ??
+      fight.bossData.displayPhase ??
+      `Phase ${boss.phase}`;
     ctx.fillText(`${fight.bossData.name}  —  ${phaseLabel}`, width / 2, y - 6);
   }
 

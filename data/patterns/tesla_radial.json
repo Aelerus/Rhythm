@@ -1,0 +1,10 @@
+{
+  "id": "tesla_radial",
+  "type": "radial_burst",
+  "count": 28,
+  "speed": 230,
+  "radius": 6,
+  "color": "#c8ff00",
+  "rotateWithBeat": true,
+  "rotateStep": 0.32
+}

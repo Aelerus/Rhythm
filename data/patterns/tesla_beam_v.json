@@ -1,0 +1,14 @@
+{
+  "id": "tesla_beam_v",
+  "type": "pulse_beam",
+  "orient": "v",
+  "width": 90,
+  "speed": 380,
+  "telegraph": 0.75,
+  "rows": 3,
+  "beadsPerRow": 12,
+  "bulletsPerRow": 5,
+  "radius": 6,
+  "color": "#c8ff00",
+  "markerColor": "#9eff00"
+}

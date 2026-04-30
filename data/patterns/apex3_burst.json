@@ -1,0 +1,11 @@
+{
+  "id": "apex3_burst",
+  "type": "arena_burst",
+  "sites": 8,
+  "arms": 10,
+  "speed": 290,
+  "telegraph": 0.32,
+  "radius": 6,
+  "markerRadius": 12,
+  "color": "#ffe25d"
+}

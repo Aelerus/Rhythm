@@ -1,0 +1,9 @@
+{
+  "id": "apex3_well_strong",
+  "type": "gravity_well",
+  "atPlayer": true,
+  "duration": 1.4,
+  "strength": 300,
+  "radius": 260,
+  "color": "#9090a0"
+}

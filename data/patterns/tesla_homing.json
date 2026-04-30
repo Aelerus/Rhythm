@@ -1,0 +1,9 @@
+{
+  "id": "tesla_homing",
+  "type": "homing",
+  "count": 4,
+  "speed": 160,
+  "turnRate": 1.6,
+  "radius": 6,
+  "color": "#c8ff00"
+}

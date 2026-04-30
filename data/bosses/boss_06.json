@@ -2,798 +2,2803 @@
     "id":  "boss_06",
     "name":  "APEX",
     "color":  "#ffffff",
-    "bpm":  180,
-    "maxHP":  4427,
-    "bulletDamage":  13,
     "counterBaseDamage":  38,
-    "music":  "Music/APEX.wav",
-    "musicVolume":  0.85,
-    "musicOffset":  0,
     "phaseThresholds":  [
                             0.75,
                             0.5,
                             0.25
                         ],
-    "displayPhase":  "Phase 1",
-    "useInversion":  true,
-    "startFloor":  "white",
-    "patterns":  [
-                     "apex_aimed",
-                     "apex_radial",
-                     "apex_spiral",
-                     "apex_mirror",
-                     "apex_mirror_dense",
-                     "apex_burst",
-                     "apex_burst_chaos",
-                     "apex_vortex",
-                     "apex_vortex_double",
-                     "apex_echo",
-                     "apex_echo_wide",
-                     "apex_laser_h",
-                     "apex_laser_v",
-                     "apex_laser_cross",
-                     "apex_stutter"
-                 ],
-    "timeline":  [
-                     {
-                         "beat":  16,
-                         "type":  "pattern",
-                         "id":  "apex_aimed"
-                     },
-                     {
-                         "beat":  32,
-                         "type":  "pattern",
-                         "id":  "apex_mirror"
-                     },
-                     {
-                         "beat":  48,
-                         "type":  "pattern",
-                         "id":  "apex_aimed"
-                     },
-                     {
-                         "beat":  64,
-                         "type":  "pattern",
-                         "id":  "apex_burst"
-                     },
-                     {
-                         "beat":  80,
-                         "type":  "pattern",
-                         "id":  "apex_mirror"
-                     },
-                     {
-                         "beat":  90,
-                         "type":  "floor_invert",
-                         "to":  "black"
-                     },
-                     {
-                         "beat":  96,
-                         "type":  "pattern",
-                         "id":  "apex_aimed"
-                     },
-                     {
-                         "beat":  100,
-                         "type":  "pattern",
-                         "id":  "apex_mirror"
-                     },
-                     {
-                         "beat":  104,
-                         "type":  "pattern",
-                         "id":  "apex_aimed"
-                     },
-                     {
-                         "beat":  108,
-                         "type":  "pattern",
-                         "id":  "apex_burst"
-                     },
-                     {
-                         "beat":  112,
-                         "type":  "pattern",
-                         "id":  "apex_aimed"
-                     },
-                     {
-                         "beat":  116,
-                         "type":  "pattern",
-                         "id":  "apex_mirror"
-                     },
-                     {
-                         "beat":  120,
-                         "type":  "pattern",
-                         "id":  "apex_aimed"
-                     },
-                     {
-                         "beat":  124,
-                         "type":  "pattern",
-                         "id":  "apex_radial"
-                     },
-                     {
-                         "beat":  128,
-                         "type":  "pattern",
-                         "id":  "apex_burst"
-                     },
-                     {
-                         "beat":  132,
-                         "type":  "pattern",
-                         "id":  "apex_aimed"
-                     },
-                     {
-                         "beat":  136,
-                         "type":  "pattern",
-                         "id":  "apex_mirror_dense"
-                     },
-                     {
-                         "beat":  140,
-                         "type":  "pattern",
-                         "id":  "apex_aimed"
-                     },
-                     {
-                         "beat":  144,
-                         "type":  "counterattack_window",
-                         "duration_beats":  8,
-                         "lead_beats":  6,
-                         "zone":  {
-                                      "anchor":  "center",
-                                      "radius":  75
-                                  }
-                     },
-                     {
-                         "beat":  160,
-                         "type":  "pattern",
-                         "id":  "apex_aimed"
-                     },
-                     {
-                         "beat":  164,
-                         "type":  "pattern",
-                         "id":  "apex_burst"
-                     },
-                     {
-                         "beat":  168,
-                         "type":  "pattern",
-                         "id":  "apex_aimed"
-                     },
-                     {
-                         "beat":  172,
-                         "type":  "pattern",
-                         "id":  "apex_mirror"
-                     },
-                     {
-                         "beat":  176,
-                         "type":  "pattern",
-                         "id":  "apex_burst"
-                     },
-                     {
-                         "beat":  180,
-                         "type":  "floor_invert",
-                         "to":  "white"
-                     },
-                     {
-                         "beat":  184,
-                         "type":  "pattern",
-                         "id":  "apex_radial"
-                     },
-                     {
-                         "beat":  188,
-                         "type":  "pattern",
-                         "id":  "apex_aimed"
-                     },
-                     {
-                         "beat":  192,
-                         "type":  "pattern",
-                         "id":  "apex_burst"
-                     },
-                     {
-                         "beat":  196,
-                         "type":  "pattern",
-                         "id":  "apex_mirror_dense"
-                     },
-                     {
-                         "beat":  200,
-                         "type":  "pattern",
-                         "id":  "apex_aimed"
-                     },
-                     {
-                         "beat":  204,
-                         "type":  "pattern",
-                         "id":  "apex_radial"
-                     },
-                     {
-                         "beat":  208,
-                         "type":  "pattern",
-                         "id":  "apex_echo"
-                     },
-                     {
-                         "beat":  212,
-                         "type":  "pattern",
-                         "id":  "apex_aimed"
-                     },
-                     {
-                         "beat":  216,
-                         "type":  "pattern",
-                         "id":  "apex_burst"
-                     },
-                     {
-                         "beat":  220,
-                         "type":  "pattern",
-                         "id":  "apex_radial"
-                     },
-                     {
-                         "beat":  224,
-                         "type":  "pattern",
-                         "id":  "apex_mirror_dense"
-                     },
-                     {
-                         "beat":  228,
-                         "type":  "pattern",
-                         "id":  "apex_aimed"
-                     },
-                     {
-                         "beat":  232,
-                         "type":  "pattern",
-                         "id":  "apex_echo"
-                     },
-                     {
-                         "beat":  236,
-                         "type":  "pattern",
-                         "id":  "apex_burst"
-                     },
-                     {
-                         "beat":  240,
-                         "type":  "pattern",
-                         "id":  "apex_radial"
-                     },
-                     {
-                         "beat":  244,
-                         "type":  "pattern",
-                         "id":  "apex_aimed"
-                     },
-                     {
-                         "beat":  248,
-                         "type":  "pattern",
-                         "id":  "apex_mirror_dense"
-                     },
-                     {
-                         "beat":  252,
-                         "type":  "pattern",
-                         "id":  "apex_burst"
-                     },
-                     {
-                         "beat":  256,
-                         "type":  "pattern",
-                         "id":  "apex_aimed"
-                     },
-                     {
-                         "beat":  260,
-                         "type":  "pattern",
-                         "id":  "apex_echo"
-                     },
-                     {
-                         "beat":  264,
-                         "type":  "pattern",
-                         "id":  "apex_radial"
-                     },
-                     {
-                         "beat":  268,
-                         "type":  "pattern",
-                         "id":  "apex_aimed"
-                     },
-                     {
-                         "beat":  270,
-                         "type":  "floor_invert",
-                         "to":  "black"
-                     },
-                     {
-                         "beat":  270,
-                         "type":  "pattern",
-                         "id":  "apex_spiral"
-                     },
-                     {
-                         "beat":  274,
-                         "type":  "pattern",
-                         "id":  "apex_burst"
-                     },
-                     {
-                         "beat":  278,
-                         "type":  "pattern",
-                         "id":  "apex_mirror_dense"
-                     },
-                     {
-                         "beat":  282,
-                         "type":  "pattern",
-                         "id":  "apex_aimed"
-                     },
-                     {
-                         "beat":  284,
-                         "type":  "pattern",
-                         "id":  "apex_echo"
-                     },
-                     {
-                         "beat":  288,
-                         "type":  "counterattack_window",
-                         "duration_beats":  8,
-                         "lead_beats":  5,
-                         "zone":  {
-                                      "anchor":  "topRight",
-                                      "radius":  70
-                                  }
-                     },
-                     {
-                         "beat":  304,
-                         "type":  "pattern",
-                         "id":  "apex_laser_h"
-                     },
-                     {
-                         "beat":  308,
-                         "type":  "pattern",
-                         "id":  "apex_aimed"
-                     },
-                     {
-                         "beat":  312,
-                         "type":  "pattern",
-                         "id":  "apex_radial"
-                     },
-                     {
-                         "beat":  316,
-                         "type":  "pattern",
-                         "id":  "apex_laser_v"
-                     },
-                     {
-                         "beat":  320,
-                         "type":  "pattern",
-                         "id":  "apex_burst"
-                     },
-                     {
-                         "beat":  324,
-                         "type":  "pattern",
-                         "id":  "apex_aimed"
-                     },
-                     {
-                         "beat":  328,
-                         "type":  "pattern",
-                         "id":  "apex_laser_h"
-                     },
-                     {
-                         "beat":  332,
-                         "type":  "pattern",
-                         "id":  "apex_echo_wide"
-                     },
-                     {
-                         "beat":  336,
-                         "type":  "pattern",
-                         "id":  "apex_radial"
-                     },
-                     {
-                         "beat":  340,
-                         "type":  "pattern",
-                         "id":  "apex_burst_chaos"
-                     },
-                     {
-                         "beat":  344,
-                         "type":  "pattern",
-                         "id":  "apex_laser_v"
-                     },
-                     {
-                         "beat":  348,
-                         "type":  "pattern",
-                         "id":  "apex_aimed"
-                     },
-                     {
-                         "beat":  350,
-                         "type":  "pattern",
-                         "id":  "apex_spiral"
-                     },
-                     {
-                         "beat":  352,
-                         "type":  "pattern",
-                         "id":  "apex_radial"
-                     },
-                     {
-                         "beat":  356,
-                         "type":  "pattern",
-                         "id":  "apex_laser_h"
-                     },
-                     {
-                         "beat":  358,
-                         "type":  "pattern",
-                         "id":  "apex_aimed"
-                     },
-                     {
-                         "beat":  360,
-                         "type":  "counterattack_window",
-                         "duration_beats":  10,
-                         "lead_beats":  5,
-                         "zone":  {
-                                      "anchor":  "center",
-                                      "radius":  70
-                                  }
-                     },
-                     {
-                         "beat":  360,
-                         "type":  "floor_invert",
-                         "to":  "white"
-                     },
-                     {
-                         "beat":  384,
-                         "type":  "floor_invert",
-                         "to":  "black"
-                     },
-                     {
-                         "beat":  388,
-                         "type":  "pattern",
-                         "id":  "apex_stutter"
-                     },
-                     {
-                         "beat":  394,
-                         "type":  "pattern",
-                         "id":  "apex_echo"
-                     },
-                     {
-                         "beat":  400,
-                         "type":  "pattern",
-                         "id":  "apex_stutter"
-                     },
-                     {
-                         "beat":  406,
-                         "type":  "pattern",
-                         "id":  "apex_echo_wide"
-                     },
-                     {
-                         "beat":  412,
-                         "type":  "pattern",
-                         "id":  "apex_stutter"
-                     },
-                     {
-                         "beat":  418,
-                         "type":  "pattern",
-                         "id":  "apex_mirror_dense"
-                     },
-                     {
-                         "beat":  424,
-                         "type":  "pattern",
-                         "id":  "apex_aimed"
-                     },
-                     {
-                         "beat":  432,
-                         "type":  "counterattack_window",
-                         "duration_beats":  10,
-                         "lead_beats":  5,
-                         "zone":  {
-                                      "anchor":  "bottomLeft",
-                                      "radius":  65
-                                  }
-                     },
-                     {
-                         "beat":  432,
-                         "type":  "floor_invert",
-                         "to":  "white"
-                     },
-                     {
-                         "beat":  448,
-                         "type":  "pattern",
-                         "id":  "apex_burst"
-                     },
-                     {
-                         "beat":  448,
-                         "type":  "pattern",
-                         "id":  "apex_radial"
-                     },
-                     {
-                         "beat":  452,
-                         "type":  "pattern",
-                         "id":  "apex_laser_h"
-                     },
-                     {
-                         "beat":  456,
-                         "type":  "pattern",
-                         "id":  "apex_aimed"
-                     },
-                     {
-                         "beat":  460,
-                         "type":  "pattern",
-                         "id":  "apex_vortex"
-                     },
-                     {
-                         "beat":  464,
-                         "type":  "pattern",
-                         "id":  "apex_burst"
-                     },
-                     {
-                         "beat":  468,
-                         "type":  "pattern",
-                         "id":  "apex_radial"
-                     },
-                     {
-                         "beat":  472,
-                         "type":  "pattern",
-                         "id":  "apex_aimed"
-                     },
-                     {
-                         "beat":  476,
-                         "type":  "pattern",
-                         "id":  "apex_laser_v"
-                     },
-                     {
-                         "beat":  480,
-                         "type":  "pattern",
-                         "id":  "apex_mirror_dense"
-                     },
-                     {
-                         "beat":  484,
-                         "type":  "pattern",
-                         "id":  "apex_radial"
-                     },
-                     {
-                         "beat":  488,
-                         "type":  "pattern",
-                         "id":  "apex_burst_chaos"
-                     },
-                     {
-                         "beat":  492,
-                         "type":  "pattern",
-                         "id":  "apex_aimed"
-                     },
-                     {
-                         "beat":  496,
-                         "type":  "pattern",
-                         "id":  "apex_vortex"
-                     },
-                     {
-                         "beat":  500,
-                         "type":  "pattern",
-                         "id":  "apex_radial"
-                     },
-                     {
-                         "beat":  504,
-                         "type":  "floor_invert",
-                         "to":  "black"
-                     },
-                     {
-                         "beat":  504,
-                         "type":  "pattern",
-                         "id":  "apex_laser_h"
-                     },
-                     {
-                         "beat":  508,
-                         "type":  "pattern",
-                         "id":  "apex_aimed"
-                     },
-                     {
-                         "beat":  512,
-                         "type":  "pattern",
-                         "id":  "apex_burst"
-                     },
-                     {
-                         "beat":  516,
-                         "type":  "pattern",
-                         "id":  "apex_mirror_dense"
-                     },
-                     {
-                         "beat":  520,
-                         "type":  "pattern",
-                         "id":  "apex_echo"
-                     },
-                     {
-                         "beat":  524,
-                         "type":  "pattern",
-                         "id":  "apex_radial"
-                     },
-                     {
-                         "beat":  528,
-                         "type":  "pattern",
-                         "id":  "apex_aimed"
-                     },
-                     {
-                         "beat":  532,
-                         "type":  "pattern",
-                         "id":  "apex_burst_chaos"
-                     },
-                     {
-                         "beat":  536,
-                         "type":  "pattern",
-                         "id":  "apex_laser_v"
-                     },
-                     {
-                         "beat":  540,
-                         "type":  "counterattack_window",
-                         "duration_beats":  8,
-                         "lead_beats":  5,
-                         "zone":  {
-                                      "anchor":  "right",
-                                      "radius":  65
-                                  }
-                     },
-                     {
-                         "beat":  556,
-                         "type":  "pattern",
-                         "id":  "apex_vortex_double"
-                     },
-                     {
-                         "beat":  560,
-                         "type":  "pattern",
-                         "id":  "apex_laser_cross"
-                     },
-                     {
-                         "beat":  564,
-                         "type":  "pattern",
-                         "id":  "apex_radial"
-                     },
-                     {
-                         "beat":  568,
-                         "type":  "pattern",
-                         "id":  "apex_burst_chaos"
-                     },
-                     {
-                         "beat":  572,
-                         "type":  "pattern",
-                         "id":  "apex_aimed"
-                     },
-                     {
-                         "beat":  576,
-                         "type":  "floor_invert",
-                         "to":  "white"
-                     },
-                     {
-                         "beat":  576,
-                         "type":  "pattern",
-                         "id":  "apex_echo_wide"
-                     },
-                     {
-                         "beat":  580,
-                         "type":  "pattern",
-                         "id":  "apex_vortex"
-                     },
-                     {
-                         "beat":  584,
-                         "type":  "pattern",
-                         "id":  "apex_mirror_dense"
-                     },
-                     {
-                         "beat":  588,
-                         "type":  "pattern",
-                         "id":  "apex_radial"
-                     },
-                     {
-                         "beat":  592,
-                         "type":  "pattern",
-                         "id":  "apex_laser_h"
-                     },
-                     {
-                         "beat":  596,
-                         "type":  "pattern",
-                         "id":  "apex_burst_chaos"
-                     },
-                     {
-                         "beat":  600,
-                         "type":  "pattern",
-                         "id":  "apex_aimed"
-                     },
-                     {
-                         "beat":  604,
-                         "type":  "pattern",
-                         "id":  "apex_vortex"
-                     },
-                     {
-                         "beat":  608,
-                         "type":  "pattern",
-                         "id":  "apex_radial"
-                     },
-                     {
-                         "beat":  612,
-                         "type":  "pattern",
-                         "id":  "apex_burst_chaos"
-                     },
-                     {
-                         "beat":  616,
-                         "type":  "pattern",
-                         "id":  "apex_aimed"
-                     },
-                     {
-                         "beat":  620,
-                         "type":  "pattern",
-                         "id":  "apex_laser_v"
-                     },
-                     {
-                         "beat":  624,
-                         "type":  "counterattack_window",
-                         "duration_beats":  8,
-                         "lead_beats":  5,
-                         "zone":  {
-                                      "anchor":  "topLeft",
-                                      "radius":  60
-                                  }
-                     },
-                     {
-                         "beat":  640,
-                         "type":  "pattern",
-                         "id":  "apex_vortex_double"
-                     },
-                     {
-                         "beat":  644,
-                         "type":  "pattern",
-                         "id":  "apex_laser_cross"
-                     },
-                     {
-                         "beat":  648,
-                         "type":  "pattern",
-                         "id":  "apex_aimed"
-                     },
-                     {
-                         "beat":  648,
-                         "type":  "pattern",
-                         "id":  "apex_radial"
-                     },
-                     {
-                         "beat":  648,
-                         "type":  "floor_invert",
-                         "to":  "black"
-                     },
-                     {
-                         "beat":  652,
-                         "type":  "pattern",
-                         "id":  "apex_burst_chaos"
-                     },
-                     {
-                         "beat":  656,
-                         "type":  "pattern",
-                         "id":  "apex_mirror_dense"
-                     },
-                     {
-                         "beat":  660,
-                         "type":  "pattern",
-                         "id":  "apex_vortex"
-                     },
-                     {
-                         "beat":  664,
-                         "type":  "pattern",
-                         "id":  "apex_radial"
-                     },
-                     {
-                         "beat":  664,
-                         "type":  "pattern",
-                         "id":  "apex_laser_h"
-                     },
-                     {
-                         "beat":  668,
-                         "type":  "pattern",
-                         "id":  "apex_echo_wide"
-                     },
-                     {
-                         "beat":  672,
-                         "type":  "pattern",
-                         "id":  "apex_burst_chaos"
-                     },
-                     {
-                         "beat":  676,
-                         "type":  "pattern",
-                         "id":  "apex_aimed"
-                     },
-                     {
-                         "beat":  676,
-                         "type":  "pattern",
-                         "id":  "apex_radial"
-                     },
-                     {
-                         "beat":  680,
-                         "type":  "pattern",
-                         "id":  "apex_vortex_double"
-                     },
-                     {
-                         "beat":  684,
-                         "type":  "pattern",
-                         "id":  "apex_laser_v"
-                     },
-                     {
-                         "beat":  688,
-                         "type":  "counterattack_window",
-                         "duration_beats":  10,
-                         "lead_beats":  5,
-                         "zone":  {
-                                      "anchor":  "center",
-                                      "radius":  65
-                                  }
-                     },
-                     {
-                         "beat":  696,
-                         "type":  "floor_invert",
-                         "to":  "white"
-                     }
-                 ]
+    "phases":  [
+                   {
+                       "displayPhase":  "Phase 1",
+                       "music":  "Music/APEX.wav",
+                       "bpm":  180,
+                       "musicVolume":  0.85,
+                       "musicOffset":  0,
+                       "useInversion":  true,
+                       "redCracks":  false,
+                       "fullRedFloor":  false,
+                       "bossColorMode":  "inversion",
+                       "fallOnDeath":  false,
+                       "startFloor":  "white",
+                       "hp":  4427,
+                       "bulletDamage":  13,
+                       "timeline":  [
+                                        {
+                                            "beat":  16,
+                                            "type":  "pattern",
+                                            "id":  "apex_aimed"
+                                        },
+                                        {
+                                            "beat":  32,
+                                            "type":  "pattern",
+                                            "id":  "apex_mirror"
+                                        },
+                                        {
+                                            "beat":  48,
+                                            "type":  "pattern",
+                                            "id":  "apex_aimed"
+                                        },
+                                        {
+                                            "beat":  64,
+                                            "type":  "pattern",
+                                            "id":  "apex_burst"
+                                        },
+                                        {
+                                            "beat":  80,
+                                            "type":  "pattern",
+                                            "id":  "apex_mirror"
+                                        },
+                                        {
+                                            "beat":  90,
+                                            "type":  "floor_invert",
+                                            "to":  "black"
+                                        },
+                                        {
+                                            "beat":  96,
+                                            "type":  "pattern",
+                                            "id":  "apex_aimed"
+                                        },
+                                        {
+                                            "beat":  100,
+                                            "type":  "pattern",
+                                            "id":  "apex_mirror"
+                                        },
+                                        {
+                                            "beat":  104,
+                                            "type":  "pattern",
+                                            "id":  "apex_aimed"
+                                        },
+                                        {
+                                            "beat":  108,
+                                            "type":  "pattern",
+                                            "id":  "apex_burst"
+                                        },
+                                        {
+                                            "beat":  112,
+                                            "type":  "pattern",
+                                            "id":  "apex_aimed"
+                                        },
+                                        {
+                                            "beat":  116,
+                                            "type":  "pattern",
+                                            "id":  "apex_mirror"
+                                        },
+                                        {
+                                            "beat":  120,
+                                            "type":  "pattern",
+                                            "id":  "apex_aimed"
+                                        },
+                                        {
+                                            "beat":  124,
+                                            "type":  "pattern",
+                                            "id":  "apex_radial"
+                                        },
+                                        {
+                                            "beat":  128,
+                                            "type":  "pattern",
+                                            "id":  "apex_burst"
+                                        },
+                                        {
+                                            "beat":  132,
+                                            "type":  "pattern",
+                                            "id":  "apex_aimed"
+                                        },
+                                        {
+                                            "beat":  136,
+                                            "type":  "pattern",
+                                            "id":  "apex_mirror_dense"
+                                        },
+                                        {
+                                            "beat":  140,
+                                            "type":  "pattern",
+                                            "id":  "apex_aimed"
+                                        },
+                                        {
+                                            "beat":  144,
+                                            "type":  "counterattack_window",
+                                            "duration_beats":  8,
+                                            "lead_beats":  6,
+                                            "zone":  {
+                                                         "anchor":  "center",
+                                                         "radius":  75
+                                                     }
+                                        },
+                                        {
+                                            "beat":  160,
+                                            "type":  "pattern",
+                                            "id":  "apex_aimed"
+                                        },
+                                        {
+                                            "beat":  164,
+                                            "type":  "pattern",
+                                            "id":  "apex_burst"
+                                        },
+                                        {
+                                            "beat":  168,
+                                            "type":  "pattern",
+                                            "id":  "apex_aimed"
+                                        },
+                                        {
+                                            "beat":  172,
+                                            "type":  "pattern",
+                                            "id":  "apex_mirror"
+                                        },
+                                        {
+                                            "beat":  176,
+                                            "type":  "pattern",
+                                            "id":  "apex_burst"
+                                        },
+                                        {
+                                            "beat":  180,
+                                            "type":  "floor_invert",
+                                            "to":  "white"
+                                        },
+                                        {
+                                            "beat":  184,
+                                            "type":  "pattern",
+                                            "id":  "apex_radial"
+                                        },
+                                        {
+                                            "beat":  188,
+                                            "type":  "pattern",
+                                            "id":  "apex_aimed"
+                                        },
+                                        {
+                                            "beat":  192,
+                                            "type":  "pattern",
+                                            "id":  "apex_burst"
+                                        },
+                                        {
+                                            "beat":  196,
+                                            "type":  "pattern",
+                                            "id":  "apex_mirror_dense"
+                                        },
+                                        {
+                                            "beat":  200,
+                                            "type":  "pattern",
+                                            "id":  "apex_aimed"
+                                        },
+                                        {
+                                            "beat":  204,
+                                            "type":  "pattern",
+                                            "id":  "apex_radial"
+                                        },
+                                        {
+                                            "beat":  208,
+                                            "type":  "pattern",
+                                            "id":  "apex_echo"
+                                        },
+                                        {
+                                            "beat":  212,
+                                            "type":  "pattern",
+                                            "id":  "apex_aimed"
+                                        },
+                                        {
+                                            "beat":  216,
+                                            "type":  "pattern",
+                                            "id":  "apex_burst"
+                                        },
+                                        {
+                                            "beat":  220,
+                                            "type":  "pattern",
+                                            "id":  "apex_radial"
+                                        },
+                                        {
+                                            "beat":  224,
+                                            "type":  "pattern",
+                                            "id":  "apex_mirror_dense"
+                                        },
+                                        {
+                                            "beat":  228,
+                                            "type":  "pattern",
+                                            "id":  "apex_aimed"
+                                        },
+                                        {
+                                            "beat":  232,
+                                            "type":  "pattern",
+                                            "id":  "apex_echo"
+                                        },
+                                        {
+                                            "beat":  236,
+                                            "type":  "pattern",
+                                            "id":  "apex_burst"
+                                        },
+                                        {
+                                            "beat":  240,
+                                            "type":  "pattern",
+                                            "id":  "apex_radial"
+                                        },
+                                        {
+                                            "beat":  244,
+                                            "type":  "pattern",
+                                            "id":  "apex_aimed"
+                                        },
+                                        {
+                                            "beat":  248,
+                                            "type":  "pattern",
+                                            "id":  "apex_mirror_dense"
+                                        },
+                                        {
+                                            "beat":  252,
+                                            "type":  "pattern",
+                                            "id":  "apex_burst"
+                                        },
+                                        {
+                                            "beat":  256,
+                                            "type":  "pattern",
+                                            "id":  "apex_aimed"
+                                        },
+                                        {
+                                            "beat":  260,
+                                            "type":  "pattern",
+                                            "id":  "apex_echo"
+                                        },
+                                        {
+                                            "beat":  264,
+                                            "type":  "pattern",
+                                            "id":  "apex_radial"
+                                        },
+                                        {
+                                            "beat":  268,
+                                            "type":  "pattern",
+                                            "id":  "apex_aimed"
+                                        },
+                                        {
+                                            "beat":  270,
+                                            "type":  "floor_invert",
+                                            "to":  "black"
+                                        },
+                                        {
+                                            "beat":  270,
+                                            "type":  "pattern",
+                                            "id":  "apex_spiral"
+                                        },
+                                        {
+                                            "beat":  274,
+                                            "type":  "pattern",
+                                            "id":  "apex_burst"
+                                        },
+                                        {
+                                            "beat":  278,
+                                            "type":  "pattern",
+                                            "id":  "apex_mirror_dense"
+                                        },
+                                        {
+                                            "beat":  282,
+                                            "type":  "pattern",
+                                            "id":  "apex_aimed"
+                                        },
+                                        {
+                                            "beat":  284,
+                                            "type":  "pattern",
+                                            "id":  "apex_echo"
+                                        },
+                                        {
+                                            "beat":  288,
+                                            "type":  "counterattack_window",
+                                            "duration_beats":  8,
+                                            "lead_beats":  5,
+                                            "zone":  {
+                                                         "anchor":  "topRight",
+                                                         "radius":  70
+                                                     }
+                                        },
+                                        {
+                                            "beat":  304,
+                                            "type":  "pattern",
+                                            "id":  "apex_laser_h"
+                                        },
+                                        {
+                                            "beat":  308,
+                                            "type":  "pattern",
+                                            "id":  "apex_aimed"
+                                        },
+                                        {
+                                            "beat":  312,
+                                            "type":  "pattern",
+                                            "id":  "apex_radial"
+                                        },
+                                        {
+                                            "beat":  316,
+                                            "type":  "pattern",
+                                            "id":  "apex_laser_v"
+                                        },
+                                        {
+                                            "beat":  320,
+                                            "type":  "pattern",
+                                            "id":  "apex_burst"
+                                        },
+                                        {
+                                            "beat":  324,
+                                            "type":  "pattern",
+                                            "id":  "apex_aimed"
+                                        },
+                                        {
+                                            "beat":  328,
+                                            "type":  "pattern",
+                                            "id":  "apex_laser_h"
+                                        },
+                                        {
+                                            "beat":  332,
+                                            "type":  "pattern",
+                                            "id":  "apex_echo_wide"
+                                        },
+                                        {
+                                            "beat":  336,
+                                            "type":  "pattern",
+                                            "id":  "apex_radial"
+                                        },
+                                        {
+                                            "beat":  340,
+                                            "type":  "pattern",
+                                            "id":  "apex_burst_chaos"
+                                        },
+                                        {
+                                            "beat":  344,
+                                            "type":  "pattern",
+                                            "id":  "apex_laser_v"
+                                        },
+                                        {
+                                            "beat":  348,
+                                            "type":  "pattern",
+                                            "id":  "apex_aimed"
+                                        },
+                                        {
+                                            "beat":  350,
+                                            "type":  "pattern",
+                                            "id":  "apex_spiral"
+                                        },
+                                        {
+                                            "beat":  352,
+                                            "type":  "pattern",
+                                            "id":  "apex_radial"
+                                        },
+                                        {
+                                            "beat":  356,
+                                            "type":  "pattern",
+                                            "id":  "apex_laser_h"
+                                        },
+                                        {
+                                            "beat":  358,
+                                            "type":  "pattern",
+                                            "id":  "apex_aimed"
+                                        },
+                                        {
+                                            "beat":  360,
+                                            "type":  "counterattack_window",
+                                            "duration_beats":  10,
+                                            "lead_beats":  5,
+                                            "zone":  {
+                                                         "anchor":  "center",
+                                                         "radius":  70
+                                                     }
+                                        },
+                                        {
+                                            "beat":  360,
+                                            "type":  "floor_invert",
+                                            "to":  "white"
+                                        },
+                                        {
+                                            "beat":  384,
+                                            "type":  "floor_invert",
+                                            "to":  "black"
+                                        },
+                                        {
+                                            "beat":  388,
+                                            "type":  "pattern",
+                                            "id":  "apex_stutter"
+                                        },
+                                        {
+                                            "beat":  394,
+                                            "type":  "pattern",
+                                            "id":  "apex_echo"
+                                        },
+                                        {
+                                            "beat":  400,
+                                            "type":  "pattern",
+                                            "id":  "apex_stutter"
+                                        },
+                                        {
+                                            "beat":  406,
+                                            "type":  "pattern",
+                                            "id":  "apex_echo_wide"
+                                        },
+                                        {
+                                            "beat":  412,
+                                            "type":  "pattern",
+                                            "id":  "apex_stutter"
+                                        },
+                                        {
+                                            "beat":  418,
+                                            "type":  "pattern",
+                                            "id":  "apex_mirror_dense"
+                                        },
+                                        {
+                                            "beat":  424,
+                                            "type":  "pattern",
+                                            "id":  "apex_aimed"
+                                        },
+                                        {
+                                            "beat":  432,
+                                            "type":  "counterattack_window",
+                                            "duration_beats":  10,
+                                            "lead_beats":  5,
+                                            "zone":  {
+                                                         "anchor":  "bottomLeft",
+                                                         "radius":  65
+                                                     }
+                                        },
+                                        {
+                                            "beat":  432,
+                                            "type":  "floor_invert",
+                                            "to":  "white"
+                                        },
+                                        {
+                                            "beat":  448,
+                                            "type":  "pattern",
+                                            "id":  "apex_burst"
+                                        },
+                                        {
+                                            "beat":  448,
+                                            "type":  "pattern",
+                                            "id":  "apex_radial"
+                                        },
+                                        {
+                                            "beat":  452,
+                                            "type":  "pattern",
+                                            "id":  "apex_laser_h"
+                                        },
+                                        {
+                                            "beat":  456,
+                                            "type":  "pattern",
+                                            "id":  "apex_aimed"
+                                        },
+                                        {
+                                            "beat":  460,
+                                            "type":  "pattern",
+                                            "id":  "apex_vortex"
+                                        },
+                                        {
+                                            "beat":  464,
+                                            "type":  "pattern",
+                                            "id":  "apex_burst"
+                                        },
+                                        {
+                                            "beat":  468,
+                                            "type":  "pattern",
+                                            "id":  "apex_radial"
+                                        },
+                                        {
+                                            "beat":  472,
+                                            "type":  "pattern",
+                                            "id":  "apex_aimed"
+                                        },
+                                        {
+                                            "beat":  476,
+                                            "type":  "pattern",
+                                            "id":  "apex_laser_v"
+                                        },
+                                        {
+                                            "beat":  480,
+                                            "type":  "pattern",
+                                            "id":  "apex_mirror_dense"
+                                        },
+                                        {
+                                            "beat":  484,
+                                            "type":  "pattern",
+                                            "id":  "apex_radial"
+                                        },
+                                        {
+                                            "beat":  488,
+                                            "type":  "pattern",
+                                            "id":  "apex_burst_chaos"
+                                        },
+                                        {
+                                            "beat":  492,
+                                            "type":  "pattern",
+                                            "id":  "apex_aimed"
+                                        },
+                                        {
+                                            "beat":  496,
+                                            "type":  "pattern",
+                                            "id":  "apex_vortex"
+                                        },
+                                        {
+                                            "beat":  500,
+                                            "type":  "pattern",
+                                            "id":  "apex_radial"
+                                        },
+                                        {
+                                            "beat":  504,
+                                            "type":  "floor_invert",
+                                            "to":  "black"
+                                        },
+                                        {
+                                            "beat":  504,
+                                            "type":  "pattern",
+                                            "id":  "apex_laser_h"
+                                        },
+                                        {
+                                            "beat":  508,
+                                            "type":  "pattern",
+                                            "id":  "apex_aimed"
+                                        },
+                                        {
+                                            "beat":  512,
+                                            "type":  "pattern",
+                                            "id":  "apex_burst"
+                                        },
+                                        {
+                                            "beat":  516,
+                                            "type":  "pattern",
+                                            "id":  "apex_mirror_dense"
+                                        },
+                                        {
+                                            "beat":  520,
+                                            "type":  "pattern",
+                                            "id":  "apex_echo"
+                                        },
+                                        {
+                                            "beat":  524,
+                                            "type":  "pattern",
+                                            "id":  "apex_radial"
+                                        },
+                                        {
+                                            "beat":  528,
+                                            "type":  "pattern",
+                                            "id":  "apex_aimed"
+                                        },
+                                        {
+                                            "beat":  532,
+                                            "type":  "pattern",
+                                            "id":  "apex_burst_chaos"
+                                        },
+                                        {
+                                            "beat":  536,
+                                            "type":  "pattern",
+                                            "id":  "apex_laser_v"
+                                        },
+                                        {
+                                            "beat":  540,
+                                            "type":  "counterattack_window",
+                                            "duration_beats":  8,
+                                            "lead_beats":  5,
+                                            "zone":  {
+                                                         "anchor":  "right",
+                                                         "radius":  65
+                                                     }
+                                        },
+                                        {
+                                            "beat":  556,
+                                            "type":  "pattern",
+                                            "id":  "apex_vortex_double"
+                                        },
+                                        {
+                                            "beat":  560,
+                                            "type":  "pattern",
+                                            "id":  "apex_laser_cross"
+                                        },
+                                        {
+                                            "beat":  564,
+                                            "type":  "pattern",
+                                            "id":  "apex_radial"
+                                        },
+                                        {
+                                            "beat":  568,
+                                            "type":  "pattern",
+                                            "id":  "apex_burst_chaos"
+                                        },
+                                        {
+                                            "beat":  572,
+                                            "type":  "pattern",
+                                            "id":  "apex_aimed"
+                                        },
+                                        {
+                                            "beat":  576,
+                                            "type":  "floor_invert",
+                                            "to":  "white"
+                                        },
+                                        {
+                                            "beat":  576,
+                                            "type":  "pattern",
+                                            "id":  "apex_echo_wide"
+                                        },
+                                        {
+                                            "beat":  580,
+                                            "type":  "pattern",
+                                            "id":  "apex_vortex"
+                                        },
+                                        {
+                                            "beat":  584,
+                                            "type":  "pattern",
+                                            "id":  "apex_mirror_dense"
+                                        },
+                                        {
+                                            "beat":  588,
+                                            "type":  "pattern",
+                                            "id":  "apex_radial"
+                                        },
+                                        {
+                                            "beat":  592,
+                                            "type":  "pattern",
+                                            "id":  "apex_laser_h"
+                                        },
+                                        {
+                                            "beat":  596,
+                                            "type":  "pattern",
+                                            "id":  "apex_burst_chaos"
+                                        },
+                                        {
+                                            "beat":  600,
+                                            "type":  "pattern",
+                                            "id":  "apex_aimed"
+                                        },
+                                        {
+                                            "beat":  604,
+                                            "type":  "pattern",
+                                            "id":  "apex_vortex"
+                                        },
+                                        {
+                                            "beat":  608,
+                                            "type":  "pattern",
+                                            "id":  "apex_radial"
+                                        },
+                                        {
+                                            "beat":  612,
+                                            "type":  "pattern",
+                                            "id":  "apex_burst_chaos"
+                                        },
+                                        {
+                                            "beat":  616,
+                                            "type":  "pattern",
+                                            "id":  "apex_aimed"
+                                        },
+                                        {
+                                            "beat":  620,
+                                            "type":  "pattern",
+                                            "id":  "apex_laser_v"
+                                        },
+                                        {
+                                            "beat":  624,
+                                            "type":  "counterattack_window",
+                                            "duration_beats":  8,
+                                            "lead_beats":  5,
+                                            "zone":  {
+                                                         "anchor":  "topLeft",
+                                                         "radius":  60
+                                                     }
+                                        },
+                                        {
+                                            "beat":  640,
+                                            "type":  "pattern",
+                                            "id":  "apex_vortex_double"
+                                        },
+                                        {
+                                            "beat":  644,
+                                            "type":  "pattern",
+                                            "id":  "apex_laser_cross"
+                                        },
+                                        {
+                                            "beat":  648,
+                                            "type":  "pattern",
+                                            "id":  "apex_aimed"
+                                        },
+                                        {
+                                            "beat":  648,
+                                            "type":  "pattern",
+                                            "id":  "apex_radial"
+                                        },
+                                        {
+                                            "beat":  648,
+                                            "type":  "floor_invert",
+                                            "to":  "black"
+                                        },
+                                        {
+                                            "beat":  652,
+                                            "type":  "pattern",
+                                            "id":  "apex_burst_chaos"
+                                        },
+                                        {
+                                            "beat":  656,
+                                            "type":  "pattern",
+                                            "id":  "apex_mirror_dense"
+                                        },
+                                        {
+                                            "beat":  660,
+                                            "type":  "pattern",
+                                            "id":  "apex_vortex"
+                                        },
+                                        {
+                                            "beat":  664,
+                                            "type":  "pattern",
+                                            "id":  "apex_radial"
+                                        },
+                                        {
+                                            "beat":  664,
+                                            "type":  "pattern",
+                                            "id":  "apex_laser_h"
+                                        },
+                                        {
+                                            "beat":  668,
+                                            "type":  "pattern",
+                                            "id":  "apex_echo_wide"
+                                        },
+                                        {
+                                            "beat":  672,
+                                            "type":  "pattern",
+                                            "id":  "apex_burst_chaos"
+                                        },
+                                        {
+                                            "beat":  676,
+                                            "type":  "pattern",
+                                            "id":  "apex_aimed"
+                                        },
+                                        {
+                                            "beat":  676,
+                                            "type":  "pattern",
+                                            "id":  "apex_radial"
+                                        },
+                                        {
+                                            "beat":  680,
+                                            "type":  "pattern",
+                                            "id":  "apex_vortex_double"
+                                        },
+                                        {
+                                            "beat":  684,
+                                            "type":  "pattern",
+                                            "id":  "apex_laser_v"
+                                        },
+                                        {
+                                            "beat":  688,
+                                            "type":  "counterattack_window",
+                                            "duration_beats":  10,
+                                            "lead_beats":  5,
+                                            "zone":  {
+                                                         "anchor":  "center",
+                                                         "radius":  65
+                                                     }
+                                        },
+                                        {
+                                            "beat":  696,
+                                            "type":  "floor_invert",
+                                            "to":  "white"
+                                        }
+                                    ]
+                   },
+                   {
+                       "displayPhase":  "Phase 2",
+                       "music":  "Music/Wounded Ultraviolet.wav",
+                       "bpm":  130,
+                       "musicVolume":  0.85,
+                       "musicOffset":  0,
+                       "useInversion":  true,
+                       "redCracks":  true,
+                       "fullRedFloor":  false,
+                       "bossColorMode":  "inversion",
+                       "fallOnDeath":  false,
+                       "startFloor":  "white",
+                       "hp":  4883,
+                       "bulletDamage":  14,
+                       "timeline":  [
+                                        {
+                                            "beat":  4,
+                                            "type":  "pattern",
+                                            "id":  "apex_radial"
+                                        },
+                                        {
+                                            "beat":  7,
+                                            "type":  "pattern",
+                                            "id":  "apex2_radial"
+                                        },
+                                        {
+                                            "beat":  10,
+                                            "type":  "pattern",
+                                            "id":  "apex_aimed"
+                                        },
+                                        {
+                                            "beat":  12,
+                                            "type":  "pattern",
+                                            "id":  "apex_burst"
+                                        },
+                                        {
+                                            "beat":  13,
+                                            "type":  "pattern",
+                                            "id":  "apex_burst"
+                                        },
+                                        {
+                                            "beat":  16,
+                                            "type":  "pattern",
+                                            "id":  "apex2_burst"
+                                        },
+                                        {
+                                            "beat":  19,
+                                            "type":  "pattern",
+                                            "id":  "apex_mirror_dense"
+                                        },
+                                        {
+                                            "beat":  22,
+                                            "type":  "pattern",
+                                            "id":  "apex_echo"
+                                        },
+                                        {
+                                            "beat":  24,
+                                            "type":  "pattern",
+                                            "id":  "apex2_phase_radial"
+                                        },
+                                        {
+                                            "beat":  25,
+                                            "type":  "pattern",
+                                            "id":  "apex_vortex"
+                                        },
+                                        {
+                                            "beat":  28,
+                                            "type":  "pattern",
+                                            "id":  "apex_aimed"
+                                        },
+                                        {
+                                            "beat":  28,
+                                            "type":  "pattern",
+                                            "id":  "apex2_vortex"
+                                        },
+                                        {
+                                            "beat":  31,
+                                            "type":  "pattern",
+                                            "id":  "apex_laser_h"
+                                        },
+                                        {
+                                            "beat":  34,
+                                            "type":  "pattern",
+                                            "id":  "apex2_echo"
+                                        },
+                                        {
+                                            "beat":  37,
+                                            "type":  "pattern",
+                                            "id":  "apex_burst_chaos"
+                                        },
+                                        {
+                                            "beat":  40,
+                                            "type":  "pattern",
+                                            "id":  "apex_radial"
+                                        },
+                                        {
+                                            "beat":  43,
+                                            "type":  "pattern",
+                                            "id":  "apex2_radial"
+                                        },
+                                        {
+                                            "beat":  44,
+                                            "type":  "pattern",
+                                            "id":  "apex_mirror_dense"
+                                        },
+                                        {
+                                            "beat":  46,
+                                            "type":  "pattern",
+                                            "id":  "apex_aimed"
+                                        },
+                                        {
+                                            "beat":  49,
+                                            "type":  "pattern",
+                                            "id":  "apex_burst"
+                                        },
+                                        {
+                                            "beat":  52,
+                                            "type":  "pattern",
+                                            "id":  "apex2_burst"
+                                        },
+                                        {
+                                            "beat":  55,
+                                            "type":  "pattern",
+                                            "id":  "apex_mirror_dense"
+                                        },
+                                        {
+                                            "beat":  56,
+                                            "type":  "counterattack_window",
+                                            "duration_beats":  8,
+                                            "lead_beats":  5,
+                                            "zone":  {
+                                                         "anchor":  "center",
+                                                         "radius":  70
+                                                     }
+                                        },
+                                        {
+                                            "beat":  65,
+                                            "type":  "pattern",
+                                            "id":  "apex2_radial"
+                                        },
+                                        {
+                                            "beat":  68,
+                                            "type":  "pattern",
+                                            "id":  "apex_burst_chaos"
+                                        },
+                                        {
+                                            "beat":  70,
+                                            "type":  "floor_invert",
+                                            "to":  "black"
+                                        },
+                                        {
+                                            "beat":  71,
+                                            "type":  "pattern",
+                                            "id":  "apex2_echo"
+                                        },
+                                        {
+                                            "beat":  74,
+                                            "type":  "pattern",
+                                            "id":  "apex_mirror_dense"
+                                        },
+                                        {
+                                            "beat":  77,
+                                            "type":  "pattern",
+                                            "id":  "apex2_vortex"
+                                        },
+                                        {
+                                            "beat":  80,
+                                            "type":  "pattern",
+                                            "id":  "apex_laser_v"
+                                        },
+                                        {
+                                            "beat":  83,
+                                            "type":  "pattern",
+                                            "id":  "apex2_burst"
+                                        },
+                                        {
+                                            "beat":  84,
+                                            "type":  "pattern",
+                                            "id":  "apex2_phase_aimed_b"
+                                        },
+                                        {
+                                            "beat":  86,
+                                            "type":  "pattern",
+                                            "id":  "apex_radial"
+                                        },
+                                        {
+                                            "beat":  89,
+                                            "type":  "pattern",
+                                            "id":  "apex2_phase_radial"
+                                        },
+                                        {
+                                            "beat":  92,
+                                            "type":  "pattern",
+                                            "id":  "apex_aimed"
+                                        },
+                                        {
+                                            "beat":  95,
+                                            "type":  "pattern",
+                                            "id":  "apex_vortex"
+                                        },
+                                        {
+                                            "beat":  98,
+                                            "type":  "pattern",
+                                            "id":  "apex2_laser"
+                                        },
+                                        {
+                                            "beat":  100,
+                                            "type":  "pattern",
+                                            "id":  "apex2_phase_radial_b"
+                                        },
+                                        {
+                                            "beat":  101,
+                                            "type":  "pattern",
+                                            "id":  "apex2_phase_aimed"
+                                        },
+                                        {
+                                            "beat":  104,
+                                            "type":  "pattern",
+                                            "id":  "apex2_radial"
+                                        },
+                                        {
+                                            "beat":  107,
+                                            "type":  "pattern",
+                                            "id":  "apex_burst_chaos"
+                                        },
+                                        {
+                                            "beat":  110,
+                                            "type":  "pattern",
+                                            "id":  "apex2_echo"
+                                        },
+                                        {
+                                            "beat":  112,
+                                            "type":  "counterattack_window",
+                                            "duration_beats":  8,
+                                            "lead_beats":  5,
+                                            "zone":  {
+                                                         "anchor":  "topLeft",
+                                                         "radius":  65
+                                                     }
+                                        },
+                                        {
+                                            "beat":  122,
+                                            "type":  "pattern",
+                                            "id":  "apex2_radial"
+                                        },
+                                        {
+                                            "beat":  125,
+                                            "type":  "pattern",
+                                            "id":  "apex_burst_chaos"
+                                        },
+                                        {
+                                            "beat":  128,
+                                            "type":  "pattern",
+                                            "id":  "apex2_echo"
+                                        },
+                                        {
+                                            "beat":  130,
+                                            "type":  "floor_invert",
+                                            "to":  "white"
+                                        },
+                                        {
+                                            "beat":  131,
+                                            "type":  "pattern",
+                                            "id":  "apex_mirror_dense"
+                                        },
+                                        {
+                                            "beat":  134,
+                                            "type":  "pattern",
+                                            "id":  "apex2_vortex"
+                                        },
+                                        {
+                                            "beat":  136,
+                                            "type":  "pattern",
+                                            "id":  "apex2_tether"
+                                        },
+                                        {
+                                            "beat":  137,
+                                            "type":  "pattern",
+                                            "id":  "apex_laser_v"
+                                        },
+                                        {
+                                            "beat":  140,
+                                            "type":  "pattern",
+                                            "id":  "apex2_burst"
+                                        },
+                                        {
+                                            "beat":  143,
+                                            "type":  "pattern",
+                                            "id":  "apex_radial"
+                                        },
+                                        {
+                                            "beat":  146,
+                                            "type":  "pattern",
+                                            "id":  "apex2_phase_radial"
+                                        },
+                                        {
+                                            "beat":  149,
+                                            "type":  "pattern",
+                                            "id":  "apex_aimed"
+                                        },
+                                        {
+                                            "beat":  152,
+                                            "type":  "pattern",
+                                            "id":  "apex_vortex"
+                                        },
+                                        {
+                                            "beat":  155,
+                                            "type":  "pattern",
+                                            "id":  "apex2_laser"
+                                        },
+                                        {
+                                            "beat":  156,
+                                            "type":  "pattern",
+                                            "id":  "apex2_phase_radial"
+                                        },
+                                        {
+                                            "beat":  158,
+                                            "type":  "pattern",
+                                            "id":  "apex2_phase_aimed"
+                                        },
+                                        {
+                                            "beat":  161,
+                                            "type":  "pattern",
+                                            "id":  "apex2_radial"
+                                        },
+                                        {
+                                            "beat":  164,
+                                            "type":  "pattern",
+                                            "id":  "apex_burst_chaos"
+                                        },
+                                        {
+                                            "beat":  167,
+                                            "type":  "pattern",
+                                            "id":  "apex2_echo"
+                                        },
+                                        {
+                                            "beat":  168,
+                                            "type":  "pattern",
+                                            "id":  "apex2_phase_aimed"
+                                        },
+                                        {
+                                            "beat":  170,
+                                            "type":  "pattern",
+                                            "id":  "apex_mirror_dense"
+                                        },
+                                        {
+                                            "beat":  173,
+                                            "type":  "pattern",
+                                            "id":  "apex2_vortex"
+                                        },
+                                        {
+                                            "beat":  176,
+                                            "type":  "counterattack_window",
+                                            "duration_beats":  8,
+                                            "lead_beats":  5,
+                                            "zone":  {
+                                                         "anchor":  "bottomRight",
+                                                         "radius":  60
+                                                     }
+                                        },
+                                        {
+                                            "beat":  180,
+                                            "type":  "floor_invert",
+                                            "to":  "black"
+                                        },
+                                        {
+                                            "beat":  186,
+                                            "type":  "pattern",
+                                            "id":  "apex2_radial"
+                                        },
+                                        {
+                                            "beat":  189,
+                                            "type":  "pattern",
+                                            "id":  "apex2_burst"
+                                        },
+                                        {
+                                            "beat":  192,
+                                            "type":  "pattern",
+                                            "id":  "apex2_vortex"
+                                        },
+                                        {
+                                            "beat":  195,
+                                            "type":  "pattern",
+                                            "id":  "apex2_phase_radial"
+                                        },
+                                        {
+                                            "beat":  196,
+                                            "type":  "pattern",
+                                            "id":  "apex2_tether"
+                                        },
+                                        {
+                                            "beat":  198,
+                                            "type":  "pattern",
+                                            "id":  "apex2_phase_radial_b"
+                                        },
+                                        {
+                                            "beat":  201,
+                                            "type":  "pattern",
+                                            "id":  "apex2_phase_aimed"
+                                        },
+                                        {
+                                            "beat":  204,
+                                            "type":  "pattern",
+                                            "id":  "apex2_laser"
+                                        },
+                                        {
+                                            "beat":  207,
+                                            "type":  "pattern",
+                                            "id":  "apex_burst_chaos"
+                                        },
+                                        {
+                                            "beat":  210,
+                                            "type":  "pattern",
+                                            "id":  "apex_mirror_dense"
+                                        },
+                                        {
+                                            "beat":  212,
+                                            "type":  "pattern",
+                                            "id":  "apex2_phase_aimed_b"
+                                        },
+                                        {
+                                            "beat":  213,
+                                            "type":  "pattern",
+                                            "id":  "apex2_echo"
+                                        },
+                                        {
+                                            "beat":  216,
+                                            "type":  "pattern",
+                                            "id":  "apex_vortex"
+                                        },
+                                        {
+                                            "beat":  219,
+                                            "type":  "pattern",
+                                            "id":  "apex_laser_cross"
+                                        },
+                                        {
+                                            "beat":  222,
+                                            "type":  "pattern",
+                                            "id":  "apex2_radial"
+                                        },
+                                        {
+                                            "beat":  224,
+                                            "type":  "pattern",
+                                            "id":  "apex2_tether_long"
+                                        },
+                                        {
+                                            "beat":  225,
+                                            "type":  "pattern",
+                                            "id":  "apex2_burst"
+                                        },
+                                        {
+                                            "beat":  228,
+                                            "type":  "pattern",
+                                            "id":  "apex2_vortex"
+                                        },
+                                        {
+                                            "beat":  231,
+                                            "type":  "pattern",
+                                            "id":  "apex2_phase_radial"
+                                        },
+                                        {
+                                            "beat":  234,
+                                            "type":  "pattern",
+                                            "id":  "apex2_phase_radial_b"
+                                        },
+                                        {
+                                            "beat":  237,
+                                            "type":  "pattern",
+                                            "id":  "apex2_phase_aimed"
+                                        },
+                                        {
+                                            "beat":  240,
+                                            "type":  "counterattack_window",
+                                            "duration_beats":  8,
+                                            "lead_beats":  5,
+                                            "zone":  {
+                                                         "anchor":  "right",
+                                                         "radius":  60
+                                                     }
+                                        },
+                                        {
+                                            "beat":  250,
+                                            "type":  "pattern",
+                                            "id":  "apex2_radial"
+                                        },
+                                        {
+                                            "beat":  250,
+                                            "type":  "floor_invert",
+                                            "to":  "white"
+                                        },
+                                        {
+                                            "beat":  252,
+                                            "type":  "pattern",
+                                            "id":  "apex2_burst"
+                                        },
+                                        {
+                                            "beat":  254,
+                                            "type":  "pattern",
+                                            "id":  "apex2_vortex"
+                                        },
+                                        {
+                                            "beat":  256,
+                                            "type":  "pattern",
+                                            "id":  "apex2_phase_radial"
+                                        },
+                                        {
+                                            "beat":  258,
+                                            "type":  "pattern",
+                                            "id":  "apex2_phase_radial_b"
+                                        },
+                                        {
+                                            "beat":  258,
+                                            "type":  "pattern",
+                                            "id":  "apex2_phase_radial"
+                                        },
+                                        {
+                                            "beat":  258,
+                                            "type":  "pattern",
+                                            "id":  "apex2_phase_radial_b"
+                                        },
+                                        {
+                                            "beat":  260,
+                                            "type":  "pattern",
+                                            "id":  "apex2_phase_aimed"
+                                        },
+                                        {
+                                            "beat":  262,
+                                            "type":  "pattern",
+                                            "id":  "apex2_laser"
+                                        },
+                                        {
+                                            "beat":  264,
+                                            "type":  "pattern",
+                                            "id":  "apex_burst_chaos"
+                                        },
+                                        {
+                                            "beat":  266,
+                                            "type":  "pattern",
+                                            "id":  "apex_mirror_dense"
+                                        },
+                                        {
+                                            "beat":  268,
+                                            "type":  "pattern",
+                                            "id":  "apex2_echo"
+                                        },
+                                        {
+                                            "beat":  270,
+                                            "type":  "pattern",
+                                            "id":  "apex_vortex"
+                                        },
+                                        {
+                                            "beat":  272,
+                                            "type":  "pattern",
+                                            "id":  "apex_laser_cross"
+                                        },
+                                        {
+                                            "beat":  274,
+                                            "type":  "pattern",
+                                            "id":  "apex2_phase_aimed"
+                                        },
+                                        {
+                                            "beat":  274,
+                                            "type":  "pattern",
+                                            "id":  "apex2_phase_aimed_b"
+                                        },
+                                        {
+                                            "beat":  274,
+                                            "type":  "pattern",
+                                            "id":  "apex2_radial"
+                                        },
+                                        {
+                                            "beat":  276,
+                                            "type":  "pattern",
+                                            "id":  "apex2_burst"
+                                        },
+                                        {
+                                            "beat":  278,
+                                            "type":  "pattern",
+                                            "id":  "apex2_vortex"
+                                        },
+                                        {
+                                            "beat":  280,
+                                            "type":  "pattern",
+                                            "id":  "apex2_phase_radial"
+                                        },
+                                        {
+                                            "beat":  282,
+                                            "type":  "pattern",
+                                            "id":  "apex2_phase_radial_b"
+                                        },
+                                        {
+                                            "beat":  284,
+                                            "type":  "pattern",
+                                            "id":  "apex2_phase_aimed"
+                                        },
+                                        {
+                                            "beat":  286,
+                                            "type":  "pattern",
+                                            "id":  "apex2_laser"
+                                        },
+                                        {
+                                            "beat":  288,
+                                            "type":  "pattern",
+                                            "id":  "apex_burst_chaos"
+                                        },
+                                        {
+                                            "beat":  290,
+                                            "type":  "pattern",
+                                            "id":  "apex2_tether"
+                                        },
+                                        {
+                                            "beat":  290,
+                                            "type":  "pattern",
+                                            "id":  "apex_mirror_dense"
+                                        },
+                                        {
+                                            "beat":  292,
+                                            "type":  "pattern",
+                                            "id":  "apex2_echo"
+                                        },
+                                        {
+                                            "beat":  294,
+                                            "type":  "pattern",
+                                            "id":  "apex_vortex"
+                                        },
+                                        {
+                                            "beat":  296,
+                                            "type":  "pattern",
+                                            "id":  "apex_laser_cross"
+                                        },
+                                        {
+                                            "beat":  298,
+                                            "type":  "pattern",
+                                            "id":  "apex2_radial"
+                                        },
+                                        {
+                                            "beat":  300,
+                                            "type":  "pattern",
+                                            "id":  "apex2_burst"
+                                        },
+                                        {
+                                            "beat":  302,
+                                            "type":  "pattern",
+                                            "id":  "apex2_vortex"
+                                        },
+                                        {
+                                            "beat":  304,
+                                            "type":  "counterattack_window",
+                                            "duration_beats":  8,
+                                            "lead_beats":  5,
+                                            "zone":  {
+                                                         "anchor":  "topRight",
+                                                         "radius":  60
+                                                     }
+                                        },
+                                        {
+                                            "beat":  314,
+                                            "type":  "pattern",
+                                            "id":  "apex2_radial"
+                                        },
+                                        {
+                                            "beat":  316,
+                                            "type":  "pattern",
+                                            "id":  "apex2_burst"
+                                        },
+                                        {
+                                            "beat":  318,
+                                            "type":  "pattern",
+                                            "id":  "apex2_vortex"
+                                        },
+                                        {
+                                            "beat":  320,
+                                            "type":  "pattern",
+                                            "id":  "apex2_phase_radial"
+                                        },
+                                        {
+                                            "beat":  320,
+                                            "type":  "floor_invert",
+                                            "to":  "black"
+                                        },
+                                        {
+                                            "beat":  322,
+                                            "type":  "pattern",
+                                            "id":  "apex2_phase_radial_b"
+                                        },
+                                        {
+                                            "beat":  324,
+                                            "type":  "pattern",
+                                            "id":  "apex2_phase_aimed"
+                                        },
+                                        {
+                                            "beat":  326,
+                                            "type":  "pattern",
+                                            "id":  "apex2_laser"
+                                        },
+                                        {
+                                            "beat":  328,
+                                            "type":  "pattern",
+                                            "id":  "apex_burst_chaos"
+                                        },
+                                        {
+                                            "beat":  330,
+                                            "type":  "pattern",
+                                            "id":  "apex2_phase_radial_b"
+                                        },
+                                        {
+                                            "beat":  330,
+                                            "type":  "pattern",
+                                            "id":  "apex_mirror_dense"
+                                        },
+                                        {
+                                            "beat":  332,
+                                            "type":  "pattern",
+                                            "id":  "apex2_echo"
+                                        },
+                                        {
+                                            "beat":  334,
+                                            "type":  "pattern",
+                                            "id":  "apex_vortex"
+                                        },
+                                        {
+                                            "beat":  336,
+                                            "type":  "pattern",
+                                            "id":  "apex_laser_cross"
+                                        },
+                                        {
+                                            "beat":  338,
+                                            "type":  "pattern",
+                                            "id":  "apex2_radial"
+                                        },
+                                        {
+                                            "beat":  340,
+                                            "type":  "pattern",
+                                            "id":  "apex2_burst"
+                                        },
+                                        {
+                                            "beat":  342,
+                                            "type":  "pattern",
+                                            "id":  "apex2_vortex"
+                                        },
+                                        {
+                                            "beat":  344,
+                                            "type":  "pattern",
+                                            "id":  "apex2_phase_radial"
+                                        },
+                                        {
+                                            "beat":  346,
+                                            "type":  "pattern",
+                                            "id":  "apex2_phase_radial_b"
+                                        },
+                                        {
+                                            "beat":  346,
+                                            "type":  "pattern",
+                                            "id":  "apex2_tether_long"
+                                        },
+                                        {
+                                            "beat":  348,
+                                            "type":  "pattern",
+                                            "id":  "apex2_phase_aimed"
+                                        },
+                                        {
+                                            "beat":  350,
+                                            "type":  "pattern",
+                                            "id":  "apex2_laser"
+                                        },
+                                        {
+                                            "beat":  352,
+                                            "type":  "pattern",
+                                            "id":  "apex_burst_chaos"
+                                        },
+                                        {
+                                            "beat":  354,
+                                            "type":  "pattern",
+                                            "id":  "apex_mirror_dense"
+                                        },
+                                        {
+                                            "beat":  356,
+                                            "type":  "pattern",
+                                            "id":  "apex2_echo"
+                                        },
+                                        {
+                                            "beat":  358,
+                                            "type":  "pattern",
+                                            "id":  "apex_vortex"
+                                        },
+                                        {
+                                            "beat":  360,
+                                            "type":  "counterattack_window",
+                                            "duration_beats":  8,
+                                            "lead_beats":  5,
+                                            "zone":  {
+                                                         "anchor":  "left",
+                                                         "radius":  55
+                                                     }
+                                        },
+                                        {
+                                            "beat":  370,
+                                            "type":  "pattern",
+                                            "id":  "apex2_phase_radial"
+                                        },
+                                        {
+                                            "beat":  372,
+                                            "type":  "pattern",
+                                            "id":  "apex2_phase_radial_b"
+                                        },
+                                        {
+                                            "beat":  372,
+                                            "type":  "floor_invert",
+                                            "to":  "white"
+                                        },
+                                        {
+                                            "beat":  374,
+                                            "type":  "pattern",
+                                            "id":  "apex2_phase_aimed"
+                                        },
+                                        {
+                                            "beat":  376,
+                                            "type":  "pattern",
+                                            "id":  "apex2_phase_aimed_b"
+                                        },
+                                        {
+                                            "beat":  378,
+                                            "type":  "pattern",
+                                            "id":  "apex2_radial"
+                                        },
+                                        {
+                                            "beat":  380,
+                                            "type":  "pattern",
+                                            "id":  "apex2_vortex"
+                                        },
+                                        {
+                                            "beat":  382,
+                                            "type":  "pattern",
+                                            "id":  "apex2_burst"
+                                        },
+                                        {
+                                            "beat":  384,
+                                            "type":  "pattern",
+                                            "id":  "apex2_tether"
+                                        },
+                                        {
+                                            "beat":  384,
+                                            "type":  "pattern",
+                                            "id":  "apex_burst_chaos"
+                                        },
+                                        {
+                                            "beat":  386,
+                                            "type":  "pattern",
+                                            "id":  "apex2_laser"
+                                        },
+                                        {
+                                            "beat":  388,
+                                            "type":  "pattern",
+                                            "id":  "apex_mirror_dense"
+                                        },
+                                        {
+                                            "beat":  390,
+                                            "type":  "pattern",
+                                            "id":  "apex2_echo"
+                                        },
+                                        {
+                                            "beat":  392,
+                                            "type":  "pattern",
+                                            "id":  "apex2_phase_radial"
+                                        },
+                                        {
+                                            "beat":  394,
+                                            "type":  "pattern",
+                                            "id":  "apex2_phase_radial_b"
+                                        },
+                                        {
+                                            "beat":  396,
+                                            "type":  "counterattack_window",
+                                            "duration_beats":  10,
+                                            "lead_beats":  4,
+                                            "zone":  {
+                                                         "anchor":  "bottom",
+                                                         "radius":  55
+                                                     }
+                                        },
+                                        {
+                                            "beat":  410,
+                                            "type":  "pattern",
+                                            "id":  "apex2_phase_radial"
+                                        },
+                                        {
+                                            "beat":  410,
+                                            "type":  "floor_invert",
+                                            "to":  "black"
+                                        },
+                                        {
+                                            "beat":  412,
+                                            "type":  "pattern",
+                                            "id":  "apex2_phase_radial_b"
+                                        },
+                                        {
+                                            "beat":  414,
+                                            "type":  "pattern",
+                                            "id":  "apex2_phase_aimed"
+                                        },
+                                        {
+                                            "beat":  416,
+                                            "type":  "pattern",
+                                            "id":  "apex2_phase_aimed_b"
+                                        },
+                                        {
+                                            "beat":  418,
+                                            "type":  "pattern",
+                                            "id":  "apex2_radial"
+                                        },
+                                        {
+                                            "beat":  420,
+                                            "type":  "pattern",
+                                            "id":  "apex2_vortex"
+                                        },
+                                        {
+                                            "beat":  422,
+                                            "type":  "pattern",
+                                            "id":  "apex2_burst"
+                                        },
+                                        {
+                                            "beat":  424,
+                                            "type":  "counterattack_window",
+                                            "duration_beats":  10,
+                                            "lead_beats":  4,
+                                            "zone":  {
+                                                         "anchor":  "center",
+                                                         "radius":  60
+                                                     }
+                                        }
+                                    ]
+                   },
+                   {
+                       "displayPhase":  "Phase 3",
+                       "music":  "Music/Apex - Phase 3.wav",
+                       "bpm":  176,
+                       "musicVolume":  0.85,
+                       "musicOffset":  0,
+                       "useInversion":  false,
+                       "redCracks":  false,
+                       "fullRedFloor":  true,
+                       "bossColorMode":  "drainGold",
+                       "fallOnDeath":  true,
+                       "startFloor":  "white",
+                       "hp":  5491,
+                       "bulletDamage":  15,
+                       "timeline":  [
+                                        {
+                                            "beat":  4,
+                                            "type":  "pattern",
+                                            "id":  "apex2_radial"
+                                        },
+                                        {
+                                            "beat":  7,
+                                            "type":  "pattern",
+                                            "id":  "apex2_burst"
+                                        },
+                                        {
+                                            "beat":  10,
+                                            "type":  "pattern",
+                                            "id":  "apex2_vortex"
+                                        },
+                                        {
+                                            "beat":  13,
+                                            "type":  "pattern",
+                                            "id":  "apex_burst_chaos"
+                                        },
+                                        {
+                                            "beat":  16,
+                                            "type":  "pattern",
+                                            "id":  "apex3_well"
+                                        },
+                                        {
+                                            "beat":  16,
+                                            "type":  "pattern",
+                                            "id":  "apex_mirror_dense"
+                                        },
+                                        {
+                                            "beat":  19,
+                                            "type":  "pattern",
+                                            "id":  "apex2_echo"
+                                        },
+                                        {
+                                            "beat":  22,
+                                            "type":  "pattern",
+                                            "id":  "apex_vortex"
+                                        },
+                                        {
+                                            "beat":  25,
+                                            "type":  "pattern",
+                                            "id":  "apex2_laser"
+                                        },
+                                        {
+                                            "beat":  28,
+                                            "type":  "pattern",
+                                            "id":  "apex_radial"
+                                        },
+                                        {
+                                            "beat":  31,
+                                            "type":  "pattern",
+                                            "id":  "apex_aimed"
+                                        },
+                                        {
+                                            "beat":  34,
+                                            "type":  "pattern",
+                                            "id":  "apex2_radial"
+                                        },
+                                        {
+                                            "beat":  36,
+                                            "type":  "pattern",
+                                            "id":  "apex2_tether"
+                                        },
+                                        {
+                                            "beat":  37,
+                                            "type":  "pattern",
+                                            "id":  "apex2_burst"
+                                        },
+                                        {
+                                            "beat":  40,
+                                            "type":  "pattern",
+                                            "id":  "apex2_vortex"
+                                        },
+                                        {
+                                            "beat":  43,
+                                            "type":  "pattern",
+                                            "id":  "apex_burst_chaos"
+                                        },
+                                        {
+                                            "beat":  46,
+                                            "type":  "pattern",
+                                            "id":  "apex_mirror_dense"
+                                        },
+                                        {
+                                            "beat":  49,
+                                            "type":  "pattern",
+                                            "id":  "apex2_echo"
+                                        },
+                                        {
+                                            "beat":  52,
+                                            "type":  "pattern",
+                                            "id":  "apex_vortex"
+                                        },
+                                        {
+                                            "beat":  55,
+                                            "type":  "pattern",
+                                            "id":  "apex2_laser"
+                                        },
+                                        {
+                                            "beat":  58,
+                                            "type":  "pattern",
+                                            "id":  "apex_radial"
+                                        },
+                                        {
+                                            "beat":  60,
+                                            "type":  "pattern",
+                                            "id":  "apex3_well_topright"
+                                        },
+                                        {
+                                            "beat":  61,
+                                            "type":  "pattern",
+                                            "id":  "apex_aimed"
+                                        },
+                                        {
+                                            "beat":  64,
+                                            "type":  "pattern",
+                                            "id":  "apex2_radial"
+                                        },
+                                        {
+                                            "beat":  67,
+                                            "type":  "pattern",
+                                            "id":  "apex2_burst"
+                                        },
+                                        {
+                                            "beat":  70,
+                                            "type":  "pattern",
+                                            "id":  "apex2_vortex"
+                                        },
+                                        {
+                                            "beat":  73,
+                                            "type":  "pattern",
+                                            "id":  "apex_burst_chaos"
+                                        },
+                                        {
+                                            "beat":  76,
+                                            "type":  "pattern",
+                                            "id":  "apex_mirror_dense"
+                                        },
+                                        {
+                                            "beat":  79,
+                                            "type":  "pattern",
+                                            "id":  "apex2_echo"
+                                        },
+                                        {
+                                            "beat":  80,
+                                            "type":  "counterattack_window",
+                                            "duration_beats":  8,
+                                            "lead_beats":  5,
+                                            "zone":  {
+                                                         "anchor":  "center",
+                                                         "radius":  60
+                                                     }
+                                        },
+                                        {
+                                            "beat":  94,
+                                            "type":  "pattern",
+                                            "id":  "apex2_vortex"
+                                        },
+                                        {
+                                            "beat":  97,
+                                            "type":  "pattern",
+                                            "id":  "apex_burst_chaos"
+                                        },
+                                        {
+                                            "beat":  100,
+                                            "type":  "pattern",
+                                            "id":  "apex2_echo"
+                                        },
+                                        {
+                                            "beat":  103,
+                                            "type":  "pattern",
+                                            "id":  "apex3_radial"
+                                        },
+                                        {
+                                            "beat":  106,
+                                            "type":  "pattern",
+                                            "id":  "apex2_burst"
+                                        },
+                                        {
+                                            "beat":  108,
+                                            "type":  "pattern",
+                                            "id":  "apex3_well_bottomleft"
+                                        },
+                                        {
+                                            "beat":  109,
+                                            "type":  "pattern",
+                                            "id":  "apex3_vortex"
+                                        },
+                                        {
+                                            "beat":  112,
+                                            "type":  "pattern",
+                                            "id":  "apex_mirror_dense"
+                                        },
+                                        {
+                                            "beat":  115,
+                                            "type":  "pattern",
+                                            "id":  "apex3_burst"
+                                        },
+                                        {
+                                            "beat":  118,
+                                            "type":  "pattern",
+                                            "id":  "apex2_vortex"
+                                        },
+                                        {
+                                            "beat":  121,
+                                            "type":  "pattern",
+                                            "id":  "apex_burst_chaos"
+                                        },
+                                        {
+                                            "beat":  124,
+                                            "type":  "pattern",
+                                            "id":  "apex2_echo"
+                                        },
+                                        {
+                                            "beat":  127,
+                                            "type":  "pattern",
+                                            "id":  "apex3_radial"
+                                        },
+                                        {
+                                            "beat":  130,
+                                            "type":  "pattern",
+                                            "id":  "apex2_tether_long"
+                                        },
+                                        {
+                                            "beat":  130,
+                                            "type":  "pattern",
+                                            "id":  "apex2_burst"
+                                        },
+                                        {
+                                            "beat":  133,
+                                            "type":  "pattern",
+                                            "id":  "apex3_vortex"
+                                        },
+                                        {
+                                            "beat":  136,
+                                            "type":  "pattern",
+                                            "id":  "apex_mirror_dense"
+                                        },
+                                        {
+                                            "beat":  139,
+                                            "type":  "pattern",
+                                            "id":  "apex3_burst"
+                                        },
+                                        {
+                                            "beat":  142,
+                                            "type":  "pattern",
+                                            "id":  "apex2_vortex"
+                                        },
+                                        {
+                                            "beat":  144,
+                                            "type":  "pattern",
+                                            "id":  "apex3_well_strong"
+                                        },
+                                        {
+                                            "beat":  145,
+                                            "type":  "pattern",
+                                            "id":  "apex_burst_chaos"
+                                        },
+                                        {
+                                            "beat":  148,
+                                            "type":  "pattern",
+                                            "id":  "apex2_echo"
+                                        },
+                                        {
+                                            "beat":  151,
+                                            "type":  "pattern",
+                                            "id":  "apex3_radial"
+                                        },
+                                        {
+                                            "beat":  154,
+                                            "type":  "pattern",
+                                            "id":  "apex2_burst"
+                                        },
+                                        {
+                                            "beat":  157,
+                                            "type":  "pattern",
+                                            "id":  "apex3_vortex"
+                                        },
+                                        {
+                                            "beat":  160,
+                                            "type":  "counterattack_window",
+                                            "duration_beats":  8,
+                                            "lead_beats":  5,
+                                            "zone":  {
+                                                         "anchor":  "topRight",
+                                                         "radius":  55
+                                                     }
+                                        },
+                                        {
+                                            "beat":  176,
+                                            "type":  "pattern",
+                                            "id":  "apex3_expanding"
+                                        },
+                                        {
+                                            "beat":  184,
+                                            "type":  "pattern",
+                                            "id":  "apex_stutter"
+                                        },
+                                        {
+                                            "beat":  192,
+                                            "type":  "pattern",
+                                            "id":  "apex3_expanding_dense"
+                                        },
+                                        {
+                                            "beat":  200,
+                                            "type":  "pattern",
+                                            "id":  "apex2_echo"
+                                        },
+                                        {
+                                            "beat":  208,
+                                            "type":  "pattern",
+                                            "id":  "apex3_well"
+                                        },
+                                        {
+                                            "beat":  216,
+                                            "type":  "pattern",
+                                            "id":  "apex3_expanding"
+                                        },
+                                        {
+                                            "beat":  224,
+                                            "type":  "pattern",
+                                            "id":  "apex2_vortex"
+                                        },
+                                        {
+                                            "beat":  232,
+                                            "type":  "pattern",
+                                            "id":  "apex3_burst"
+                                        },
+                                        {
+                                            "beat":  240,
+                                            "type":  "counterattack_window",
+                                            "duration_beats":  8,
+                                            "lead_beats":  5,
+                                            "zone":  {
+                                                         "anchor":  "bottomRight",
+                                                         "radius":  55
+                                                     }
+                                        },
+                                        {
+                                            "beat":  254,
+                                            "type":  "pattern",
+                                            "id":  "apex_stutter"
+                                        },
+                                        {
+                                            "beat":  257,
+                                            "type":  "pattern",
+                                            "id":  "apex2_echo"
+                                        },
+                                        {
+                                            "beat":  260,
+                                            "type":  "pattern",
+                                            "id":  "apex3_expanding"
+                                        },
+                                        {
+                                            "beat":  263,
+                                            "type":  "pattern",
+                                            "id":  "apex2_vortex"
+                                        },
+                                        {
+                                            "beat":  266,
+                                            "type":  "pattern",
+                                            "id":  "apex3_burst"
+                                        },
+                                        {
+                                            "beat":  269,
+                                            "type":  "pattern",
+                                            "id":  "apex_mirror_dense"
+                                        },
+                                        {
+                                            "beat":  270,
+                                            "type":  "pattern",
+                                            "id":  "apex3_well_strong"
+                                        },
+                                        {
+                                            "beat":  272,
+                                            "type":  "pattern",
+                                            "id":  "apex3_expanding_dense"
+                                        },
+                                        {
+                                            "beat":  275,
+                                            "type":  "pattern",
+                                            "id":  "apex2_radial"
+                                        },
+                                        {
+                                            "beat":  278,
+                                            "type":  "pattern",
+                                            "id":  "apex_stutter"
+                                        },
+                                        {
+                                            "beat":  281,
+                                            "type":  "pattern",
+                                            "id":  "apex2_echo"
+                                        },
+                                        {
+                                            "beat":  284,
+                                            "type":  "pattern",
+                                            "id":  "apex3_expanding"
+                                        },
+                                        {
+                                            "beat":  286,
+                                            "type":  "pattern",
+                                            "id":  "apex3_tear_h"
+                                        },
+                                        {
+                                            "beat":  287,
+                                            "type":  "pattern",
+                                            "id":  "apex2_vortex"
+                                        },
+                                        {
+                                            "beat":  290,
+                                            "type":  "pattern",
+                                            "id":  "apex3_burst"
+                                        },
+                                        {
+                                            "beat":  293,
+                                            "type":  "pattern",
+                                            "id":  "apex_mirror_dense"
+                                        },
+                                        {
+                                            "beat":  296,
+                                            "type":  "pattern",
+                                            "id":  "apex3_expanding_dense"
+                                        },
+                                        {
+                                            "beat":  299,
+                                            "type":  "pattern",
+                                            "id":  "apex2_radial"
+                                        },
+                                        {
+                                            "beat":  302,
+                                            "type":  "pattern",
+                                            "id":  "apex_stutter"
+                                        },
+                                        {
+                                            "beat":  304,
+                                            "type":  "pattern",
+                                            "id":  "apex3_expanding_dense"
+                                        },
+                                        {
+                                            "beat":  305,
+                                            "type":  "pattern",
+                                            "id":  "apex2_echo"
+                                        },
+                                        {
+                                            "beat":  308,
+                                            "type":  "pattern",
+                                            "id":  "apex3_expanding"
+                                        },
+                                        {
+                                            "beat":  311,
+                                            "type":  "pattern",
+                                            "id":  "apex2_vortex"
+                                        },
+                                        {
+                                            "beat":  314,
+                                            "type":  "pattern",
+                                            "id":  "apex3_burst"
+                                        },
+                                        {
+                                            "beat":  317,
+                                            "type":  "pattern",
+                                            "id":  "apex_mirror_dense"
+                                        },
+                                        {
+                                            "beat":  320,
+                                            "type":  "counterattack_window",
+                                            "duration_beats":  8,
+                                            "lead_beats":  5,
+                                            "zone":  {
+                                                         "anchor":  "left",
+                                                         "radius":  55
+                                                     }
+                                        },
+                                        {
+                                            "beat":  336,
+                                            "type":  "pattern",
+                                            "id":  "apex3_radial"
+                                        },
+                                        {
+                                            "beat":  338,
+                                            "type":  "pattern",
+                                            "id":  "apex3_burst"
+                                        },
+                                        {
+                                            "beat":  340,
+                                            "type":  "pattern",
+                                            "id":  "apex3_mirror"
+                                        },
+                                        {
+                                            "beat":  342,
+                                            "type":  "pattern",
+                                            "id":  "apex3_vortex"
+                                        },
+                                        {
+                                            "beat":  344,
+                                            "type":  "pattern",
+                                            "id":  "apex3_tear_v"
+                                        },
+                                        {
+                                            "beat":  344,
+                                            "type":  "pattern",
+                                            "id":  "apex3_echo"
+                                        },
+                                        {
+                                            "beat":  346,
+                                            "type":  "pattern",
+                                            "id":  "apex3_stutter"
+                                        },
+                                        {
+                                            "beat":  348,
+                                            "type":  "pattern",
+                                            "id":  "apex3_laser"
+                                        },
+                                        {
+                                            "beat":  350,
+                                            "type":  "pattern",
+                                            "id":  "apex_burst_chaos"
+                                        },
+                                        {
+                                            "beat":  352,
+                                            "type":  "pattern",
+                                            "id":  "apex2_burst"
+                                        },
+                                        {
+                                            "beat":  354,
+                                            "type":  "pattern",
+                                            "id":  "apex2_vortex"
+                                        },
+                                        {
+                                            "beat":  356,
+                                            "type":  "pattern",
+                                            "id":  "apex2_radial"
+                                        },
+                                        {
+                                            "beat":  358,
+                                            "type":  "pattern",
+                                            "id":  "apex3_well_strong"
+                                        },
+                                        {
+                                            "beat":  358,
+                                            "type":  "pattern",
+                                            "id":  "apex_mirror_dense"
+                                        },
+                                        {
+                                            "beat":  360,
+                                            "type":  "pattern",
+                                            "id":  "apex3_radial"
+                                        },
+                                        {
+                                            "beat":  362,
+                                            "type":  "pattern",
+                                            "id":  "apex3_burst"
+                                        },
+                                        {
+                                            "beat":  364,
+                                            "type":  "pattern",
+                                            "id":  "apex3_mirror"
+                                        },
+                                        {
+                                            "beat":  366,
+                                            "type":  "pattern",
+                                            "id":  "apex3_vortex"
+                                        },
+                                        {
+                                            "beat":  368,
+                                            "type":  "pattern",
+                                            "id":  "apex3_echo"
+                                        },
+                                        {
+                                            "beat":  370,
+                                            "type":  "pattern",
+                                            "id":  "apex3_stutter"
+                                        },
+                                        {
+                                            "beat":  372,
+                                            "type":  "pattern",
+                                            "id":  "apex3_tear_h"
+                                        },
+                                        {
+                                            "beat":  372,
+                                            "type":  "pattern",
+                                            "id":  "apex3_laser"
+                                        },
+                                        {
+                                            "beat":  374,
+                                            "type":  "pattern",
+                                            "id":  "apex_burst_chaos"
+                                        },
+                                        {
+                                            "beat":  376,
+                                            "type":  "pattern",
+                                            "id":  "apex2_burst"
+                                        },
+                                        {
+                                            "beat":  378,
+                                            "type":  "pattern",
+                                            "id":  "apex2_vortex"
+                                        },
+                                        {
+                                            "beat":  380,
+                                            "type":  "pattern",
+                                            "id":  "apex2_radial"
+                                        },
+                                        {
+                                            "beat":  382,
+                                            "type":  "pattern",
+                                            "id":  "apex_mirror_dense"
+                                        },
+                                        {
+                                            "beat":  384,
+                                            "type":  "pattern",
+                                            "id":  "apex3_radial"
+                                        },
+                                        {
+                                            "beat":  386,
+                                            "type":  "pattern",
+                                            "id":  "apex3_expanding_dense"
+                                        },
+                                        {
+                                            "beat":  386,
+                                            "type":  "pattern",
+                                            "id":  "apex3_burst"
+                                        },
+                                        {
+                                            "beat":  388,
+                                            "type":  "pattern",
+                                            "id":  "apex3_mirror"
+                                        },
+                                        {
+                                            "beat":  390,
+                                            "type":  "pattern",
+                                            "id":  "apex3_vortex"
+                                        },
+                                        {
+                                            "beat":  392,
+                                            "type":  "pattern",
+                                            "id":  "apex3_echo"
+                                        },
+                                        {
+                                            "beat":  394,
+                                            "type":  "pattern",
+                                            "id":  "apex3_stutter"
+                                        },
+                                        {
+                                            "beat":  396,
+                                            "type":  "pattern",
+                                            "id":  "apex3_laser"
+                                        },
+                                        {
+                                            "beat":  398,
+                                            "type":  "pattern",
+                                            "id":  "apex_burst_chaos"
+                                        },
+                                        {
+                                            "beat":  400,
+                                            "type":  "counterattack_window",
+                                            "duration_beats":  8,
+                                            "lead_beats":  5,
+                                            "zone":  {
+                                                         "anchor":  "topLeft",
+                                                         "radius":  50
+                                                     }
+                                        },
+                                        {
+                                            "beat":  414,
+                                            "type":  "pattern",
+                                            "id":  "apex3_radial"
+                                        },
+                                        {
+                                            "beat":  416,
+                                            "type":  "pattern",
+                                            "id":  "apex3_burst"
+                                        },
+                                        {
+                                            "beat":  418,
+                                            "type":  "pattern",
+                                            "id":  "apex3_mirror"
+                                        },
+                                        {
+                                            "beat":  420,
+                                            "type":  "pattern",
+                                            "id":  "apex3_vortex"
+                                        },
+                                        {
+                                            "beat":  422,
+                                            "type":  "pattern",
+                                            "id":  "apex3_tear_diag"
+                                        },
+                                        {
+                                            "beat":  422,
+                                            "type":  "pattern",
+                                            "id":  "apex3_echo"
+                                        },
+                                        {
+                                            "beat":  424,
+                                            "type":  "pattern",
+                                            "id":  "apex3_stutter"
+                                        },
+                                        {
+                                            "beat":  426,
+                                            "type":  "pattern",
+                                            "id":  "apex3_laser"
+                                        },
+                                        {
+                                            "beat":  428,
+                                            "type":  "pattern",
+                                            "id":  "apex_burst_chaos"
+                                        },
+                                        {
+                                            "beat":  430,
+                                            "type":  "pattern",
+                                            "id":  "apex2_burst"
+                                        },
+                                        {
+                                            "beat":  432,
+                                            "type":  "pattern",
+                                            "id":  "apex2_vortex"
+                                        },
+                                        {
+                                            "beat":  434,
+                                            "type":  "pattern",
+                                            "id":  "apex2_radial"
+                                        },
+                                        {
+                                            "beat":  436,
+                                            "type":  "pattern",
+                                            "id":  "apex3_well_strong"
+                                        },
+                                        {
+                                            "beat":  436,
+                                            "type":  "pattern",
+                                            "id":  "apex_mirror_dense"
+                                        },
+                                        {
+                                            "beat":  438,
+                                            "type":  "pattern",
+                                            "id":  "apex3_radial"
+                                        },
+                                        {
+                                            "beat":  440,
+                                            "type":  "pattern",
+                                            "id":  "apex3_burst"
+                                        },
+                                        {
+                                            "beat":  442,
+                                            "type":  "pattern",
+                                            "id":  "apex3_mirror"
+                                        },
+                                        {
+                                            "beat":  444,
+                                            "type":  "pattern",
+                                            "id":  "apex3_vortex"
+                                        },
+                                        {
+                                            "beat":  446,
+                                            "type":  "pattern",
+                                            "id":  "apex3_echo"
+                                        },
+                                        {
+                                            "beat":  448,
+                                            "type":  "pattern",
+                                            "id":  "apex3_expanding_dense"
+                                        },
+                                        {
+                                            "beat":  448,
+                                            "type":  "pattern",
+                                            "id":  "apex3_stutter"
+                                        },
+                                        {
+                                            "beat":  450,
+                                            "type":  "pattern",
+                                            "id":  "apex3_laser"
+                                        },
+                                        {
+                                            "beat":  452,
+                                            "type":  "pattern",
+                                            "id":  "apex_burst_chaos"
+                                        },
+                                        {
+                                            "beat":  454,
+                                            "type":  "pattern",
+                                            "id":  "apex2_burst"
+                                        },
+                                        {
+                                            "beat":  456,
+                                            "type":  "pattern",
+                                            "id":  "apex2_vortex"
+                                        },
+                                        {
+                                            "beat":  458,
+                                            "type":  "pattern",
+                                            "id":  "apex2_radial"
+                                        },
+                                        {
+                                            "beat":  460,
+                                            "type":  "counterattack_window",
+                                            "duration_beats":  8,
+                                            "lead_beats":  4,
+                                            "zone":  {
+                                                         "anchor":  "right",
+                                                         "radius":  50
+                                                     }
+                                        },
+                                        {
+                                            "beat":  472,
+                                            "type":  "pattern",
+                                            "id":  "apex3_radial"
+                                        },
+                                        {
+                                            "beat":  474,
+                                            "type":  "pattern",
+                                            "id":  "apex3_burst"
+                                        },
+                                        {
+                                            "beat":  476,
+                                            "type":  "pattern",
+                                            "id":  "apex3_vortex"
+                                        },
+                                        {
+                                            "beat":  478,
+                                            "type":  "pattern",
+                                            "id":  "apex3_tear_h"
+                                        },
+                                        {
+                                            "beat":  478,
+                                            "type":  "pattern",
+                                            "id":  "apex3_laser"
+                                        },
+                                        {
+                                            "beat":  480,
+                                            "type":  "pattern",
+                                            "id":  "apex3_mirror"
+                                        },
+                                        {
+                                            "beat":  482,
+                                            "type":  "pattern",
+                                            "id":  "apex3_echo"
+                                        },
+                                        {
+                                            "beat":  484,
+                                            "type":  "pattern",
+                                            "id":  "apex3_expanding_dense"
+                                        },
+                                        {
+                                            "beat":  484,
+                                            "type":  "pattern",
+                                            "id":  "apex3_stutter"
+                                        },
+                                        {
+                                            "beat":  486,
+                                            "type":  "pattern",
+                                            "id":  "apex3_expanding_dense"
+                                        },
+                                        {
+                                            "beat":  488,
+                                            "type":  "pattern",
+                                            "id":  "apex_burst_chaos"
+                                        },
+                                        {
+                                            "beat":  490,
+                                            "type":  "pattern",
+                                            "id":  "apex2_vortex"
+                                        },
+                                        {
+                                            "beat":  492,
+                                            "type":  "pattern",
+                                            "id":  "apex3_well_strong"
+                                        },
+                                        {
+                                            "beat":  492,
+                                            "type":  "pattern",
+                                            "id":  "apex_mirror_dense"
+                                        },
+                                        {
+                                            "beat":  494,
+                                            "type":  "pattern",
+                                            "id":  "apex3_radial"
+                                        },
+                                        {
+                                            "beat":  496,
+                                            "type":  "pattern",
+                                            "id":  "apex3_burst"
+                                        },
+                                        {
+                                            "beat":  498,
+                                            "type":  "pattern",
+                                            "id":  "apex3_vortex"
+                                        },
+                                        {
+                                            "beat":  500,
+                                            "type":  "pattern",
+                                            "id":  "apex3_laser"
+                                        },
+                                        {
+                                            "beat":  500,
+                                            "type":  "pattern",
+                                            "id":  "apex3_tear_v"
+                                        },
+                                        {
+                                            "beat":  502,
+                                            "type":  "pattern",
+                                            "id":  "apex3_mirror"
+                                        },
+                                        {
+                                            "beat":  504,
+                                            "type":  "pattern",
+                                            "id":  "apex3_echo"
+                                        },
+                                        {
+                                            "beat":  506,
+                                            "type":  "pattern",
+                                            "id":  "apex3_stutter"
+                                        },
+                                        {
+                                            "beat":  508,
+                                            "type":  "pattern",
+                                            "id":  "apex3_expanding_dense"
+                                        },
+                                        {
+                                            "beat":  510,
+                                            "type":  "pattern",
+                                            "id":  "apex_burst_chaos"
+                                        },
+                                        {
+                                            "beat":  510,
+                                            "type":  "pattern",
+                                            "id":  "apex3_tear_diag"
+                                        },
+                                        {
+                                            "beat":  512,
+                                            "type":  "pattern",
+                                            "id":  "apex2_vortex"
+                                        },
+                                        {
+                                            "beat":  514,
+                                            "type":  "pattern",
+                                            "id":  "apex_mirror_dense"
+                                        },
+                                        {
+                                            "beat":  516,
+                                            "type":  "pattern",
+                                            "id":  "apex3_radial"
+                                        },
+                                        {
+                                            "beat":  518,
+                                            "type":  "pattern",
+                                            "id":  "apex3_burst"
+                                        },
+                                        {
+                                            "beat":  520,
+                                            "type":  "counterattack_window",
+                                            "duration_beats":  12,
+                                            "lead_beats":  4,
+                                            "zone":  {
+                                                         "anchor":  "bottom",
+                                                         "radius":  50
+                                                     }
+                                        },
+                                        {
+                                            "beat":  537,
+                                            "type":  "pattern",
+                                            "id":  "apex3_radial"
+                                        },
+                                        {
+                                            "beat":  539,
+                                            "type":  "pattern",
+                                            "id":  "apex3_burst"
+                                        },
+                                        {
+                                            "beat":  541,
+                                            "type":  "pattern",
+                                            "id":  "apex3_vortex"
+                                        },
+                                        {
+                                            "beat":  542,
+                                            "type":  "pattern",
+                                            "id":  "apex3_tear_h"
+                                        },
+                                        {
+                                            "beat":  543,
+                                            "type":  "pattern",
+                                            "id":  "apex3_laser"
+                                        },
+                                        {
+                                            "beat":  545,
+                                            "type":  "pattern",
+                                            "id":  "apex3_mirror"
+                                        },
+                                        {
+                                            "beat":  547,
+                                            "type":  "pattern",
+                                            "id":  "apex3_echo"
+                                        },
+                                        {
+                                            "beat":  549,
+                                            "type":  "pattern",
+                                            "id":  "apex3_stutter"
+                                        },
+                                        {
+                                            "beat":  551,
+                                            "type":  "pattern",
+                                            "id":  "apex3_expanding_dense"
+                                        },
+                                        {
+                                            "beat":  552,
+                                            "type":  "pattern",
+                                            "id":  "apex3_well_strong"
+                                        },
+                                        {
+                                            "beat":  553,
+                                            "type":  "pattern",
+                                            "id":  "apex_burst_chaos"
+                                        },
+                                        {
+                                            "beat":  555,
+                                            "type":  "pattern",
+                                            "id":  "apex2_vortex"
+                                        },
+                                        {
+                                            "beat":  557,
+                                            "type":  "pattern",
+                                            "id":  "apex_mirror_dense"
+                                        },
+                                        {
+                                            "beat":  559,
+                                            "type":  "pattern",
+                                            "id":  "apex3_radial"
+                                        },
+                                        {
+                                            "beat":  560,
+                                            "type":  "pattern",
+                                            "id":  "apex3_expanding_dense"
+                                        },
+                                        {
+                                            "beat":  561,
+                                            "type":  "pattern",
+                                            "id":  "apex3_burst"
+                                        },
+                                        {
+                                            "beat":  563,
+                                            "type":  "pattern",
+                                            "id":  "apex3_vortex"
+                                        },
+                                        {
+                                            "beat":  565,
+                                            "type":  "pattern",
+                                            "id":  "apex3_laser"
+                                        },
+                                        {
+                                            "beat":  567,
+                                            "type":  "pattern",
+                                            "id":  "apex3_mirror"
+                                        },
+                                        {
+                                            "beat":  568,
+                                            "type":  "counterattack_window",
+                                            "duration_beats":  16,
+                                            "lead_beats":  5,
+                                            "zone":  {
+                                                         "anchor":  "center",
+                                                         "radius":  55
+                                                     }
+                                        }
+                                    ]
+                   }
+               ]
 }

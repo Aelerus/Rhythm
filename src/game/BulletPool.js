@@ -17,6 +17,7 @@ export class Bullet {
     this.x = 0; this.y = 0;
     this.vx = 0; this.vy = 0;
     this.radius = 6;
+    this.baseRadius = 6;
     this.color = "#ff5dd6";
     this.life = 0;
     this.maxLife = 8;
@@ -27,6 +28,12 @@ export class Bullet {
     this.stutter = null;
     this._stutterPhase = 0;
     this.tag = null;
+    // APEX-tier mechanics:
+    //   phaseLockColor: "white"|"black" — bullet only damages while floor matches.
+    //                  Renderer dims it during the wrong floor.
+    //   growRate:      px/sec the bullet's radius expands by over its lifetime.
+    this.phaseLockColor = null;
+    this.growRate = 0;
   }
 }
 
@@ -46,6 +53,7 @@ export class BulletPool {
     b.x = opts.x; b.y = opts.y;
     b.vx = opts.vx ?? 0; b.vy = opts.vy ?? 0;
     b.radius = opts.radius ?? 6;
+    b.baseRadius = b.radius;
     b.color = opts.color ?? "#ff5dd6";
     b.life = 0;
     b.maxLife = opts.maxLife ?? 8;
@@ -56,6 +64,8 @@ export class BulletPool {
     b.stutter = opts.stutter ?? null;
     b._stutterPhase = 0;
     b.tag = opts.tag ?? null;
+    b.phaseLockColor = opts.phaseLockColor ?? null;
+    b.growRate = opts.growRate ?? 0;
     this.active.push(b);
     return b;
   }
@@ -137,6 +147,9 @@ export class BulletPool {
       b.x += b.vx * dt;
       b.y += b.vy * dt;
 
+      // Expanding-bullet mechanic — grow radius over lifetime.
+      if (b.growRate) b.radius = b.baseRadius + b.growRate * b.life;
+
       const pad = 60;
       const off =
         b.x < arena.x - pad || b.x > arena.x + arena.w + pad ||
@@ -149,13 +162,15 @@ export class BulletPool {
     }
   }
 
-  collideWith(target) {
+  // `floorState` is "white" | "black" | null. Phase-locked bullets only damage
+  // when their phaseLockColor matches the current floor; otherwise they ghost.
+  collideWith(target, floorState = null) {
     if (!target.alive || target.iframes > 0) return null;
     const r = target.hitboxRadius;
     for (const b of this.active) {
-      // Telegraph bullets and orbiting bullets don't damage yet
       if (b.delay > 0) continue;
       if (b.orbit && b.life < b.orbit.until) continue;
+      if (b.phaseLockColor && floorState && b.phaseLockColor !== floorState) continue;
       const dx = b.x - target.x;
       const dy = b.y - target.y;
       const rad = r + b.radius * 0.6;

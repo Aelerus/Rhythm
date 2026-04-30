@@ -12,24 +12,29 @@ import { BossRenderer } from "./renderer/BossRenderer.js";
 
 import { FightManager } from "./game/FightManager.js";
 import { HUD } from "./ui/HUD.js";
-import { StageSelectScene } from "./ui/StageSelect.js";
+import { WorldMapScene } from "./ui/WorldMap.js";
 import { VictoryScene } from "./ui/VictoryScreen.js";
-import { MainMenuScene, GameOverScene, LoadingScene } from "./ui/Menus.js";
+import { MainMenuScene, GameOverScene, LoadingScene, SettingsOverlay, CharacterCreationScene } from "./ui/Menus.js";
 
 const ARENA = { x: 60, y: 60, w: 840, h: 600 };
 
 class FightScene {
-  constructor({ canvas, input, audio, beatClock, bossData, patternLibrary, stage, musicBuffer, onVictory, onDefeat, onRestart, onQuit }) {
+  constructor({ canvas, input, audio, beatClock, bossData, patternLibrary, stage, musicBuffer, musicBuffers, isAdmin, character, onVictory, onDefeat, onRestart, onQuit }) {
     this.canvas = canvas;
     this.input = input;
     this.audio = audio;
     this.beatClock = beatClock;
     this.stage = stage;
+    this.isAdmin = !!isAdmin;
     this.onVictory = onVictory;
     this.onDefeat = onDefeat;
     this.onRestart = onRestart;
     this.onQuit = onQuit;
-    this.fight = new FightManager({ bossData, patternLibrary, beatClock, audio, arena: ARENA, musicBuffer });
+    this.fight = new FightManager({ bossData, patternLibrary, beatClock, audio, arena: ARENA, musicBuffer, musicBuffers });
+    if (character) {
+      this.fight.player.shape = character.shape || "arrow";
+      this.fight.player.color = character.color || "#e8e8f0";
+    }
     this.bullets = new BulletRenderer();
     this.playerR = new PlayerRenderer();
     this.bossR = new BossRenderer();
@@ -38,7 +43,11 @@ class FightScene {
     this._unsubPress = null;
     this._initialHP = this.fight.player.maxHP;
     this._totalPrompts = 0;
-    for (const evt of bossData.timeline) {
+    // Sum prompt counts across all phases for grade calculation.
+    const allTimelines = Array.isArray(bossData.phases) && bossData.phases.length
+      ? bossData.phases.flatMap((p) => p.timeline ?? [])
+      : (bossData.timeline ?? []);
+    for (const evt of allTimelines) {
       if (evt.type === "counterattack_window") this._totalPrompts += (evt.duration_beats ?? 8);
     }
     this._scoreSnapshot = 0;
@@ -50,10 +59,13 @@ class FightScene {
     this._pauseCursor = 0;
     this._pauseButtons = [
       { label: "RESUME",        action: () => this._resume() },
+      { label: "SETTINGS",      action: () => this._openPauseSettings() },
       { label: "RESTART",       action: () => this._restart() },
       { label: "QUIT TO MENU",  action: () => this._quit() },
     ];
     this._pauseButtonRects = [];
+    this._settingsOpen = false;
+    this._settingsOverlay = null;
     this._onCanvasClick = (e) => this._handlePauseClick(e);
     this._onCanvasMove = (e) => this._handlePauseMove(e);
   }
@@ -63,6 +75,9 @@ class FightScene {
     this._unsubPress = this.input.onPress((key) => {
       if (this._paused) return;
       if (key === "space" || key === "z") this.fight.handleAttackPress();
+      // Admin debug: K instantly drops the current phase's HP to 0 so phase
+      // transitions and the final fall animation can be tested without playing through.
+      if (this.isAdmin && key === "k") this.fight.debugKillPhase();
     });
     this.canvas.addEventListener("click", this._onCanvasClick);
     this.canvas.addEventListener("mousemove", this._onCanvasMove);
@@ -114,6 +129,15 @@ class FightScene {
     this.onQuit?.();
   }
 
+  _openPauseSettings() {
+    this._settingsOpen = true;
+    this._settingsOverlay = new SettingsOverlay({
+      audio: this.audio,
+      accent: this.fight.boss.color || "#5dd6ff",
+      onClose: () => { this._settingsOpen = false; this._settingsOverlay = null; },
+    });
+  }
+
   _canvasCoords(e) {
     const rect = this.canvas.getBoundingClientRect();
     const sx = this.canvas.width / rect.width;
@@ -153,6 +177,11 @@ class FightScene {
     if (this._paused) {
       // Drain the attack key so it doesn't fire on resume.
       this.input.consumePress("space", "z");
+
+      if (this._settingsOpen) {
+        this._settingsOverlay.handleInput(this.input);
+        return;
+      }
 
       if (this.input.consumePress("Escape")) { this._resume(); return; }
       if (this.input.consumePress("ArrowDown", "s")) {
@@ -213,15 +242,28 @@ class FightScene {
     const inversion = this.fight.useInversion
       ? { floor: this.fight.floorState, flash: this.fight.floorFlashTimer }
       : null;
+    // Phase 2 red cracks reveal as boss HP drops in that phase.
+    const redCracks = this.fight.redCracks
+      ? { progress: 1 - this.fight.boss.hpRatio }
+      : null;
+    const fullRedFloor = !!this.fight.fullRedFloor;
+    const bossColorMode = this.fight.bossColorMode || "color";
 
-    this.canvasR.drawBackground(beatPulse, this.fight.boss.color, inversion, ARENA);
-    this.canvasR.drawArenaFrame(ARENA, beatPulse, this.fight.boss.color, inversion);
-    this.bossR.draw(ctx, this.fight.boss, beatPulse, inversion);
+    this.canvasR.drawBackground(beatPulse, this.fight.boss.color, inversion, ARENA, redCracks, fullRedFloor);
+    this.canvasR.drawArenaFrame(ARENA, beatPulse, this.fight.boss.color, inversion, redCracks, fullRedFloor);
+    this.bossR.draw(ctx, this.fight.boss, beatPulse, inversion, bossColorMode);
+    // Aux attacks render BENEATH bullets so bullets that travel along beams stay visible.
+    if (this.fight.aux && this.fight.aux.length) {
+      for (const a of this.fight.aux) a.render(ctx, this.fight.player);
+    }
     this.bullets.draw(ctx, this.fight.pool, inversion);
     this.playerR.draw(ctx, this.fight.player, this.input.isFocus(), inversion);
     this.hud.draw(ctx, this.fight, beatPulse, beatPos);
 
-    if (this._paused) this._drawPauseOverlay(ctx);
+    if (this._paused) {
+      if (this._settingsOpen) this._settingsOverlay.draw(ctx);
+      else this._drawPauseOverlay(ctx);
+    }
   }
 
   _drawPauseOverlay(ctx) {
@@ -279,9 +321,11 @@ class Game {
     this.beatClock = null;
     this.scenes = new SceneManager();
     this.stages = [];
+    this.worlds = [];
     this.patternLibrary = {};
     this.progress = this._loadProgress();
     this.isAdmin = this._loadAdmin();
+    this.character = this._loadCharacter();
     this.last = performance.now();
   }
 
@@ -293,28 +337,46 @@ class Game {
 
     const stagesData = await fetch("data/stages.json").then((r) => r.json());
     this.stages = stagesData.stages;
+    this.worlds = stagesData.worlds ?? [];
     const patternList = await Promise.all(stagesData.patternFiles.map((p) => fetch(p).then((r) => r.json())));
     for (const pat of patternList) this.patternLibrary[pat.id] = pat;
 
-    this.scenes.set(new MainMenuScene({
-      canvas: this.canvas, input: this.input, audio: this.audio,
-      onStart: () => this._resumeAudioAndGoToSelect(),
-      isAdmin: this.isAdmin,
-      onAdminToggle: (on) => { this.isAdmin = on; this._saveAdmin(); },
-    }));
+    this._gotoMainMenu();
     requestAnimationFrame((t) => this._loop(t));
   }
 
-  async _resumeAudioAndGoToSelect() {
-    try { await this.audio.resume(); }
-    catch (err) { console.warn("Audio resume failed:", err); }
-    this._gotoStageSelect();
+  _gotoMainMenu() {
+    this.scenes.set(new MainMenuScene({
+      canvas: this.canvas, input: this.input, audio: this.audio,
+      onStart: () => this._resumeAudioAndGoToCharacterCreate(),
+      isAdmin: this.isAdmin,
+      onAdminToggle: (on) => { this.isAdmin = on; this._saveAdmin(); },
+    }));
   }
 
-  _gotoStageSelect() {
-    this.scenes.set(new StageSelectScene({
+  async _resumeAudioAndGoToCharacterCreate() {
+    try { await this.audio.resume(); }
+    catch (err) { console.warn("Audio resume failed:", err); }
+    this._gotoCharacterCreate();
+  }
+
+  _gotoCharacterCreate() {
+    this.scenes.set(new CharacterCreationScene({
       canvas: this.canvas, input: this.input, audio: this.audio,
-      stages: this.stages, progress: this.progress,
+      initial: this.character,
+      onConfirm: (character) => {
+        this.character = character;
+        this._saveCharacter();
+        this._gotoWorldMap();
+      },
+      onBack: () => this._gotoMainMenu(),
+    }));
+  }
+
+  _gotoWorldMap() {
+    this.scenes.set(new WorldMapScene({
+      canvas: this.canvas, input: this.input, audio: this.audio,
+      worlds: this.worlds, stages: this.stages, progress: this.progress,
       isAdmin: this.isAdmin,
       onPick: (stage) => this._startFight(stage),
     }));
@@ -328,14 +390,30 @@ class Game {
       }));
     }
     const bossData = await fetch(stage.boss).then((r) => r.json());
+
+    // Multi-phase bosses have a `phases` array, each with its own music.
+    // Single-phase bosses still have a top-level `music` field.
     let musicBuffer = null;
-    if (bossData.music) {
+    let musicBuffers = null;
+    if (Array.isArray(bossData.phases) && bossData.phases.length > 0) {
+      musicBuffers = {};
+      for (let i = 0; i < bossData.phases.length; i++) {
+        const m = bossData.phases[i].music;
+        if (!m) continue;
+        try {
+          musicBuffers[i] = await this.audio.loadBuffer(m);
+        } catch (err) {
+          console.warn(`Failed to load phase ${i} music (${m}):`, err);
+        }
+      }
+    } else if (bossData.music) {
       try {
         musicBuffer = await this.audio.loadBuffer(bossData.music);
       } catch (err) {
         console.warn("Failed to load boss music, falling back to synth:", err);
       }
     }
+
     this.scenes.set(new FightScene({
       canvas: this.canvas,
       input: this.input,
@@ -345,10 +423,13 @@ class Game {
       patternLibrary: this.patternLibrary,
       stage,
       musicBuffer,
+      musicBuffers,
+      isAdmin: this.isAdmin,
+      character: this.character,
       onVictory: (summary) => this._onVictory(summary),
       onDefeat: (info) => this._onDefeat(info, stage, bossData),
       onRestart: () => this._startFight(stage),
-      onQuit: () => this._gotoStageSelect(),
+      onQuit: () => this._gotoWorldMap(),
     }));
   }
 
@@ -372,7 +453,7 @@ class Game {
     this.scenes.set(new VictoryScene({
       canvas: this.canvas, input: this.input, audio: this.audio,
       summary,
-      onContinue: () => this._gotoStageSelect(),
+      onContinue: () => this._gotoWorldMap(),
     }));
   }
 
@@ -382,7 +463,7 @@ class Game {
       bossName: info.bossName,
       reason: info.reason,
       onRetry: () => this._startFight(stage),
-      onBackToSelect: () => this._gotoStageSelect(),
+      onBackToSelect: () => this._gotoWorldMap(),
     }));
   }
 
@@ -406,6 +487,19 @@ class Game {
 
   _saveAdmin() {
     try { localStorage.setItem("rbh.admin", this.isAdmin ? "1" : "0"); }
+    catch {}
+  }
+
+  _loadCharacter() {
+    try {
+      const raw = localStorage.getItem("rbh.character");
+      if (raw) return JSON.parse(raw);
+    } catch {}
+    return { shape: "arrow", color: "#e8e8f0" };
+  }
+
+  _saveCharacter() {
+    try { localStorage.setItem("rbh.character", JSON.stringify(this.character)); }
     catch {}
   }
 

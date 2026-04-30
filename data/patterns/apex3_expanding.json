@@ -1,0 +1,12 @@
+{
+  "id": "apex3_expanding",
+  "type": "expanding_radial",
+  "count": 18,
+  "speed": 130,
+  "growRate": 9,
+  "radius": 4,
+  "rotateWithBeat": true,
+  "rotateStep": 0.21,
+  "color": "#ffe25d",
+  "maxLife": 4
+}

@@ -1,0 +1,9 @@
+{
+  "id": "apex3_well_topright",
+  "type": "gravity_well",
+  "anchor": "topRight",
+  "duration": 1.4,
+  "strength": 240,
+  "radius": 220,
+  "color": "#cdcdd6"
+}
