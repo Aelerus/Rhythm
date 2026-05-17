@@ -13,218 +13,289 @@
   "patterns": [],
   "timeline": [
     { "beat": 4,   "type": "pattern",
-      "patternData": { "type": "train_wall", "side": "left", "cars": 3, "carStep": 0.45, "bullets": 7, "gapSize": 2, "gapMode": "shift", "speed": 360, "radius": 7, "color": "#00e5ff" } },
+      "patternData": { "type": "train_wall", "side": "left", "cars": 4, "carStep": 0.4, "bullets": 11, "gapSize": 3, "gapMode": "shift", "speed": 380, "color": "#00e5ff" } },
     { "beat": 8,   "type": "pattern",
-      "patternData": { "type": "hat_spray", "count": 5, "durationBeats": 1.2, "spread": 0.25, "speed": 340, "radius": 5, "color": "#00e5ff" } },
+      "patternData": { "type": "hat_spray", "count": 6, "durationBeats": 1.5, "spread": 0.25, "speed": 340, "radius": 5, "color": "#00e5ff" } },
 
-    { "beat": 16,  "type": "pattern",
-      "patternData": { "type": "train_wall", "side": "top", "cars": 3, "carStep": 0.45, "bullets": 9, "gapSize": 2, "gapMode": "shift", "speed": 320, "radius": 7, "color": "#00e5ff" } },
+    { "beat": 14,  "type": "pattern",
+      "patternData": { "type": "sub_slam", "side": "right", "count": 6, "span": 0.85, "bias": 210, "amp": 270, "period": 0.36, "radius": 9, "color": "#00e5ff" } },
+
     { "beat": 20,  "type": "pattern",
-      "patternData": { "type": "hat_spray", "count": 5, "durationBeats": 1.2, "spread": 0.25, "speed": 340, "radius": 5, "color": "#00e5ff" } },
-
-    { "beat": 28,  "type": "pattern",
+      "patternData": { "type": "train_wall", "side": "top", "cars": 4, "carStep": 0.4, "bullets": 12, "gapSize": 3, "gapMode": "shift", "speed": 340, "color": "#00e5ff" } },
+    { "beat": 24,  "type": "pattern",
       "patternData": { "type": "hat_spray", "count": 6, "durationBeats": 1.5, "spread": 0.25, "speed": 340, "radius": 5, "color": "#00e5ff" } },
 
     { "beat": 32,  "type": "counterattack_window", "duration_beats": 8, "lead_beats": 6,
       "zone": { "anchor": "center", "radius": 52 } },
 
-    { "beat": 44,  "type": "pattern",
-      "patternData": { "type": "train_wall", "side": "left", "cars": 4, "carStep": 0.4, "bullets": 7, "gapSize": 2, "gapMode": "shift", "speed": 380, "radius": 7, "color": "#00e5ff" } },
     { "beat": 48,  "type": "pattern",
-      "patternData": { "type": "hat_spray", "count": 5, "durationBeats": 1.2, "spread": 0.26, "speed": 350, "radius": 5, "color": "#00e5ff" } },
+      "patternData": { "type": "sub_slam", "side": "left", "count": 7, "span": 0.9, "bias": 220, "amp": 280, "period": 0.35, "radius": 9, "color": "#00e5ff" } },
+    { "beat": 52,  "type": "pattern",
+      "patternData": { "type": "hat_spray", "count": 7, "durationBeats": 1.6, "spread": 0.26, "speed": 350, "radius": 5, "color": "#00e5ff" } },
 
     { "beat": 56,  "type": "pattern",
-      "patternData": { "type": "sub_slam", "side": "left", "count": 2, "span": 0.55, "bias": 150, "amp": 230, "period": 0.5, "radius": 8, "color": "#00e5ff" } },
+      "patternData": { "type": "train_wall", "side": "right", "cars": 5, "carStep": 0.36, "bullets": 11, "gapSize": 3, "gapMode": "shift", "speed": 400, "color": "#00e5ff" } },
     { "beat": 60,  "type": "pattern",
-      "patternData": { "type": "hat_spray", "count": 5, "durationBeats": 1.2, "spread": 0.26, "speed": 350, "radius": 5, "color": "#00e5ff" } },
+      "patternData": { "type": "hat_spray", "count": 6, "durationBeats": 1.5, "spread": 0.26, "speed": 350, "radius": 5, "color": "#00e5ff" } },
+
+    { "beat": 64,  "type": "pattern",
+      "patternData": { "type": "aimed_shot", "count": 2, "spread": 0.4, "speed": 340, "radius": 6, "color": "#00e5ff" } },
 
     { "beat": 68,  "type": "pattern",
-      "patternData": { "type": "train_wall", "side": "right", "cars": 4, "carStep": 0.4, "bullets": 7, "gapSize": 2, "gapMode": "shift", "speed": 380, "radius": 7, "color": "#00e5ff" } },
+      "patternData": { "type": "train_wall", "side": "diag_tl", "cars": 5, "carStep": 0.4, "bullets": 12, "gapSize": 3, "gapMode": "shift", "speed": 380, "color": "#00e5ff" } },
     { "beat": 72,  "type": "pattern",
-      "patternData": { "type": "hat_spray", "count": 5, "durationBeats": 1.2, "spread": 0.26, "speed": 350, "radius": 5, "color": "#00e5ff" } },
+      "patternData": { "type": "hat_spray", "count": 6, "durationBeats": 1.5, "spread": 0.26, "speed": 350, "radius": 5, "color": "#00e5ff" } },
+
+    { "beat": 76,  "type": "pattern",
+      "patternData": { "type": "aimed_shot", "count": 2, "spread": 0.4, "speed": 360, "radius": 6, "color": "#00e5ff" } },
 
     { "beat": 80,  "type": "pattern",
-      "patternData": { "type": "train_wall", "side": "top", "cars": 4, "carStep": 0.4, "bullets": 9, "gapSize": 2, "gapMode": "shift", "speed": 340, "radius": 7, "color": "#00e5ff" } },
-    { "beat": 84,  "type": "pattern",
-      "patternData": { "type": "hat_spray", "count": 5, "durationBeats": 1.2, "spread": 0.26, "speed": 350, "radius": 5, "color": "#00e5ff" } },
+      "patternData": { "type": "bass_drop", "drops": 3, "dots": 22, "baseR": 45, "pulseAmp": 28, "telegraph": 0.6, "dropStep": 0.55, "color": "#00e5ff" } },
 
     { "beat": 88,  "type": "pattern",
-      "patternData": { "type": "train_wall", "side": "both", "cars": 3, "carStep": 0.45, "bullets": 7, "gapSize": 2, "gapMode": "shift", "speed": 380, "radius": 7, "color": "#00e5ff" } },
+      "patternData": { "type": "train_wall", "side": "top", "cars": 5, "carStep": 0.36, "bullets": 12, "gapSize": 3, "gapMode": "shift", "speed": 360, "color": "#00e5ff" } },
     { "beat": 92,  "type": "pattern",
-      "patternData": { "type": "hat_spray", "count": 4, "durationBeats": 1.0, "spread": 0.28, "speed": 360, "radius": 5, "color": "#00e5ff" } },
+      "patternData": { "type": "hat_spray", "count": 6, "durationBeats": 1.4, "spread": 0.28, "speed": 360, "radius": 5, "color": "#00e5ff" } },
 
     { "beat": 96,  "type": "counterattack_window", "duration_beats": 8, "lead_beats": 6,
       "zone": { "anchor": "right", "radius": 48 } },
 
-    { "beat": 108, "type": "pattern",
-      "patternData": { "type": "train_wall", "side": "both", "cars": 4, "carStep": 0.4, "bullets": 7, "gapSize": 2, "gapMode": "shift", "speed": 390, "radius": 7, "color": "#00e5ff" } },
     { "beat": 112, "type": "pattern",
-      "patternData": { "type": "hat_spray", "count": 5, "durationBeats": 1.3, "spread": 0.26, "speed": 360, "radius": 5, "color": "#00e5ff" } },
+      "patternData": { "type": "train_wall", "side": "both", "cars": 4, "carStep": 0.4, "bullets": 11, "gapSize": 3, "gapMode": "shift", "speed": 400, "color": "#00e5ff" } },
+    { "beat": 116, "type": "pattern",
+      "patternData": { "type": "hat_spray", "count": 7, "durationBeats": 1.5, "spread": 0.27, "speed": 360, "radius": 5, "color": "#00e5ff" } },
+
+    { "beat": 118, "type": "pattern",
+      "patternData": { "type": "aimed_shot", "count": 1, "speed": 380, "radius": 6, "color": "#00e5ff" } },
 
     { "beat": 120, "type": "pattern",
-      "patternData": { "type": "sub_slam", "side": "top", "count": 2, "span": 0.55, "bias": 150, "amp": 230, "period": 0.5, "radius": 8, "color": "#00e5ff" } },
+      "patternData": { "type": "sub_slam", "side": "top", "count": 7, "span": 0.95, "bias": 230, "amp": 280, "period": 0.35, "radius": 9, "color": "#00e5ff" } },
+    { "beat": 124, "type": "pattern",
+      "patternData": { "type": "hat_spray", "count": 6, "durationBeats": 1.4, "spread": 0.28, "speed": 360, "radius": 5, "color": "#00e5ff" } },
 
     { "beat": 128, "type": "pattern",
-      "patternData": { "type": "train_wall", "side": "left", "cars": 5, "carStep": 0.4, "bullets": 7, "gapSize": 2, "gapMode": "shift", "speed": 400, "radius": 7, "color": "#00e5ff" } },
+      "patternData": { "type": "train_wall", "side": "left", "cars": 6, "carStep": 0.35, "bullets": 11, "gapSize": 3, "gapMode": "random", "speed": 420, "color": "#00e5ff" } },
     { "beat": 132, "type": "pattern",
-      "patternData": { "type": "hat_spray", "count": 5, "durationBeats": 1.3, "spread": 0.26, "speed": 360, "radius": 5, "color": "#00e5ff" } },
+      "patternData": { "type": "hat_spray", "count": 7, "durationBeats": 1.5, "spread": 0.27, "speed": 360, "radius": 5, "color": "#00e5ff" } },
+
+    { "beat": 136, "type": "pattern",
+      "patternData": { "type": "aimed_shot", "count": 2, "spread": 0.4, "speed": 360, "radius": 6, "color": "#00e5ff" } },
 
     { "beat": 140, "type": "pattern",
-      "patternData": { "type": "train_wall", "side": "top", "cars": 4, "carStep": 0.4, "bullets": 9, "gapSize": 2, "gapMode": "shift", "speed": 350, "radius": 7, "color": "#00e5ff" } },
-    { "beat": 144, "type": "pattern",
-      "patternData": { "type": "hat_spray", "count": 5, "durationBeats": 1.3, "spread": 0.26, "speed": 360, "radius": 5, "color": "#00e5ff" } },
+      "patternData": { "type": "sub_slam", "side": "bottom", "count": 7, "span": 0.9, "bias": 220, "amp": 280, "period": 0.35, "radius": 9, "color": "#00e5ff" } },
 
     { "beat": 148, "type": "pattern",
-      "patternData": { "type": "train_wall", "side": "right", "cars": 5, "carStep": 0.4, "bullets": 7, "gapSize": 2, "gapMode": "shift", "speed": 400, "radius": 7, "color": "#00e5ff" } },
+      "patternData": { "type": "train_wall", "side": "diag_tr", "cars": 5, "carStep": 0.4, "bullets": 12, "gapSize": 3, "gapMode": "shift", "speed": 380, "color": "#00e5ff" } },
     { "beat": 152, "type": "pattern",
-      "patternData": { "type": "hat_spray", "count": 5, "durationBeats": 1.3, "spread": 0.26, "speed": 360, "radius": 5, "color": "#00e5ff" } },
+      "patternData": { "type": "hat_spray", "count": 7, "durationBeats": 1.6, "spread": 0.27, "speed": 360, "radius": 5, "color": "#00e5ff" } },
+
+    { "beat": 156, "type": "pattern",
+      "patternData": { "type": "bass_drop", "drops": 1, "dots": 14, "baseR": 30, "pulseAmp": 18, "telegraph": 0.4, "maxLife": 2.4, "color": "#00e5ff" } },
 
     { "beat": 160, "type": "counterattack_window", "duration_beats": 10, "lead_beats": 6,
       "zone": { "anchor": "left", "radius": 50 } },
 
-    { "beat": 176, "type": "pattern",
-      "patternData": { "type": "train_wall", "side": "left", "cars": 4, "carStep": 0.4, "bullets": 7, "gapSize": 2, "gapMode": "shift", "speed": 400, "radius": 7, "color": "#00e5ff" } },
+    { "beat": 178, "type": "pattern",
+      "patternData": { "type": "train_wall", "side": "top", "cars": 6, "carStep": 0.34, "bullets": 12, "gapSize": 3, "gapMode": "random", "speed": 360, "color": "#00e5ff" } },
     { "beat": 180, "type": "pattern",
-      "patternData": { "type": "hat_spray", "count": 5, "durationBeats": 1.3, "spread": 0.27, "speed": 360, "radius": 5, "color": "#00e5ff" } },
+      "patternData": { "type": "hat_spray", "count": 7, "durationBeats": 1.6, "spread": 0.28, "speed": 370, "radius": 5, "color": "#00e5ff" } },
 
     { "beat": 184, "type": "pattern",
-      "patternData": { "type": "sub_slam", "side": "right", "count": 2, "span": 0.6, "bias": 160, "amp": 240, "period": 0.5, "radius": 8, "color": "#00e5ff" } },
+      "patternData": { "type": "sub_slam", "side": "right", "count": 8, "span": 0.95, "bias": 240, "amp": 290, "period": 0.34, "radius": 9, "color": "#00e5ff" } },
+
+    { "beat": 188, "type": "pattern",
+      "patternData": { "type": "bass_drop", "drops": 1, "dots": 14, "baseR": 30, "pulseAmp": 18, "telegraph": 0.4, "maxLife": 2.4, "color": "#00e5ff" } },
 
     { "beat": 192, "type": "pattern",
-      "patternData": { "type": "train_wall", "side": "top", "cars": 5, "carStep": 0.4, "bullets": 9, "gapSize": 2, "gapMode": "shift", "speed": 360, "radius": 7, "color": "#00e5ff" } },
+      "patternData": { "type": "train_wall", "side": "left", "cars": 5, "carStep": 0.36, "bullets": 11, "gapSize": 3, "gapMode": "random", "speed": 410, "color": "#00e5ff" } },
     { "beat": 196, "type": "pattern",
-      "patternData": { "type": "hat_spray", "count": 5, "durationBeats": 1.3, "spread": 0.27, "speed": 360, "radius": 5, "color": "#00e5ff" } },
+      "patternData": { "type": "hat_spray", "count": 7, "durationBeats": 1.5, "spread": 0.28, "speed": 370, "radius": 5, "color": "#00e5ff" } },
 
     { "beat": 200, "type": "pattern",
-      "patternData": { "type": "sub_slam", "side": "top", "count": 3, "span": 0.65, "bias": 170, "amp": 240, "period": 0.45, "radius": 8, "color": "#00e5ff" } },
+      "patternData": { "type": "sub_slam", "side": "top", "count": 9, "span": 1.0, "bias": 240, "amp": 300, "period": 0.32, "radius": 10, "color": "#00e5ff" } },
+
+    { "beat": 204, "type": "pattern",
+      "patternData": { "type": "aimed_shot", "count": 2, "spread": 0.4, "speed": 380, "radius": 6, "color": "#00e5ff" } },
 
     { "beat": 208, "type": "pattern",
-      "patternData": { "type": "train_wall", "side": "both", "cars": 4, "carStep": 0.4, "bullets": 7, "gapSize": 2, "gapMode": "shift", "speed": 400, "radius": 7, "color": "#00e5ff" } },
+      "patternData": { "type": "train_wall", "side": "both", "cars": 5, "carStep": 0.34, "bullets": 11, "gapSize": 3, "gapMode": "random", "speed": 410, "color": "#00e5ff" } },
     { "beat": 212, "type": "pattern",
-      "patternData": { "type": "hat_spray", "count": 5, "durationBeats": 1.3, "spread": 0.27, "speed": 370, "radius": 5, "color": "#00e5ff" } },
+      "patternData": { "type": "hat_spray", "count": 7, "durationBeats": 1.5, "spread": 0.28, "speed": 370, "radius": 5, "color": "#00e5ff" } },
+
+    { "beat": 216, "type": "pattern",
+      "patternData": { "type": "bass_drop", "drops": 1, "dots": 14, "baseR": 30, "pulseAmp": 18, "telegraph": 0.4, "maxLife": 2.4, "color": "#00e5ff" } },
 
     { "beat": 220, "type": "pattern",
-      "patternData": { "type": "train_wall", "side": "top", "cars": 5, "carStep": 0.4, "bullets": 9, "gapSize": 2, "gapMode": "random", "speed": 360, "radius": 7, "color": "#00e5ff" } },
-    { "beat": 224, "type": "pattern",
-      "patternData": { "type": "hat_spray", "count": 5, "durationBeats": 1.3, "spread": 0.27, "speed": 370, "radius": 5, "color": "#00e5ff" } },
+      "patternData": { "type": "bass_drop", "drops": 3, "dots": 24, "baseR": 48, "pulseAmp": 30, "telegraph": 0.55, "dropStep": 0.5, "color": "#00e5ff" } },
 
+    { "beat": 228, "type": "pattern",
+      "patternData": { "type": "train_wall", "side": "diag_tl", "cars": 5, "carStep": 0.36, "bullets": 12, "gapSize": 3, "gapMode": "random", "speed": 400, "color": "#00e5ff" } },
     { "beat": 232, "type": "pattern",
-      "patternData": { "type": "train_wall", "side": "left", "cars": 5, "carStep": 0.4, "bullets": 7, "gapSize": 2, "gapMode": "random", "speed": 410, "radius": 7, "color": "#00e5ff" } },
+      "patternData": { "type": "hat_spray", "count": 7, "durationBeats": 1.5, "spread": 0.28, "speed": 370, "radius": 5, "color": "#00e5ff" } },
+
     { "beat": 236, "type": "pattern",
-      "patternData": { "type": "hat_spray", "count": 5, "durationBeats": 1.3, "spread": 0.27, "speed": 370, "radius": 5, "color": "#00e5ff" } },
+      "patternData": { "type": "sub_slam", "side": "left", "count": 7, "span": 0.95, "bias": 230, "amp": 290, "period": 0.34, "radius": 9, "color": "#00e5ff" } },
 
     { "beat": 240, "type": "counterattack_window", "duration_beats": 8, "lead_beats": 6,
       "zone": { "anchor": "topRight", "radius": 48 } },
 
     { "beat": 256, "type": "pattern",
-      "patternData": { "type": "train_wall", "side": "both", "cars": 5, "carStep": 0.4, "bullets": 7, "gapSize": 2, "gapMode": "shift", "speed": 410, "radius": 7, "color": "#00e5ff" } },
+      "patternData": { "type": "train_wall", "side": "top", "cars": 6, "carStep": 0.34, "bullets": 12, "gapSize": 3, "gapMode": "random", "speed": 380, "color": "#00e5ff" } },
     { "beat": 260, "type": "pattern",
-      "patternData": { "type": "hat_spray", "count": 5, "durationBeats": 1.3, "spread": 0.28, "speed": 370, "radius": 5, "color": "#00e5ff" } },
+      "patternData": { "type": "sub_slam", "side": "right", "count": 7, "span": 0.9, "bias": 230, "amp": 290, "period": 0.34, "radius": 9, "color": "#00e5ff" } },
+    { "beat": 264, "type": "pattern",
+      "patternData": { "type": "hat_spray", "count": 8, "durationBeats": 1.6, "spread": 0.28, "speed": 380, "radius": 5, "color": "#00e5ff" } },
 
     { "beat": 268, "type": "pattern",
-      "patternData": { "type": "sub_slam", "side": "bottom", "count": 3, "span": 0.65, "bias": 170, "amp": 240, "period": 0.45, "radius": 8, "color": "#00e5ff" } },
+      "patternData": { "type": "aimed_shot", "count": 2, "spread": 0.45, "speed": 380, "radius": 6, "color": "#00e5ff" } },
 
-    { "beat": 276, "type": "pattern",
-      "patternData": { "type": "train_wall", "side": "top", "cars": 5, "carStep": 0.4, "bullets": 9, "gapSize": 2, "gapMode": "random", "speed": 370, "radius": 7, "color": "#00e5ff" } },
+    { "beat": 272, "type": "pattern",
+      "patternData": { "type": "sub_slam", "side": "right", "count": 7, "span": 0.95, "bias": 230, "amp": 290, "period": 0.34, "radius": 9, "color": "#00e5ff" } },
+
     { "beat": 280, "type": "pattern",
-      "patternData": { "type": "hat_spray", "count": 5, "durationBeats": 1.3, "spread": 0.28, "speed": 370, "radius": 5, "color": "#00e5ff" } },
+      "patternData": { "type": "train_wall", "side": "diag_tr", "cars": 6, "carStep": 0.34, "bullets": 12, "gapSize": 3, "gapMode": "random", "speed": 400, "color": "#00e5ff" } },
+    { "beat": 284, "type": "pattern",
+      "patternData": { "type": "hat_spray", "count": 7, "durationBeats": 1.5, "spread": 0.29, "speed": 380, "radius": 5, "color": "#00e5ff" } },
 
     { "beat": 288, "type": "pattern",
-      "patternData": { "type": "train_wall", "side": "left", "cars": 5, "carStep": 0.38, "bullets": 7, "gapSize": 2, "gapMode": "random", "speed": 420, "radius": 7, "color": "#00e5ff" } },
+      "patternData": { "type": "sub_slam", "side": "bottom", "count": 7, "span": 0.95, "bias": 230, "amp": 290, "period": 0.34, "radius": 9, "color": "#00e5ff" } },
+
     { "beat": 292, "type": "pattern",
-      "patternData": { "type": "hat_spray", "count": 6, "durationBeats": 1.4, "spread": 0.28, "speed": 380, "radius": 5, "color": "#00e5ff" } },
+      "patternData": { "type": "aimed_shot", "count": 2, "spread": 0.5, "speed": 360, "radius": 6, "color": "#00e5ff" } },
+
+    { "beat": 296, "type": "pattern",
+      "patternData": { "type": "train_wall", "side": "both", "cars": 5, "carStep": 0.34, "bullets": 11, "gapSize": 3, "gapMode": "random", "speed": 420, "color": "#00e5ff" } },
 
     { "beat": 300, "type": "counterattack_window", "duration_beats": 12, "lead_beats": 8,
       "zone": { "anchor": "center", "radius": 56 } },
 
-    { "beat": 316, "type": "pattern",
-      "patternData": { "type": "train_wall", "side": "both", "cars": 5, "carStep": 0.4, "bullets": 7, "gapSize": 2, "gapMode": "shift", "speed": 420, "radius": 7, "color": "#00e5ff" } },
-    { "beat": 320, "type": "pattern",
-      "patternData": { "type": "hat_spray", "count": 5, "durationBeats": 1.3, "spread": 0.28, "speed": 380, "radius": 5, "color": "#00e5ff" } },
+    { "beat": 322, "type": "pattern",
+      "patternData": { "type": "bass_drop", "drops": 4, "dots": 24, "baseR": 48, "pulseAmp": 30, "telegraph": 0.55, "dropStep": 0.5, "color": "#00e5ff" } },
 
+    { "beat": 324, "type": "pattern",
+      "patternData": { "type": "train_wall", "side": "top", "cars": 6, "carStep": 0.32, "bullets": 12, "gapSize": 3, "gapMode": "random", "speed": 390, "color": "#00e5ff" } },
     { "beat": 328, "type": "pattern",
-      "patternData": { "type": "sub_slam", "side": "left", "count": 3, "span": 0.65, "bias": 170, "amp": 250, "period": 0.45, "radius": 8, "color": "#00e5ff" } },
+      "patternData": { "type": "sub_slam", "side": "left", "count": 8, "span": 0.95, "bias": 240, "amp": 300, "period": 0.32, "radius": 9, "color": "#00e5ff" } },
+    { "beat": 332, "type": "pattern",
+      "patternData": { "type": "hat_spray", "count": 8, "durationBeats": 1.6, "spread": 0.29, "speed": 380, "radius": 5, "color": "#00e5ff" } },
 
     { "beat": 336, "type": "pattern",
-      "patternData": { "type": "train_wall", "side": "top", "cars": 5, "carStep": 0.4, "bullets": 9, "gapSize": 2, "gapMode": "random", "speed": 380, "radius": 7, "color": "#00e5ff" } },
+      "patternData": { "type": "aimed_shot", "count": 2, "spread": 0.5, "speed": 380, "radius": 6, "color": "#00e5ff" } },
+
     { "beat": 340, "type": "pattern",
-      "patternData": { "type": "hat_spray", "count": 5, "durationBeats": 1.3, "spread": 0.28, "speed": 380, "radius": 5, "color": "#00e5ff" } },
+      "patternData": { "type": "train_wall", "side": "diag_tl", "cars": 6, "carStep": 0.34, "bullets": 12, "gapSize": 3, "gapMode": "random", "speed": 400, "color": "#00e5ff" } },
+    { "beat": 344, "type": "pattern",
+      "patternData": { "type": "hat_spray", "count": 7, "durationBeats": 1.5, "spread": 0.29, "speed": 380, "radius": 5, "color": "#00e5ff" } },
 
     { "beat": 348, "type": "pattern",
-      "patternData": { "type": "train_wall", "side": "right", "cars": 5, "carStep": 0.4, "bullets": 7, "gapSize": 2, "gapMode": "random", "speed": 430, "radius": 7, "color": "#00e5ff" } },
+      "patternData": { "type": "aimed_shot", "count": 3, "spread": 0.55, "speed": 360, "radius": 6, "color": "#00e5ff" } },
+
     { "beat": 352, "type": "pattern",
-      "patternData": { "type": "hat_spray", "count": 5, "durationBeats": 1.3, "spread": 0.28, "speed": 380, "radius": 5, "color": "#00e5ff" } },
+      "patternData": { "type": "sub_slam", "side": "left", "count": 8, "span": 0.95, "bias": 240, "amp": 290, "period": 0.33, "radius": 9, "color": "#00e5ff" } },
+
+    { "beat": 356, "type": "pattern",
+      "patternData": { "type": "aimed_shot", "count": 1, "speed": 400, "radius": 6, "color": "#00e5ff" } },
 
     { "beat": 360, "type": "pattern",
-      "patternData": { "type": "sub_slam", "side": "top", "count": 3, "span": 0.65, "bias": 170, "amp": 250, "period": 0.45, "radius": 8, "color": "#00e5ff" } },
+      "patternData": { "type": "sub_slam", "side": "top", "count": 9, "span": 1.0, "bias": 250, "amp": 310, "period": 0.32, "radius": 10, "color": "#00e5ff" } },
+    { "beat": 364, "type": "pattern",
+      "patternData": { "type": "hat_spray", "count": 8, "durationBeats": 1.6, "spread": 0.3, "speed": 380, "radius": 5, "color": "#00e5ff" } },
 
     { "beat": 368, "type": "pattern",
-      "patternData": { "type": "train_wall", "side": "both", "cars": 5, "carStep": 0.4, "bullets": 7, "gapSize": 2, "gapMode": "random", "speed": 430, "radius": 7, "color": "#00e5ff" } },
+      "patternData": { "type": "aimed_shot", "count": 2, "spread": 0.45, "speed": 380, "radius": 6, "color": "#00e5ff" } },
+
     { "beat": 372, "type": "pattern",
-      "patternData": { "type": "hat_spray", "count": 6, "durationBeats": 1.4, "spread": 0.28, "speed": 380, "radius": 5, "color": "#00e5ff" } },
+      "patternData": { "type": "train_wall", "side": "both", "cars": 6, "carStep": 0.32, "bullets": 11, "gapSize": 3, "gapMode": "random", "speed": 430, "color": "#00e5ff" } },
+
+    { "beat": 376, "type": "pattern",
+      "patternData": { "type": "bass_drop", "drops": 1, "dots": 16, "baseR": 32, "pulseAmp": 20, "telegraph": 0.4, "maxLife": 2.4, "color": "#00e5ff" } },
+    { "beat": 380, "type": "pattern",
+      "patternData": { "type": "aimed_shot", "count": 2, "spread": 0.5, "speed": 380, "radius": 6, "color": "#00e5ff" } },
 
     { "beat": 384, "type": "pattern",
-      "patternData": { "type": "train_wall", "side": "both", "cars": 5, "carStep": 0.38, "bullets": 7, "gapSize": 2, "gapMode": "random", "speed": 430, "radius": 7, "color": "#00e5ff" } },
+      "patternData": { "type": "train_wall", "side": "diag_tr", "cars": 6, "carStep": 0.32, "bullets": 12, "gapSize": 3, "gapMode": "random", "speed": 410, "color": "#00e5ff" } },
     { "beat": 388, "type": "pattern",
-      "patternData": { "type": "hat_spray", "count": 6, "durationBeats": 1.4, "spread": 0.28, "speed": 390, "radius": 5, "color": "#00e5ff" } },
+      "patternData": { "type": "sub_slam", "side": "right", "count": 8, "span": 1.0, "bias": 250, "amp": 300, "period": 0.32, "radius": 9, "color": "#00e5ff" } },
+    { "beat": 392, "type": "pattern",
+      "patternData": { "type": "hat_spray", "count": 8, "durationBeats": 1.6, "spread": 0.3, "speed": 390, "radius": 5, "color": "#00e5ff" } },
 
     { "beat": 396, "type": "pattern",
-      "patternData": { "type": "train_wall", "side": "top", "cars": 6, "carStep": 0.36, "bullets": 9, "gapSize": 2, "gapMode": "random", "speed": 390, "radius": 7, "color": "#00e5ff" } },
+      "patternData": { "type": "aimed_shot", "count": 2, "spread": 0.4, "speed": 400, "radius": 6, "color": "#00e5ff" } },
+
     { "beat": 400, "type": "pattern",
-      "patternData": { "type": "hat_spray", "count": 6, "durationBeats": 1.4, "spread": 0.28, "speed": 390, "radius": 5, "color": "#00e5ff" } },
+      "patternData": { "type": "bass_drop", "drops": 4, "dots": 24, "baseR": 50, "pulseAmp": 30, "telegraph": 0.5, "dropStep": 0.45, "color": "#00e5ff" } },
 
-    { "beat": 408, "type": "pattern",
-      "patternData": { "type": "sub_slam", "side": "right", "count": 3, "span": 0.7, "bias": 180, "amp": 250, "period": 0.45, "radius": 8, "color": "#00e5ff" } },
+    { "beat": 406, "type": "pattern",
+      "patternData": { "type": "aimed_shot", "count": 2, "spread": 0.45, "speed": 400, "radius": 6, "color": "#00e5ff" } },
 
+    { "beat": 412, "type": "pattern",
+      "patternData": { "type": "train_wall", "side": "top", "cars": 7, "carStep": 0.3, "bullets": 12, "gapSize": 3, "gapMode": "random", "speed": 400, "color": "#00e5ff" } },
     { "beat": 416, "type": "pattern",
-      "patternData": { "type": "train_wall", "side": "top", "cars": 6, "carStep": 0.36, "bullets": 9, "gapSize": 2, "gapMode": "random", "speed": 390, "radius": 7, "color": "#00e5ff" } },
+      "patternData": { "type": "sub_slam", "side": "left", "count": 8, "span": 1.0, "bias": 250, "amp": 300, "period": 0.3, "radius": 10, "color": "#00e5ff" } },
     { "beat": 420, "type": "pattern",
-      "patternData": { "type": "hat_spray", "count": 6, "durationBeats": 1.4, "spread": 0.28, "speed": 390, "radius": 5, "color": "#00e5ff" } },
+      "patternData": { "type": "hat_spray", "count": 8, "durationBeats": 1.6, "spread": 0.3, "speed": 390, "radius": 5, "color": "#00e5ff" } },
+
+    { "beat": 424, "type": "pattern",
+      "patternData": { "type": "bass_drop", "drops": 1, "dots": 16, "baseR": 35, "pulseAmp": 22, "telegraph": 0.4, "maxLife": 2.4, "color": "#00e5ff" } },
 
     { "beat": 428, "type": "pattern",
-      "patternData": { "type": "sub_slam", "side": "top", "count": 3, "span": 0.7, "bias": 180, "amp": 250, "period": 0.45, "radius": 8, "color": "#00e5ff" } },
-
+      "patternData": { "type": "train_wall", "side": "both", "cars": 6, "carStep": 0.3, "bullets": 11, "gapSize": 3, "gapMode": "random", "speed": 440, "color": "#00e5ff" } },
     { "beat": 432, "type": "pattern",
-      "patternData": { "type": "train_wall", "side": "both", "cars": 5, "carStep": 0.36, "bullets": 7, "gapSize": 2, "gapMode": "random", "speed": 440, "radius": 7, "color": "#00e5ff" } },
+      "patternData": { "type": "sub_slam", "side": "bottom", "count": 8, "span": 1.0, "bias": 250, "amp": 310, "period": 0.3, "radius": 10, "color": "#00e5ff" } },
     { "beat": 436, "type": "pattern",
-      "patternData": { "type": "hat_spray", "count": 6, "durationBeats": 1.4, "spread": 0.28, "speed": 390, "radius": 5, "color": "#00e5ff" } },
+      "patternData": { "type": "hat_spray", "count": 8, "durationBeats": 1.6, "spread": 0.3, "speed": 400, "radius": 5, "color": "#00e5ff" } },
+
+    { "beat": 440, "type": "pattern",
+      "patternData": { "type": "aimed_shot", "count": 3, "spread": 0.55, "speed": 380, "radius": 6, "color": "#00e5ff" } },
 
     { "beat": 444, "type": "pattern",
-      "patternData": { "type": "train_wall", "side": "both", "cars": 5, "carStep": 0.36, "bullets": 7, "gapSize": 2, "gapMode": "random", "speed": 440, "radius": 7, "color": "#00e5ff" } },
+      "patternData": { "type": "sub_slam", "side": "right", "count": 8, "span": 1.0, "bias": 250, "amp": 300, "period": 0.32, "radius": 10, "color": "#00e5ff" } },
 
     { "beat": 452, "type": "counterattack_window", "duration_beats": 10, "lead_beats": 6,
       "zone": { "anchor": "bottomLeft", "radius": 48 } },
 
-    { "beat": 468, "type": "pattern",
-      "patternData": { "type": "train_wall", "side": "both", "cars": 6, "carStep": 0.36, "bullets": 7, "gapSize": 2, "gapMode": "random", "speed": 440, "radius": 7, "color": "#00e5ff" } },
+    { "beat": 470, "type": "pattern",
+      "patternData": { "type": "sub_slam", "side": "top", "count": 9, "span": 1.0, "bias": 260, "amp": 320, "period": 0.3, "radius": 10, "color": "#00e5ff" } },
     { "beat": 472, "type": "pattern",
-      "patternData": { "type": "hat_spray", "count": 6, "durationBeats": 1.4, "spread": 0.28, "speed": 400, "radius": 5, "color": "#00e5ff" } },
+      "patternData": { "type": "train_wall", "side": "left", "cars": 6, "carStep": 0.3, "bullets": 11, "gapSize": 3, "gapMode": "random", "speed": 440, "color": "#00e5ff" } },
+    { "beat": 476, "type": "pattern",
+      "patternData": { "type": "hat_spray", "count": 8, "durationBeats": 1.6, "spread": 0.3, "speed": 400, "radius": 5, "color": "#00e5ff" } },
 
+    { "beat": 478, "type": "pattern",
+      "patternData": { "type": "bass_drop", "drops": 1, "dots": 16, "baseR": 35, "pulseAmp": 22, "telegraph": 0.4, "maxLife": 2.4, "color": "#00e5ff" } },
     { "beat": 480, "type": "pattern",
-      "patternData": { "type": "train_wall", "side": "top", "cars": 6, "carStep": 0.36, "bullets": 9, "gapSize": 2, "gapMode": "random", "speed": 400, "radius": 7, "color": "#00e5ff" } },
-    { "beat": 484, "type": "pattern",
-      "patternData": { "type": "hat_spray", "count": 6, "durationBeats": 1.4, "spread": 0.28, "speed": 400, "radius": 5, "color": "#00e5ff" } },
+      "patternData": { "type": "aimed_shot", "count": 2, "spread": 0.5, "speed": 410, "radius": 6, "color": "#00e5ff" } },
 
+    { "beat": 484, "type": "pattern",
+      "patternData": { "type": "train_wall", "side": "diag_tl", "cars": 7, "carStep": 0.3, "bullets": 12, "gapSize": 3, "gapMode": "random", "speed": 420, "color": "#00e5ff" } },
     { "beat": 488, "type": "pattern",
-      "patternData": { "type": "sub_slam", "side": "bottom", "count": 3, "span": 0.7, "bias": 180, "amp": 260, "period": 0.45, "radius": 8, "color": "#00e5ff" } },
+      "patternData": { "type": "sub_slam", "side": "right", "count": 8, "span": 1.0, "bias": 260, "amp": 320, "period": 0.3, "radius": 10, "color": "#00e5ff" } },
+    { "beat": 492, "type": "pattern",
+      "patternData": { "type": "hat_spray", "count": 8, "durationBeats": 1.6, "spread": 0.3, "speed": 400, "radius": 5, "color": "#00e5ff" } },
 
     { "beat": 496, "type": "pattern",
-      "patternData": { "type": "train_wall", "side": "both", "cars": 6, "carStep": 0.36, "bullets": 7, "gapSize": 2, "gapMode": "random", "speed": 450, "radius": 7, "color": "#00e5ff" } },
+      "patternData": { "type": "aimed_shot", "count": 3, "spread": 0.6, "speed": 380, "radius": 6, "color": "#00e5ff" } },
+
     { "beat": 500, "type": "pattern",
-      "patternData": { "type": "hat_spray", "count": 6, "durationBeats": 1.4, "spread": 0.28, "speed": 400, "radius": 5, "color": "#00e5ff" } },
+      "patternData": { "type": "bass_drop", "drops": 5, "dots": 24, "baseR": 50, "pulseAmp": 32, "telegraph": 0.5, "dropStep": 0.4, "color": "#00e5ff" } },
 
     { "beat": 508, "type": "counterattack_window", "duration_beats": 8, "lead_beats": 6,
       "zone": { "anchor": "center", "radius": 50 } },
 
-    { "beat": 520, "type": "pattern",
-      "patternData": { "type": "train_wall", "side": "both", "cars": 6, "carStep": 0.34, "bullets": 7, "gapSize": 2, "gapMode": "random", "speed": 460, "radius": 7, "color": "#00e5ff" } },
     { "beat": 524, "type": "pattern",
-      "patternData": { "type": "hat_spray", "count": 7, "durationBeats": 1.5, "spread": 0.3, "speed": 410, "radius": 5, "color": "#00e5ff" } },
-
+      "patternData": { "type": "train_wall", "side": "both", "cars": 7, "carStep": 0.28, "bullets": 11, "gapSize": 3, "gapMode": "random", "speed": 450, "color": "#00e5ff" } },
+    { "beat": 524, "type": "pattern",
+      "patternData": { "type": "sub_slam", "side": "top", "count": 9, "span": 1.0, "bias": 270, "amp": 320, "period": 0.3, "radius": 10, "color": "#00e5ff" } },
     { "beat": 528, "type": "pattern",
-      "patternData": { "type": "sub_slam", "side": "top", "count": 3, "span": 0.7, "bias": 180, "amp": 260, "period": 0.45, "radius": 8, "color": "#00e5ff" } },
+      "patternData": { "type": "hat_spray", "count": 8, "durationBeats": 1.5, "spread": 0.3, "speed": 410, "radius": 5, "color": "#00e5ff" } },
+
+    { "beat": 530, "type": "pattern",
+      "patternData": { "type": "aimed_shot", "count": 3, "spread": 0.5, "speed": 410, "radius": 6, "color": "#00e5ff" } },
+
+    { "beat": 532, "type": "pattern",
+      "patternData": { "type": "sub_slam", "side": "left", "count": 8, "span": 1.0, "bias": 270, "amp": 320, "period": 0.3, "radius": 10, "color": "#00e5ff" } },
 
     { "beat": 536, "type": "pattern",
-      "patternData": { "type": "sub_slam", "side": "left", "count": 2, "span": 0.6, "bias": 180, "amp": 260, "period": 0.45, "radius": 8, "color": "#00e5ff" } }
+      "patternData": { "type": "sub_slam", "side": "bottom", "count": 9, "span": 1.0, "bias": 260, "amp": 320, "period": 0.3, "radius": 10, "color": "#00e5ff" } }
   ]
 }

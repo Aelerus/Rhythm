@@ -37,6 +37,18 @@ class Bullet extends RefCounted:
 	var pp_bias:          float   = 0.0   # net forward speed (0 = disabled)
 	var pp_amp:           float   = 0.0   # oscillation amplitude
 	var pp_period:        float   = 0.5   # cycle period in seconds
+	# Techno BASS_DROP radial-pulse behavior:
+	# Bullet sits at a fixed angle around (pulse_cx, pulse_cy); its distance
+	# from that center oscillates. Many bullets at evenly-spaced angles around
+	# the same center form a "subwoofer cone" -- a ring of dots that breathes
+	# outward and back to the beat. Spread between dots grows when the ring
+	# expands (longer circumference at larger radius).
+	var pulse_cx:         float   = 0.0
+	var pulse_cy:         float   = 0.0
+	var pulse_angle:      float   = 0.0   # this dot's fixed angle from center
+	var pulse_base_r:     float   = 0.0   # base distance from center
+	var pulse_amp:        float   = 0.0   # distance oscillation amplitude
+	var pulse_freq:       float   = 0.0   # Hz; 0 = disabled
 
 var _pool: Array = []
 var active: Array[Bullet] = []
@@ -87,6 +99,12 @@ func spawn(opts: Dictionary) -> Bullet:
 	b.pp_period  = float(opts.get("ppPeriod", 0.5))
 	b.pp_axis_x  = float(opts.get("ppAxisX", 0))
 	b.pp_axis_y  = float(opts.get("ppAxisY", 0))
+	b.pulse_cx    = float(opts.get("pulseCx", 0))
+	b.pulse_cy    = float(opts.get("pulseCy", 0))
+	b.pulse_angle = float(opts.get("pulseAngle", 0))
+	b.pulse_base_r = float(opts.get("pulseBaseR", 0))
+	b.pulse_amp   = float(opts.get("pulseAmp", 0))
+	b.pulse_freq  = float(opts.get("pulseFreq", 0))
 	active.append(b)
 	return b
 
@@ -214,6 +232,14 @@ func update(dt: float, arena: Rect2, target_x: float, target_y: float) -> void:
 				b.y = bottom
 				b.vy = -b.vy
 				b.bounce -= 1
+
+		# Radial-pulse position (Techno BASS_DROP): dot sits at fixed angle
+		# from center, distance oscillates -- with sibling dots forms a
+		# breathing ring (subwoofer cone). Overrides vx/vy motion.
+		if b.pulse_freq != 0.0:
+			var dist: float = b.pulse_base_r + b.pulse_amp * sin(b.life * b.pulse_freq * TAU)
+			b.x = b.pulse_cx + cos(b.pulse_angle) * dist
+			b.y = b.pulse_cy + sin(b.pulse_angle) * dist
 
 		if b.grow_rate != 0.0:
 			b.radius = b.base_radius + b.grow_rate * b.life

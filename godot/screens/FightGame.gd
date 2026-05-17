@@ -119,7 +119,7 @@ func update(dt: float, input: InputManager) -> void:
 		return
 
 	if _paused:
-		input.consume_press([KEY_SPACE, KEY_Z, InputManager.ACTION_ACCEPT])
+		input.consume_press([KEY_SPACE, KEY_Z])
 		if _settings_open:
 			_update_settings(input)
 			return

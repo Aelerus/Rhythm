@@ -57,6 +57,8 @@ func fire(pattern_id_or_data, ctx: Dictionary) -> void:
 		"sub_slam":             _sub_slam(pattern, ctx)
 		"hat_spray":            _hat_spray(pattern, ctx)
 		"train_wall":           _train_wall(pattern, ctx)
+		"strobe_line":          _strobe_line(pattern, ctx)
+		"bass_drop":            _bass_drop(pattern, ctx)
 		"slow_zone":            _slow_zone(pattern, ctx)
 		_:
 			push_warning("PatternEngine: unhandled type '" + str(pattern.get("type","")) + "'")
@@ -685,26 +687,28 @@ func _sw_vector_burst(p: Dictionary, ctx: Dictionary) -> void:
 # note hat texture). Should not be referenced by any other world's bosses.
 # =====================================================================
 
-# SUB SLAM: border subwoofers fire bullets that traverse the arena with
-# a continuous wiggle the whole way -- forward/backward oscillation along
-# the travel axis. Net motion = bias (forward); amplitude controls how
-# pronounced the wiggle is. Bullet despawns naturally when it exits the
-# arena. Can fire from any of the 4 borders (left/right/top/bottom).
+# SUB SLAM: PULSE's signature attack. Border subwoofers fire a WALL of
+# bullets that traverse the arena with continuous biased oscillation --
+# forward/backward wiggle the whole way. Net motion = bias (forward);
+# amplitude controls how pronounced the wiggle is. Defaults are tuned
+# to feel like a serious boss move: most of an edge fills with bullets,
+# fast forward bias, aggressive wiggle. Despawns naturally on exit.
+# Sides: left/right/top/bottom (any axis).
 #
-# Default tuning: bias 160 px/s, amp 240 px/s -> peak forward 400, peak
-# backward -80. ~73% of cycle going forward, 27% backward. Net crosses
-# 960px arena in ~6 sec, wiggling ~12 times along the way.
+# Default tuning: bias 220 px/s, amp 280 px/s -> peak forward 500,
+# peak backward -60. ~78% of cycle going forward, 22% backward. Net
+# crosses 960px arena in ~4.4 sec, wiggling ~12 times along the way.
 func _sub_slam(p: Dictionary, ctx: Dictionary) -> void:
 	var arena   = ctx.get("arena", {})
 	var ax      := float(arena.get("x", 60));  var aw := float(arena.get("w", 840))
 	var ay      := float(arena.get("y", 60));  var ah := float(arena.get("h", 600))
 	var side    : String = p.get("side", "left")
-	var count   := int(p.get("count",  3))
-	var span    := float(p.get("span",  0.7))
-	var bias    := float(p.get("bias",   160))    # net forward speed
-	var amp     := float(p.get("amp",    240))    # oscillation amplitude
-	var period  := float(p.get("period", 0.5))    # cycle period (sec)
-	var radius  := float(p.get("radius", 8))
+	var count   := int(p.get("count",  7))
+	var span    := float(p.get("span",  0.9))
+	var bias    := float(p.get("bias",   220))    # net forward speed
+	var amp     := float(p.get("amp",    280))    # oscillation amplitude
+	var period  := float(p.get("period", 0.35))   # cycle period (sec)
+	var radius  := float(p.get("radius", 9))
 	var col     = p.get("color", "#00e5ff")
 
 	var ax_x: float = 0.0;  var ax_y: float = 0.0
@@ -738,46 +742,40 @@ func _sub_slam(p: Dictionary, ctx: Dictionary) -> void:
 		})
 
 # TRAIN WALL: lines of bullets ("cars") streaming across the arena from
-# a chosen border. Horizontal sides (left/right) fire VERTICAL lines that
-# travel horizontally; vertical sides (top/bottom) fire HORIZONTAL lines
-# that travel vertically. Each car has a single gap; gap mode controls
-# whether it stays put, shifts up/down between cars, or randomizes.
-# Sides: "left", "right", "top", "bottom",
-#        "both"  = left + right (horizontal both),
-#        "vboth" = top + bottom (vertical both),
-#        "all"   = all four simultaneously.
+# a chosen border. Each car is a line of bullets perpendicular to the
+# travel direction, with one gap; gap mode controls whether it stays put,
+# shifts between cars, or randomizes. Tighter default bullet count means
+# in-train spacing is risky to thread but the gap stays passable.
+# Sides:
+#   "left"/"right"          -> vertical line cars traveling horizontally
+#   "top"                   -> horizontal line cars traveling down
+#   "both"                  -> left + right simultaneously
+#   "diag_tl" / "diag_tr"   -> tilted line cars traveling diagonally
+#                              (NW->SE or NE->SW, perpendicular line)
 func _train_wall(p: Dictionary, ctx: Dictionary) -> void:
 	var arena    = ctx.get("arena", {})
 	var ax       := float(arena.get("x", 60));  var aw := float(arena.get("w", 840))
 	var ay       := float(arena.get("y", 60));  var ah := float(arena.get("h", 600))
 	var side     : String = p.get("side", "left")
-	var cars     := int(p.get("cars", 4))
-	var car_step := float(p.get("carStep", 0.4))
-	var bullets  := int(p.get("bullets", 7))
-	var gap_size := int(p.get("gapSize", 2))
+	var cars     := int(p.get("cars", 5))
+	var car_step := float(p.get("carStep", 0.38))
+	# Higher bullet count = tighter spacing in-train. gap_size scales with
+	# bullet count so the player-facing opening remains passable.
+	var bullets  := int(p.get("bullets", 11))
+	var gap_size := int(p.get("gapSize", 3))
 	var gap_mode : String = p.get("gapMode", "shift")
-	var speed    := float(p.get("speed", 380))
+	var speed    := float(p.get("speed", 410))
 	var radius   := float(p.get("radius", 7))
 	var col      = p.get("color", "#00e5ff")
 
 	var sides_to_fire: Array = []
 	match side:
 		"both":  sides_to_fire = ["left", "right"]
-		"vboth": sides_to_fire = ["top",  "bottom"]
-		"all":   sides_to_fire = ["left", "right", "top", "bottom"]
 		_:       sides_to_fire = [side]
 
 	var max_gap_pos: int = maxi(1, bullets - gap_size)
 
 	for s in sides_to_fire:
-		var horiz: bool = (s == "left" or s == "right")
-		var dir_x: float = 0.0
-		var dir_y: float = 0.0
-		match s:
-			"left":   dir_x =  1.0
-			"right":  dir_x = -1.0
-			"top":    dir_y =  1.0
-			"bottom": dir_y = -1.0
 		var gap_pos: int = randi() % max_gap_pos
 		for car in range(cars):
 			if gap_mode == "random":
@@ -785,24 +783,77 @@ func _train_wall(p: Dictionary, ctx: Dictionary) -> void:
 			elif gap_mode == "shift":
 				var delta: int = 1 if randi() % 2 == 0 else -1
 				gap_pos = clampi(gap_pos + delta, 0, max_gap_pos - 1)
-			for b in range(bullets):
-				if b >= gap_pos and b < gap_pos + gap_size:
-					continue
-				var sx: float = 0.0
-				var sy: float = 0.0
-				if horiz:
-					sx = ax - 20.0 if s == "left" else ax + aw + 20.0
-					sy = ay + (float(b) + 0.5) * (ah / float(bullets))
-				else:
-					sx = ax + (float(b) + 0.5) * (aw / float(bullets))
-					sy = ay - 20.0 if s == "top" else ay + ah + 20.0
-				pool.spawn({
-					"x": sx, "y": sy,
-					"vx": dir_x * speed, "vy": dir_y * speed,
-					"radius": radius, "color": col,
-					"delay": float(car) * car_step,
-					"maxLife": 6.0,
-				})
+			_spawn_train_car(s, ax, aw, ay, ah, bullets, gap_pos, gap_size,
+			                 speed, radius, col, float(car) * car_step)
+
+# Spawns one "car" -- a line of bullets perpendicular to the travel
+# direction, with a gap. Handles all sides including diagonals.
+func _spawn_train_car(s: String, ax: float, aw: float, ay: float, ah: float,
+                       bullets: int, gap_pos: int, gap_size: int,
+                       speed: float, radius: float, col,
+                       delay_t: float) -> void:
+	var dir_x: float = 0.0
+	var dir_y: float = 0.0
+	match s:
+		"left":    dir_x =  1.0
+		"right":   dir_x = -1.0
+		"top":     dir_y =  1.0
+		"bottom":  dir_y = -1.0
+		"diag_tl": dir_x =  0.7071;  dir_y =  0.7071   # travel SE
+		"diag_tr": dir_x = -0.7071;  dir_y =  0.7071   # travel SW
+	# Perpendicular unit vector (rotate travel 90° CCW): (-dir_y, dir_x)
+	var perp_x: float = -dir_y
+	var perp_y: float =  dir_x
+	# Where the center of the bullet line is at spawn time.
+	# For straight sides, the line spans the perpendicular arena dimension.
+	# For diagonals, line spans the arena diagonal so coverage holds.
+	var line_len: float
+	var center_x: float
+	var center_y: float
+	match s:
+		"left":
+			line_len = ah
+			center_x = ax - 20.0
+			center_y = ay + ah * 0.5
+		"right":
+			line_len = ah
+			center_x = ax + aw + 20.0
+			center_y = ay + ah * 0.5
+		"top":
+			line_len = aw
+			center_x = ax + aw * 0.5
+			center_y = ay - 20.0
+		"bottom":
+			line_len = aw
+			center_x = ax + aw * 0.5
+			center_y = ay + ah + 20.0
+		"diag_tl":
+			line_len = sqrt(aw * aw + ah * ah) * 0.85
+			# Spawn line straddles top-left corner area, line is tilted at -45°
+			center_x = ax + aw * 0.25
+			center_y = ay - 20.0
+		"diag_tr":
+			line_len = sqrt(aw * aw + ah * ah) * 0.85
+			center_x = ax + aw * 0.75
+			center_y = ay - 20.0
+		_:
+			line_len = ah
+			center_x = ax
+			center_y = ay + ah * 0.5
+	var step: float = line_len / float(bullets)
+	for b in range(bullets):
+		if b >= gap_pos and b < gap_pos + gap_size:
+			continue
+		var offset: float = (float(b) + 0.5 - float(bullets) * 0.5) * step
+		var bx: float = center_x + perp_x * offset
+		var by: float = center_y + perp_y * offset
+		pool.spawn({
+			"x": bx, "y": by,
+			"vx": dir_x * speed, "vy": dir_y * speed,
+			"radius": radius, "color": col,
+			"delay": delay_t,
+			"maxLife": 6.0,
+		})
 
 # HAT SPRAY: a stream of small, fast bullets aimed at the player's general
 # direction, fired at sub-beat intervals (16th notes). Each bullet is chip
@@ -831,6 +882,96 @@ func _hat_spray(p: Dictionary, ctx: Dictionary) -> void:
 			"delay": float(h) * step,
 			"maxLife": 5.0,
 		})
+
+# STROBE LINE: Techno-only. A stationary wall of bullets across the arena
+# that all stutter on/off in unison. Player picks a moment when the wall
+# is "off" and crosses through. Forces timing-based dodging instead of
+# gap-finding. Orient h = horizontal wall (bullets along X axis at a Y),
+# orient v = vertical wall (bullets along Y axis at an X).
+func _strobe_line(p: Dictionary, ctx: Dictionary) -> void:
+	var arena    = ctx.get("arena", {})
+	var ax       := float(arena.get("x", 60));  var aw := float(arena.get("w", 840))
+	var ay       := float(arena.get("y", 60));  var ah := float(arena.get("h", 600))
+	var orient   : String = p.get("orient", "h")
+	var pos_frac := float(p.get("pos", 0.5))
+	var bullets  := int(p.get("bullets", 16))
+	var on_t     := float(p.get("onTime",  0.18))
+	var off_t    := float(p.get("offTime", 0.22))
+	var life     := float(p.get("maxLife", 3.5))
+	var radius   := float(p.get("radius", 7))
+	var col      = p.get("color", "#00e5ff")
+	if orient == "h":
+		var ypos: float = ay + ah * pos_frac
+		for i in range(bullets):
+			var xp: float = ax + (float(i) + 0.5) * (aw / float(bullets))
+			pool.spawn({
+				"x": xp, "y": ypos, "vx": 0.0, "vy": 0.0,
+				"radius": radius, "color": col,
+				"stutter": {"onTime": on_t, "offTime": off_t},
+				"maxLife": life,
+			})
+	else:
+		var xpos: float = ax + aw * pos_frac
+		for i in range(bullets):
+			var yp: float = ay + (float(i) + 0.5) * (ah / float(bullets))
+			pool.spawn({
+				"x": xpos, "y": yp, "vx": 0.0, "vy": 0.0,
+				"radius": radius, "color": col,
+				"stutter": {"onTime": on_t, "offTime": off_t},
+				"maxLife": life,
+			})
+
+# BASS DROP: Techno-only. Telegraphed rings of small dots -- "subwoofer
+# cones" that beat to the music. Each drop spawns a marker, holds for the
+# telegraph, then drops a RING of small dots at evenly-spaced angles. Each
+# dot's distance from the ring center oscillates sinusoidally at the song's
+# beat frequency, so the ring breathes outward and back. As the ring
+# expands the dots spread apart (longer circumference); as it contracts
+# they cluster. Multiple drops in a single event are staggered.
+func _bass_drop(p: Dictionary, ctx: Dictionary) -> void:
+	var arena    = ctx.get("arena", {})
+	var ax       := float(arena.get("x", 60));  var aw := float(arena.get("w", 840))
+	var ay       := float(arena.get("y", 60));  var ah := float(arena.get("h", 600))
+	var drops    := int(p.get("drops",       3))
+	var dots     := int(p.get("dots",       24))    # dots per ring
+	var dot_r    := float(p.get("radius",    5))    # individual dot radius
+	var base_r   := float(p.get("baseR",    45))    # ring's base distance from center
+	var pulse_amp := float(p.get("pulseAmp", 28))   # distance oscillation amplitude
+	var beat_int := float(ctx.get("beatInterval", 0.428))
+	var pulse_freq := float(p.get("pulseFreq", 1.0 / beat_int))  # default = song beat
+	var life     := float(p.get("maxLife", 3.5))
+	var telegraph := float(p.get("telegraph", 0.5))
+	var drop_step := float(p.get("dropStep", 0.55))
+	var col      = p.get("color", "#00e5ff")
+	var inset    := 150.0
+	for d in range(drops):
+		var dx: float = ax + inset + randf() * (aw - 2.0 * inset)
+		var dy: float = ay + inset + randf() * (ah - 2.0 * inset)
+		var t_off: float = float(d) * drop_step
+		# Telegraph marker at the ring center
+		pool.spawn({
+			"x": dx, "y": dy, "vx": 0.0, "vy": 0.0,
+			"radius": 26.0, "color": col,
+			"delay": t_off, "maxLife": telegraph,
+			"tag": "marker",
+		})
+		# Ring of pulsing dots
+		for i in range(dots):
+			var ang: float = float(i) / float(dots) * TAU
+			pool.spawn({
+				"x": dx + cos(ang) * base_r,
+				"y": dy + sin(ang) * base_r,
+				"vx": 0.0, "vy": 0.0,
+				"radius": dot_r, "color": col,
+				"pulseCx":    dx,
+				"pulseCy":    dy,
+				"pulseAngle": ang,
+				"pulseBaseR": base_r,
+				"pulseAmp":   pulse_amp,
+				"pulseFreq":  pulse_freq,
+				"delay":      t_off + telegraph,
+				"maxLife":    life,
+			})
 
 # SLOW ZONE: EIEN-only. Spawns a persistent drifting circle that slows
 # the player while inside. Lives the entire fight. Drifts erratically via
