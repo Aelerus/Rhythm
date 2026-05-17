@@ -36,23 +36,18 @@ func _draw_boss_bar(canvas: Node2D, font: Font, fight: FightManager, beat_pulse:
 		canvas.draw_line(Vector2(tx, by), Vector2(tx, by + bh), Color(1, 1, 1, na), 2.0)
 
 func _pace_color(fight: FightManager, _hp_ratio: float) -> Color:
-	# APEX-style perfect run: green by default, red the moment combo breaks.
-	if fight.requires_perfect:
-		if fight.perfect_broken:
-			return Color("#ff3a3a")
-		return Color("#3aff5d")
-	# Fights with no song timer: just green.
-	if fight._song_end_time < 0.0:
-		return Color("#3aff5d")
-	# Monotonic high-water-mark of "perfect play from here can't catch up".
-	# fight.worst_efficiency is computed each frame in FightManager and only
-	# ever increases, so once the bar goes yellow/red it stays there.
-	var eff: float = fight.worst_efficiency
-	if eff >= 1.0:
-		return Color("#ff3a3a")   # truly impossible -- even perfect play can't finish
-	if eff >= 0.75:
-		return Color("#ffd25d")   # warning -- need near-perfect play to win
-	return Color("#3aff5d")       # green -- have buffer for normal play
+	# Pace color reflects whether perfect parry play from now can still
+	# clear the boss in time for an A-or-better grade. Default = boss color
+	# (per CLAUDE.md). Yellow = no A possible (best grade is B). Red = boss
+	# cannot be killed before the song ends. APEX (requires_perfect) goes
+	# red on any single mistake; both reset on phase transition.
+	var pace: String = fight.get_hp_bar_pace()
+	if pace == "red":
+		return Color("#ff3a3a")
+	if pace == "yellow":
+		return Color("#ffd25d")
+	var boss_col: Color = Color(fight.boss.color) if fight.boss.color != "" else Color("#5dd6ff")
+	return boss_col.lightened(0.35)
 
 func _draw_song_timer(canvas: Node2D, font: Font, fight: FightManager) -> void:
 	if fight._song_end_time < 0.0:

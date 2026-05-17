@@ -3,7 +3,7 @@
   "name": "PULSE",
   "color": "#00e5ff",
   "bpm": 140,
-  "maxHP": 4700,
+  "maxHP": 9000,
   "bulletDamage": 8,
   "counterBaseDamage": 95,
   "music": "Music/techno/Iron Pulse.wav",
@@ -251,21 +251,16 @@
     { "beat": 396, "type": "pattern",
       "patternData": { "type": "aimed_shot", "count": 2, "spread": 0.4, "speed": 400, "radius": 6, "color": "#00e5ff" } },
 
-    { "beat": 400, "type": "pattern",
-      "patternData": { "type": "bass_drop", "drops": 4, "dots": 24, "baseR": 50, "pulseAmp": 30, "telegraph": 0.5, "dropStep": 0.45, "color": "#00e5ff" } },
+    { "beat": 400, "type": "counterattack_window", "duration_beats": 8, "lead_beats": 6,
+      "zone": { "anchor": "bottomRight", "radius": 50 } },
 
-    { "beat": 406, "type": "pattern",
-      "patternData": { "type": "aimed_shot", "count": 2, "spread": 0.45, "speed": 400, "radius": 6, "color": "#00e5ff" } },
-
-    { "beat": 412, "type": "pattern",
-      "patternData": { "type": "train_wall", "side": "top", "cars": 7, "carStep": 0.3, "bullets": 12, "gapSize": 3, "gapMode": "random", "speed": 400, "color": "#00e5ff" } },
     { "beat": 416, "type": "pattern",
       "patternData": { "type": "sub_slam", "side": "left", "count": 8, "span": 1.0, "bias": 250, "amp": 300, "period": 0.3, "radius": 10, "color": "#00e5ff" } },
     { "beat": 420, "type": "pattern",
       "patternData": { "type": "hat_spray", "count": 8, "durationBeats": 1.6, "spread": 0.3, "speed": 390, "radius": 5, "color": "#00e5ff" } },
 
     { "beat": 424, "type": "pattern",
-      "patternData": { "type": "bass_drop", "drops": 1, "dots": 16, "baseR": 35, "pulseAmp": 22, "telegraph": 0.4, "maxLife": 2.4, "color": "#00e5ff" } },
+      "patternData": { "type": "bass_drop", "drops": 4, "dots": 24, "baseR": 50, "pulseAmp": 30, "telegraph": 0.5, "dropStep": 0.45, "color": "#00e5ff" } },
 
     { "beat": 428, "type": "pattern",
       "patternData": { "type": "train_wall", "side": "both", "cars": 6, "carStep": 0.3, "bullets": 11, "gapSize": 3, "gapMode": "random", "speed": 440, "color": "#00e5ff" } },

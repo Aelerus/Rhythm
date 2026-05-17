@@ -52,6 +52,12 @@ var active_walls:     Dictionary = {}  # line_id -> expire_time (seconds)
 var requires_perfect: bool       = false
 var perfect_broken:   bool       = false  # true once a hit or miss breaks combo on a requires_perfect fight
 var worst_efficiency: float      = 0.0    # monotonic high-water-mark of hp_remaining / max_remaining_damage
+# High-water-mark of "perfect parry play from here clears at X% song progress".
+# Drives the HP-bar pace color: > 0.89 = yellow (best grade is B), > 1.0 = red
+# (mathematically can't beat it). Monotonic increasing -- once yellow, stays.
+# Resets on phase transition so APEX-style multi-phase fights get a fresh per-phase
+# read on whether the player is still on pace.
+var worst_clear_pct:  float      = 0.0
 
 var _beat_unsub: Callable
 
@@ -131,6 +137,11 @@ func _apply_phase_config(idx: int) -> void:
 	counter.active = false
 	active_walls.clear()
 	phase = PHASE_DODGE
+	# Reset pace tracking per phase. APEX especially needs perfect_broken
+	# cleared so each phase is its own pass/fail window.
+	worst_efficiency = 0.0
+	worst_clear_pct  = 0.0
+	perfect_broken   = false
 
 func _start_phase_music(idx: int) -> void:
 	var ph: Dictionary = _phases[idx]
@@ -203,6 +214,60 @@ func get_song_progress() -> float:
 
 func is_final_phase() -> bool:
 	return _current_phase_idx >= _phases.size() - 1
+
+# Returns the absolute beat at which perfect parry play (from the player's
+# CURRENT state -- current HP, current combo, in-progress counter remainder,
+# all future counter windows in the current phase) would defeat the boss's
+# current-phase HP bar. Returns -1 if the remaining parries cannot dish out
+# enough damage to kill it. Used to color the HP bar: late clear = yellow
+# (no A grade possible), can't-clear = red.
+func _compute_perfect_clear_beat() -> int:
+	if boss.hp <= 0.0:
+		return -1
+	var base_dmg: float = float(boss_data.get("counterBaseDamage", 40))
+	var combo_sim: int = counter.combo
+	var hp_sim: float = boss.hp
+
+	if counter.active:
+		for p in counter.prompts:
+			if not p.hit:
+				combo_sim += 1
+				var mult: float = 1.0 + minf(1.0, float(combo_sim) / 16.0)
+				hp_sim -= base_dmg * mult
+				if hp_sim <= 0.0:
+					return int(p.beat)
+
+	for evt in timeline:
+		if evt.get("type", "") != "counterattack_window":
+			continue
+		if fired.has(evt):
+			continue
+		var beat: int = int(evt.get("beat", 0))
+		var lead: int = int(evt.get("lead_beats", 6))
+		var dur: int = int(evt.get("duration_beats", 8))
+		for parry_i in range(dur):
+			combo_sim += 1
+			var mult: float = 1.0 + minf(1.0, float(combo_sim) / 16.0)
+			hp_sim -= base_dmg * mult
+			if hp_sim <= 0.0:
+				return beat + lead + parry_i
+	return -1
+
+# Returns "default" / "yellow" / "red" for the HP bar.
+# - APEX (requires_perfect): red on any combo break, otherwise default. Resets per phase.
+# - All other fights: monotonic high-water mark.
+#   yellow once perfect play can't catch up to A grade (clear > 0.89 of song)
+#   red once perfect play can't beat it at all (clear > 1.0 of song)
+func get_hp_bar_pace() -> String:
+	if requires_perfect:
+		return "red" if perfect_broken else "default"
+	if _song_end_time < 0.0:
+		return "default"
+	if worst_clear_pct >= 1.0:
+		return "red"
+	if worst_clear_pct > 0.89:
+		return "yellow"
+	return "default"
 
 func get_max_remaining_damage() -> float:
 	# Simulates perfect play from the player's CURRENT combo state.
@@ -445,6 +510,17 @@ func update(dt: float, input: InputManager) -> void:
 			var eff: float = boss.hp / mx
 			if eff > worst_efficiency:
 				worst_efficiency = eff
+		# Update perfect-clear-progress high-water mark for HP-bar pace color.
+		if _song_duration > 0.0 and beat_clock.beat_interval > 0.0:
+			var clear_beat: int = _compute_perfect_clear_beat()
+			var total_beats: float = _song_duration / beat_clock.beat_interval
+			var pct: float
+			if clear_beat < 0:
+				pct = 9.99   # unkillable -- locks red
+			else:
+				pct = float(clear_beat) / total_beats
+			if pct > worst_clear_pct:
+				worst_clear_pct = pct
 
 	if boss.is_defeated():
 		if not is_final_phase():
