@@ -1,0 +1,10 @@
+{
+  "id": "apex_wall_cross",
+  "type": "wall",
+  "trackPlayer": true,
+  "bandCount": 5,
+  "bandSpread": 55,
+  "speed": 240,
+  "radius": 8,
+  "color": "#0a0a0a"
+}

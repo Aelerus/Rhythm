@@ -123,7 +123,7 @@ function P2-Invert([int]$b, [string]$to) { $tl2.Add([ordered]@{ beat=$b; type='f
 
 # Pattern pools used for filler — each pool escalates over the phase.
 $p2pool_open  = @('apex_radial','apex2_radial','apex_aimed','apex_burst','apex2_burst','apex_mirror_dense','apex_echo','apex_vortex','apex2_vortex','apex_laser_h','apex2_echo','apex_burst_chaos')
-$p2pool_mid   = @('apex2_radial','apex_burst_chaos','apex2_echo','apex_mirror_dense','apex2_vortex','apex_laser_v','apex2_burst','apex_radial','apex2_phase_radial','apex_aimed','apex_vortex','apex2_laser','apex2_phase_aimed')
+$p2pool_mid   = @('apex2_radial','apex_burst_chaos','apex2_echo','apex_mirror_dense','apex2_vortex','apex_laser_v','apex2_burst','apex_radial','apex2_phase_radial','apex_aimed','apex_vortex','apex2_laser','apex2_phase_aimed','apex_wall_cross')
 $p2pool_late  = @('apex2_radial','apex2_burst','apex2_vortex','apex2_phase_radial','apex2_phase_radial_b','apex2_phase_aimed','apex2_laser','apex_burst_chaos','apex_mirror_dense','apex2_echo','apex_vortex','apex_laser_cross')
 $p2pool_final = @('apex2_phase_radial','apex2_phase_radial_b','apex2_phase_aimed','apex2_phase_aimed_b','apex2_radial','apex2_vortex','apex2_burst','apex_burst_chaos','apex2_laser','apex_mirror_dense','apex2_echo')
 
@@ -212,7 +212,7 @@ function P3-Counter([int]$b, [string]$a, [int]$r, [int]$lead, [int]$dur) {
 $p3pool_open  = @('apex2_radial','apex2_burst','apex2_vortex','apex_burst_chaos','apex_mirror_dense','apex2_echo','apex_vortex','apex2_laser','apex_radial','apex_aimed')
 $p3pool_grief = @('apex2_vortex','apex_burst_chaos','apex2_echo','apex3_radial','apex2_burst','apex3_vortex','apex_mirror_dense','apex3_burst')
 $p3pool_slow  = @('apex_stutter','apex2_echo','apex3_expanding','apex2_vortex','apex3_burst','apex_mirror_dense','apex3_expanding_dense','apex2_radial')
-$p3pool_burst = @('apex3_radial','apex3_burst','apex3_mirror','apex3_vortex','apex3_echo','apex3_stutter','apex3_laser','apex_burst_chaos','apex2_burst','apex2_vortex','apex2_radial','apex_mirror_dense')
+$p3pool_burst = @('apex3_radial','apex3_burst','apex3_mirror','apex3_vortex','apex3_echo','apex3_stutter','apex3_laser','apex_burst_chaos','apex2_burst','apex2_vortex','apex2_radial','apex_mirror_dense','apex_wall_cross')
 $p3pool_peak  = @('apex3_radial','apex3_burst','apex3_vortex','apex3_laser','apex3_mirror','apex3_echo','apex3_stutter','apex3_expanding_dense','apex_burst_chaos','apex2_vortex','apex_mirror_dense')
 
 # --- Section 1 (4..80): opens at Phase 2 late density. Well intro at b16 -
@@ -295,7 +295,7 @@ $boss = [ordered]@{
 }
 
 $json = $boss | ConvertTo-Json -Depth 14
-$out = 'c:\Users\robbc\Rhythm\data\bosses\boss_06.json'
+$out = 'c:\Users\robbc\OneDrive\Code\Rhythm\data\bosses\boss_06.json'
 [System.IO.File]::WriteAllText($out, $json, [System.Text.UTF8Encoding]::new($false))
 
 Write-Output ("Wrote " + $out)

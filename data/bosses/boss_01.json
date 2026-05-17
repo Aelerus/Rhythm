@@ -3,9 +3,11 @@
   "name": "AURA",
   "color": "#ff5dd6",
   "bpm": 90,
-  "maxHP": 1000,
+  "maxHP": 2150,
   "bulletDamage": 8,
   "counterBaseDamage": 38,
+  "music": "Music/tutorial/Aura.wav",
+  "musicVolume": 0.85,
   "phaseThresholds": [0.66, 0.33],
   "patterns": ["radial_burst", "aimed_shot"],
   "timeline": [

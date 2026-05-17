@@ -1,0 +1,848 @@
+{
+    "id":  "boss_08",
+    "name":  "CRUISE CONTROL",
+    "color":  "#162e6e",
+    "bpm":  90,
+    "maxHP":  2700,
+    "bulletDamage":  1,
+    "counterBaseDamage":  60,
+    "music":  "Music/synthwave/Open Highway.wav",
+    "musicVolume":  0.9,
+    "musicOffset":  0,
+    "phaseThresholds":  [
+
+                        ],
+    "patterns":  [
+
+                 ],
+    "timeline":  [
+                     {
+                         "beat":  156,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "sw_sine",
+                                             "count":  3,
+                                             "spread":  0.3,
+                                             "speed":  200,
+                                             "sineAmp":  50,
+                                             "sineFreq":  1.2,
+                                             "radius":  6,
+                                             "color":  "#00d4ff"
+                                         }
+                     },
+                     {
+                         "beat":  158,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "sw_speedline",
+                                             "lanes":  5,
+                                             "bulletsPerLane":  4,
+                                             "speed":  380,
+                                             "orient":  "h",
+                                             "radius":  6,
+                                             "color":  "#00d4ff"
+                                         }
+                     },
+                     {
+                         "beat":  151,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "sw_arc",
+                                             "count":  5,
+                                             "spread":  1.4,
+                                             "speed":  220,
+                                             "curveRate":  1.8,
+                                             "radius":  6,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  154,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "sw_bounce",
+                                             "count":  3,
+                                             "spread":  0.45,
+                                             "speed":  240,
+                                             "bounces":  2,
+                                             "radius":  6,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  162,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "sw_arc",
+                                             "count":  5,
+                                             "spread":  1.4,
+                                             "speed":  220,
+                                             "curveRate":  1.8,
+                                             "radius":  6,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  165,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "sw_sine",
+                                             "count":  3,
+                                             "spread":  0.3,
+                                             "speed":  200,
+                                             "sineAmp":  50,
+                                             "sineFreq":  1.2,
+                                             "radius":  6,
+                                             "color":  "#00d4ff"
+                                         }
+                     },
+                     {
+                         "beat":  158,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "sw_vector_burst",
+                                             "sides":  6,
+                                             "rings":  2,
+                                             "ringStep":  18,
+                                             "speed":  180,
+                                             "spin":  0.2,
+                                             "radius":  5,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  160,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "aimed_shot",
+                                             "count":  1,
+                                             "speed":  250,
+                                             "radius":  7,
+                                             "color":  "#00d4ff"
+                                         }
+                     },
+                     {
+                         "beat":  139,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "sw_speedline",
+                                             "lanes":  5,
+                                             "bulletsPerLane":  4,
+                                             "speed":  380,
+                                             "orient":  "h",
+                                             "radius":  6,
+                                             "color":  "#00d4ff"
+                                         }
+                     },
+                     {
+                         "beat":  141,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "sw_sine",
+                                             "count":  3,
+                                             "spread":  0.3,
+                                             "speed":  200,
+                                             "sineAmp":  50,
+                                             "sineFreq":  1.2,
+                                             "radius":  6,
+                                             "color":  "#00d4ff"
+                                         }
+                     },
+                     {
+                         "beat":  134,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "sw_arc",
+                                             "count":  5,
+                                             "spread":  1.4,
+                                             "speed":  220,
+                                             "curveRate":  1.8,
+                                             "radius":  6,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  137,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "sw_bounce",
+                                             "count":  3,
+                                             "spread":  0.45,
+                                             "speed":  240,
+                                             "bounces":  2,
+                                             "radius":  6,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  146,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "sw_speedline",
+                                             "lanes":  4,
+                                             "bulletsPerLane":  4,
+                                             "speed":  380,
+                                             "orient":  "v",
+                                             "radius":  6,
+                                             "color":  "#00d4ff"
+                                         }
+                     },
+                     {
+                         "beat":  150,
+                         "type":  "grid_wall",
+                         "line":  "h3",
+                         "pair_line":  "v2",
+                         "duration_beats":  14
+                     },
+                     {
+                         "beat":  143,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "homing",
+                                             "count":  1,
+                                             "speed":  130,
+                                             "turnRate":  0.65,
+                                             "radius":  7,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  143,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "sw_vector_burst",
+                                             "sides":  6,
+                                             "rings":  2,
+                                             "ringStep":  18,
+                                             "speed":  180,
+                                             "spin":  0.2,
+                                             "radius":  5,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  168,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "sw_bounce",
+                                             "count":  3,
+                                             "spread":  0.45,
+                                             "speed":  240,
+                                             "bounces":  2,
+                                             "radius":  6,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  208,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "homing",
+                                             "count":  1,
+                                             "speed":  130,
+                                             "turnRate":  0.65,
+                                             "radius":  7,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  210,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "sw_arc",
+                                             "count":  5,
+                                             "spread":  1.4,
+                                             "speed":  220,
+                                             "curveRate":  1.8,
+                                             "radius":  6,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  202,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "sw_vector_burst",
+                                             "sides":  6,
+                                             "rings":  2,
+                                             "ringStep":  18,
+                                             "speed":  180,
+                                             "spin":  0.2,
+                                             "radius":  5,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  205,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "sw_speedline",
+                                             "lanes":  4,
+                                             "bulletsPerLane":  4,
+                                             "speed":  380,
+                                             "orient":  "v",
+                                             "radius":  6,
+                                             "color":  "#00d4ff"
+                                         }
+                     },
+                     {
+                         "beat":  232,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "sw_sine",
+                                             "count":  3,
+                                             "spread":  0.3,
+                                             "speed":  200,
+                                             "sineAmp":  50,
+                                             "sineFreq":  1.2,
+                                             "radius":  6,
+                                             "color":  "#00d4ff"
+                                         }
+                     },
+                     {
+                         "beat":  234,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "sw_arc",
+                                             "count":  5,
+                                             "spread":  1.4,
+                                             "speed":  220,
+                                             "curveRate":  1.8,
+                                             "radius":  6,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  213,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "sw_sine",
+                                             "count":  3,
+                                             "spread":  0.3,
+                                             "speed":  200,
+                                             "sineAmp":  50,
+                                             "sineFreq":  1.2,
+                                             "radius":  6,
+                                             "color":  "#00d4ff"
+                                         }
+                     },
+                     {
+                         "beat":  215,
+                         "type":  "counterattack_window",
+                         "duration_beats":  10,
+                         "lead_beats":  6,
+                         "zone":  {
+                                      "anchor":  "right",
+                                      "radius":  55
+                                  }
+                     },
+                     {
+                         "beat":  173,
+                         "type":  "counterattack_window",
+                         "duration_beats":  8,
+                         "lead_beats":  6,
+                         "zone":  {
+                                      "anchor":  "top",
+                                      "radius":  50
+                                  }
+                     },
+                     {
+                         "beat":  190,
+                         "type":  "grid_wall",
+                         "line":  "h2",
+                         "pair_line":  "v2",
+                         "duration_beats":  14
+                     },
+                     {
+                         "beat":  168,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "sw_vector_burst",
+                                             "sides":  6,
+                                             "rings":  2,
+                                             "ringStep":  18,
+                                             "speed":  180,
+                                             "spin":  0.2,
+                                             "radius":  5,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  171,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "sw_speedline",
+                                             "lanes":  5,
+                                             "bulletsPerLane":  4,
+                                             "speed":  380,
+                                             "orient":  "h",
+                                             "radius":  6,
+                                             "color":  "#00d4ff"
+                                         }
+                     },
+                     {
+                         "beat":  196,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "sw_speedline",
+                                             "lanes":  5,
+                                             "bulletsPerLane":  4,
+                                             "speed":  380,
+                                             "orient":  "h",
+                                             "radius":  6,
+                                             "color":  "#00d4ff"
+                                         }
+                     },
+                     {
+                         "beat":  199,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "sw_bounce",
+                                             "count":  3,
+                                             "spread":  0.45,
+                                             "speed":  240,
+                                             "bounces":  2,
+                                             "radius":  6,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  192,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "sw_sine",
+                                             "count":  3,
+                                             "spread":  0.3,
+                                             "speed":  200,
+                                             "sineAmp":  50,
+                                             "sineFreq":  1.2,
+                                             "radius":  6,
+                                             "color":  "#00d4ff"
+                                         }
+                     },
+                     {
+                         "beat":  194,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "sw_arc",
+                                             "count":  5,
+                                             "spread":  1.4,
+                                             "speed":  220,
+                                             "curveRate":  1.8,
+                                             "radius":  6,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  135,
+                         "type":  "grid_wall",
+                         "line":  "h2",
+                         "pair_line":  "v1",
+                         "duration_beats":  14
+                     },
+                     {
+                         "beat":  52,
+                         "type":  "grid_wall",
+                         "line":  "h3",
+                         "pair_line":  "v2",
+                         "duration_beats":  14
+                     },
+                     {
+                         "beat":  54,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "sw_sine",
+                                             "count":  3,
+                                             "spread":  0.3,
+                                             "speed":  200,
+                                             "sineAmp":  50,
+                                             "sineFreq":  1.2,
+                                             "radius":  6,
+                                             "color":  "#00d4ff"
+                                         }
+                     },
+                     {
+                         "beat":  32,
+                         "type":  "counterattack_window",
+                         "duration_beats":  8,
+                         "lead_beats":  8,
+                         "zone":  {
+                                      "anchor":  "center",
+                                      "radius":  60
+                                  }
+                     },
+                     {
+                         "beat":  50,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "sw_speedline",
+                                             "lanes":  5,
+                                             "bulletsPerLane":  4,
+                                             "speed":  380,
+                                             "orient":  "h",
+                                             "radius":  6,
+                                             "color":  "#00d4ff"
+                                         }
+                     },
+                     {
+                         "beat":  62,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "sw_speedline",
+                                             "lanes":  5,
+                                             "bulletsPerLane":  4,
+                                             "speed":  380,
+                                             "orient":  "h",
+                                             "radius":  6,
+                                             "color":  "#00d4ff"
+                                         }
+                     },
+                     {
+                         "beat":  64,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "sw_sine",
+                                             "count":  3,
+                                             "spread":  0.3,
+                                             "speed":  200,
+                                             "sineAmp":  50,
+                                             "sineFreq":  1.2,
+                                             "radius":  6,
+                                             "color":  "#00d4ff"
+                                         }
+                     },
+                     {
+                         "beat":  58,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "homing",
+                                             "count":  1,
+                                             "speed":  130,
+                                             "turnRate":  0.65,
+                                             "radius":  7,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  60,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "sw_arc",
+                                             "count":  5,
+                                             "spread":  1.4,
+                                             "speed":  220,
+                                             "curveRate":  1.8,
+                                             "radius":  6,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  10,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "aimed_shot",
+                                             "count":  1,
+                                             "speed":  250,
+                                             "radius":  7,
+                                             "color":  "#00d4ff"
+                                         }
+                     },
+                     {
+                         "beat":  14,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "sw_arc",
+                                             "count":  5,
+                                             "spread":  1.4,
+                                             "speed":  220,
+                                             "curveRate":  1.8,
+                                             "radius":  6,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  2,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "aimed_shot",
+                                             "count":  1,
+                                             "speed":  250,
+                                             "radius":  7,
+                                             "color":  "#00d4ff"
+                                         }
+                     },
+                     {
+                         "beat":  6,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "sw_sine",
+                                             "count":  3,
+                                             "spread":  0.3,
+                                             "speed":  200,
+                                             "sineAmp":  50,
+                                             "sineFreq":  1.2,
+                                             "radius":  6,
+                                             "color":  "#00d4ff"
+                                         }
+                     },
+                     {
+                         "beat":  26,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "sw_vector_burst",
+                                             "sides":  6,
+                                             "rings":  2,
+                                             "ringStep":  18,
+                                             "speed":  180,
+                                             "spin":  0.2,
+                                             "radius":  5,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  30,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "sw_arc",
+                                             "count":  5,
+                                             "spread":  1.4,
+                                             "speed":  220,
+                                             "curveRate":  1.8,
+                                             "radius":  6,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  18,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "homing",
+                                             "count":  1,
+                                             "speed":  130,
+                                             "turnRate":  0.65,
+                                             "radius":  7,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  22,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "sw_sine",
+                                             "count":  3,
+                                             "spread":  0.3,
+                                             "speed":  200,
+                                             "sineAmp":  50,
+                                             "sineFreq":  1.2,
+                                             "radius":  6,
+                                             "color":  "#00d4ff"
+                                         }
+                     },
+                     {
+                         "beat":  66,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "sw_vector_burst",
+                                             "sides":  6,
+                                             "rings":  2,
+                                             "ringStep":  18,
+                                             "speed":  180,
+                                             "spin":  0.2,
+                                             "radius":  5,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  104,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "sw_vector_burst",
+                                             "sides":  6,
+                                             "rings":  2,
+                                             "ringStep":  18,
+                                             "speed":  180,
+                                             "spin":  0.2,
+                                             "radius":  5,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  106,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "sw_arc",
+                                             "count":  5,
+                                             "spread":  1.4,
+                                             "speed":  220,
+                                             "curveRate":  1.8,
+                                             "radius":  6,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  100,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "sw_bounce",
+                                             "count":  3,
+                                             "spread":  0.45,
+                                             "speed":  240,
+                                             "bounces":  2,
+                                             "radius":  6,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  102,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "homing",
+                                             "count":  1,
+                                             "speed":  130,
+                                             "turnRate":  0.65,
+                                             "radius":  7,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  112,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "aimed_shot",
+                                             "count":  1,
+                                             "speed":  250,
+                                             "radius":  7,
+                                             "color":  "#00d4ff"
+                                         }
+                     },
+                     {
+                         "beat":  115,
+                         "type":  "counterattack_window",
+                         "duration_beats":  10,
+                         "lead_beats":  6,
+                         "zone":  {
+                                      "anchor":  "bottomLeft",
+                                      "radius":  50
+                                  }
+                     },
+                     {
+                         "beat":  108,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "sw_speedline",
+                                             "lanes":  5,
+                                             "bulletsPerLane":  4,
+                                             "speed":  380,
+                                             "orient":  "h",
+                                             "radius":  6,
+                                             "color":  "#00d4ff"
+                                         }
+                     },
+                     {
+                         "beat":  110,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "sw_sine",
+                                             "count":  3,
+                                             "spread":  0.3,
+                                             "speed":  200,
+                                             "sineAmp":  50,
+                                             "sineFreq":  1.2,
+                                             "radius":  6,
+                                             "color":  "#00d4ff"
+                                         }
+                     },
+                     {
+                         "beat":  85,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "sw_bounce",
+                                             "count":  3,
+                                             "spread":  0.45,
+                                             "speed":  240,
+                                             "bounces":  2,
+                                             "radius":  6,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  87,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "aimed_shot",
+                                             "count":  1,
+                                             "speed":  250,
+                                             "radius":  7,
+                                             "color":  "#00d4ff"
+                                         }
+                     },
+                     {
+                         "beat":  68,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "aimed_shot",
+                                             "count":  1,
+                                             "speed":  250,
+                                             "radius":  7,
+                                             "color":  "#00d4ff"
+                                         }
+                     },
+                     {
+                         "beat":  70,
+                         "type":  "counterattack_window",
+                         "duration_beats":  8,
+                         "lead_beats":  6,
+                         "zone":  {
+                                      "anchor":  "topRight",
+                                      "radius":  50
+                                  }
+                     },
+                     {
+                         "beat":  94,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "sw_arc",
+                                             "count":  5,
+                                             "spread":  1.4,
+                                             "speed":  220,
+                                             "curveRate":  1.8,
+                                             "radius":  6,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  96,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "sw_sine",
+                                             "count":  3,
+                                             "spread":  0.3,
+                                             "speed":  200,
+                                             "sineAmp":  50,
+                                             "sineFreq":  1.2,
+                                             "radius":  6,
+                                             "color":  "#00d4ff"
+                                         }
+                     },
+                     {
+                         "beat":  90,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "sw_speedline",
+                                             "lanes":  4,
+                                             "bulletsPerLane":  4,
+                                             "speed":  380,
+                                             "orient":  "v",
+                                             "radius":  6,
+                                             "color":  "#00d4ff"
+                                         }
+                     },
+                     {
+                         "beat":  92,
+                         "type":  "grid_wall",
+                         "line":  "v2",
+                         "pair_line":  "h3",
+                         "duration_beats":  14
+                     }
+                 ]
+}

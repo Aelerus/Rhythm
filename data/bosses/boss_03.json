@@ -1,11 +1,13 @@
 {
   "id": "boss_03",
   "name": "VOLT",
-  "color": "#ffae5d",
+  "color": "#00bcff",
   "bpm": 140,
-  "maxHP": 1500,
+  "maxHP": 1921,
   "bulletDamage": 10,
   "counterBaseDamage": 34,
+  "music": "Music/techno/Volt.wav",
+  "musicVolume": 0.85,
   "phaseThresholds": [0.66, 0.33],
   "patterns": ["cross", "homing", "aimed_fan", "radial_dense"],
   "timeline": [

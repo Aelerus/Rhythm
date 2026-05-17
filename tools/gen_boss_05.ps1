@@ -214,10 +214,10 @@ $boss = [ordered]@{
   name = 'PULSE'
   color = '#00e5ff'
   bpm = 175
-  maxHP = 1700
+  maxHP = 5265
   bulletDamage = 8
-  counterBaseDamage = 38
-  music = 'Music/Restless Heart.wav'
+  counterBaseDamage = 114
+  music = 'Music/techno/Restless Heart.wav'
   musicVolume = 0.85
   musicOffset = 0
   phaseThresholds = @(0.66, 0.33)
@@ -229,6 +229,6 @@ $boss = [ordered]@{
 }
 
 $json = $boss | ConvertTo-Json -Depth 12
-$out = 'c:\Users\robbc\Rhythm\data\bosses\boss_05.json'
+$out = 'c:\Users\robbc\OneDrive\Code\Rhythm\data\bosses\boss_05.json'
 [System.IO.File]::WriteAllText($out, $json, [System.Text.UTF8Encoding]::new($false))
 Write-Output ("Wrote " + $out + " with " + $timeline.Count + " timeline events.")

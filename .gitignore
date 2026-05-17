@@ -9,3 +9,8 @@ Thumbs.db
 
 # Local logs
 *.log
+
+# Godot editor cache (regenerated on every run, machine-specific)
+godot/.godot/
+godot/*.import
+*.tmp

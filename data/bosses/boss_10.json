@@ -1,0 +1,704 @@
+{
+    "id":  "boss_10",
+    "name":  "GHOST LANE",
+    "color":  "#4a2a8a",
+    "bpm":  110,
+    "maxHP":  2780,
+    "bulletDamage":  8,
+    "counterBaseDamage":  60,
+    "music":  "Music/synthwave/Ghost Lane.wav",
+    "musicVolume":  0.9,
+    "musicOffset":  0,
+    "phaseThresholds":  [
+
+                        ],
+    "patterns":  [
+
+                 ],
+    "timeline":  [
+                     {
+                         "beat":  183,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "mirror_path",
+                                             "count":  4,
+                                             "speed":  250,
+                                             "telegraph":  0.4,
+                                             "radius":  7,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  181,
+                         "type":  "grid_wall",
+                         "line":  "h3",
+                         "pair_line":  "v2",
+                         "duration_beats":  16
+                     },
+                     {
+                         "beat":  179,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "aimed_shot",
+                                             "count":  1,
+                                             "speed":  280,
+                                             "radius":  7,
+                                             "color":  "#00d4ff"
+                                         }
+                     },
+                     {
+                         "beat":  186,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "laser_line",
+                                             "orient":  "v",
+                                             "lanes":  1,
+                                             "speed":  420,
+                                             "telegraph":  0.52,
+                                             "beadCount":  14,
+                                             "count":  4,
+                                             "radius":  6,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  192,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "tempo_grid",
+                                             "cols":  5,
+                                             "rows":  4,
+                                             "arms":  4,
+                                             "speed":  210,
+                                             "telegraph":  0.52,
+                                             "parity":  0,
+                                             "markerRadius":  12,
+                                             "markerColor":  "#ff00aa",
+                                             "radius":  6,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  189,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "aimed_shot",
+                                             "count":  1,
+                                             "speed":  280,
+                                             "radius":  7,
+                                             "color":  "#00d4ff"
+                                         }
+                     },
+                     {
+                         "beat":  189,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "homing",
+                                             "count":  1,
+                                             "speed":  140,
+                                             "turnRate":  0.62,
+                                             "radius":  7,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  165,
+                         "type":  "grid_wall",
+                         "line":  "h2",
+                         "pair_line":  "v1",
+                         "duration_beats":  16
+                     },
+                     {
+                         "beat":  145,
+                         "type":  "counterattack_window",
+                         "duration_beats":  10,
+                         "lead_beats":  6,
+                         "zone":  {
+                                      "anchor":  "bottomLeft",
+                                      "radius":  50
+                                  }
+                     },
+                     {
+                         "beat":  138,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "stutter_aim",
+                                             "count":  3,
+                                             "spread":  0.32,
+                                             "speed":  340,
+                                             "onTime":  0.3,
+                                             "offTime":  0.2,
+                                             "radius":  6,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  167,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "homing",
+                                             "count":  1,
+                                             "speed":  140,
+                                             "turnRate":  0.62,
+                                             "radius":  7,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  176,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "aimed_shot",
+                                             "count":  1,
+                                             "speed":  280,
+                                             "radius":  7,
+                                             "color":  "#00d4ff"
+                                         }
+                     },
+                     {
+                         "beat":  173,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "stutter_aim",
+                                             "count":  3,
+                                             "spread":  0.32,
+                                             "speed":  340,
+                                             "onTime":  0.3,
+                                             "offTime":  0.2,
+                                             "radius":  6,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  170,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "mirror_path",
+                                             "count":  4,
+                                             "speed":  250,
+                                             "telegraph":  0.4,
+                                             "radius":  7,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  195,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "stutter_aim",
+                                             "count":  3,
+                                             "spread":  0.32,
+                                             "speed":  340,
+                                             "onTime":  0.3,
+                                             "offTime":  0.2,
+                                             "radius":  6,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  245,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "mirror_path",
+                                             "count":  4,
+                                             "speed":  250,
+                                             "telegraph":  0.4,
+                                             "radius":  7,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  242,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "stutter_aim",
+                                             "count":  3,
+                                             "spread":  0.32,
+                                             "speed":  340,
+                                             "onTime":  0.3,
+                                             "offTime":  0.2,
+                                             "radius":  6,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  238,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "laser_line",
+                                             "orient":  "h",
+                                             "lanes":  1,
+                                             "speed":  420,
+                                             "telegraph":  0.52,
+                                             "beadCount":  18,
+                                             "count":  4,
+                                             "radius":  6,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  248,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "aimed_shot",
+                                             "count":  1,
+                                             "speed":  280,
+                                             "radius":  7,
+                                             "color":  "#00d4ff"
+                                         }
+                     },
+                     {
+                         "beat":  280,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "aimed_shot",
+                                             "count":  1,
+                                             "speed":  280,
+                                             "radius":  7,
+                                             "color":  "#00d4ff"
+                                         }
+                     },
+                     {
+                         "beat":  274,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "homing",
+                                             "count":  1,
+                                             "speed":  140,
+                                             "turnRate":  0.62,
+                                             "radius":  7,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  252,
+                         "type":  "counterattack_window",
+                         "duration_beats":  10,
+                         "lead_beats":  6,
+                         "zone":  {
+                                      "anchor":  "right",
+                                      "radius":  55
+                                  }
+                     },
+                     {
+                         "beat":  225,
+                         "type":  "grid_wall",
+                         "line":  "h2",
+                         "pair_line":  "v2",
+                         "duration_beats":  16
+                     },
+                     {
+                         "beat":  207,
+                         "type":  "counterattack_window",
+                         "duration_beats":  8,
+                         "lead_beats":  6,
+                         "zone":  {
+                                      "anchor":  "top",
+                                      "radius":  50
+                                  }
+                     },
+                     {
+                         "beat":  198,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "mirror_path",
+                                             "count":  4,
+                                             "speed":  250,
+                                             "telegraph":  0.4,
+                                             "radius":  7,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  227,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "aimed_shot",
+                                             "count":  1,
+                                             "speed":  280,
+                                             "radius":  7,
+                                             "color":  "#00d4ff"
+                                         }
+                     },
+                     {
+                         "beat":  235,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "aimed_shot",
+                                             "count":  1,
+                                             "speed":  280,
+                                             "radius":  7,
+                                             "color":  "#00d4ff"
+                                         }
+                     },
+                     {
+                         "beat":  232,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "homing",
+                                             "count":  1,
+                                             "speed":  140,
+                                             "turnRate":  0.62,
+                                             "radius":  7,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  230,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "mirror_path",
+                                             "count":  4,
+                                             "speed":  250,
+                                             "telegraph":  0.4,
+                                             "radius":  7,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  58,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "homing",
+                                             "count":  1,
+                                             "speed":  140,
+                                             "turnRate":  0.62,
+                                             "radius":  7,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  54,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "aimed_shot",
+                                             "count":  1,
+                                             "speed":  280,
+                                             "radius":  7,
+                                             "color":  "#00d4ff"
+                                         }
+                     },
+                     {
+                         "beat":  52,
+                         "type":  "grid_wall",
+                         "line":  "h3",
+                         "pair_line":  "v2",
+                         "duration_beats":  16
+                     },
+                     {
+                         "beat":  61,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "mirror_path",
+                                             "count":  4,
+                                             "speed":  250,
+                                             "telegraph":  0.4,
+                                             "radius":  7,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  72,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "laser_line",
+                                             "orient":  "h",
+                                             "lanes":  1,
+                                             "speed":  420,
+                                             "telegraph":  0.52,
+                                             "beadCount":  18,
+                                             "count":  4,
+                                             "radius":  6,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  68,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "aimed_shot",
+                                             "count":  1,
+                                             "speed":  280,
+                                             "radius":  7,
+                                             "color":  "#00d4ff"
+                                         }
+                     },
+                     {
+                         "beat":  65,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "stutter_aim",
+                                             "count":  3,
+                                             "spread":  0.32,
+                                             "speed":  340,
+                                             "onTime":  0.3,
+                                             "offTime":  0.2,
+                                             "radius":  6,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  14,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "aimed_shot",
+                                             "count":  1,
+                                             "speed":  280,
+                                             "radius":  7,
+                                             "color":  "#00d4ff"
+                                         }
+                     },
+                     {
+                         "beat":  8,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "homing",
+                                             "count":  1,
+                                             "speed":  140,
+                                             "turnRate":  0.62,
+                                             "radius":  7,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  2,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "aimed_shot",
+                                             "count":  1,
+                                             "speed":  280,
+                                             "radius":  7,
+                                             "color":  "#00d4ff"
+                                         }
+                     },
+                     {
+                         "beat":  20,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "stutter_aim",
+                                             "count":  3,
+                                             "spread":  0.32,
+                                             "speed":  340,
+                                             "onTime":  0.3,
+                                             "offTime":  0.2,
+                                             "radius":  6,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  50,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "aimed_shot",
+                                             "count":  1,
+                                             "speed":  280,
+                                             "radius":  7,
+                                             "color":  "#00d4ff"
+                                         }
+                     },
+                     {
+                         "beat":  32,
+                         "type":  "counterattack_window",
+                         "duration_beats":  8,
+                         "lead_beats":  8,
+                         "zone":  {
+                                      "anchor":  "center",
+                                      "radius":  65
+                                  }
+                     },
+                     {
+                         "beat":  26,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "homing",
+                                             "count":  1,
+                                             "speed":  140,
+                                             "turnRate":  0.62,
+                                             "radius":  7,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  76,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "homing",
+                                             "count":  1,
+                                             "speed":  140,
+                                             "turnRate":  0.62,
+                                             "radius":  7,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  122,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "aimed_shot",
+                                             "count":  1,
+                                             "speed":  280,
+                                             "radius":  7,
+                                             "color":  "#00d4ff"
+                                         }
+                     },
+                     {
+                         "beat":  119,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "stutter_aim",
+                                             "count":  3,
+                                             "spread":  0.32,
+                                             "speed":  340,
+                                             "onTime":  0.3,
+                                             "offTime":  0.2,
+                                             "radius":  6,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  117,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "aimed_shot",
+                                             "count":  1,
+                                             "speed":  280,
+                                             "radius":  7,
+                                             "color":  "#00d4ff"
+                                         }
+                     },
+                     {
+                         "beat":  125,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "mirror_path",
+                                             "count":  4,
+                                             "speed":  250,
+                                             "telegraph":  0.4,
+                                             "radius":  7,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  135,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "aimed_shot",
+                                             "count":  1,
+                                             "speed":  280,
+                                             "radius":  7,
+                                             "color":  "#00d4ff"
+                                         }
+                     },
+                     {
+                         "beat":  132,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "laser_line",
+                                             "orient":  "h",
+                                             "lanes":  1,
+                                             "speed":  420,
+                                             "telegraph":  0.52,
+                                             "beadCount":  18,
+                                             "count":  4,
+                                             "radius":  6,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  128,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "homing",
+                                             "count":  1,
+                                             "speed":  140,
+                                             "turnRate":  0.62,
+                                             "radius":  7,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  102,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "tempo_grid",
+                                             "cols":  5,
+                                             "rows":  4,
+                                             "arms":  4,
+                                             "speed":  210,
+                                             "telegraph":  0.52,
+                                             "parity":  0,
+                                             "markerRadius":  12,
+                                             "markerColor":  "#ff00aa",
+                                             "radius":  6,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  100,
+                         "type":  "grid_wall",
+                         "line":  "v2",
+                         "pair_line":  "h3",
+                         "duration_beats":  16
+                     },
+                     {
+                         "beat":  80,
+                         "type":  "counterattack_window",
+                         "duration_beats":  8,
+                         "lead_beats":  6,
+                         "zone":  {
+                                      "anchor":  "topRight",
+                                      "radius":  58
+                                  }
+                     },
+                     {
+                         "beat":  105,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "aimed_shot",
+                                             "count":  1,
+                                             "speed":  280,
+                                             "radius":  7,
+                                             "color":  "#00d4ff"
+                                         }
+                     },
+                     {
+                         "beat":  113,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "laser_line",
+                                             "orient":  "v",
+                                             "lanes":  1,
+                                             "speed":  420,
+                                             "telegraph":  0.52,
+                                             "beadCount":  14,
+                                             "count":  4,
+                                             "radius":  6,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  110,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "homing",
+                                             "count":  1,
+                                             "speed":  140,
+                                             "turnRate":  0.62,
+                                             "radius":  7,
+                                             "color":  "#ff00aa"
+                                         }
+                     },
+                     {
+                         "beat":  108,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "mirror_path",
+                                             "count":  4,
+                                             "speed":  250,
+                                             "telegraph":  0.4,
+                                             "radius":  7,
+                                             "color":  "#ff00aa"
+                                         }
+                     }
+                 ]
+}

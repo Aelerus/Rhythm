@@ -15,32 +15,31 @@ function Add-Pattern([int]$beat, [string]$id) {
   $timeline.Add([ordered]@{ beat = $beat; type = 'pattern'; id = $id })
 }
 
-function Add-Counter([int]$beat, [string]$anchor, [int]$radius = 60, [int]$leadBeats = 3, [int]$durationBeats = 8) {
+function Add-Counter([int]$beat, [string[]]$waypoints, [int]$radius = 60, [int]$speed = 150, [int]$leadBeats = 3, [int]$durationBeats = 8) {
   $timeline.Add([ordered]@{
-    beat = $beat
-    type = 'counterattack_window'
+    beat           = $beat
+    type           = 'counterattack_window'
     duration_beats = $durationBeats
-    lead_beats = $leadBeats
-    zone = [ordered]@{ anchor = $anchor; radius = $radius }
+    lead_beats     = $leadBeats
+    zone           = [ordered]@{ type = 'spotlight'; radius = $radius; speed = $speed; waypoints = $waypoints }
   })
 }
 
-# Section schedule (open-beat of each counter window).
-# Patterns must end at least 4 beats before each open-beat so the field clears.
-# 10 counter windows. Lead beats are tuned so even a corner-to-corner sprint
-# can reach the parry circle in time at 185 BPM (1 beat ~= 0.32s). The first
-# window gets a generous extra ~1.6s lead-in to teach the mechanic.
+# Spotlight paths per counter window.
+# Waypoints are resolved to arena coordinates at runtime. Speed in px/s.
+# Paths escalate: early windows sweep 2-3 points slowly; late windows
+# traverse 4-5 points at higher speed with tighter radius.
 $counters = @(
-  @{ beat =  64; anchor = 'center';      lead = 12; dur = 8;  radius = 70 }
-  @{ beat = 144; anchor = 'topLeft';     lead =  7; dur = 8;  radius = 65 }
-  @{ beat = 224; anchor = 'bottomRight'; lead =  7; dur = 8;  radius = 60 }
-  @{ beat = 304; anchor = 'right';       lead =  6; dur = 8;  radius = 60 }
-  @{ beat = 384; anchor = 'topRight';    lead =  6; dur = 8;  radius = 55 }
-  @{ beat = 464; anchor = 'bottom';      lead =  6; dur = 8;  radius = 55 }
-  @{ beat = 544; anchor = 'left';        lead =  6; dur = 8;  radius = 50 }
-  @{ beat = 624; anchor = 'top';         lead =  6; dur = 8;  radius = 50 }
-  @{ beat = 704; anchor = 'bottomLeft';  lead =  7; dur = 10; radius = 50 }
-  @{ beat = 800; anchor = 'center';      lead =  8; dur = 12; radius = 60 }
+  @{ beat =  64; waypoints = @('center','bottom','right');                          speed = 130; lead = 12; dur =  8; radius = 70 }
+  @{ beat = 144; waypoints = @('topLeft','center','bottomRight');                   speed = 145; lead =  7; dur =  8; radius = 65 }
+  @{ beat = 224; waypoints = @('bottomRight','left','top');                         speed = 155; lead =  7; dur =  8; radius = 60 }
+  @{ beat = 304; waypoints = @('right','bottomLeft','topRight');                    speed = 165; lead =  6; dur =  8; radius = 60 }
+  @{ beat = 384; waypoints = @('topRight','bottom','left');                         speed = 170; lead =  6; dur =  8; radius = 55 }
+  @{ beat = 464; waypoints = @('bottom','topLeft','right');                         speed = 175; lead =  6; dur =  8; radius = 55 }
+  @{ beat = 544; waypoints = @('left','top','bottomRight','center');                speed = 175; lead =  6; dur =  8; radius = 50 }
+  @{ beat = 624; waypoints = @('top','bottomLeft','right','center');                speed = 180; lead =  6; dur =  8; radius = 50 }
+  @{ beat = 704; waypoints = @('bottomLeft','topRight','left','bottom');            speed = 185; lead =  7; dur = 10; radius = 50 }
+  @{ beat = 800; waypoints = @('center','topLeft','bottomRight','top','bottomLeft'); speed = 165; lead =  8; dur = 12; radius = 60 }
 )
 
 # Phrase libraries per section (each phrase is 8 beats long; emits a list of (offset, patternId)).
@@ -51,31 +50,31 @@ function Phrase-Sparse {
   ,(@{o=0;id='aimed_shot'},@{o=2;id='cross'},@{o=4;id='aimed_shot'},@{o=6;id='pulse_aimed'})
 }
 function Phrase-Intro {
-  ,(@{o=0;id='aimed_shot'},@{o=2;id='wide_wall'},@{o=3;id='cross'},@{o=4;id='pulse_aimed'},@{o=6;id='aimed_shot'},@{o=7;id='spiral'})
+  ,(@{o=0;id='aimed_shot'},@{o=2;id='crimson_fan'},@{o=3;id='cross'},@{o=4;id='pulse_aimed'},@{o=6;id='aimed_shot'},@{o=7;id='spiral'})
 }
 function Phrase-Verse1 {
-  ,(@{o=0;id='wide_wall'},@{o=2;id='pulse_aimed'},@{o=3;id='cross'},@{o=4;id='vein_radial'},@{o=6;id='spiral'},@{o=7;id='aimed_shot'})
+  ,(@{o=0;id='crimson_fan'},@{o=2;id='pulse_aimed'},@{o=3;id='cross'},@{o=4;id='vein_radial'},@{o=6;id='spiral'},@{o=7;id='aimed_shot'})
 }
 function Phrase-Verse1B {
-  ,(@{o=0;id='vein_radial'},@{o=2;id='spiral'},@{o=3;id='wide_wall'},@{o=4;id='pulse_aimed'},@{o=5;id='aimed_shot'},@{o=7;id='crimson_rain'})
+  ,(@{o=0;id='vein_radial'},@{o=2;id='spiral'},@{o=3;id='crimson_fan'},@{o=4;id='pulse_aimed'},@{o=5;id='aimed_shot'},@{o=7;id='crimson_rain'})
 }
 function Phrase-PreChorus {
-  ,(@{o=0;id='vein_radial'},@{o=1;id='pulse_aimed'},@{o=2;id='bleed_spiral'},@{o=4;id='crimson_wall'},@{o=5;id='blood_homing'},@{o=6;id='aimed_shot'},@{o=7;id='dread_converging'})
+  ,(@{o=0;id='vein_radial'},@{o=1;id='pulse_aimed'},@{o=2;id='bleed_spiral'},@{o=4;id='crimson_fan'},@{o=5;id='blood_homing'},@{o=6;id='aimed_shot'},@{o=7;id='dread_converging'})
 }
 function Phrase-Chorus1 {
-  ,(@{o=0;id='vein_radial'},@{o=1;id='crimson_fan'},@{o=2;id='slash_cross'},@{o=3;id='pulse_aimed'},@{o=4;id='crimson_wall'},@{o=5;id='bleed_spiral'},@{o=6;id='crimson_rain'},@{o=7;id='shred_cross'})
+  ,(@{o=0;id='vein_radial'},@{o=1;id='crimson_fan'},@{o=2;id='slash_cross'},@{o=3;id='pulse_aimed'},@{o=4;id='crimson_fan'},@{o=5;id='bleed_spiral'},@{o=6;id='crimson_rain'},@{o=7;id='shred_cross'})
 }
 function Phrase-Chorus1B {
-  ,(@{o=0;id='crimson_wall'},@{o=1;id='bleed_spiral'},@{o=2;id='vein_radial'},@{o=3;id='slash_cross'},@{o=4;id='dread_converging'},@{o=5;id='pulse_aimed'},@{o=6;id='crimson_fan'},@{o=7;id='blood_homing'})
+  ,(@{o=0;id='crimson_fan'},@{o=1;id='bleed_spiral'},@{o=2;id='vein_radial'},@{o=3;id='slash_cross'},@{o=4;id='dread_converging'},@{o=5;id='pulse_aimed'},@{o=6;id='crimson_fan'},@{o=7;id='blood_homing'})
 }
 function Phrase-Verse2 {
-  ,(@{o=0;id='storm_spiral'},@{o=1;id='pulse_aimed'},@{o=2;id='needle_wall'},@{o=3;id='crimson_fan'},@{o=4;id='swarm_homing'},@{o=5;id='slash_cross'},@{o=6;id='vein_radial'},@{o=7;id='crimson_rain'})
+  ,(@{o=0;id='storm_spiral'},@{o=1;id='pulse_aimed'},@{o=2;id='crimson_fan'},@{o=3;id='crimson_fan'},@{o=4;id='swarm_homing'},@{o=5;id='slash_cross'},@{o=6;id='vein_radial'},@{o=7;id='crimson_rain'})
 }
 function Phrase-Verse2B {
-  ,(@{o=0;id='flood_radial'},@{o=1;id='pulse_aimed'},@{o=2;id='shred_cross'},@{o=3;id='storm_spiral'},@{o=4;id='dread_converging'},@{o=5;id='crimson_fan'},@{o=6;id='needle_wall'},@{o=7;id='swarm_homing'})
+  ,(@{o=0;id='flood_radial'},@{o=1;id='pulse_aimed'},@{o=2;id='shred_cross'},@{o=3;id='storm_spiral'},@{o=4;id='dread_converging'},@{o=5;id='crimson_fan'},@{o=6;id='crimson_fan'},@{o=7;id='swarm_homing'})
 }
 function Phrase-Bridge {
-  ,(@{o=0;id='carnage_radial'},@{o=1;id='shred_cross'},@{o=2;id='crimson_fan'},@{o=3;id='storm_spiral'},@{o=4;id='blood_storm'},@{o=5;id='pulse_aimed'},@{o=6;id='needle_wall'},@{o=7;id='swarm_homing'})
+  ,(@{o=0;id='carnage_radial'},@{o=1;id='shred_cross'},@{o=2;id='crimson_fan'},@{o=3;id='storm_spiral'},@{o=4;id='blood_storm'},@{o=5;id='pulse_aimed'},@{o=6;id='crimson_fan'},@{o=7;id='swarm_homing'})
 }
 
 # Section schedule: ranges of beats and which phrase generator to use, repeated.
@@ -112,7 +111,7 @@ foreach ($sec in $sections) {
 
 # Insert counter windows (per-window radius / lead / duration).
 foreach ($c in $counters) {
-  Add-Counter $c.beat $c.anchor $c.radius $c.lead $c.dur
+  Add-Counter $c.beat $c.waypoints $c.radius $c.speed $c.lead $c.dur
 }
 
 # Sort by beat for cleanliness.
@@ -123,23 +122,23 @@ $boss = [ordered]@{
   name = 'EIEN'
   color = '#d4133b'
   bpm = 185
-  maxHP = 4800
-  bulletDamage = 11
-  counterBaseDamage = 38
-  music = 'Music/Eien Chi Afurueru.wav'
+  maxHP = 6250
+  bulletDamage = 10
+  counterBaseDamage = 59
+  music = 'Music/metal/Eien Chi Afurueru.wav'
   musicVolume = 0.85
   musicOffset = 0
   phaseThresholds = @(0.75, 0.5, 0.25)
   patterns = @(
-    'aimed_shot','cross','spiral','pulse_aimed','crimson_fan','crimson_wall',
-    'wide_wall','vein_radial','flood_radial','bleed_spiral','slash_cross','blood_homing',
-    'carnage_radial','needle_wall','storm_spiral','shred_cross','swarm_homing',
+    'aimed_shot','cross','spiral','pulse_aimed','crimson_fan',
+    'vein_radial','flood_radial','bleed_spiral','slash_cross','blood_homing',
+    'carnage_radial','storm_spiral','shred_cross','swarm_homing',
     'crimson_rain','dread_converging','blood_storm'
   )
   timeline = $timelineSorted
 }
 
 $json = $boss | ConvertTo-Json -Depth 12
-$out = 'c:\Users\robbc\Rhythm\data\bosses\boss_04.json'
+$out = 'c:\Users\robbc\OneDrive\Code\Rhythm\data\bosses\boss_04.json'
 [System.IO.File]::WriteAllText($out, $json, [System.Text.UTF8Encoding]::new($false))
 Write-Output ("Wrote " + $out + " with " + $timelineSorted.Count + " timeline events.")

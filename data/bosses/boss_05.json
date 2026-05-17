@@ -3,10 +3,10 @@
     "name":  "PULSE",
     "color":  "#00e5ff",
     "bpm":  175,
-    "maxHP":  1700,
+    "maxHP":  5265,
     "bulletDamage":  8,
-    "counterBaseDamage":  38,
-    "music":  "Music/Restless Heart.wav",
+    "counterBaseDamage":  114,
+    "music":  "Music/techno/Restless Heart.wav",
     "musicVolume":  0.85,
     "musicOffset":  0,
     "phaseThresholds":  [
@@ -25,16 +25,6 @@
                      "surge_converging"
                  ],
     "timeline":  [
-                     {
-                         "beat":  4,
-                         "type":  "counterattack_window",
-                         "duration_beats":  5,
-                         "lead_beats":  3,
-                         "zone":  {
-                                      "anchor":  "left",
-                                      "radius":  75
-                                  }
-                     },
                      {
                          "beat":  16,
                          "type":  "pattern",
@@ -56,14 +46,9 @@
                          "id":  "pulse_radial"
                      },
                      {
-                         "beat":  56,
-                         "type":  "counterattack_window",
-                         "duration_beats":  6,
-                         "lead_beats":  3,
-                         "zone":  {
-                                      "anchor":  "right",
-                                      "radius":  75
-                                  }
+                         "beat":  64,
+                         "type":  "pattern",
+                         "id":  "pulse_radial"
                      },
                      {
                          "beat":  68,
@@ -277,13 +262,18 @@
                      },
                      {
                          "beat":  196,
-                         "type":  "counterattack_window",
-                         "duration_beats":  4,
-                         "lead_beats":  3,
-                         "zone":  {
-                                      "anchor":  "topRight",
-                                      "radius":  70
-                                  }
+                         "type":  "pattern",
+                         "id":  "pulse_radial"
+                     },
+                     {
+                         "beat":  200,
+                         "type":  "pattern",
+                         "id":  "grid_radial"
+                     },
+                     {
+                         "beat":  202,
+                         "type":  "pattern",
+                         "id":  "aimed_shot"
                      },
                      {
                          "beat":  204,
@@ -437,13 +427,23 @@
                      },
                      {
                          "beat":  280,
-                         "type":  "counterattack_window",
-                         "duration_beats":  4,
-                         "lead_beats":  3,
-                         "zone":  {
-                                      "anchor":  "bottomLeft",
-                                      "radius":  70
-                                  }
+                         "type":  "pattern",
+                         "id":  "grid_radial"
+                     },
+                     {
+                         "beat":  282,
+                         "type":  "pattern",
+                         "id":  "glitch_aimed"
+                     },
+                     {
+                         "beat":  284,
+                         "type":  "pattern",
+                         "id":  "pulse_radial"
+                     },
+                     {
+                         "beat":  286,
+                         "type":  "pattern",
+                         "id":  "aimed_shot"
                      },
                      {
                          "beat":  288,

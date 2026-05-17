@@ -1,18 +1,22 @@
 {
   "worlds": [
-    { "id": "world_1",  "label": "World 1 — Tutorial", "stages": ["boss_01", "boss_02", "boss_03"] },
-    { "id": "world_2",  "label": "World 2 — Techno",   "stages": ["boss_07", "boss_05"] },
-    { "id": "world_3",  "label": "World 3 — Metal",    "stages": ["boss_04"] },
-    { "id": "pinnacle", "label": "THE PINNACLE", "secret": true, "stages": ["boss_06"] }
+    { "id": "world_tutorial", "label": "Tutorial",  "stages": ["boss_01"] },
+    { "id": "world_techno",   "label": "Techno",    "stages": ["boss_02", "boss_03", "boss_07", "boss_05"] },
+    { "id": "world_metal",    "label": "Metal",     "stages": ["boss_04"] },
+    { "id": "world_synthwave","label": "Synthwave", "stages": ["boss_08", "boss_09", "boss_14"] },
+    { "id": "world_tower",    "label": "Tower",     "stages": ["boss_06"] }
   ],
   "stages": [
     { "id": "boss_01", "name": "AURA",  "color": "#ff5dd6", "bpm": 90,  "boss": "data/bosses/boss_01.json" },
     { "id": "boss_02", "name": "PRISM", "color": "#5dd6ff", "bpm": 120, "boss": "data/bosses/boss_02.json" },
-    { "id": "boss_03", "name": "VOLT",  "color": "#ffae5d", "bpm": 140, "boss": "data/bosses/boss_03.json" },
+    { "id": "boss_03", "name": "VOLT",  "color": "#00bcff", "bpm": 140, "boss": "data/bosses/boss_03.json" },
     { "id": "boss_04", "name": "EIEN",  "color": "#d4133b", "bpm": 185, "boss": "data/bosses/boss_04.json" },
     { "id": "boss_05", "name": "PULSE", "color": "#00e5ff", "bpm": 175, "boss": "data/bosses/boss_05.json" },
-    { "id": "boss_07", "name": "TESLA", "color": "#c8ff00", "bpm": 120, "boss": "data/bosses/boss_07.json" },
-    { "id": "boss_06", "name": "APEX",  "color": "#ffffff", "bpm": 180, "boss": "data/bosses/boss_06.json" }
+    { "id": "boss_07", "name": "TESLA", "color": "#00ffd5", "bpm": 120, "boss": "data/bosses/boss_07.json" },
+    { "id": "boss_06", "name": "APEX",  "color": "#ffffff", "bpm": 180, "boss": "data/bosses/boss_06.json" },
+    { "id": "boss_08", "name": "CRUISE CONTROL", "color": "#162e6e", "bpm": 90,  "boss": "data/bosses/boss_08.json" },
+    { "id": "boss_09", "name": "NIGHT PULSE",    "color": "#3a1c6b", "bpm": 105, "boss": "data/bosses/boss_09.json" },
+    { "id": "boss_14", "name": "GHOST",           "color": "#6e3aff", "bpm": 120, "boss": "data/bosses/boss_14.json" }
   ],
   "patternFiles": [
     "data/patterns/radial_burst.json",
@@ -63,6 +67,7 @@
     "data/patterns/apex_laser_v.json",
     "data/patterns/apex_laser_cross.json",
     "data/patterns/apex_stutter.json",
+    "data/patterns/apex_wall_cross.json",
     "data/patterns/apex2_radial.json",
     "data/patterns/apex2_burst.json",
     "data/patterns/apex2_vortex.json",
