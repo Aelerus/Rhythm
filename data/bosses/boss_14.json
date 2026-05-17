@@ -63,6 +63,7 @@
                                              "type":  "sw_grid_pulse",
                                              "bulletsPerLine":  10,
                                              "speed":  310,
+                                             "bidirectional":  true,
                                              "radius":  5,
                                              "color":  "#ff00aa"
                                          }
@@ -155,6 +156,7 @@
                                              "type":  "sw_grid_pulse",
                                              "bulletsPerLine":  14,
                                              "speed":  340,
+                                             "bidirectional":  true,
                                              "radius":  5,
                                              "color":  "#ff00aa"
                                          }
@@ -245,6 +247,7 @@
                                              "type":  "sw_grid_pulse",
                                              "bulletsPerLine":  14,
                                              "speed":  340,
+                                             "bidirectional":  true,
                                              "radius":  5,
                                              "color":  "#ff00aa"
                                          }
@@ -291,6 +294,7 @@
                                              "type":  "sw_grid_pulse",
                                              "bulletsPerLine":  10,
                                              "speed":  310,
+                                             "bidirectional":  true,
                                              "radius":  5,
                                              "color":  "#ff00aa"
                                          }
@@ -365,6 +369,7 @@
                                              "type":  "sw_grid_pulse",
                                              "bulletsPerLine":  10,
                                              "speed":  310,
+                                             "bidirectional":  true,
                                              "radius":  5,
                                              "color":  "#ff00aa"
                                          }
@@ -390,6 +395,7 @@
                                              "type":  "sw_grid_pulse",
                                              "bulletsPerLine":  14,
                                              "speed":  340,
+                                             "bidirectional":  true,
                                              "radius":  5,
                                              "color":  "#ff00aa"
                                          }
@@ -451,6 +457,7 @@
                                              "type":  "sw_grid_pulse",
                                              "bulletsPerLine":  10,
                                              "speed":  310,
+                                             "bidirectional":  true,
                                              "radius":  5,
                                              "color":  "#ff00aa"
                                          }
@@ -462,6 +469,7 @@
                                              "type":  "sw_grid_pulse",
                                              "bulletsPerLine":  10,
                                              "speed":  310,
+                                             "bidirectional":  true,
                                              "radius":  5,
                                              "color":  "#ff00aa"
                                          }
@@ -553,6 +561,7 @@
                                              "type":  "sw_grid_pulse",
                                              "bulletsPerLine":  14,
                                              "speed":  340,
+                                             "bidirectional":  true,
                                              "radius":  5,
                                              "color":  "#ff00aa"
                                          }
@@ -627,6 +636,7 @@
                                              "type":  "sw_grid_pulse",
                                              "bulletsPerLine":  14,
                                              "speed":  340,
+                                             "bidirectional":  true,
                                              "radius":  5,
                                              "color":  "#ff00aa"
                                          }
@@ -766,6 +776,7 @@
                                              "type":  "sw_grid_pulse",
                                              "bulletsPerLine":  14,
                                              "speed":  340,
+                                             "bidirectional":  true,
                                              "radius":  5,
                                              "color":  "#ff00aa"
                                          }
@@ -777,6 +788,7 @@
                                              "type":  "sw_grid_pulse",
                                              "bulletsPerLine":  14,
                                              "speed":  340,
+                                             "bidirectional":  true,
                                              "radius":  5,
                                              "color":  "#ff00aa"
                                          }
@@ -801,6 +813,7 @@
                                              "type":  "sw_grid_pulse",
                                              "bulletsPerLine":  10,
                                              "speed":  310,
+                                             "bidirectional":  true,
                                              "radius":  5,
                                              "color":  "#ff00aa"
                                          }
@@ -924,6 +937,7 @@
                                              "type":  "sw_grid_pulse",
                                              "bulletsPerLine":  10,
                                              "speed":  310,
+                                             "bidirectional":  true,
                                              "radius":  5,
                                              "color":  "#ff00aa"
                                          }
@@ -1029,6 +1043,7 @@
                                              "type":  "sw_grid_pulse",
                                              "bulletsPerLine":  14,
                                              "speed":  340,
+                                             "bidirectional":  true,
                                              "radius":  5,
                                              "color":  "#ff00aa"
                                          }
@@ -1265,6 +1280,7 @@
                                              "type":  "sw_grid_pulse",
                                              "bulletsPerLine":  10,
                                              "speed":  310,
+                                             "bidirectional":  true,
                                              "radius":  5,
                                              "color":  "#ff00aa"
                                          }
@@ -1276,6 +1292,7 @@
                                              "type":  "sw_grid_pulse",
                                              "bulletsPerLine":  10,
                                              "speed":  310,
+                                             "bidirectional":  true,
                                              "radius":  5,
                                              "color":  "#ff00aa"
                                          }
@@ -1388,6 +1405,7 @@
                                              "type":  "sw_grid_pulse",
                                              "bulletsPerLine":  10,
                                              "speed":  310,
+                                             "bidirectional":  true,
                                              "radius":  5,
                                              "color":  "#ff00aa"
                                          }
@@ -1438,6 +1456,7 @@
                                              "type":  "sw_grid_pulse",
                                              "bulletsPerLine":  10,
                                              "speed":  310,
+                                             "bidirectional":  true,
                                              "radius":  5,
                                              "color":  "#ff00aa"
                                          }
@@ -1525,6 +1544,7 @@
                                              "type":  "sw_grid_pulse",
                                              "bulletsPerLine":  14,
                                              "speed":  340,
+                                             "bidirectional":  true,
                                              "radius":  5,
                                              "color":  "#ff00aa"
                                          }
@@ -1570,6 +1590,7 @@
                                              "type":  "sw_grid_pulse",
                                              "bulletsPerLine":  10,
                                              "speed":  310,
+                                             "bidirectional":  true,
                                              "radius":  5,
                                              "color":  "#ff00aa"
                                          }
@@ -1608,6 +1629,7 @@
                                              "type":  "sw_grid_pulse",
                                              "bulletsPerLine":  10,
                                              "speed":  310,
+                                             "bidirectional":  true,
                                              "radius":  5,
                                              "color":  "#ff00aa"
                                          }
@@ -1733,6 +1755,7 @@
                                              "type":  "sw_grid_pulse",
                                              "bulletsPerLine":  14,
                                              "speed":  340,
+                                             "bidirectional":  true,
                                              "radius":  5,
                                              "color":  "#ff00aa"
                                          }

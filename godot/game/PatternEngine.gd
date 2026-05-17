@@ -619,6 +619,8 @@ func _sw_speedline(p: Dictionary, ctx: Dictionary) -> void:
 # GRID PULSE: spawns bullets along the positions of currently-active
 # grid walls, firing outward. Couples the grid mechanic directly to
 # the bullet attacks -- when a grid line is up, it's also a bullet source.
+# If `bidirectional` is true, fires from BOTH sides of each line so the
+# player can never just be "on the other side" of the line to be safe.
 func _sw_grid_pulse(p: Dictionary, ctx: Dictionary) -> void:
 	var arena       = ctx.get("arena", {})
 	var ax          := float(arena.get("x", 60));  var aw := float(arena.get("w", 840))
@@ -626,6 +628,7 @@ func _sw_grid_pulse(p: Dictionary, ctx: Dictionary) -> void:
 	var active_walls = ctx.get("activeWalls", {})
 	var per_line    := int(p.get("bulletsPerLine", 8))
 	var speed       := float(p.get("speed", 260))
+	var bidi: bool  = p.get("bidirectional", false)
 	var col         = p.get("color", "#ff00aa")
 	var radius      = p.get("radius", 6)
 	# Fallback: if no walls active, fire along the arena center cross
@@ -634,11 +637,13 @@ func _sw_grid_pulse(p: Dictionary, ctx: Dictionary) -> void:
 		if line_id.begins_with("h"):
 			var idx: int = int(line_id.substr(1))
 			var wy: float = ay + ah * float(idx + 1) / 7.0
-			# Fire bullets DOWN from the line in evenly-spaced positions across the arena.
 			for k in range(per_line):
 				var xp: float = ax + aw * (float(k) + 0.5) / float(per_line)
 				pool.spawn({"x": xp, "y": wy, "vx": 0, "vy": speed,
 				            "radius": radius, "color": col})
+				if bidi:
+					pool.spawn({"x": xp, "y": wy, "vx": 0, "vy": -speed,
+					            "radius": radius, "color": col})
 		else:
 			var idx: int = int(line_id.substr(1))
 			var wx: float = ax + aw * float(idx + 1) / 5.0
@@ -646,6 +651,9 @@ func _sw_grid_pulse(p: Dictionary, ctx: Dictionary) -> void:
 				var yp: float = ay + ah * (float(k) + 0.5) / float(per_line)
 				pool.spawn({"x": wx, "y": yp, "vx": speed, "vy": 0,
 				            "radius": radius, "color": col})
+				if bidi:
+					pool.spawn({"x": wx, "y": yp, "vx": -speed, "vy": 0,
+					            "radius": radius, "color": col})
 
 # VECTOR BURST: bullets arranged as a geometric polygon (triangle, hex)
 # that rotates and expands outward. Visually distinctive vector look.

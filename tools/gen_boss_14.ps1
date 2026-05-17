@@ -29,11 +29,11 @@ $g_speed     = [ordered]@{ type = 'sw_speedline'; lanes = 6; bulletsPerLane = 5;
 $g_speed_v   = [ordered]@{ type = 'sw_speedline'; lanes = 5; bulletsPerLane = 5; speed = 480; orient = 'v'; radius = 6; color = '#00d4ff' }
 $g_bounce    = [ordered]@{ type = 'sw_bounce';    count = 5; spread = 0.45; speed = 300; bounces = 2; radius = 6; color = '#ff00aa' }
 $g_vector    = [ordered]@{ type = 'sw_vector_burst'; sides = 8; rings = 3; ringStep = 18; speed = 230; spin = 0.18; radius = 5; color = '#ff00aa' }
-$g_pulse     = [ordered]@{ type = 'sw_grid_pulse'; bulletsPerLine = 10; speed = 310; radius = 5; color = '#ff00aa' }
+$g_pulse     = [ordered]@{ type = 'sw_grid_pulse'; bulletsPerLine = 10; speed = 310; bidirectional = $true; radius = 5; color = '#ff00aa' }
 
 # *** BOSS-ONLY VARIANTS ***
 $g_ghost_arc  = [ordered]@{ type = 'sw_arc';       count = 9; spread = 1.7; speed = 290; curveRate = 2.6; radius = 6; color = '#ff00aa' }
-$g_storm_pulse = [ordered]@{ type = 'sw_grid_pulse'; bulletsPerLine = 14; speed = 340; radius = 5; color = '#ff00aa' }
+$g_storm_pulse = [ordered]@{ type = 'sw_grid_pulse'; bulletsPerLine = 14; speed = 340; bidirectional = $true; radius = 5; color = '#ff00aa' }
 $g_chaos_bounce = [ordered]@{ type = 'sw_bounce';   count = 6; spread = 0.55; speed = 320; bounces = 3; radius = 6; color = '#ff00aa' }
 
 # ─── Helpers ──────────────────────────────────────────────────────────
