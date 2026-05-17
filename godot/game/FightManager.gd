@@ -59,6 +59,17 @@ var worst_efficiency: float      = 0.0    # monotonic high-water-mark of hp_rema
 # read on whether the player is still on pace.
 var worst_clear_pct:  float      = 0.0
 
+# OVERDRIVE: triggers when the final phase's last counter window has closed
+# and the boss is still alive (player has guaranteed-lost since no more
+# parry-damage opportunities exist). Until song end, fires a random
+# amplified pattern from the boss's pattern collection on a tightening
+# cadence. Designed to be barely survivable -- intended as a future hidden
+# achievement target.
+var overdrive_active:           bool  = false
+var _overdrive_patterns:        Array = []
+var _overdrive_elapsed:         float = 0.0
+var _overdrive_next_fire_beat:  float = -1.0   # beat at which next pattern fires
+
 var _beat_unsub: Callable
 
 func _init(p_boss_data: Dictionary, p_pattern_lib: Dictionary,
@@ -107,6 +118,7 @@ func _init(p_boss_data: Dictionary, p_pattern_lib: Dictionary,
 
 	_beat_unsub = beat_clock.on(Callable(self, "_on_beat"))
 	_apply_phase_config(0)
+	_collect_overdrive_patterns()
 
 # ─── Phase machinery ──────────────────────────────────────────────────────────
 
@@ -139,9 +151,12 @@ func _apply_phase_config(idx: int) -> void:
 	phase = PHASE_DODGE
 	# Reset pace tracking per phase. APEX especially needs perfect_broken
 	# cleared so each phase is its own pass/fail window.
-	worst_efficiency = 0.0
-	worst_clear_pct  = 0.0
-	perfect_broken   = false
+	worst_efficiency        = 0.0
+	worst_clear_pct         = 0.0
+	perfect_broken          = false
+	overdrive_active        = false
+	_overdrive_elapsed      = 0.0
+	_overdrive_next_fire_beat = -1.0
 
 func _start_phase_music(idx: int) -> void:
 	var ph: Dictionary = _phases[idx]
@@ -161,6 +176,9 @@ func _start_phase_music(idx: int) -> void:
 		_song_start_time = -1.0
 		_song_duration   = 0.0
 		_music_playing   = false
+	# Permanent OVERDRIVE: kick in immediately at start of every phase.
+	if OverdriveMode.enabled:
+		_start_overdrive()
 
 func _begin_phase_transition() -> void:
 	_phase_transitioning = true
@@ -259,6 +277,10 @@ func _compute_perfect_clear_beat() -> int:
 #   yellow once perfect play can't catch up to A grade (clear > 0.89 of song)
 #   red once perfect play can't beat it at all (clear > 1.0 of song)
 func get_hp_bar_pace() -> String:
+	# Overdrive locks the bar red the entire time it's active, regardless
+	# of why it triggered (permanent-mode toggle or post-last-counter auto).
+	if overdrive_active:
+		return "red"
 	if requires_perfect:
 		return "red" if perfect_broken else "default"
 	if _song_end_time < 0.0:
@@ -268,6 +290,128 @@ func get_hp_bar_pace() -> String:
 	if worst_clear_pct > 0.89:
 		return "yellow"
 	return "default"
+
+# Walks every phase's timeline and collects all unique pattern events into
+# _overdrive_patterns. Each entry is either {"data": Dictionary} for inline
+# patternData events, or {"id": String} for library-id references. Done
+# once at fight init since _phases is fixed.
+func _collect_overdrive_patterns() -> void:
+	_overdrive_patterns.clear()
+	for ph in _phases:
+		for evt in ph.get("timeline", []):
+			if evt.get("type", "") != "pattern":
+				continue
+			var data = evt.get("patternData", null)
+			var pid: String = evt.get("id", "")
+			if data != null:
+				_overdrive_patterns.append({"data": data})
+			elif pid != "":
+				_overdrive_patterns.append({"id": pid})
+
+# Checks each frame whether overdrive should start: final phase, last
+# counter window closed, boss still alive. Triggers exactly once.
+func _maybe_trigger_overdrive() -> void:
+	if overdrive_active:
+		return
+	if not is_final_phase():
+		return
+	if boss.hp <= 0.0 or _phase_transitioning:
+		return
+	var last_close: float = -1.0
+	for evt in timeline:
+		if evt.get("type", "") != "counterattack_window":
+			continue
+		var b: int = int(evt.get("beat", 0))
+		var lead: int = int(evt.get("lead_beats", 6))
+		var dur: int = int(evt.get("duration_beats", 8))
+		var close: float = float(b + lead + dur)
+		if close > last_close:
+			last_close = close
+	if last_close < 0.0:
+		return  # boss has no counter windows -> no overdrive trigger
+	var current_beat: float = beat_clock.get_beat_position()
+	if current_beat >= last_close:
+		_start_overdrive()
+
+func _start_overdrive() -> void:
+	overdrive_active   = true
+	_overdrive_elapsed = 0.0
+	# Snap the first fire to the next whole beat so patterns lock to the song.
+	_overdrive_next_fire_beat = floor(beat_clock.get_beat_position()) + 1.0
+	_show_feedback("OVERDRIVE", "#ff3a3a", 2.5)
+	# Make sure boss enters overdrive looking inverted -- the new render
+	# logic inverts the flash boolean while overdrive is active, so we
+	# want flash_timer at 0 (=> boss renders in flash colors permanently).
+	boss.flash_timer = 0.0
+
+# Beat-locked firing -- every 2 beats, all attack types available from
+# beat 1 (the boss is in overdrive immediately, no ramp-up phase).
+# Skipped entirely while a counter window is active so parry moments stay clean.
+func _update_overdrive(_dt: float) -> void:
+	var current_beat: float = beat_clock.get_beat_position()
+	if phase == PHASE_COUNTER:
+		# Keep the next-fire beat synced forward so we don't dump a backlog
+		# of patterns the moment the counter window closes.
+		if _overdrive_next_fire_beat < current_beat + 2.0:
+			_overdrive_next_fire_beat = current_beat + 2.0
+		return
+	_overdrive_elapsed += _dt
+	if current_beat < _overdrive_next_fire_beat:
+		return
+	_fire_overdrive_pattern()
+	_overdrive_next_fire_beat += 2.0
+
+func _fire_overdrive_pattern() -> void:
+	if _overdrive_patterns.is_empty():
+		return
+	var entry: Dictionary = _overdrive_patterns[randi() % _overdrive_patterns.size()]
+	var to_fire
+	if entry.has("data"):
+		to_fire = _amplify_pattern_data(entry["data"])
+	else:
+		# Library-id ref: resolve to data, then amplify so EIEN/APEX-style
+		# bosses get the same overdrive treatment as inline-pattern bosses.
+		var pid: String = entry["id"]
+		var lib_entry = pattern_engine.library.get(pid, null)
+		if lib_entry is Dictionary and not lib_entry.is_empty():
+			to_fire = _amplify_pattern_data(lib_entry)
+		else:
+			to_fire = pid
+	pattern_engine.fire(to_fire, {
+		"bossX":    boss.x,
+		"bossY":    boss.get_display_y(),
+		"bossRef":  boss,
+		"targetX":  player.x,
+		"targetY":  player.y,
+		"arena":    {"x": arena.position.x, "y": arena.position.y, "w": arena.size.x, "h": arena.size.y},
+		"beatIndex": int(beat_clock.get_beat_position()),
+		"beatInterval": beat_clock.beat_interval,
+		"spawnAux": Callable(self, "_spawn_aux"),
+		"activeWalls": active_walls,
+	})
+
+# Boost common numeric pattern params for overdrive feel. Moderate multipliers
+# -- amplification is meant to give patterns more bite without making each
+# fire a screen-eraser, since fire rate handles the chaos volume separately.
+# Inline patternData only -- id-ref patterns are resolved via library then
+# amplified in _fire_overdrive_pattern.
+func _amplify_pattern_data(p: Dictionary) -> Dictionary:
+	var out: Dictionary = p.duplicate(true)
+	# +10% on amplification params; ~9% reduction (1/1.10) on timing params.
+	if out.has("speed"):         out["speed"]         = float(out["speed"]) * 1.10
+	if out.has("count"):         out["count"]         = maxi(1, int(float(out["count"]) * 1.10))
+	if out.has("cars"):          out["cars"]          = maxi(1, int(float(out["cars"]) * 1.10))
+	if out.has("dots"):          out["dots"]          = maxi(8, int(float(out["dots"]) * 1.10))
+	if out.has("drops"):         out["drops"]         = maxi(1, int(float(out["drops"]) * 1.10))
+	if out.has("bullets"):       out["bullets"]       = maxi(5, int(float(out["bullets"]) * 1.10))
+	if out.has("telegraph"):     out["telegraph"]     = float(out["telegraph"])     * 0.91
+	if out.has("carStep"):       out["carStep"]       = float(out["carStep"])       * 0.91
+	if out.has("durationBeats"): out["durationBeats"] = float(out["durationBeats"]) * 0.91
+	if out.has("dropStep"):      out["dropStep"]      = float(out["dropStep"])      * 0.91
+	if out.has("bias"):          out["bias"]          = float(out["bias"]) * 1.10
+	if out.has("amp"):           out["amp"]           = float(out["amp"])  * 1.10
+	if out.has("period"):        out["period"]        = float(out["period"]) * 0.91
+	return out
 
 func get_max_remaining_damage() -> float:
 	# Simulates perfect play from the player's CURRENT combo state.
@@ -534,6 +678,13 @@ func update(dt: float, input: InputManager) -> void:
 		else:
 			outcome = "victory"
 		return
+
+	# OVERDRIVE: kicks in once the player can no longer win (last counter
+	# closed, boss still alive). Stays active until song end -> defeat.
+	if not overdrive_active:
+		_maybe_trigger_overdrive()
+	if overdrive_active:
+		_update_overdrive(dt)
 
 	var remaining := get_song_time_remaining()
 	if remaining >= 0.0 and remaining <= 0.01:

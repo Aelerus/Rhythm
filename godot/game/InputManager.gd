@@ -9,9 +9,10 @@ const ACTION_UP     := -100
 const ACTION_DOWN   := -101
 const ACTION_LEFT   := -102
 const ACTION_RIGHT  := -103
-const ACTION_ACCEPT := -104  # A / Cross
-const ACTION_BACK   := -105  # B / Circle
-const ACTION_PAUSE  := -106  # Start / Options
+const ACTION_ACCEPT    := -104  # A / Cross
+const ACTION_BACK      := -105  # B / Circle
+const ACTION_PAUSE     := -106  # Start / Options
+const ACTION_SECONDARY := -107  # X / Square -- secondary toggle (e.g. OVERDRIVE)
 
 const STICK_DEADZONE  := 0.55
 const REPEAT_INITIAL  := 0.40   # delay before first repeat while stick held
@@ -61,6 +62,7 @@ func _joy_button_to_action(btn: int) -> int:
 	match btn:
 		JOY_BUTTON_A:           return ACTION_ACCEPT
 		JOY_BUTTON_B:           return ACTION_BACK
+		JOY_BUTTON_X:           return ACTION_SECONDARY
 		JOY_BUTTON_START:       return ACTION_PAUSE
 		JOY_BUTTON_DPAD_UP:     return ACTION_UP
 		JOY_BUTTON_DPAD_DOWN:   return ACTION_DOWN

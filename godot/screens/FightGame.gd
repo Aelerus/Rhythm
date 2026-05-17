@@ -198,7 +198,7 @@ func draw(canvas: Node2D) -> void:
 	_bg_r.draw_arena_doors(canvas, ARENA, _doors_progress, _fight.boss.color, beat_pulse)
 	if _uses_grid_walls:
 		_bg_r.draw_grid_walls(canvas, ARENA, _fight.active_walls, beat_pulse)
-	_boss_r.draw(canvas, _fight.boss, beat_pulse, inversion, _fight.boss_color_mode)
+	_boss_r.draw(canvas, _fight.boss, beat_pulse, inversion, _fight.boss_color_mode, _fight.overdrive_active)
 
 	for a in _fight.aux:
 		if a is AuxAttacks.TetherAttack:

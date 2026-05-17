@@ -139,8 +139,14 @@ func update(_dt: float, input: InputManager) -> void:
 		elif not _hover_card.is_empty():
 			_on_pick.call(_hover_card.stage)
 
+	# OVERDRIVE toggle: 'O' key, X / Square gamepad button, or mouse click.
+	if input.consume_press([KEY_O, InputManager.ACTION_SECONDARY]):
+		OverdriveMode.toggle()
+
 	if input.mouse_clicked():
-		if _diff_hover == -1:
+		if _overdrive_btn_rect().has_point(mp):
+			OverdriveMode.toggle()
+		elif _diff_hover == -1:
 			Difficulty.cycle_prev()
 		elif _diff_hover == 1 or _diff_hover == 2:
 			Difficulty.cycle_next()
@@ -202,6 +208,22 @@ func draw(canvas: Node2D) -> void:
 		canvas.draw_rect(Rect2(CANVAS_W - 18.0, bar_y, 4.0, bar_h), Color(0.6, 0.6, 0.8, 0.7))
 
 	_draw_difficulty(canvas, font)
+	_draw_overdrive_btn(canvas, font)
+
+func _draw_overdrive_btn(canvas: Node2D, font: Font) -> void:
+	var r: Rect2 = _overdrive_btn_rect()
+	var col: Color = OverdriveMode.color()
+	var on: bool = OverdriveMode.enabled
+	var bg: Color = Color(0.16, 0.04, 0.06, 0.9) if on else Color(0.06, 0.04, 0.12, 0.9)
+	canvas.draw_rect(r, bg)
+	canvas.draw_rect(r, col if on else Color(col.r, col.g, col.b, 0.5),
+	                 false, 2.0 if on else 1.0)
+	canvas.draw_string(font, Vector2(r.position.x, r.position.y + 24.0),
+	                   OverdriveMode.label(),
+	                   HORIZONTAL_ALIGNMENT_CENTER, r.size.x, 16, col)
+	canvas.draw_string(font, Vector2(r.position.x, r.position.y + r.size.y + 12.0),
+	                   "O / X button",
+	                   HORIZONTAL_ALIGNMENT_CENTER, r.size.x, 10, Color("#666688"))
 
 func _draw_card(canvas: Node2D, font: Font, stage: Dictionary, r: Rect2, hov: bool) -> void:
 	var col: Color = Color(stage.get("color", "#ff5dd6")) if stage.has("color") else Color("#ff5dd6")
@@ -225,6 +247,7 @@ func _draw_card(canvas: Node2D, font: Font, stage: Dictionary, r: Rect2, hov: bo
 func _diff_label_rect() -> Rect2: return Rect2(CANVAS_W * 0.5 - 130.0, CANVAS_H - 72.0, 260.0, 44.0)
 func _diff_prev_rect()  -> Rect2: return Rect2(CANVAS_W * 0.5 - 200.0, CANVAS_H - 68.0, 40.0, 36.0)
 func _diff_next_rect()  -> Rect2: return Rect2(CANVAS_W * 0.5 + 160.0, CANVAS_H - 68.0, 40.0, 36.0)
+func _overdrive_btn_rect() -> Rect2: return Rect2(CANVAS_W - 260.0, CANVAS_H - 64.0, 220.0, 36.0)
 
 func _draw_difficulty(canvas: Node2D, font: Font) -> void:
 	var diff_col := Difficulty.color()

@@ -1,10 +1,15 @@
 class_name BossRenderer
 extends RefCounted
 
-func draw(canvas: Node2D, boss: BossController, beat_pulse: float, inversion, mode: String) -> void:
+func draw(canvas: Node2D, boss: BossController, beat_pulse: float, inversion,
+          mode: String, overdrive: bool = false) -> void:
 	var x := boss.x
 	var y := boss.get_display_y()
-	var flash := boss.flash_timer > 0.0
+	# When overdrive is active the boss stays in the "flash" (inverted)
+	# colors permanently; a damage flash temporarily reveals their normal
+	# colors instead. Outside overdrive: standard flash-on-hit behavior.
+	var hit_flash := boss.flash_timer > 0.0
+	var flash: bool = (not hit_flash) if overdrive else hit_flash
 	var r     := 60.0 + beat_pulse * 6.0
 
 	var body_col:    Color
