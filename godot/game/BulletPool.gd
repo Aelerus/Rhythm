@@ -28,6 +28,15 @@ class Bullet extends RefCounted:
 	var sine_base_dx:     float   = 0.0   # base unit velocity direction
 	var sine_base_dy:     float   = 0.0
 	var sine_speed:       float   = 0.0   # base speed magnitude
+	# Techno SUBWOOFER ping-pong behavior:
+	# Bullet travels along a fixed axis with continuous biased oscillation.
+	# Velocity = bias + amp * sin(2*PI * life / period). Net motion = bias
+	# (forward). Bullet wiggles forward/back the entire travel across screen.
+	var pp_axis_x:        float   = 0.0
+	var pp_axis_y:        float   = 0.0
+	var pp_bias:          float   = 0.0   # net forward speed (0 = disabled)
+	var pp_amp:           float   = 0.0   # oscillation amplitude
+	var pp_period:        float   = 0.5   # cycle period in seconds
 
 var _pool: Array = []
 var active: Array[Bullet] = []
@@ -73,6 +82,11 @@ func spawn(opts: Dictionary) -> Bullet:
 		if spd > 0.0:
 			b.sine_base_dx = b.vx / spd
 			b.sine_base_dy = b.vy / spd
+	b.pp_bias    = float(opts.get("ppBias", 0))
+	b.pp_amp     = float(opts.get("ppAmp", 0))
+	b.pp_period  = float(opts.get("ppPeriod", 0.5))
+	b.pp_axis_x  = float(opts.get("ppAxisX", 0))
+	b.pp_axis_y  = float(opts.get("ppAxisY", 0))
 	active.append(b)
 	return b
 
@@ -147,6 +161,15 @@ func update(dt: float, arena: Rect2, target_x: float, target_y: float) -> void:
 			if spd > 0.0:
 				b.vx += (b.vx / spd) * b.accel * dt
 				b.vy += (b.vy / spd) * b.accel * dt
+
+		# Ping-pong (Techno SUBWOOFER): continuous biased sine oscillation
+		# along fixed axis. Bullet wiggles forward/back the entire travel;
+		# net motion = bias (forward). Despawns via standard arena exit check.
+		if b.pp_bias != 0.0:
+			var phase: float = (b.life / b.pp_period) * TAU
+			var v_along: float = b.pp_bias + b.pp_amp * sin(phase)
+			b.vx = v_along * b.pp_axis_x
+			b.vy = v_along * b.pp_axis_y
 
 		# Curve (rotate velocity over time)
 		if b.curve_rate != 0.0:

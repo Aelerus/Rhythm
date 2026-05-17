@@ -16,6 +16,11 @@ var _hover_card:   Dictionary
 var _diff_hover:   int   = 0
 var _scroll_y:     float = 0.0
 var _content_h:    float = 0.0
+# Controller / keyboard cursor — points at either a card in the grid, or
+# the difficulty bar when _cursor_on_diff is true.
+var _cursor_row:     int  = 0
+var _cursor_col:     int  = 0
+var _cursor_on_diff: bool = false
 
 func _init(stages: Array, worlds: Array, on_pick: Callable) -> void:
 	_stages  = stages
@@ -56,39 +61,83 @@ func _max_scroll() -> float:
 	return maxf(0.0, _content_h - visible_h)
 
 func update(_dt: float, input: InputManager) -> void:
-	# Scrolling -- mouse wheel + arrow keys
+	# Free-scroll: mouse wheel + right stick Y (both go through consume_wheel).
 	var wheel := input.consume_wheel()
 	if wheel != 0:
 		_scroll_y = clampf(_scroll_y - float(wheel) * 60.0, 0.0, _max_scroll())
-	if input.consume_press([KEY_UP, KEY_W]):
-		_scroll_y = clampf(_scroll_y - 90.0, 0.0, _max_scroll())
-	if input.consume_press([KEY_DOWN, KEY_S]):
-		_scroll_y = clampf(_scroll_y + 90.0, 0.0, _max_scroll())
 
+	# Cursor navigation (arrow keys / WASD / d-pad / left stick).
+	if _cursor_on_diff:
+		if input.consume_press_up():
+			_cursor_on_diff = false
+			_cursor_row = maxi(0, _rows.size() - 1)
+			_cursor_col = clampi(_cursor_col, 0, _row_card_count(_cursor_row) - 1)
+		if input.consume_press_left():
+			Difficulty.cycle_prev()
+		if input.consume_press_right():
+			Difficulty.cycle_next()
+	else:
+		if input.consume_press_up():
+			if _cursor_row > 0:
+				_cursor_row -= 1
+				_cursor_col = clampi(_cursor_col, 0, _row_card_count(_cursor_row) - 1)
+		if input.consume_press_down():
+			if _cursor_row < _rows.size() - 1:
+				_cursor_row += 1
+				_cursor_col = clampi(_cursor_col, 0, _row_card_count(_cursor_row) - 1)
+			else:
+				_cursor_on_diff = true
+		if input.consume_press_left():
+			_cursor_col = maxi(0, _cursor_col - 1)
+		if input.consume_press_right():
+			_cursor_col = mini(_row_card_count(_cursor_row) - 1, _cursor_col + 1)
+		_scroll_to_show_cursor_card()
+
+	# Mouse hover: take priority over the cursor when the mouse moves to a card.
 	var mp := input.mouse_pos()
 	_hover_card = {}
-	# Card hit test uses the scroll-adjusted position.
-	for row in _rows:
-		for c in row.cards:
+	var mouse_picked: bool = false
+	for ri in range(_rows.size()):
+		var row = _rows[ri]
+		for ci in range(row.cards.size()):
+			var c = row.cards[ci]
 			var hit := Rect2(c.rect.position.x, c.rect.position.y - _scroll_y, c.rect.size.x, c.rect.size.y)
 			if hit.has_point(mp) and mp.y >= TOP_PAD and mp.y <= CANVAS_H - BOTTOM_PAD:
 				_hover_card = c
+				_cursor_row = ri
+				_cursor_col = ci
+				_cursor_on_diff = false
+				mouse_picked = true
 				break
-		if not _hover_card.is_empty():
+		if mouse_picked:
 			break
+
+	# If no mouse hover, fall back to highlighting the cursor card.
+	if not mouse_picked and not _cursor_on_diff and _cursor_row < _rows.size():
+		var row2 = _rows[_cursor_row]
+		if _cursor_col < row2.cards.size():
+			_hover_card = row2.cards[_cursor_col]
 
 	_diff_hover = 0
 	if _diff_prev_rect().has_point(mp):
 		_diff_hover = -1
+		_cursor_on_diff = true
 	elif _diff_next_rect().has_point(mp):
 		_diff_hover = 1
+		_cursor_on_diff = true
 	elif _diff_label_rect().has_point(mp):
 		_diff_hover = 2
+		_cursor_on_diff = true
+	elif _cursor_on_diff and not mouse_picked:
+		# Show the label as focused when controller-cursor is on diff bar.
+		_diff_hover = 2
 
-	if input.consume_press([KEY_LEFT, KEY_A]):
-		Difficulty.cycle_prev()
-	if input.consume_press([KEY_RIGHT, KEY_D]):
-		Difficulty.cycle_next()
+	# Accept (Enter / Space / A button / mouse click).
+	if input.consume_press_accept():
+		if _cursor_on_diff:
+			Difficulty.cycle_next()
+		elif not _hover_card.is_empty():
+			_on_pick.call(_hover_card.stage)
 
 	if input.mouse_clicked():
 		if _diff_hover == -1:
@@ -97,6 +146,25 @@ func update(_dt: float, input: InputManager) -> void:
 			Difficulty.cycle_next()
 		elif not _hover_card.is_empty():
 			_on_pick.call(_hover_card.stage)
+
+func _row_card_count(row_i: int) -> int:
+	if row_i < 0 or row_i >= _rows.size():
+		return 0
+	return _rows[row_i].cards.size()
+
+func _scroll_to_show_cursor_card() -> void:
+	if _cursor_row >= _rows.size():
+		return
+	var row = _rows[_cursor_row]
+	var card_top: float = row.y + row.header_h
+	var card_bot: float = card_top + 90.0
+	var visible_top: float = TOP_PAD + _scroll_y
+	var visible_bot: float = (CANVAS_H - BOTTOM_PAD) + _scroll_y
+	if card_top < visible_top:
+		_scroll_y = card_top - TOP_PAD
+	elif card_bot > visible_bot:
+		_scroll_y = card_bot - (CANVAS_H - BOTTOM_PAD)
+	_scroll_y = clampf(_scroll_y, 0.0, _max_scroll())
 
 func draw(canvas: Node2D) -> void:
 	var font := ThemeDB.fallback_font

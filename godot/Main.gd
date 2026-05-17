@@ -173,6 +173,7 @@ func _find_stage_by_name(boss_name: String) -> Dictionary:
 func _process(delta: float) -> void:
 	if _screen == null:
 		return
+	_input_mgr.tick(delta)
 	_screen.update(delta, _input_mgr)
 	_input_mgr.end_frame()
 	queue_redraw()

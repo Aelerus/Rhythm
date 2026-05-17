@@ -35,6 +35,16 @@
                  ],
     "timeline":  [
                      {
+                         "beat":  1,
+                         "type":  "pattern",
+                         "patternData":  {
+                                             "type":  "slow_zone",
+                                             "radius":  95,
+                                             "color":  "#5dd6ff",
+                                             "slowFactor":  0.4
+                                         }
+                     },
+                     {
                          "beat":  582,
                          "type":  "pattern",
                          "id":  "vein_radial"

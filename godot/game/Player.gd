@@ -17,6 +17,7 @@ var flash_timer: float = 0.0
 var shape: String = "arrow"
 var color: String = "#e8e8f0"
 var angle: float = 0.0
+var speed_multiplier: float = 1.0  # external slow/buff (e.g. SlowZone)
 
 func _init(p_arena: Rect2) -> void:
 	arena = p_arena
@@ -32,13 +33,14 @@ func reset() -> void:
 	iframes = 0.0
 	alive = true
 	flash_timer = 0.0
+	speed_multiplier = 1.0
 
 func update(dt: float, input: InputManager) -> void:
 	if not alive:
 		return
 	var v := input.movement_vector()
 	var focus := input.is_focus()
-	var speed := focus_speed if focus else base_speed
+	var speed: float = (focus_speed if focus else base_speed) * speed_multiplier
 	x += v.x * speed * dt
 	y += v.y * speed * dt
 	if v.x != 0.0 or v.y != 0.0:

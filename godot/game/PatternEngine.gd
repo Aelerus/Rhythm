@@ -54,6 +54,10 @@ func fire(pattern_id_or_data, ctx: Dictionary) -> void:
 		"sw_speedline":         _sw_speedline(pattern, ctx)
 		"sw_grid_pulse":        _sw_grid_pulse(pattern, ctx)
 		"sw_vector_burst":      _sw_vector_burst(pattern, ctx)
+		"sub_slam":             _sub_slam(pattern, ctx)
+		"hat_spray":            _hat_spray(pattern, ctx)
+		"train_wall":           _train_wall(pattern, ctx)
+		"slow_zone":            _slow_zone(pattern, ctx)
 		_:
 			push_warning("PatternEngine: unhandled type '" + str(pattern.get("type","")) + "'")
 
@@ -674,6 +678,182 @@ func _sw_vector_burst(p: Dictionary, ctx: Dictionary) -> void:
 			pool.spawn({"x": bx, "y": by, "vx": cos(a) * speed, "vy": sin(a) * speed,
 			            "radius": radius, "color": col,
 			            "delay": float(r) * 0.08, "maxLife": 5.0})
+
+# =====================================================================
+# TECHNO-ONLY PATTERNS
+# Bullet behaviors unique to the Techno world (subwoofer ping-pong, 16th-
+# note hat texture). Should not be referenced by any other world's bosses.
+# =====================================================================
+
+# SUB SLAM: border subwoofers fire bullets that traverse the arena with
+# a continuous wiggle the whole way -- forward/backward oscillation along
+# the travel axis. Net motion = bias (forward); amplitude controls how
+# pronounced the wiggle is. Bullet despawns naturally when it exits the
+# arena. Can fire from any of the 4 borders (left/right/top/bottom).
+#
+# Default tuning: bias 160 px/s, amp 240 px/s -> peak forward 400, peak
+# backward -80. ~73% of cycle going forward, 27% backward. Net crosses
+# 960px arena in ~6 sec, wiggling ~12 times along the way.
+func _sub_slam(p: Dictionary, ctx: Dictionary) -> void:
+	var arena   = ctx.get("arena", {})
+	var ax      := float(arena.get("x", 60));  var aw := float(arena.get("w", 840))
+	var ay      := float(arena.get("y", 60));  var ah := float(arena.get("h", 600))
+	var side    : String = p.get("side", "left")
+	var count   := int(p.get("count",  3))
+	var span    := float(p.get("span",  0.7))
+	var bias    := float(p.get("bias",   160))    # net forward speed
+	var amp     := float(p.get("amp",    240))    # oscillation amplitude
+	var period  := float(p.get("period", 0.5))    # cycle period (sec)
+	var radius  := float(p.get("radius", 8))
+	var col     = p.get("color", "#00e5ff")
+
+	var ax_x: float = 0.0;  var ax_y: float = 0.0
+	match side:
+		"left":   ax_x =  1.0
+		"right":  ax_x = -1.0
+		"top":    ax_y =  1.0
+		"bottom": ax_y = -1.0
+		_:        ax_x =  1.0
+
+	for i in range(count):
+		var t: float = 0.5 if count == 1 else float(i) / float(count - 1)
+		t = 0.5 + (t - 0.5) * span
+		var sx: float = 0.0;  var sy: float = 0.0
+		match side:
+			"left":   sx = ax;            sy = ay + ah * t
+			"right":  sx = ax + aw;        sy = ay + ah * t
+			"top":    sx = ax + aw * t;    sy = ay
+			"bottom": sx = ax + aw * t;    sy = ay + ah
+			_:        sx = ax;             sy = ay + ah * t
+		pool.spawn({
+			"x": sx, "y": sy,
+			"vx": ax_x * bias, "vy": ax_y * bias,
+			"radius": radius, "color": col,
+			"ppBias":   bias,
+			"ppAmp":    amp,
+			"ppPeriod": period,
+			"ppAxisX":  ax_x,
+			"ppAxisY":  ax_y,
+			"maxLife":  10.0,
+		})
+
+# TRAIN WALL: lines of bullets ("cars") streaming across the arena from
+# a chosen border. Horizontal sides (left/right) fire VERTICAL lines that
+# travel horizontally; vertical sides (top/bottom) fire HORIZONTAL lines
+# that travel vertically. Each car has a single gap; gap mode controls
+# whether it stays put, shifts up/down between cars, or randomizes.
+# Sides: "left", "right", "top", "bottom",
+#        "both"  = left + right (horizontal both),
+#        "vboth" = top + bottom (vertical both),
+#        "all"   = all four simultaneously.
+func _train_wall(p: Dictionary, ctx: Dictionary) -> void:
+	var arena    = ctx.get("arena", {})
+	var ax       := float(arena.get("x", 60));  var aw := float(arena.get("w", 840))
+	var ay       := float(arena.get("y", 60));  var ah := float(arena.get("h", 600))
+	var side     : String = p.get("side", "left")
+	var cars     := int(p.get("cars", 4))
+	var car_step := float(p.get("carStep", 0.4))
+	var bullets  := int(p.get("bullets", 7))
+	var gap_size := int(p.get("gapSize", 2))
+	var gap_mode : String = p.get("gapMode", "shift")
+	var speed    := float(p.get("speed", 380))
+	var radius   := float(p.get("radius", 7))
+	var col      = p.get("color", "#00e5ff")
+
+	var sides_to_fire: Array = []
+	match side:
+		"both":  sides_to_fire = ["left", "right"]
+		"vboth": sides_to_fire = ["top",  "bottom"]
+		"all":   sides_to_fire = ["left", "right", "top", "bottom"]
+		_:       sides_to_fire = [side]
+
+	var max_gap_pos: int = maxi(1, bullets - gap_size)
+
+	for s in sides_to_fire:
+		var horiz: bool = (s == "left" or s == "right")
+		var dir_x: float = 0.0
+		var dir_y: float = 0.0
+		match s:
+			"left":   dir_x =  1.0
+			"right":  dir_x = -1.0
+			"top":    dir_y =  1.0
+			"bottom": dir_y = -1.0
+		var gap_pos: int = randi() % max_gap_pos
+		for car in range(cars):
+			if gap_mode == "random":
+				gap_pos = randi() % max_gap_pos
+			elif gap_mode == "shift":
+				var delta: int = 1 if randi() % 2 == 0 else -1
+				gap_pos = clampi(gap_pos + delta, 0, max_gap_pos - 1)
+			for b in range(bullets):
+				if b >= gap_pos and b < gap_pos + gap_size:
+					continue
+				var sx: float = 0.0
+				var sy: float = 0.0
+				if horiz:
+					sx = ax - 20.0 if s == "left" else ax + aw + 20.0
+					sy = ay + (float(b) + 0.5) * (ah / float(bullets))
+				else:
+					sx = ax + (float(b) + 0.5) * (aw / float(bullets))
+					sy = ay - 20.0 if s == "top" else ay + ah + 20.0
+				pool.spawn({
+					"x": sx, "y": sy,
+					"vx": dir_x * speed, "vy": dir_y * speed,
+					"radius": radius, "color": col,
+					"delay": float(car) * car_step,
+					"maxLife": 6.0,
+				})
+
+# HAT SPRAY: a stream of small, fast bullets aimed at the player's general
+# direction, fired at sub-beat intervals (16th notes). Each bullet is chip
+# damage; you don't dodge individually, you weave through. Texture, not threat.
+func _hat_spray(p: Dictionary, ctx: Dictionary) -> void:
+	var count        := int(p.get("count",       8))
+	var duration_b   := float(p.get("durationBeats", 2.0))
+	var spread       := float(p.get("spread",    0.18))
+	var speed        := float(p.get("speed",     320))
+	var radius       := float(p.get("radius",    4))
+	var col          = p.get("color", "#00e5ff")
+	var beat_int     := float(ctx.get("beatInterval", 0.43))
+	var step: float  = (duration_b * beat_int) / float(maxi(1, count))
+	var bx           := float(ctx.get("bossX", 0))
+	var by           := float(ctx.get("bossY", 0))
+	var tx           := float(ctx.get("targetX", 0))
+	var ty           := float(ctx.get("targetY", 0))
+	var base_a       := atan2(ty - by, tx - bx)
+	for h in range(count):
+		var jitter: float = (randf() - 0.5) * spread
+		var a: float = base_a + jitter
+		pool.spawn({
+			"x": bx, "y": by,
+			"vx": cos(a) * speed, "vy": sin(a) * speed,
+			"radius": radius, "color": col,
+			"delay": float(h) * step,
+			"maxLife": 5.0,
+		})
+
+# SLOW ZONE: EIEN-only. Spawns a persistent drifting circle that slows
+# the player while inside. Lives the entire fight. Drifts erratically via
+# Lissajous-style sum of sines.
+func _slow_zone(p: Dictionary, ctx: Dictionary) -> void:
+	var spawn_aux: Callable = ctx.get("spawnAux", Callable())
+	if not spawn_aux.is_valid():
+		return
+	var arena = ctx.get("arena", {})
+	var ax    := float(arena.get("x", 60));  var aw := float(arena.get("w", 840))
+	var ay    := float(arena.get("y", 60));  var ah := float(arena.get("h", 600))
+	spawn_aux.call(AuxAttacks.SlowZone.new({
+		"arena":       Rect2(ax, ay, aw, ah),
+		"radius":      p.get("radius",     100),
+		"color":       p.get("color",      "#5dd6ff"),
+		"slowFactor":  p.get("slowFactor", 0.4),
+		"driftFreqX":  p.get("driftFreqX",  0.31),
+		"driftFreqY":  p.get("driftFreqY",  0.47),
+		"driftFreqX2": p.get("driftFreqX2", 0.13),
+		"driftFreqY2": p.get("driftFreqY2", 0.19),
+		"driftRangeX": p.get("driftRangeX", 0.35),
+		"driftRangeY": p.get("driftRangeY", 0.30),
+	}))
 
 func _reality_tear(p: Dictionary, ctx: Dictionary) -> void:
 	var spawn_aux: Callable = ctx.get("spawnAux", Callable())

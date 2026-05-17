@@ -198,3 +198,68 @@ class RealityTear extends RefCounted:
 			canvas.draw_line(x1 + px, x2 + px, Color(col.r, col.g, col.b, 0.8), 4.0)
 			canvas.draw_line(x1 - px, x2 - px, Color(col.r, col.g, col.b, 0.8), 4.0)
 			canvas.draw_line(x1,      x2,      Color(col.r, col.g, col.b, 1.0), 1.5)
+
+
+# ─── SlowZone ─────────────────────────────────────────────────────────────────
+# EIEN-only mechanic: a slow, erratic-drifting circle that slows the player
+# while inside it. Persists the entire fight; updates every frame regardless
+# of dodge/counter phase. Drift uses a sum of two non-commensurate sines per
+# axis for quasi-random motion (Lissajous-like, never repeats predictably).
+class SlowZone extends RefCounted:
+	var x:             float = 0.0
+	var y:             float = 0.0
+	var radius:        float = 100.0
+	var color:         String = "#5dd6ff"
+	var slow_factor:   float = 0.4
+	var arena:         Rect2 = Rect2()
+	var elapsed:       float = 0.0
+	var dead:          bool  = false
+	var drift_freq_x:  float = 0.31
+	var drift_freq_y:  float = 0.47
+	var drift_freq_x2: float = 0.13
+	var drift_freq_y2: float = 0.19
+	var drift_range_x: float = 0.35  # fraction of arena width
+	var drift_range_y: float = 0.30  # fraction of arena height
+
+	func _init(opts: Dictionary) -> void:
+		arena         = opts.get("arena", Rect2(160, 60, 960, 600))
+		radius        = float(opts.get("radius",      100))
+		color         = opts.get("color",             "#5dd6ff")
+		slow_factor   = float(opts.get("slowFactor",  0.4))
+		drift_freq_x  = float(opts.get("driftFreqX",  0.31))
+		drift_freq_y  = float(opts.get("driftFreqY",  0.47))
+		drift_freq_x2 = float(opts.get("driftFreqX2", 0.13))
+		drift_freq_y2 = float(opts.get("driftFreqY2", 0.19))
+		drift_range_x = float(opts.get("driftRangeX", 0.35))
+		drift_range_y = float(opts.get("driftRangeY", 0.30))
+		x = arena.position.x + arena.size.x * 0.5
+		y = arena.position.y + arena.size.y * 0.5
+
+	func update(dt: float, player: Player, _pool: BulletPool) -> void:
+		elapsed += dt
+		var cx: float = arena.position.x + arena.size.x * 0.5
+		var cy: float = arena.position.y + arena.size.y * 0.5
+		var rx: float = arena.size.x * drift_range_x
+		var ry: float = arena.size.y * drift_range_y
+		x = cx + rx * (sin(elapsed * drift_freq_x)       * 0.7
+		             + sin(elapsed * drift_freq_x2)      * 0.3)
+		y = cy + ry * (sin(elapsed * drift_freq_y + 1.2) * 0.7
+		             + sin(elapsed * drift_freq_y2)      * 0.3)
+		var pdx: float = player.x - x
+		var pdy: float = player.y - y
+		if pdx * pdx + pdy * pdy < radius * radius:
+			player.speed_multiplier = slow_factor
+		else:
+			player.speed_multiplier = 1.0
+
+	func render(canvas: Node2D) -> void:
+		var col := Color(color)
+		var center := Vector2(x, y)
+		var pulse: float = 0.6 + 0.4 * sin(elapsed * 2.0)
+		canvas.draw_circle(center, radius * 1.15, Color(col.r, col.g, col.b, 0.10 * pulse))
+		canvas.draw_circle(center, radius,        Color(col.r, col.g, col.b, 0.22))
+		canvas.draw_arc(center, radius, 0.0, TAU, 48,
+		                Color(col.r, col.g, col.b, 0.75 * pulse), 2.5)
+		var inner_r: float = radius * 0.55 + sin(elapsed * 3.0) * 6.0
+		canvas.draw_arc(center, inner_r, 0.0, TAU, 32,
+		                Color(col.r, col.g, col.b, 0.45 * pulse), 1.5)

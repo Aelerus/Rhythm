@@ -24,9 +24,17 @@ var _pause_cursor:    int   = 0
 var _pause_btn_rects: Array = []
 var _settings_open:   bool  = false
 
-var _intro_active:   bool  = true
-var _intro_timer:    float = 3.0
-var _doors_progress: float = 0.0
+const INTRO_TOTAL     := 3.0
+const INTRO_WALK_DUR  := 1.2
+const INTRO_DOORS_DUR := 1.2
+
+var _intro_active:        bool  = true
+var _intro_timer:         float = INTRO_TOTAL
+var _doors_progress:      float = 0.0
+var _intro_player_placed: bool  = false
+var _intro_target_x:      float = 0.0
+var _intro_target_y:      float = 0.0
+var _intro_entry_y:       float = 0.0
 
 var _initial_hp:       float = 100.0
 var _total_prompts:    int   = 0
@@ -80,28 +88,49 @@ func exit() -> void:
 
 func update(dt: float, input: InputManager) -> void:
 	if _intro_active:
-		_intro_timer    -= dt
-		_doors_progress  = clampf((3.0 - _intro_timer) / 1.5, 0.0, 1.0)
-		if _intro_timer <= 0.0 or input.consume_press([KEY_SPACE, KEY_ENTER, KEY_KP_ENTER]):
+		if not _intro_player_placed:
+			_intro_target_x = _fight.player.x
+			_intro_target_y = _fight.player.y
+			_intro_entry_y  = ARENA.position.y + ARENA.size.y + 50.0
+			_fight.player.y = _intro_entry_y
+			_fight.player.angle = 0.0
+			_intro_player_placed = true
+
+		_intro_timer -= dt
+		var elapsed: float = INTRO_TOTAL - _intro_timer
+
+		if elapsed < INTRO_WALK_DUR:
+			var t:     float = clampf(elapsed / INTRO_WALK_DUR, 0.0, 1.0)
+			var eased: float = 1.0 - pow(1.0 - t, 2.0)
+			_fight.player.y = lerpf(_intro_entry_y, _intro_target_y, eased)
+			_doors_progress = 0.0
+		else:
+			_fight.player.y = _intro_target_y
+			var de: float = elapsed - INTRO_WALK_DUR
+			_doors_progress = clampf(de / INTRO_DOORS_DUR, 0.0, 1.0)
+
+		if _intro_timer <= 0.0 or input.consume_press_accept():
 			_intro_active   = false
 			_intro_timer    = 0.0
 			_doors_progress = 1.0
+			_fight.player.x = _intro_target_x
+			_fight.player.y = _intro_target_y
 			_fight.start()
 		return
 
 	if _paused:
-		input.consume_press([KEY_SPACE, KEY_Z])
+		input.consume_press([KEY_SPACE, KEY_Z, InputManager.ACTION_ACCEPT])
 		if _settings_open:
 			_update_settings(input)
 			return
-		if input.consume_press([KEY_ESCAPE]):
+		if input.consume_press_back():
 			_resume()
 			return
-		if input.consume_press([KEY_DOWN, KEY_S]):
+		if input.consume_press_down():
 			_pause_cursor = (_pause_cursor + 1) % 4
-		if input.consume_press([KEY_UP, KEY_W]):
+		if input.consume_press_up():
 			_pause_cursor = (_pause_cursor - 1 + 4) % 4
-		if input.consume_press([KEY_ENTER, KEY_KP_ENTER]):
+		if input.consume_press([KEY_ENTER, KEY_KP_ENTER, InputManager.ACTION_ACCEPT]):
 			_activate_pause_btn(_pause_cursor)
 
 		# Mouse over buttons
@@ -116,12 +145,12 @@ func update(dt: float, input: InputManager) -> void:
 					_activate_pause_btn(i)
 		return
 
-	if input.consume_press([KEY_ESCAPE]):
+	if input.consume_press_pause():
 		_pause()
 		return
 
 	# Attack / debug
-	if input.was_pressed(KEY_SPACE) or input.was_pressed(KEY_Z):
+	if input.was_pressed_accept() or input.was_pressed(KEY_Z):
 		_fight.handle_attack_press()
 	if input.was_pressed(KEY_K):
 		_fight.debug_kill_phase()
@@ -177,6 +206,8 @@ func draw(canvas: Node2D) -> void:
 		elif a is AuxAttacks.GravityWell:
 			a.render(canvas)
 		elif a is AuxAttacks.RealityTear:
+			a.render(canvas)
+		elif a is AuxAttacks.SlowZone:
 			a.render(canvas)
 
 	_bullet_r.draw(canvas, _fight.pool, inversion)
@@ -239,7 +270,7 @@ func _draw_pause(canvas: Node2D, font: Font) -> void:
 					   HORIZONTAL_ALIGNMENT_CENTER, CANVAS_W, 14, Color("#aaaadd"))
 
 func _update_settings(input: InputManager) -> void:
-	if input.consume_press([KEY_ESCAPE, KEY_ENTER]):
+	if input.consume_press_back() or input.consume_press_accept():
 		_settings_open = false
 
 func _draw_settings(canvas: Node2D, font: Font) -> void:

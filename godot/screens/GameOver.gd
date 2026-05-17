@@ -29,12 +29,14 @@ func update(dt: float, input: InputManager) -> void:
 				_activate(_cursor)
 				return
 
-	if input.consume_press([KEY_LEFT, KEY_A, KEY_UP, KEY_W]):
+	if input.consume_press_left() or input.consume_press_up():
 		_cursor = 0
-	if input.consume_press([KEY_RIGHT, KEY_D, KEY_DOWN, KEY_S]):
+	if input.consume_press_right() or input.consume_press_down():
 		_cursor = 1
-	if input.consume_press([KEY_ENTER, KEY_SPACE, KEY_KP_ENTER]):
+	if input.consume_press_accept():
 		_activate(_cursor)
+	if input.consume_press_back():
+		_activate(1)
 	if input.consume_press([KEY_R]):
 		_activate(0)
 

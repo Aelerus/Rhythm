@@ -14,7 +14,7 @@ func _init(summary: Dictionary, on_continue: Callable) -> void:
 
 func update(dt: float, input: InputManager) -> void:
 	_t += dt
-	if input.consume_press([KEY_ENTER, KEY_SPACE, KEY_ESCAPE, KEY_KP_ENTER]):
+	if input.consume_press_accept() or input.consume_press_back():
 		_on_continue.call()
 
 func draw(canvas: Node2D) -> void:

@@ -1,734 +1,230 @@
 {
-    "id":  "boss_05",
-    "name":  "PULSE",
-    "color":  "#00e5ff",
-    "bpm":  175,
-    "maxHP":  5265,
-    "bulletDamage":  8,
-    "counterBaseDamage":  114,
-    "music":  "Music/techno/Restless Heart.wav",
-    "musicVolume":  0.85,
-    "musicOffset":  0,
-    "phaseThresholds":  [
-                            0.66,
-                            0.33
-                        ],
-    "patterns":  [
-                     "aimed_shot",
-                     "pulse_radial",
-                     "grid_radial",
-                     "circuit_spiral",
-                     "neon_wall",
-                     "glitch_aimed",
-                     "digital_cross",
-                     "data_rain",
-                     "surge_converging"
-                 ],
-    "timeline":  [
-                     {
-                         "beat":  16,
-                         "type":  "pattern",
-                         "id":  "aimed_shot"
-                     },
-                     {
-                         "beat":  32,
-                         "type":  "pattern",
-                         "id":  "pulse_radial"
-                     },
-                     {
-                         "beat":  40,
-                         "type":  "pattern",
-                         "id":  "aimed_shot"
-                     },
-                     {
-                         "beat":  48,
-                         "type":  "pattern",
-                         "id":  "pulse_radial"
-                     },
-                     {
-                         "beat":  64,
-                         "type":  "pattern",
-                         "id":  "pulse_radial"
-                     },
-                     {
-                         "beat":  68,
-                         "type":  "pattern",
-                         "id":  "aimed_shot"
-                     },
-                     {
-                         "beat":  72,
-                         "type":  "pattern",
-                         "id":  "pulse_radial"
-                     },
-                     {
-                         "beat":  76,
-                         "type":  "pattern",
-                         "id":  "digital_cross"
-                     },
-                     {
-                         "beat":  80,
-                         "type":  "pattern",
-                         "id":  "aimed_shot"
-                     },
-                     {
-                         "beat":  84,
-                         "type":  "pattern",
-                         "id":  "pulse_radial"
-                     },
-                     {
-                         "beat":  88,
-                         "type":  "pattern",
-                         "id":  "aimed_shot"
-                     },
-                     {
-                         "beat":  92,
-                         "type":  "pattern",
-                         "id":  "pulse_radial"
-                     },
-                     {
-                         "beat":  96,
-                         "type":  "pattern",
-                         "id":  "digital_cross"
-                     },
-                     {
-                         "beat":  98,
-                         "type":  "pattern",
-                         "id":  "aimed_shot"
-                     },
-                     {
-                         "beat":  100,
-                         "type":  "pattern",
-                         "id":  "pulse_radial"
-                     },
-                     {
-                         "beat":  104,
-                         "type":  "pattern",
-                         "id":  "aimed_shot"
-                     },
-                     {
-                         "beat":  106,
-                         "type":  "pattern",
-                         "id":  "digital_cross"
-                     },
-                     {
-                         "beat":  108,
-                         "type":  "pattern",
-                         "id":  "pulse_radial"
-                     },
-                     {
-                         "beat":  112,
-                         "type":  "pattern",
-                         "id":  "aimed_shot"
-                     },
-                     {
-                         "beat":  114,
-                         "type":  "pattern",
-                         "id":  "digital_cross"
-                     },
-                     {
-                         "beat":  116,
-                         "type":  "pattern",
-                         "id":  "pulse_radial"
-                     },
-                     {
-                         "beat":  120,
-                         "type":  "pattern",
-                         "id":  "aimed_shot"
-                     },
-                     {
-                         "beat":  122,
-                         "type":  "pattern",
-                         "id":  "pulse_radial"
-                     },
-                     {
-                         "beat":  124,
-                         "type":  "pattern",
-                         "id":  "digital_cross"
-                     },
-                     {
-                         "beat":  128,
-                         "type":  "pattern",
-                         "id":  "aimed_shot"
-                     },
-                     {
-                         "beat":  130,
-                         "type":  "pattern",
-                         "id":  "pulse_radial"
-                     },
-                     {
-                         "beat":  132,
-                         "type":  "pattern",
-                         "id":  "digital_cross"
-                     },
-                     {
-                         "beat":  134,
-                         "type":  "pattern",
-                         "id":  "aimed_shot"
-                     },
-                     {
-                         "beat":  136,
-                         "type":  "pattern",
-                         "id":  "pulse_radial"
-                     },
-                     {
-                         "beat":  138,
-                         "type":  "pattern",
-                         "id":  "aimed_shot"
-                     },
-                     {
-                         "beat":  140,
-                         "type":  "pattern",
-                         "id":  "digital_cross"
-                     },
-                     {
-                         "beat":  144,
-                         "type":  "counterattack_window",
-                         "duration_beats":  8,
-                         "lead_beats":  6,
-                         "zone":  {
-                                      "anchor":  "center",
-                                      "radius":  80
-                                  }
-                     },
-                     {
-                         "beat":  160,
-                         "type":  "pattern",
-                         "id":  "circuit_spiral"
-                     },
-                     {
-                         "beat":  162,
-                         "type":  "pattern",
-                         "id":  "aimed_shot"
-                     },
-                     {
-                         "beat":  164,
-                         "type":  "pattern",
-                         "id":  "pulse_radial"
-                     },
-                     {
-                         "beat":  168,
-                         "type":  "pattern",
-                         "id":  "circuit_spiral"
-                     },
-                     {
-                         "beat":  170,
-                         "type":  "pattern",
-                         "id":  "glitch_aimed"
-                     },
-                     {
-                         "beat":  172,
-                         "type":  "pattern",
-                         "id":  "digital_cross"
-                     },
-                     {
-                         "beat":  176,
-                         "type":  "pattern",
-                         "id":  "circuit_spiral"
-                     },
-                     {
-                         "beat":  178,
-                         "type":  "pattern",
-                         "id":  "pulse_radial"
-                     },
-                     {
-                         "beat":  180,
-                         "type":  "pattern",
-                         "id":  "glitch_aimed"
-                     },
-                     {
-                         "beat":  184,
-                         "type":  "pattern",
-                         "id":  "grid_radial"
-                     },
-                     {
-                         "beat":  186,
-                         "type":  "pattern",
-                         "id":  "aimed_shot"
-                     },
-                     {
-                         "beat":  188,
-                         "type":  "pattern",
-                         "id":  "digital_cross"
-                     },
-                     {
-                         "beat":  192,
-                         "type":  "pattern",
-                         "id":  "circuit_spiral"
-                     },
-                     {
-                         "beat":  194,
-                         "type":  "pattern",
-                         "id":  "glitch_aimed"
-                     },
-                     {
-                         "beat":  196,
-                         "type":  "pattern",
-                         "id":  "pulse_radial"
-                     },
-                     {
-                         "beat":  200,
-                         "type":  "pattern",
-                         "id":  "grid_radial"
-                     },
-                     {
-                         "beat":  202,
-                         "type":  "pattern",
-                         "id":  "aimed_shot"
-                     },
-                     {
-                         "beat":  204,
-                         "type":  "pattern",
-                         "id":  "digital_cross"
-                     },
-                     {
-                         "beat":  208,
-                         "type":  "pattern",
-                         "id":  "circuit_spiral"
-                     },
-                     {
-                         "beat":  210,
-                         "type":  "pattern",
-                         "id":  "glitch_aimed"
-                     },
-                     {
-                         "beat":  212,
-                         "type":  "pattern",
-                         "id":  "pulse_radial"
-                     },
-                     {
-                         "beat":  216,
-                         "type":  "pattern",
-                         "id":  "grid_radial"
-                     },
-                     {
-                         "beat":  218,
-                         "type":  "pattern",
-                         "id":  "aimed_shot"
-                     },
-                     {
-                         "beat":  220,
-                         "type":  "pattern",
-                         "id":  "digital_cross"
-                     },
-                     {
-                         "beat":  224,
-                         "type":  "pattern",
-                         "id":  "glitch_aimed"
-                     },
-                     {
-                         "beat":  226,
-                         "type":  "pattern",
-                         "id":  "circuit_spiral"
-                     },
-                     {
-                         "beat":  228,
-                         "type":  "pattern",
-                         "id":  "glitch_aimed"
-                     },
-                     {
-                         "beat":  228,
-                         "type":  "pattern",
-                         "id":  "digital_cross"
-                     },
-                     {
-                         "beat":  228,
-                         "type":  "pattern",
-                         "id":  "grid_radial"
-                     },
-                     {
-                         "beat":  232,
-                         "type":  "counterattack_window",
-                         "duration_beats":  10,
-                         "lead_beats":  4,
-                         "zone":  {
-                                      "anchor":  "center",
-                                      "radius":  75
-                                  }
-                     },
-                     {
-                         "beat":  248,
-                         "type":  "pattern",
-                         "id":  "pulse_radial"
-                     },
-                     {
-                         "beat":  250,
-                         "type":  "pattern",
-                         "id":  "glitch_aimed"
-                     },
-                     {
-                         "beat":  252,
-                         "type":  "pattern",
-                         "id":  "digital_cross"
-                     },
-                     {
-                         "beat":  254,
-                         "type":  "pattern",
-                         "id":  "data_rain"
-                     },
-                     {
-                         "beat":  256,
-                         "type":  "pattern",
-                         "id":  "circuit_spiral"
-                     },
-                     {
-                         "beat":  258,
-                         "type":  "pattern",
-                         "id":  "pulse_radial"
-                     },
-                     {
-                         "beat":  260,
-                         "type":  "pattern",
-                         "id":  "glitch_aimed"
-                     },
-                     {
-                         "beat":  262,
-                         "type":  "pattern",
-                         "id":  "grid_radial"
-                     },
-                     {
-                         "beat":  264,
-                         "type":  "pattern",
-                         "id":  "aimed_shot"
-                     },
-                     {
-                         "beat":  266,
-                         "type":  "pattern",
-                         "id":  "digital_cross"
-                     },
-                     {
-                         "beat":  268,
-                         "type":  "pattern",
-                         "id":  "circuit_spiral"
-                     },
-                     {
-                         "beat":  270,
-                         "type":  "pattern",
-                         "id":  "glitch_aimed"
-                     },
-                     {
-                         "beat":  272,
-                         "type":  "pattern",
-                         "id":  "pulse_radial"
-                     },
-                     {
-                         "beat":  274,
-                         "type":  "pattern",
-                         "id":  "data_rain"
-                     },
-                     {
-                         "beat":  276,
-                         "type":  "pattern",
-                         "id":  "digital_cross"
-                     },
-                     {
-                         "beat":  278,
-                         "type":  "pattern",
-                         "id":  "circuit_spiral"
-                     },
-                     {
-                         "beat":  280,
-                         "type":  "pattern",
-                         "id":  "grid_radial"
-                     },
-                     {
-                         "beat":  282,
-                         "type":  "pattern",
-                         "id":  "glitch_aimed"
-                     },
-                     {
-                         "beat":  284,
-                         "type":  "pattern",
-                         "id":  "pulse_radial"
-                     },
-                     {
-                         "beat":  286,
-                         "type":  "pattern",
-                         "id":  "aimed_shot"
-                     },
-                     {
-                         "beat":  288,
-                         "type":  "pattern",
-                         "id":  "circuit_spiral"
-                     },
-                     {
-                         "beat":  290,
-                         "type":  "pattern",
-                         "id":  "digital_cross"
-                     },
-                     {
-                         "beat":  296,
-                         "type":  "counterattack_window",
-                         "duration_beats":  8,
-                         "lead_beats":  5,
-                         "zone":  {
-                                      "anchor":  "right",
-                                      "radius":  70
-                                  }
-                     },
-                     {
-                         "beat":  310,
-                         "type":  "pattern",
-                         "id":  "pulse_radial"
-                     },
-                     {
-                         "beat":  312,
-                         "type":  "pattern",
-                         "id":  "circuit_spiral"
-                     },
-                     {
-                         "beat":  314,
-                         "type":  "pattern",
-                         "id":  "data_rain"
-                     },
-                     {
-                         "beat":  316,
-                         "type":  "pattern",
-                         "id":  "glitch_aimed"
-                     },
-                     {
-                         "beat":  318,
-                         "type":  "pattern",
-                         "id":  "grid_radial"
-                     },
-                     {
-                         "beat":  320,
-                         "type":  "pattern",
-                         "id":  "digital_cross"
-                     },
-                     {
-                         "beat":  322,
-                         "type":  "pattern",
-                         "id":  "pulse_radial"
-                     },
-                     {
-                         "beat":  324,
-                         "type":  "pattern",
-                         "id":  "circuit_spiral"
-                     },
-                     {
-                         "beat":  326,
-                         "type":  "pattern",
-                         "id":  "glitch_aimed"
-                     },
-                     {
-                         "beat":  328,
-                         "type":  "pattern",
-                         "id":  "aimed_shot"
-                     },
-                     {
-                         "beat":  330,
-                         "type":  "pattern",
-                         "id":  "data_rain"
-                     },
-                     {
-                         "beat":  332,
-                         "type":  "pattern",
-                         "id":  "digital_cross"
-                     },
-                     {
-                         "beat":  334,
-                         "type":  "pattern",
-                         "id":  "pulse_radial"
-                     },
-                     {
-                         "beat":  336,
-                         "type":  "pattern",
-                         "id":  "circuit_spiral"
-                     },
-                     {
-                         "beat":  338,
-                         "type":  "pattern",
-                         "id":  "grid_radial"
-                     },
-                     {
-                         "beat":  340,
-                         "type":  "pattern",
-                         "id":  "glitch_aimed"
-                     },
-                     {
-                         "beat":  342,
-                         "type":  "pattern",
-                         "id":  "digital_cross"
-                     },
-                     {
-                         "beat":  344,
-                         "type":  "pattern",
-                         "id":  "pulse_radial"
-                     },
-                     {
-                         "beat":  346,
-                         "type":  "pattern",
-                         "id":  "circuit_spiral"
-                     },
-                     {
-                         "beat":  348,
-                         "type":  "pattern",
-                         "id":  "data_rain"
-                     },
-                     {
-                         "beat":  350,
-                         "type":  "pattern",
-                         "id":  "aimed_shot"
-                     },
-                     {
-                         "beat":  352,
-                         "type":  "pattern",
-                         "id":  "digital_cross"
-                     },
-                     {
-                         "beat":  354,
-                         "type":  "pattern",
-                         "id":  "glitch_aimed"
-                     },
-                     {
-                         "beat":  360,
-                         "type":  "counterattack_window",
-                         "duration_beats":  8,
-                         "lead_beats":  5,
-                         "zone":  {
-                                      "anchor":  "left",
-                                      "radius":  70
-                                  }
-                     },
-                     {
-                         "beat":  374,
-                         "type":  "pattern",
-                         "id":  "surge_converging"
-                     },
-                     {
-                         "beat":  376,
-                         "type":  "pattern",
-                         "id":  "glitch_aimed"
-                     },
-                     {
-                         "beat":  378,
-                         "type":  "pattern",
-                         "id":  "grid_radial"
-                     },
-                     {
-                         "beat":  380,
-                         "type":  "pattern",
-                         "id":  "digital_cross"
-                     },
-                     {
-                         "beat":  382,
-                         "type":  "pattern",
-                         "id":  "data_rain"
-                     },
-                     {
-                         "beat":  384,
-                         "type":  "pattern",
-                         "id":  "circuit_spiral"
-                     },
-                     {
-                         "beat":  386,
-                         "type":  "pattern",
-                         "id":  "surge_converging"
-                     },
-                     {
-                         "beat":  388,
-                         "type":  "pattern",
-                         "id":  "glitch_aimed"
-                     },
-                     {
-                         "beat":  390,
-                         "type":  "pattern",
-                         "id":  "pulse_radial"
-                     },
-                     {
-                         "beat":  392,
-                         "type":  "pattern",
-                         "id":  "grid_radial"
-                     },
-                     {
-                         "beat":  394,
-                         "type":  "pattern",
-                         "id":  "data_rain"
-                     },
-                     {
-                         "beat":  396,
-                         "type":  "pattern",
-                         "id":  "digital_cross"
-                     },
-                     {
-                         "beat":  398,
-                         "type":  "pattern",
-                         "id":  "surge_converging"
-                     },
-                     {
-                         "beat":  400,
-                         "type":  "pattern",
-                         "id":  "glitch_aimed"
-                     },
-                     {
-                         "beat":  402,
-                         "type":  "pattern",
-                         "id":  "circuit_spiral"
-                     },
-                     {
-                         "beat":  404,
-                         "type":  "pattern",
-                         "id":  "grid_radial"
-                     },
-                     {
-                         "beat":  405,
-                         "type":  "pattern",
-                         "id":  "surge_converging"
-                     },
-                     {
-                         "beat":  405,
-                         "type":  "pattern",
-                         "id":  "data_rain"
-                     },
-                     {
-                         "beat":  408,
-                         "type":  "counterattack_window",
-                         "duration_beats":  10,
-                         "lead_beats":  4,
-                         "zone":  {
-                                      "anchor":  "center",
-                                      "radius":  70
-                                  }
-                     },
-                     {
-                         "beat":  424,
-                         "type":  "pattern",
-                         "id":  "pulse_radial"
-                     },
-                     {
-                         "beat":  426,
-                         "type":  "pattern",
-                         "id":  "glitch_aimed"
-                     },
-                     {
-                         "beat":  428,
-                         "type":  "pattern",
-                         "id":  "digital_cross"
-                     },
-                     {
-                         "beat":  430,
-                         "type":  "pattern",
-                         "id":  "pulse_radial"
-                     },
-                     {
-                         "beat":  432,
-                         "type":  "pattern",
-                         "id":  "aimed_shot"
-                     },
-                     {
-                         "beat":  434,
-                         "type":  "pattern",
-                         "id":  "glitch_aimed"
-                     },
-                     {
-                         "beat":  440,
-                         "type":  "counterattack_window",
-                         "duration_beats":  10,
-                         "lead_beats":  4,
-                         "zone":  {
-                                      "anchor":  "center",
-                                      "radius":  75
-                                  }
-                     }
-                 ]
+  "id": "boss_05",
+  "name": "PULSE",
+  "color": "#00e5ff",
+  "bpm": 140,
+  "maxHP": 4700,
+  "bulletDamage": 8,
+  "counterBaseDamage": 95,
+  "music": "Music/techno/Iron Pulse.wav",
+  "musicVolume": 0.85,
+  "musicOffset": 0,
+  "phaseThresholds": [0.66, 0.33],
+  "patterns": [],
+  "timeline": [
+    { "beat": 4,   "type": "pattern",
+      "patternData": { "type": "train_wall", "side": "left", "cars": 3, "carStep": 0.45, "bullets": 7, "gapSize": 2, "gapMode": "shift", "speed": 360, "radius": 7, "color": "#00e5ff" } },
+    { "beat": 8,   "type": "pattern",
+      "patternData": { "type": "hat_spray", "count": 5, "durationBeats": 1.2, "spread": 0.25, "speed": 340, "radius": 5, "color": "#00e5ff" } },
+
+    { "beat": 16,  "type": "pattern",
+      "patternData": { "type": "train_wall", "side": "top", "cars": 3, "carStep": 0.45, "bullets": 9, "gapSize": 2, "gapMode": "shift", "speed": 320, "radius": 7, "color": "#00e5ff" } },
+    { "beat": 20,  "type": "pattern",
+      "patternData": { "type": "hat_spray", "count": 5, "durationBeats": 1.2, "spread": 0.25, "speed": 340, "radius": 5, "color": "#00e5ff" } },
+
+    { "beat": 28,  "type": "pattern",
+      "patternData": { "type": "hat_spray", "count": 6, "durationBeats": 1.5, "spread": 0.25, "speed": 340, "radius": 5, "color": "#00e5ff" } },
+
+    { "beat": 32,  "type": "counterattack_window", "duration_beats": 8, "lead_beats": 6,
+      "zone": { "anchor": "center", "radius": 52 } },
+
+    { "beat": 44,  "type": "pattern",
+      "patternData": { "type": "train_wall", "side": "left", "cars": 4, "carStep": 0.4, "bullets": 7, "gapSize": 2, "gapMode": "shift", "speed": 380, "radius": 7, "color": "#00e5ff" } },
+    { "beat": 48,  "type": "pattern",
+      "patternData": { "type": "hat_spray", "count": 5, "durationBeats": 1.2, "spread": 0.26, "speed": 350, "radius": 5, "color": "#00e5ff" } },
+
+    { "beat": 56,  "type": "pattern",
+      "patternData": { "type": "sub_slam", "side": "left", "count": 2, "span": 0.55, "bias": 150, "amp": 230, "period": 0.5, "radius": 8, "color": "#00e5ff" } },
+    { "beat": 60,  "type": "pattern",
+      "patternData": { "type": "hat_spray", "count": 5, "durationBeats": 1.2, "spread": 0.26, "speed": 350, "radius": 5, "color": "#00e5ff" } },
+
+    { "beat": 68,  "type": "pattern",
+      "patternData": { "type": "train_wall", "side": "right", "cars": 4, "carStep": 0.4, "bullets": 7, "gapSize": 2, "gapMode": "shift", "speed": 380, "radius": 7, "color": "#00e5ff" } },
+    { "beat": 72,  "type": "pattern",
+      "patternData": { "type": "hat_spray", "count": 5, "durationBeats": 1.2, "spread": 0.26, "speed": 350, "radius": 5, "color": "#00e5ff" } },
+
+    { "beat": 80,  "type": "pattern",
+      "patternData": { "type": "train_wall", "side": "top", "cars": 4, "carStep": 0.4, "bullets": 9, "gapSize": 2, "gapMode": "shift", "speed": 340, "radius": 7, "color": "#00e5ff" } },
+    { "beat": 84,  "type": "pattern",
+      "patternData": { "type": "hat_spray", "count": 5, "durationBeats": 1.2, "spread": 0.26, "speed": 350, "radius": 5, "color": "#00e5ff" } },
+
+    { "beat": 88,  "type": "pattern",
+      "patternData": { "type": "train_wall", "side": "both", "cars": 3, "carStep": 0.45, "bullets": 7, "gapSize": 2, "gapMode": "shift", "speed": 380, "radius": 7, "color": "#00e5ff" } },
+    { "beat": 92,  "type": "pattern",
+      "patternData": { "type": "hat_spray", "count": 4, "durationBeats": 1.0, "spread": 0.28, "speed": 360, "radius": 5, "color": "#00e5ff" } },
+
+    { "beat": 96,  "type": "counterattack_window", "duration_beats": 8, "lead_beats": 6,
+      "zone": { "anchor": "right", "radius": 48 } },
+
+    { "beat": 108, "type": "pattern",
+      "patternData": { "type": "train_wall", "side": "both", "cars": 4, "carStep": 0.4, "bullets": 7, "gapSize": 2, "gapMode": "shift", "speed": 390, "radius": 7, "color": "#00e5ff" } },
+    { "beat": 112, "type": "pattern",
+      "patternData": { "type": "hat_spray", "count": 5, "durationBeats": 1.3, "spread": 0.26, "speed": 360, "radius": 5, "color": "#00e5ff" } },
+
+    { "beat": 120, "type": "pattern",
+      "patternData": { "type": "sub_slam", "side": "top", "count": 2, "span": 0.55, "bias": 150, "amp": 230, "period": 0.5, "radius": 8, "color": "#00e5ff" } },
+
+    { "beat": 128, "type": "pattern",
+      "patternData": { "type": "train_wall", "side": "left", "cars": 5, "carStep": 0.4, "bullets": 7, "gapSize": 2, "gapMode": "shift", "speed": 400, "radius": 7, "color": "#00e5ff" } },
+    { "beat": 132, "type": "pattern",
+      "patternData": { "type": "hat_spray", "count": 5, "durationBeats": 1.3, "spread": 0.26, "speed": 360, "radius": 5, "color": "#00e5ff" } },
+
+    { "beat": 140, "type": "pattern",
+      "patternData": { "type": "train_wall", "side": "top", "cars": 4, "carStep": 0.4, "bullets": 9, "gapSize": 2, "gapMode": "shift", "speed": 350, "radius": 7, "color": "#00e5ff" } },
+    { "beat": 144, "type": "pattern",
+      "patternData": { "type": "hat_spray", "count": 5, "durationBeats": 1.3, "spread": 0.26, "speed": 360, "radius": 5, "color": "#00e5ff" } },
+
+    { "beat": 148, "type": "pattern",
+      "patternData": { "type": "train_wall", "side": "right", "cars": 5, "carStep": 0.4, "bullets": 7, "gapSize": 2, "gapMode": "shift", "speed": 400, "radius": 7, "color": "#00e5ff" } },
+    { "beat": 152, "type": "pattern",
+      "patternData": { "type": "hat_spray", "count": 5, "durationBeats": 1.3, "spread": 0.26, "speed": 360, "radius": 5, "color": "#00e5ff" } },
+
+    { "beat": 160, "type": "counterattack_window", "duration_beats": 10, "lead_beats": 6,
+      "zone": { "anchor": "left", "radius": 50 } },
+
+    { "beat": 176, "type": "pattern",
+      "patternData": { "type": "train_wall", "side": "left", "cars": 4, "carStep": 0.4, "bullets": 7, "gapSize": 2, "gapMode": "shift", "speed": 400, "radius": 7, "color": "#00e5ff" } },
+    { "beat": 180, "type": "pattern",
+      "patternData": { "type": "hat_spray", "count": 5, "durationBeats": 1.3, "spread": 0.27, "speed": 360, "radius": 5, "color": "#00e5ff" } },
+
+    { "beat": 184, "type": "pattern",
+      "patternData": { "type": "sub_slam", "side": "right", "count": 2, "span": 0.6, "bias": 160, "amp": 240, "period": 0.5, "radius": 8, "color": "#00e5ff" } },
+
+    { "beat": 192, "type": "pattern",
+      "patternData": { "type": "train_wall", "side": "top", "cars": 5, "carStep": 0.4, "bullets": 9, "gapSize": 2, "gapMode": "shift", "speed": 360, "radius": 7, "color": "#00e5ff" } },
+    { "beat": 196, "type": "pattern",
+      "patternData": { "type": "hat_spray", "count": 5, "durationBeats": 1.3, "spread": 0.27, "speed": 360, "radius": 5, "color": "#00e5ff" } },
+
+    { "beat": 200, "type": "pattern",
+      "patternData": { "type": "sub_slam", "side": "top", "count": 3, "span": 0.65, "bias": 170, "amp": 240, "period": 0.45, "radius": 8, "color": "#00e5ff" } },
+
+    { "beat": 208, "type": "pattern",
+      "patternData": { "type": "train_wall", "side": "both", "cars": 4, "carStep": 0.4, "bullets": 7, "gapSize": 2, "gapMode": "shift", "speed": 400, "radius": 7, "color": "#00e5ff" } },
+    { "beat": 212, "type": "pattern",
+      "patternData": { "type": "hat_spray", "count": 5, "durationBeats": 1.3, "spread": 0.27, "speed": 370, "radius": 5, "color": "#00e5ff" } },
+
+    { "beat": 220, "type": "pattern",
+      "patternData": { "type": "train_wall", "side": "top", "cars": 5, "carStep": 0.4, "bullets": 9, "gapSize": 2, "gapMode": "random", "speed": 360, "radius": 7, "color": "#00e5ff" } },
+    { "beat": 224, "type": "pattern",
+      "patternData": { "type": "hat_spray", "count": 5, "durationBeats": 1.3, "spread": 0.27, "speed": 370, "radius": 5, "color": "#00e5ff" } },
+
+    { "beat": 232, "type": "pattern",
+      "patternData": { "type": "train_wall", "side": "left", "cars": 5, "carStep": 0.4, "bullets": 7, "gapSize": 2, "gapMode": "random", "speed": 410, "radius": 7, "color": "#00e5ff" } },
+    { "beat": 236, "type": "pattern",
+      "patternData": { "type": "hat_spray", "count": 5, "durationBeats": 1.3, "spread": 0.27, "speed": 370, "radius": 5, "color": "#00e5ff" } },
+
+    { "beat": 240, "type": "counterattack_window", "duration_beats": 8, "lead_beats": 6,
+      "zone": { "anchor": "topRight", "radius": 48 } },
+
+    { "beat": 256, "type": "pattern",
+      "patternData": { "type": "train_wall", "side": "both", "cars": 5, "carStep": 0.4, "bullets": 7, "gapSize": 2, "gapMode": "shift", "speed": 410, "radius": 7, "color": "#00e5ff" } },
+    { "beat": 260, "type": "pattern",
+      "patternData": { "type": "hat_spray", "count": 5, "durationBeats": 1.3, "spread": 0.28, "speed": 370, "radius": 5, "color": "#00e5ff" } },
+
+    { "beat": 268, "type": "pattern",
+      "patternData": { "type": "sub_slam", "side": "bottom", "count": 3, "span": 0.65, "bias": 170, "amp": 240, "period": 0.45, "radius": 8, "color": "#00e5ff" } },
+
+    { "beat": 276, "type": "pattern",
+      "patternData": { "type": "train_wall", "side": "top", "cars": 5, "carStep": 0.4, "bullets": 9, "gapSize": 2, "gapMode": "random", "speed": 370, "radius": 7, "color": "#00e5ff" } },
+    { "beat": 280, "type": "pattern",
+      "patternData": { "type": "hat_spray", "count": 5, "durationBeats": 1.3, "spread": 0.28, "speed": 370, "radius": 5, "color": "#00e5ff" } },
+
+    { "beat": 288, "type": "pattern",
+      "patternData": { "type": "train_wall", "side": "left", "cars": 5, "carStep": 0.38, "bullets": 7, "gapSize": 2, "gapMode": "random", "speed": 420, "radius": 7, "color": "#00e5ff" } },
+    { "beat": 292, "type": "pattern",
+      "patternData": { "type": "hat_spray", "count": 6, "durationBeats": 1.4, "spread": 0.28, "speed": 380, "radius": 5, "color": "#00e5ff" } },
+
+    { "beat": 300, "type": "counterattack_window", "duration_beats": 12, "lead_beats": 8,
+      "zone": { "anchor": "center", "radius": 56 } },
+
+    { "beat": 316, "type": "pattern",
+      "patternData": { "type": "train_wall", "side": "both", "cars": 5, "carStep": 0.4, "bullets": 7, "gapSize": 2, "gapMode": "shift", "speed": 420, "radius": 7, "color": "#00e5ff" } },
+    { "beat": 320, "type": "pattern",
+      "patternData": { "type": "hat_spray", "count": 5, "durationBeats": 1.3, "spread": 0.28, "speed": 380, "radius": 5, "color": "#00e5ff" } },
+
+    { "beat": 328, "type": "pattern",
+      "patternData": { "type": "sub_slam", "side": "left", "count": 3, "span": 0.65, "bias": 170, "amp": 250, "period": 0.45, "radius": 8, "color": "#00e5ff" } },
+
+    { "beat": 336, "type": "pattern",
+      "patternData": { "type": "train_wall", "side": "top", "cars": 5, "carStep": 0.4, "bullets": 9, "gapSize": 2, "gapMode": "random", "speed": 380, "radius": 7, "color": "#00e5ff" } },
+    { "beat": 340, "type": "pattern",
+      "patternData": { "type": "hat_spray", "count": 5, "durationBeats": 1.3, "spread": 0.28, "speed": 380, "radius": 5, "color": "#00e5ff" } },
+
+    { "beat": 348, "type": "pattern",
+      "patternData": { "type": "train_wall", "side": "right", "cars": 5, "carStep": 0.4, "bullets": 7, "gapSize": 2, "gapMode": "random", "speed": 430, "radius": 7, "color": "#00e5ff" } },
+    { "beat": 352, "type": "pattern",
+      "patternData": { "type": "hat_spray", "count": 5, "durationBeats": 1.3, "spread": 0.28, "speed": 380, "radius": 5, "color": "#00e5ff" } },
+
+    { "beat": 360, "type": "pattern",
+      "patternData": { "type": "sub_slam", "side": "top", "count": 3, "span": 0.65, "bias": 170, "amp": 250, "period": 0.45, "radius": 8, "color": "#00e5ff" } },
+
+    { "beat": 368, "type": "pattern",
+      "patternData": { "type": "train_wall", "side": "both", "cars": 5, "carStep": 0.4, "bullets": 7, "gapSize": 2, "gapMode": "random", "speed": 430, "radius": 7, "color": "#00e5ff" } },
+    { "beat": 372, "type": "pattern",
+      "patternData": { "type": "hat_spray", "count": 6, "durationBeats": 1.4, "spread": 0.28, "speed": 380, "radius": 5, "color": "#00e5ff" } },
+
+    { "beat": 384, "type": "pattern",
+      "patternData": { "type": "train_wall", "side": "both", "cars": 5, "carStep": 0.38, "bullets": 7, "gapSize": 2, "gapMode": "random", "speed": 430, "radius": 7, "color": "#00e5ff" } },
+    { "beat": 388, "type": "pattern",
+      "patternData": { "type": "hat_spray", "count": 6, "durationBeats": 1.4, "spread": 0.28, "speed": 390, "radius": 5, "color": "#00e5ff" } },
+
+    { "beat": 396, "type": "pattern",
+      "patternData": { "type": "train_wall", "side": "top", "cars": 6, "carStep": 0.36, "bullets": 9, "gapSize": 2, "gapMode": "random", "speed": 390, "radius": 7, "color": "#00e5ff" } },
+    { "beat": 400, "type": "pattern",
+      "patternData": { "type": "hat_spray", "count": 6, "durationBeats": 1.4, "spread": 0.28, "speed": 390, "radius": 5, "color": "#00e5ff" } },
+
+    { "beat": 408, "type": "pattern",
+      "patternData": { "type": "sub_slam", "side": "right", "count": 3, "span": 0.7, "bias": 180, "amp": 250, "period": 0.45, "radius": 8, "color": "#00e5ff" } },
+
+    { "beat": 416, "type": "pattern",
+      "patternData": { "type": "train_wall", "side": "top", "cars": 6, "carStep": 0.36, "bullets": 9, "gapSize": 2, "gapMode": "random", "speed": 390, "radius": 7, "color": "#00e5ff" } },
+    { "beat": 420, "type": "pattern",
+      "patternData": { "type": "hat_spray", "count": 6, "durationBeats": 1.4, "spread": 0.28, "speed": 390, "radius": 5, "color": "#00e5ff" } },
+
+    { "beat": 428, "type": "pattern",
+      "patternData": { "type": "sub_slam", "side": "top", "count": 3, "span": 0.7, "bias": 180, "amp": 250, "period": 0.45, "radius": 8, "color": "#00e5ff" } },
+
+    { "beat": 432, "type": "pattern",
+      "patternData": { "type": "train_wall", "side": "both", "cars": 5, "carStep": 0.36, "bullets": 7, "gapSize": 2, "gapMode": "random", "speed": 440, "radius": 7, "color": "#00e5ff" } },
+    { "beat": 436, "type": "pattern",
+      "patternData": { "type": "hat_spray", "count": 6, "durationBeats": 1.4, "spread": 0.28, "speed": 390, "radius": 5, "color": "#00e5ff" } },
+
+    { "beat": 444, "type": "pattern",
+      "patternData": { "type": "train_wall", "side": "both", "cars": 5, "carStep": 0.36, "bullets": 7, "gapSize": 2, "gapMode": "random", "speed": 440, "radius": 7, "color": "#00e5ff" } },
+
+    { "beat": 452, "type": "counterattack_window", "duration_beats": 10, "lead_beats": 6,
+      "zone": { "anchor": "bottomLeft", "radius": 48 } },
+
+    { "beat": 468, "type": "pattern",
+      "patternData": { "type": "train_wall", "side": "both", "cars": 6, "carStep": 0.36, "bullets": 7, "gapSize": 2, "gapMode": "random", "speed": 440, "radius": 7, "color": "#00e5ff" } },
+    { "beat": 472, "type": "pattern",
+      "patternData": { "type": "hat_spray", "count": 6, "durationBeats": 1.4, "spread": 0.28, "speed": 400, "radius": 5, "color": "#00e5ff" } },
+
+    { "beat": 480, "type": "pattern",
+      "patternData": { "type": "train_wall", "side": "top", "cars": 6, "carStep": 0.36, "bullets": 9, "gapSize": 2, "gapMode": "random", "speed": 400, "radius": 7, "color": "#00e5ff" } },
+    { "beat": 484, "type": "pattern",
+      "patternData": { "type": "hat_spray", "count": 6, "durationBeats": 1.4, "spread": 0.28, "speed": 400, "radius": 5, "color": "#00e5ff" } },
+
+    { "beat": 488, "type": "pattern",
+      "patternData": { "type": "sub_slam", "side": "bottom", "count": 3, "span": 0.7, "bias": 180, "amp": 260, "period": 0.45, "radius": 8, "color": "#00e5ff" } },
+
+    { "beat": 496, "type": "pattern",
+      "patternData": { "type": "train_wall", "side": "both", "cars": 6, "carStep": 0.36, "bullets": 7, "gapSize": 2, "gapMode": "random", "speed": 450, "radius": 7, "color": "#00e5ff" } },
+    { "beat": 500, "type": "pattern",
+      "patternData": { "type": "hat_spray", "count": 6, "durationBeats": 1.4, "spread": 0.28, "speed": 400, "radius": 5, "color": "#00e5ff" } },
+
+    { "beat": 508, "type": "counterattack_window", "duration_beats": 8, "lead_beats": 6,
+      "zone": { "anchor": "center", "radius": 50 } },
+
+    { "beat": 520, "type": "pattern",
+      "patternData": { "type": "train_wall", "side": "both", "cars": 6, "carStep": 0.34, "bullets": 7, "gapSize": 2, "gapMode": "random", "speed": 460, "radius": 7, "color": "#00e5ff" } },
+    { "beat": 524, "type": "pattern",
+      "patternData": { "type": "hat_spray", "count": 7, "durationBeats": 1.5, "spread": 0.3, "speed": 410, "radius": 5, "color": "#00e5ff" } },
+
+    { "beat": 528, "type": "pattern",
+      "patternData": { "type": "sub_slam", "side": "top", "count": 3, "span": 0.7, "bias": 180, "amp": 260, "period": 0.45, "radius": 8, "color": "#00e5ff" } },
+
+    { "beat": 536, "type": "pattern",
+      "patternData": { "type": "sub_slam", "side": "left", "count": 2, "span": 0.6, "bias": 180, "amp": 260, "period": 0.45, "radius": 8, "color": "#00e5ff" } }
+  ]
 }

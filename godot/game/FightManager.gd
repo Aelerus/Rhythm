@@ -264,6 +264,7 @@ func _handle_event(evt: Dictionary, beat: int) -> void:
 			"targetY":  player.y,
 			"arena":    {"x": arena.position.x, "y": arena.position.y, "w": arena.size.x, "h": arena.size.y},
 			"beatIndex": beat,
+			"beatInterval": beat_clock.beat_interval,
 			"spawnAux": Callable(self, "_spawn_aux"),
 			"activeWalls": active_walls,
 		})
@@ -406,11 +407,14 @@ func update(dt: float, input: InputManager) -> void:
 		perfect_broken = true
 	pattern_engine.record_player_trail(player, beat_clock.get_song_time())
 
-	if phase == PHASE_DODGE:
-		for a in aux:
+	# SlowZone updates every frame (persistent field effect, runs during
+	# counter too); other aux only tick during dodge phase.
+	for a in aux:
+		var persistent: bool = a is AuxAttacks.SlowZone
+		if persistent or phase == PHASE_DODGE:
 			a.update(dt, player, pool)
-		if aux.size() > 0:
-			aux = aux.filter(func(a): return not a.dead)
+	if aux.size() > 0:
+		aux = aux.filter(func(a): return not a.dead)
 
 	if feedback_timer > 0.0: feedback_timer -= dt
 	if floor_flash_timer > 0.0: floor_flash_timer -= dt
